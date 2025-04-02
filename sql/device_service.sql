@@ -45,6 +45,7 @@ CREATE TABLE control_units(
 	type nvarchar(50) not null check (type in ('E02.NET', 'SC200', 'Dahua',' Ingressus')),
 	connection_protocol nvarchar(50) not null check (connection_protocol in ('TCP_IP', 'RS232')),
 	computer_id int not null,
+	status bit not null default 1,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 	foreign key (computer_id) references computers(id)
@@ -56,7 +57,7 @@ CREATE TABLE lanes(
 	code nvarchar(255) not null,
 	type nvarchar(50) not null check (type in ('Làn vào', 'Làn ra')),
 	computer_id int not null,
-	auto_open_barrier nvarchar not null check (auto_open_barrier in('Khi hợp lệ', 'K	hông bao giờ', 'Luôn luôn')),
+	auto_open_barrier nvarchar not null check (auto_open_barrier in('Khi hợp lệ', 'Không bao giờ', 'Luôn luôn')),
 	loop bit not null,
 	status bit not null default 1,
 	created_at datetime default getdate() not null,

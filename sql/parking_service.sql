@@ -2,6 +2,7 @@ CREATE TABLE customer_groups(
 	id int identity(1, 1) primary key,
 	code nvarchar(255) not null,
 	name nvarchar(255) not null,
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 )
@@ -13,9 +14,10 @@ CREATE TABLE customers(
 	phone nvarchar(20),
 	address nvarchar(255),
 	customer_group_id int,
-	foreign key (customer_group_id) references customer_groups(id),
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
+	foreign key (customer_group_id) references customer_groups(id),
 )
  
 CREATE TABLE card_groups(
@@ -24,6 +26,7 @@ CREATE TABLE card_groups(
 	name nvarchar(255) not null,
 	type nvarchar(255) check (type in ('monthly', 'daily')),
 	status bit not null default 1, 
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 )
@@ -36,6 +39,7 @@ CREATE TABLE cards(
 	customer_id int not null,
 	note nvarchar(255),
 	status nvarchar(255) not null check(status in('in_use', 'unused', 'locked')),
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 	foreign key (card_group_id) references card_groups(id),
