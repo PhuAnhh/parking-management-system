@@ -56,9 +56,11 @@ CREATE TABLE lanes(
 	name nvarchar(255) not null,
 	code nvarchar(255) not null,
 	type nvarchar(50) not null check (type in ('Làn vào', 'Làn ra')),
+	reverse_lane int null,
 	computer_id int not null,
 	auto_open_barrier nvarchar not null check (auto_open_barrier in('Khi hợp lệ', 'Không bao giờ', 'Luôn luôn')),
 	loop bit not null,
+	display_led bit not null,
 	status bit not null default 1,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
@@ -84,17 +86,18 @@ CREATE TABLE lane_cameras(
     lane_id int not null,
     camera_id int not null,
     purpose nvarchar(50) not null check (purpose in ('Motorbike Plate', 'Overview', 'Car Plate')),
-	camera_type char(1) not null check (camera_type in ('0', '1', '2', '3')),
+	display_position int not null check (display_position in ('0', '1', '2', '3')),
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
     foreign key (lane_id) references lanes(id),
     foreign key (camera_id) references cameras(id),
 )
 
-CREATE TABLE lane_controllers(
+CREATE TABLE lane_control_units(
 	id int identity(1, 1) primary key,
 	lane_id int not null,
 	control_unit_id int not null,
+	reader int not null check (reader in ('0', '1', '2', '3', '4', '5')),
 	input char(1) not null check (input in ('0', '1', '2', '3', '4', '5')),
 	barrier char(1) not null check (barrier in ('0', '1', '2', '3', '4', '5')),
 	alarm char(1) not null check (alarm in ('0', '1', '2', '3', '4', '5')),
@@ -103,3 +106,4 @@ CREATE TABLE lane_controllers(
     foreign key (lane_id) references lanes(id),
     foreign key (control_unit_id) references control_units(id)
 )
+
