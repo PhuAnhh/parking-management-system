@@ -1,4 +1,4 @@
-﻿CREATE TABLE gates(
+CREATE TABLE gates(
 	id int identity(1, 1) primary key, 
 	name nvarchar(255) not null,
 	code nvarchar(255) not null, 
@@ -26,7 +26,7 @@ CREATE TABLE cameras(
 	code nvarchar(255) not null,
 	ip_address nvarchar(255) not null,
 	resolution nvarchar(50) null,
-	type nvarchar(50) not null check (type in ('Tiandy', 'Dahua', 'Enster')),
+	type nvarchar(225) null,
 	username nvarchar(255) null,
 	password nvarchar(255) null,
 	computer_id int not null,
@@ -45,8 +45,8 @@ CREATE TABLE control_units(
 	password nvarchar(255) not null,
 	comport nvarchar(255) null, 
 	baudrate int null,
-	type nvarchar(50) not null check (type in ('E02.NET', 'SC200', 'Dahua',' Ingressus')),
-	connection_protocol nvarchar(50) not null check (connection_protocol in ('TCP_IP', 'RS232')),
+	type nvarchar(255) null,
+	connection_protocol nvarchar(255) not null,
 	computer_id int not null,
 	status bit not null default 1,
 	deleted bit not null default 0,
@@ -59,10 +59,10 @@ CREATE TABLE lanes(
 	id int identity(1, 1) primary key,
 	name nvarchar(255) not null,
 	code nvarchar(255) not null,
-	type nvarchar(50) not null check (type in ('Làn vào', 'Làn ra')),
+	type nvarchar(255) not null,
 	reverse_lane int null,
 	computer_id int not null,
-	auto_open_barrier nvarchar not null check (auto_open_barrier in('Khi hợp lệ', 'Không bao giờ', 'Luôn luôn')),
+	auto_open_barrier nvarchar(255) not null,
 	loop bit not null,
 	display_led bit not null,
 	status bit not null default 1,
@@ -79,11 +79,11 @@ CREATE TABLE leds(
 	computer_id int not null,
 	comport nvarchar(255), 
 	baudrate int not null,
-	type nvarchar(50) not null check (type in ('P10Red', 'P10FullColor', 'Direction Led')),
+	type nvarchar(255) not null,
 	status bit not null default 1,
 	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
-	updated_at datetime default getdate(),
+	updated_at datetime default getdate() not null,
 	foreign key (computer_id) references computers(id)
 )
 
@@ -112,4 +112,3 @@ CREATE TABLE lane_control_units(
     foreign key (lane_id) references lanes(id),
     foreign key (control_unit_id) references control_units(id)
 )
-
