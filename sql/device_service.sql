@@ -3,6 +3,7 @@
 	name nvarchar(255) not null,
 	code nvarchar(255) not null, 
 	status bit not null default 1,
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null
 )
@@ -13,6 +14,7 @@ CREATE TABLE computers(
 	ip_address nvarchar(255) not null,
 	gate_id int not null,	
 	status bit not null default 1,
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 	foreign key (gate_id) references gates(id)
@@ -29,6 +31,7 @@ CREATE TABLE cameras(
 	password nvarchar(255) null,
 	computer_id int not null,
 	status bit not null default 1,
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 	foreign key (computer_id) references computers(id)
@@ -46,6 +49,7 @@ CREATE TABLE control_units(
 	connection_protocol nvarchar(50) not null check (connection_protocol in ('TCP_IP', 'RS232')),
 	computer_id int not null,
 	status bit not null default 1,
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 	foreign key (computer_id) references computers(id)
@@ -62,12 +66,13 @@ CREATE TABLE lanes(
 	loop bit not null,
 	display_led bit not null,
 	status bit not null default 1,
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 	foreign key (computer_id) references computers(id)
 )
 
-CREATE TABLE led(
+CREATE TABLE leds(
 	id int identity(1, 1) primary key, 
 	name nvarchar(255) not null,
 	code nvarchar(255) not null,
@@ -76,6 +81,7 @@ CREATE TABLE led(
 	baudrate int not null,
 	type nvarchar(50) not null check (type in ('P10Red', 'P10FullColor', 'Direction Led')),
 	status bit not null default 1,
+	deleted bit not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate(),
 	foreign key (computer_id) references computers(id)
