@@ -88,27 +88,28 @@ CREATE TABLE leds(
 )
 
 CREATE TABLE lane_cameras(
-	id int identity(1, 1) primary key,
-    lane_id int not null,
-    camera_id int not null,
-    purpose nvarchar(50) not null check (purpose in ('Motorbike Plate', 'Overview', 'Car Plate')),
-	display_position int not null check (display_position in ('0', '1', '2', '3')),
+	id int identity(1, 1) not null primary key,
+    	lane_id int not null,
+    	camera_id int not null,
+    	purpose nvarchar(255) not null,
+	display_position int not null,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
-    foreign key (lane_id) references lanes(id),
-    foreign key (camera_id) references cameras(id),
+   	foreign key (lane_id) references lanes(id),
+    	foreign key (camera_id) references cameras(id),
 )
 
 CREATE TABLE lane_control_units(
-	id int identity(1, 1) primary key,
+	id int identity(1, 1) not null primary key,
 	lane_id int not null,
 	control_unit_id int not null,
-	reader int not null check (reader in ('0', '1', '2', '3', '4', '5')),
-	input char(1) not null check (input in ('0', '1', '2', '3', '4', '5')),
-	barrier char(1) not null check (barrier in ('0', '1', '2', '3', '4', '5')),
-	alarm char(1) not null check (alarm in ('0', '1', '2', '3', '4', '5')),
+	reader nvarchar(255) null,
+	input nvarchar(255) null,
+	barrier nvarchar(255) null,
+	alarm nvarchar(255) null,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
-    foreign key (lane_id) references lanes(id),
-    foreign key (control_unit_id) references control_units(id)
+    	foreign key (lane_id) references lanes(id),
+    	foreign key (control_unit_id) references control_units(id)
 )
+
