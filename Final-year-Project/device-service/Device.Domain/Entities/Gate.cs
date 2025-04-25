@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Final_year_Project.Device.Domain.Entities;
+
+public partial class Gate
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public string Code { get; set; } = null!;
+
+    public bool Status { get; set; }
+
+    public bool Deleted { get; set; } = false;
+     
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime UpdatedAt { get; set; }
+
+    public virtual ICollection<Computer> Computers { get; set; } = new List<Computer>();
+}
