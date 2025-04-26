@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Final_year_Project.Device.Persistence.DbContexts;
-using Final_year_Project.Device.Persistence.Repositories;
-using Final_year_Project.Device.Application.Repositories;
-using Final_year_Project.Device.Application.Services;
-using Final_year_Project.Device.Application.Services.Abstractions;
+using Final_year_Project.Persistence.DbContexts;
+using Final_year_Project.Persistence.Repositories;
+using Final_year_Project.Application.Repositories;
+using Final_year_Project.Application.Services;
+using Final_year_Project.Application.Services.Abstractions;
 using System.Text;
 using System.Text.Json.Serialization;
 

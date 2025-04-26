@@ -163,10 +163,11 @@ C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Final-year-Project.props
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Final-year-Project.props
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\Final-ye.F0D06AF0.Up2Date
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\Final-year-Project.dll
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\refint\Final-year-Project.dll
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\Final-year-Project.pdb
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\Final-year-Project.genruntimeconfig.cache
 C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\ref\Final-year-Project.dll
+C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\Final-year-Project.sourcelink.json
+C:\Users\phanp\source\repos\Final-year-Project\Final-year-Project\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

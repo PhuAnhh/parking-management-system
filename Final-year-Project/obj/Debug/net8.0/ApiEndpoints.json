@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.CameraController",
+    "ContainingType": "Final_year_Project.Api.Controllers.CameraController",
     "Method": "GetAll",
     "RelativePath": "api/Camera",
     "HttpMethod": "GET",
@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Device.Application.Models.CameraDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Application.Models.CameraDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.CameraController",
+    "ContainingType": "Final_year_Project.Api.Controllers.CameraController",
     "Method": "Create",
     "RelativePath": "api/Camera",
     "HttpMethod": "POST",
@@ -29,13 +29,13 @@
     "Parameters": [
       {
         "Name": "createCameraDto",
-        "Type": "Final_year_Project.Device.Application.Models.CreateCameraDto",
+        "Type": "Final_year_Project.Application.Models.CreateCameraDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.CameraDto",
+        "Type": "Final_year_Project.Application.Models.CameraDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -46,7 +46,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.CameraController",
+    "ContainingType": "Final_year_Project.Api.Controllers.CameraController",
     "Method": "GetById",
     "RelativePath": "api/Camera/{id}",
     "HttpMethod": "GET",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.CameraDto",
+        "Type": "Final_year_Project.Application.Models.CameraDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -72,7 +72,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.CameraController",
+    "ContainingType": "Final_year_Project.Api.Controllers.CameraController",
     "Method": "Update",
     "RelativePath": "api/Camera/{id}",
     "HttpMethod": "PUT",
@@ -86,13 +86,13 @@
       },
       {
         "Name": "updateCameraDto",
-        "Type": "Final_year_Project.Device.Application.Models.UpdateCameraDto",
+        "Type": "Final_year_Project.Application.Models.UpdateCameraDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.CameraDto",
+        "Type": "Final_year_Project.Application.Models.CameraDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -103,7 +103,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.CameraController",
+    "ContainingType": "Final_year_Project.Api.Controllers.CameraController",
     "Method": "Delete",
     "RelativePath": "api/Camera/{id}",
     "HttpMethod": "DELETE",
@@ -119,7 +119,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ComputerController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ComputerController",
     "Method": "GetAll",
     "RelativePath": "api/Computer",
     "HttpMethod": "GET",
@@ -128,7 +128,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Device.Application.Models.ComputerDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Application.Models.ComputerDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -139,7 +139,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ComputerController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ComputerController",
     "Method": "Create",
     "RelativePath": "api/Computer",
     "HttpMethod": "POST",
@@ -148,13 +148,13 @@
     "Parameters": [
       {
         "Name": "createComputerDto",
-        "Type": "Final_year_Project.Device.Application.Models.CreateComputerDto",
+        "Type": "Final_year_Project.Application.Models.CreateComputerDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.ComputerDto",
+        "Type": "Final_year_Project.Application.Models.ComputerDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -165,7 +165,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ComputerController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ComputerController",
     "Method": "GetById",
     "RelativePath": "api/Computer/{id}",
     "HttpMethod": "GET",
@@ -180,7 +180,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.ComputerDto",
+        "Type": "Final_year_Project.Application.Models.ComputerDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -191,7 +191,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ComputerController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ComputerController",
     "Method": "Update",
     "RelativePath": "api/Computer/{id}",
     "HttpMethod": "PUT",
@@ -205,13 +205,13 @@
       },
       {
         "Name": "updateComputerDto",
-        "Type": "Final_year_Project.Device.Application.Models.UpdateComputerDto",
+        "Type": "Final_year_Project.Application.Models.UpdateComputerDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.ComputerDto",
+        "Type": "Final_year_Project.Application.Models.ComputerDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -222,7 +222,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ComputerController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ComputerController",
     "Method": "Delete",
     "RelativePath": "api/Computer/{id}",
     "HttpMethod": "DELETE",
@@ -238,7 +238,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ControlUnitController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ControlUnitController",
     "Method": "GetAll",
     "RelativePath": "api/ControlUnit",
     "HttpMethod": "GET",
@@ -247,7 +247,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Device.Application.Models.ControlUnitDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Application.Models.ControlUnitDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -258,7 +258,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ControlUnitController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ControlUnitController",
     "Method": "Create",
     "RelativePath": "api/ControlUnit",
     "HttpMethod": "POST",
@@ -267,13 +267,13 @@
     "Parameters": [
       {
         "Name": "createControlUnitDto",
-        "Type": "Final_year_Project.Device.Application.Models.CreateControlUnitDto",
+        "Type": "Final_year_Project.Application.Models.CreateControlUnitDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.ControlUnitDto",
+        "Type": "Final_year_Project.Application.Models.ControlUnitDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -284,7 +284,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ControlUnitController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ControlUnitController",
     "Method": "GetById",
     "RelativePath": "api/ControlUnit/{id}",
     "HttpMethod": "GET",
@@ -299,7 +299,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.ControlUnitDto",
+        "Type": "Final_year_Project.Application.Models.ControlUnitDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -310,7 +310,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ControlUnitController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ControlUnitController",
     "Method": "Update",
     "RelativePath": "api/ControlUnit/{id}",
     "HttpMethod": "PUT",
@@ -324,13 +324,13 @@
       },
       {
         "Name": "updateControlUnitDto",
-        "Type": "Final_year_Project.Device.Application.Models.UpdateControlUnitDto",
+        "Type": "Final_year_Project.Application.Models.UpdateControlUnitDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.ControlUnitDto",
+        "Type": "Final_year_Project.Application.Models.ControlUnitDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -341,7 +341,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.ControlUnitController",
+    "ContainingType": "Final_year_Project.Api.Controllers.ControlUnitController",
     "Method": "Delete",
     "RelativePath": "api/ControlUnit/{id}",
     "HttpMethod": "DELETE",
@@ -357,7 +357,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.GateController",
+    "ContainingType": "Final_year_Project.Api.Controllers.GateController",
     "Method": "GetAll",
     "RelativePath": "api/Gate",
     "HttpMethod": "GET",
@@ -366,7 +366,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Device.Application.Models.GateDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Application.Models.GateDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -377,7 +377,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.GateController",
+    "ContainingType": "Final_year_Project.Api.Controllers.GateController",
     "Method": "Create",
     "RelativePath": "api/Gate",
     "HttpMethod": "POST",
@@ -386,13 +386,13 @@
     "Parameters": [
       {
         "Name": "createGateDto",
-        "Type": "Final_year_Project.Device.Application.Models.CreateGateDto",
+        "Type": "Final_year_Project.Application.Models.CreateGateDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.GateDto",
+        "Type": "Final_year_Project.Application.Models.GateDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -403,7 +403,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.GateController",
+    "ContainingType": "Final_year_Project.Api.Controllers.GateController",
     "Method": "GetById",
     "RelativePath": "api/Gate/{id}",
     "HttpMethod": "GET",
@@ -418,7 +418,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.GateDto",
+        "Type": "Final_year_Project.Application.Models.GateDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -429,7 +429,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.GateController",
+    "ContainingType": "Final_year_Project.Api.Controllers.GateController",
     "Method": "Update",
     "RelativePath": "api/Gate/{id}",
     "HttpMethod": "PUT",
@@ -443,13 +443,13 @@
       },
       {
         "Name": "updateGateDto",
-        "Type": "Final_year_Project.Device.Application.Models.UpdateGateDto",
+        "Type": "Final_year_Project.Application.Models.UpdateGateDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.GateDto",
+        "Type": "Final_year_Project.Application.Models.GateDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -460,7 +460,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.GateController",
+    "ContainingType": "Final_year_Project.Api.Controllers.GateController",
     "Method": "Delete",
     "RelativePath": "api/Gate/{id}",
     "HttpMethod": "DELETE",
@@ -476,7 +476,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LaneController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LaneController",
     "Method": "GetAll",
     "RelativePath": "api/Lane",
     "HttpMethod": "GET",
@@ -485,7 +485,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Device.Application.Models.LaneDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Application.Models.LaneDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -496,7 +496,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LaneController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LaneController",
     "Method": "Create",
     "RelativePath": "api/Lane",
     "HttpMethod": "POST",
@@ -505,13 +505,13 @@
     "Parameters": [
       {
         "Name": "createLaneDto",
-        "Type": "Final_year_Project.Device.Application.Models.CreateLaneDto",
+        "Type": "Final_year_Project.Application.Models.CreateLaneDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.LaneDto",
+        "Type": "Final_year_Project.Application.Models.LaneDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -522,7 +522,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LaneController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LaneController",
     "Method": "GetById",
     "RelativePath": "api/Lane/{id}",
     "HttpMethod": "GET",
@@ -537,7 +537,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.LaneDto",
+        "Type": "Final_year_Project.Application.Models.LaneDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -548,7 +548,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LaneController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LaneController",
     "Method": "Update",
     "RelativePath": "api/Lane/{id}",
     "HttpMethod": "PUT",
@@ -562,13 +562,13 @@
       },
       {
         "Name": "updateLaneDto",
-        "Type": "Final_year_Project.Device.Application.Models.UpdateLaneDto",
+        "Type": "Final_year_Project.Application.Models.UpdateLaneDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.LaneDto",
+        "Type": "Final_year_Project.Application.Models.LaneDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -579,7 +579,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LaneController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LaneController",
     "Method": "Delete",
     "RelativePath": "api/Lane/{id}",
     "HttpMethod": "DELETE",
@@ -595,7 +595,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LedController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LedController",
     "Method": "GetAll",
     "RelativePath": "api/Led",
     "HttpMethod": "GET",
@@ -604,7 +604,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Device.Application.Models.LedDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Application.Models.LedDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -615,7 +615,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LedController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LedController",
     "Method": "Create",
     "RelativePath": "api/Led",
     "HttpMethod": "POST",
@@ -624,13 +624,13 @@
     "Parameters": [
       {
         "Name": "createLedDto",
-        "Type": "Final_year_Project.Device.Application.Models.CreateLedDto",
+        "Type": "Final_year_Project.Application.Models.CreateLedDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.LedDto",
+        "Type": "Final_year_Project.Application.Models.LedDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -641,7 +641,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LedController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LedController",
     "Method": "GetById",
     "RelativePath": "api/Led/{id}",
     "HttpMethod": "GET",
@@ -656,7 +656,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.LedDto",
+        "Type": "Final_year_Project.Application.Models.LedDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -667,7 +667,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LedController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LedController",
     "Method": "Update",
     "RelativePath": "api/Led/{id}",
     "HttpMethod": "PUT",
@@ -681,13 +681,13 @@
       },
       {
         "Name": "updateLedDto",
-        "Type": "Final_year_Project.Device.Application.Models.UpdateLedDto",
+        "Type": "Final_year_Project.Application.Models.UpdateLedDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Final_year_Project.Device.Application.Models.LedDto",
+        "Type": "Final_year_Project.Application.Models.LedDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -698,7 +698,7 @@
     ]
   },
   {
-    "ContainingType": "Final_year_Project.Device.Api.Controllers.LedController",
+    "ContainingType": "Final_year_Project.Api.Controllers.LedController",
     "Method": "Delete",
     "RelativePath": "api/Led/{id}",
     "HttpMethod": "DELETE",
