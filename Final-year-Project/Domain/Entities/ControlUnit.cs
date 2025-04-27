@@ -22,7 +22,7 @@ public partial class ControlUnit
 
     public ControlUnitType Type { get; set; }
 
-    public ControlUnitConnectionProtocolType ConnectionProtocol { get; set; } 
+    public ControlUnitConnectionProtocolType ConnectionProtocol { get; set; }
 
     public int ComputerId { get; set; }
 

@@ -11,7 +11,7 @@ public partial class LaneCamera
 
     public int CameraId { get; set; }
 
-    public LaneCameraPurpose Purpose { get; set; } 
+    public LaneCameraPurpose Purpose { get; set; }
 
     public int DisplayPosition { get; set; }
 

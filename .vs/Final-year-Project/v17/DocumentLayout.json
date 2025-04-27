@@ -3,60 +3,120 @@
   "WorkspaceRootPath": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\customergroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\customergroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\customergroupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\customergroupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\controlunitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\controlunitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\lanecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\lanecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\ledcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\ledcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\gatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\gatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\ledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\ledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\customergroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\customergroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\laneservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\laneservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\igateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\igateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\iledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\iledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icomputerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icomputerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\gaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\gaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\controlunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\controlunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\dbcontexts\\deviceservicecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\dbcontexts\\deviceservicecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\camerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\camerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icomputerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icomputerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\igaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\igaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icustomergrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icustomergrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\gatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\gatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\cameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\cameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\controlunitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\controlunitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\computerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\computerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\leddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,88 +127,96 @@
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\lanedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\lanecontrolunitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\lanecontrolunitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\lanecameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\lanecameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\gatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\gatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\computerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\computerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\cameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\cameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\ledcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\ledcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\lanecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\lanecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\gatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\gatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\controlunitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\controlunitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\computercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\computercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\iledrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\iledrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\ilanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\ilanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\ilanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\ilanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\ilanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\ilanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\igaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\igaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\ledrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\ledrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\lanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\lanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\gaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\gaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\lanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\lanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\controlunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\controlunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\lanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\lanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\customergrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\customergrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\customergroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\customergroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\cameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\cameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icustomergroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icustomergroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icontrolunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icontrolunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\ilanecameraserivce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\ilanecameraserivce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\lanecameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\lanecameradto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\cardgrouplane.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\cardgrouplane.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\computerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\computerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\camerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\camerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\ilanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\ilanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\dbcontexts\\deviceservicecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\dbcontexts\\deviceservicecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\lane.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\lane.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\warningevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\warningevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\controlunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\controlunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\led.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -163,24 +231,80 @@
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\lanecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\lane.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\lane.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\revenuereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\revenuereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\exitlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\exitlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\controlunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\controlunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\entrylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\entrylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\computer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\computer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\cardgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\cardgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\entities\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\entities\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\icomputerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\icomputerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\computerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\computerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\models\\lanecontrolunitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\models\\lanecontrolunitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\api\\controllers\\computercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\api\\controllers\\computercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\iledrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\iledrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\ilanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\ilanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\repositories\\ilanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\repositories\\ilanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\lanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\lanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\lanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\lanecontrolunitrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\persistence\\repositories\\lanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\persistence\\repositories\\lanecamerarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\domain\\enumtypes\\ledtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -211,10 +335,6 @@
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\domain\\enumtypes\\cameratype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\iledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\iledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\ilaneservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\ilaneservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -223,48 +343,12 @@
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\ilanecontrolunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\ilanecameraserivce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\ilanecameraserivce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\igateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\igateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icontrolunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icontrolunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icomputerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icomputerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\abstractions\\icameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\abstractions\\icameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\cameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\cameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\computerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\computerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\controlunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\controlunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\laneservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\laneservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\application\\services\\ledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|solutionrelative:final-year-project\\application\\services\\ledservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EAADCEB5-A57C-424A-80B8-894B792A9E9A}|Final-year-Project\\Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\final-year-project\\final-year-project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -282,7 +366,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -290,43 +374,826 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LedController.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LedController.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\LedController.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LedController.cs",
+              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\LedController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T03:13:18.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LaneController.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LaneController.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\LaneController.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LaneController.cs",
+              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\LaneController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAgwAYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T06:35:52.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ControlUnitController.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
+              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T09:59:50.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CustomerGroupController.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CustomerGroupController.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\CustomerGroupController.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CustomerGroupController.cs",
+              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\CustomerGroupController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAYwEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:28:09.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Program.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Program.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Program.cs",
+              "RelativeToolTip": "Final-year-Project\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T03:52:25.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomerDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CustomerDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\CustomerDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CustomerDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\CustomerDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:41:49.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomerGroupDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CustomerGroupDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\CustomerGroupDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CustomerGroupDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\CustomerGroupDto.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:13:19.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GateController.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\GateController.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\GateController.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\GateController.cs",
+              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\GateController.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowEIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T07:16:56.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAgwD0AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:54:45.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CustomerService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CustomerService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\CustomerService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CustomerService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\CustomerService.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAIwH4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:48:17.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GateService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\GateService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\GateService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\GateService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\GateService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T05:51:06.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LedService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LedService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\LedService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LedService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\LedService.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAowI0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:34:30.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CustomerGroupService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CustomerGroupService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\CustomerGroupService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CustomerGroupService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\CustomerGroupService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:18:50.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LaneService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LaneService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\LaneService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LaneService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\LaneService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T08:26:11.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ICustomerService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICustomerService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ICustomerService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICustomerService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ICustomerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:46:35.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IGateService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:36:56.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ICameraService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:36:15.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IComputerService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:36:29.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ICustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICustomerRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ICustomerRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICustomerRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\ICustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:36:40.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\UnitOfWork.cs",
               "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\UnitOfWork.cs",
               "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\UnitOfWork.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCUAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:40:57.622Z"
+              "WhenOpened": "2025-04-26T15:40:57.622Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CameraRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
-              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 16,
+              "Title": "ILedService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T04:30:37.931Z"
+              "WhenOpened": "2025-04-26T15:37:32.812Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 22,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:33:23.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IGateRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T08:24:53.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ICustomerGroupRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICustomerGroupRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ICustomerGroupRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICustomerGroupRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\ICustomerGroupRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:09:08.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\CustomerRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CustomerRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\CustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:39:52.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "GateDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\GateDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\GateDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\GateDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\GateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T05:49:43.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Gate.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Gate.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Gate.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Gate.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Gate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:43.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CameraDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CameraDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\CameraDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CameraDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\CameraDto.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAswAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T07:30:07.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ControlUnitDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAA0wAEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T14:55:31.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "LedDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LedDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\LedDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LedDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\LedDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T06:30:26.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "LaneDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\LaneDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\LaneDto.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAzwAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T03:59:37.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "GateRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T07:14:04.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
               "Title": "ControlUnitRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\ControlUnitRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\ControlUnitRepository.cs",
               "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\ControlUnitRepository.cs",
               "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\ControlUnitRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:39:51.667Z"
+              "WhenOpened": "2025-04-26T15:39:51.667Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 35,
+              "Title": "CustomerGroupRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CustomerGroupRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\CustomerGroupRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CustomerGroupRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\CustomerGroupRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:08:00.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "ICameraRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T04:31:43.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Customer.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Customer.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Customer.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Customer.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA5wB0AAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:33.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "LedRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:40:50.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "CustomerGroup.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\CustomerGroup.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\CustomerGroup.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\CustomerGroup.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\CustomerGroup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:35.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "CameraController.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CameraController.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\CameraController.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CameraController.cs",
+              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\CameraController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAA7wAYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T09:49:01.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "CameraService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CameraService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\CameraService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CameraService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\CameraService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T04:30:59.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ICustomerGroupService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICustomerGroupService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ICustomerGroupService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICustomerGroupService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ICustomerGroupService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:17:26.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ILaneCameraSerivce.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:37:07.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "IControlUnitService.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:36:42.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Camera.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Camera.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Camera.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Camera.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Camera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:51:43.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "LaneCameraDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAADwvwMAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T04:42:01.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "CardGroupLane.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\CardGroupLane.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\CardGroupLane.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\CardGroupLane.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\CardGroupLane.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:24.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "CameraRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\CameraRepository.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwCkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T04:30:37.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ComputerDto.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ComputerDto.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\ComputerDto.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ComputerDto.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Models\\ComputerDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T07:24:46.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "ILaneCameraRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T14:17:34.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "IControlUnitRepository.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
+              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T15:33:05.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "RevenueReport.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\RevenueReport.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\RevenueReport.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\RevenueReport.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\RevenueReport.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:58.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "WarningEvent.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\WarningEvent.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\WarningEvent.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\WarningEvent.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\WarningEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:53:00.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "Led.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Led.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Led.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Led.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Led.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:55.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "LaneControlUnit.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:51.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "LaneCamera.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:49.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "Lane.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Lane.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Lane.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Lane.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Lane.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:46.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "DeviceServiceContext.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
+              "RelativeToolTip": "Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
+              "ViewState": "AgIAAA0CAAAAAAAAAAAkwJQCAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:50:19.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "ControlUnit.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:30.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "ExitLog.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\ExitLog.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\ExitLog.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\ExitLog.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\ExitLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:41.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "EntryLog.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\EntryLog.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\EntryLog.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\EntryLog.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\EntryLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:38.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "Computer.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Computer.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Computer.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Computer.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Computer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:27.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "CardGroup.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\CardGroup.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\CardGroup.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\CardGroup.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\CardGroup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:21.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "Card.cs",
+              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Card.cs",
+              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Card.cs",
+              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Card.cs",
+              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Card.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:52:17.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\appsettings.Development.json",
               "RelativeDocumentMoniker": "Final-year-Project\\appsettings.Development.json",
@@ -338,7 +1205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 64,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Final-year-Project\\Properties\\launchSettings.json",
@@ -350,7 +1217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 63,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\appsettings.json",
               "RelativeDocumentMoniker": "Final-year-Project\\appsettings.json",
@@ -363,43 +1230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DeviceServiceContext.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
-              "RelativeToolTip": "Final-year-Project\\Persistence\\DbContexts\\DeviceServiceContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T03:08:23.073Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\IUnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:33:23.33Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GateRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
-              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\GateRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T07:14:04.186Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 66,
               "Title": "IComputerRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IComputerRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\IComputerRepository.cs",
@@ -411,31 +1242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ICameraRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\ICameraRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T04:31:43.142Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ControlUnitDto.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Models\\ControlUnitDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T14:55:31.585Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 67,
               "Title": "ComputerRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\ComputerRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\ComputerRepository.cs",
@@ -447,43 +1254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Program.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Program.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Program.cs",
-              "RelativeToolTip": "Final-year-Project\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T03:52:25.003Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "LedDto.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LedDto.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\LedDto.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LedDto.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Models\\LedDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T06:30:26.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "LaneDto.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneDto.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\LaneDto.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneDto.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Models\\LaneDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T03:59:37.523Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 68,
               "Title": "LaneControlUnitDto.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneControlUnitDto.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\LaneControlUnitDto.cs",
@@ -495,103 +1266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "LaneCameraDto.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Models\\LaneCameraDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T04:42:01.122Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "GateDto.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\GateDto.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\GateDto.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\GateDto.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Models\\GateDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T05:49:43.573Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "ComputerDto.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ComputerDto.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\ComputerDto.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\ComputerDto.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Models\\ComputerDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T07:24:46.323Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "CameraDto.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CameraDto.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Models\\CameraDto.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Models\\CameraDto.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Models\\CameraDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T07:30:07.132Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "LedController.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LedController.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\LedController.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LedController.cs",
-              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\LedController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T03:13:18.298Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "LaneController.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LaneController.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\LaneController.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\LaneController.cs",
-              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\LaneController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T06:35:52.605Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "GateController.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\GateController.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\GateController.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\GateController.cs",
-              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\GateController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T07:16:56.198Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ControlUnitController.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
-              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\ControlUnitController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T09:59:50.438Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 69,
               "Title": "ComputerController.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\ComputerController.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\ComputerController.cs",
@@ -603,19 +1278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "CameraController.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CameraController.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Api\\Controllers\\CameraController.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Api\\Controllers\\CameraController.cs",
-              "RelativeToolTip": "Final-year-Project\\Api\\Controllers\\CameraController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T09:49:01.77Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 70,
               "Title": "ILedRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ILedRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ILedRepository.cs",
@@ -627,7 +1290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 71,
               "Title": "ILaneControlUnitRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ILaneControlUnitRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ILaneControlUnitRepository.cs",
@@ -639,7 +1302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 72,
               "Title": "ILaneRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ILaneRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ILaneRepository.cs",
@@ -651,55 +1314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "ILaneCameraRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\ILaneCameraRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T14:17:34.263Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "IGateRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\IGateRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T08:24:53.512Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "IControlUnitRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Repositories\\IControlUnitRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:33:05.241Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "LedRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
-              "RelativeToolTip": "Final-year-Project\\Persistence\\Repositories\\LedRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:40:50.568Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 75,
               "Title": "LaneCameraRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\LaneCameraRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\LaneCameraRepository.cs",
@@ -711,7 +1326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 74,
               "Title": "LaneControlUnitRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\LaneControlUnitRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\LaneControlUnitRepository.cs",
@@ -723,7 +1338,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 73,
               "Title": "LaneRepository.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Persistence\\Repositories\\LaneRepository.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Persistence\\Repositories\\LaneRepository.cs",
@@ -735,79 +1350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "Led.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Led.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Led.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Led.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Led.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:38:57.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "LaneControlUnit.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\LaneControlUnit.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T05:05:30.595Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "LaneCamera.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\LaneCamera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:38:43.218Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "Lane.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Lane.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Lane.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Lane.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Lane.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:38:35.982Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "Gate.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Gate.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Gate.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Gate.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Gate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:38:33.198Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "ControlUnit.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\ControlUnit.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:38:28.502Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 76,
               "Title": "LedType.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\EnumTypes\\LedType.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Domain\\EnumTypes\\LedType.cs",
@@ -819,7 +1362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 77,
               "Title": "LaneType.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\EnumTypes\\LaneType.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Domain\\EnumTypes\\LaneType.cs",
@@ -831,7 +1374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 79,
               "Title": "LaneAutoOpenBarrier.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\EnumTypes\\LaneAutoOpenBarrier.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Domain\\EnumTypes\\LaneAutoOpenBarrier.cs",
@@ -843,7 +1386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 81,
               "Title": "ControlUnitConnectionProtocolType.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\EnumTypes\\ControlUnitConnectionProtocolType.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Domain\\EnumTypes\\ControlUnitConnectionProtocolType.cs",
@@ -855,43 +1398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
-              "Title": "ILedService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ILedService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:37:32.812Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "Camera.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Camera.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Camera.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Camera.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Camera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T07:23:59.018Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "Computer.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Computer.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Domain\\Entities\\Computer.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\Entities\\Computer.cs",
-              "RelativeToolTip": "Final-year-Project\\Domain\\Entities\\Computer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T07:22:52.097Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 84,
               "Title": "ILaneControlUnitService.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILaneControlUnitService.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ILaneControlUnitService.cs",
@@ -903,19 +1410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
-              "Title": "ILaneCameraSerivce.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ILaneCameraSerivce.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:37:07.514Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 78,
               "Title": "LaneCameraPurpose.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\EnumTypes\\LaneCameraPurpose.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Domain\\EnumTypes\\LaneCameraPurpose.cs",
@@ -927,19 +1422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
-              "Title": "IGateService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\IGateService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:36:56.871Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 80,
               "Title": "ControlUnitType.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\EnumTypes\\ControlUnitType.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Domain\\EnumTypes\\ControlUnitType.cs",
@@ -951,31 +1434,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "IControlUnitService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\IControlUnitService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:36:42.936Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "IComputerService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\IComputerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:36:29.512Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 82,
               "Title": "CameraType.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Domain\\EnumTypes\\CameraType.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Domain\\EnumTypes\\CameraType.cs",
@@ -987,19 +1446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "ICameraService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\Abstractions\\ICameraService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:36:15.551Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 83,
               "Title": "ILaneService.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\Abstractions\\ILaneService.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\Abstractions\\ILaneService.cs",
@@ -1011,19 +1458,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "LedService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LedService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\LedService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LedService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\LedService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:34:30.934Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 86,
               "Title": "ControlUnitService.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\ControlUnitService.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\ControlUnitService.cs",
@@ -1035,43 +1470,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "CameraService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CameraService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\CameraService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\CameraService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\CameraService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T04:30:59.417Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "GateService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\GateService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\GateService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\GateService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\GateService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T05:51:06.044Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "LaneService.cs",
-              "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LaneService.cs",
-              "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\LaneService.cs",
-              "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\LaneService.cs",
-              "RelativeToolTip": "Final-year-Project\\Application\\Services\\LaneService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T08:26:11.805Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 85,
               "Title": "ComputerService.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Application\\Services\\ComputerService.cs",
               "RelativeDocumentMoniker": "Final-year-Project\\Application\\Services\\ComputerService.cs",
@@ -1083,7 +1482,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 87,
               "Title": "Final-year-Project.csproj",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Final-year-Project.csproj",
               "RelativeDocumentMoniker": "Final-year-Project\\Final-year-Project.csproj",
@@ -1095,7 +1494,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 88,
               "Title": "Final-year-Project",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Final-year-Project.csproj",
               "RelativeDocumentMoniker": "Final-year-Project\\Final-year-Project.csproj",

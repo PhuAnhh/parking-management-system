@@ -18,6 +18,8 @@ namespace Final_year_Project.Persistence.Repositories
         private ILaneCameraRepository _laneCameraRepository;
         private ILaneControlUnitRepository _laneControlUnitRepository;
         private ILedRepository _ledRepository;
+        private ICustomerGroupRepository _customerGroupRepository;
+        private ICustomerRepository _customerRepository;
 
         public UnitOfWork(DeviceServiceContext context)
         {
@@ -32,6 +34,8 @@ namespace Final_year_Project.Persistence.Repositories
         public ILaneCameraRepository LaneCameras => _laneCameraRepository ??= new LaneCameraRepository(_context);
         public ILaneControlUnitRepository LaneControlUnits => _laneControlUnitRepository ??= new LaneControlUnitRepository(_context);
         public ILedRepository Leds => _ledRepository ??= new LedRepository(_context);
+        public ICustomerGroupRepository CustomerGroups => _customerGroupRepository ??= new CustomerGroupRepository(_context);
+        public ICustomerRepository Customers => _customerRepository ??= new CustomerRepository(_context);
 
         public async Task<int> SaveChangesAsync()
         {

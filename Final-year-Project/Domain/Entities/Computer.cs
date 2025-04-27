@@ -15,7 +15,7 @@ public partial class Computer
 
     public bool Status { get; set; }
 
-    public bool Deleted { get; set; } = false;
+    public bool Deleted { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

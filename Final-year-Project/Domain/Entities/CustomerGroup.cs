@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 namespace Final_year_Project.Domain.Entities;
 
-public partial class Gate
+public partial class CustomerGroup
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
-
     public string Code { get; set; } = null!;
 
-    public bool Status { get; set; }
+    public string Name { get; set; } = null!;
 
     public bool Deleted { get; set; }
 
@@ -19,5 +17,5 @@ public partial class Gate
 
     public DateTime UpdatedAt { get; set; }
 
-    public virtual ICollection<Computer> Computers { get; set; } = new List<Computer>();
+    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 }

@@ -23,6 +23,9 @@ builder.Services.AddScoped<IGateService, GateService>();
 builder.Services.AddScoped<ILaneService, LaneService>();
 builder.Services.AddScoped<ILedService, LedService>();
 
+builder.Services.AddScoped<ICustomerGroupService, CustomerGroupService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+
 
 builder.Services.AddCors(options =>
 {
