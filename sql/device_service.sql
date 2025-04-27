@@ -89,14 +89,14 @@ CREATE TABLE leds(
 
 CREATE TABLE lane_cameras(
 	id int identity(1, 1) not null primary key,
-    	lane_id int not null,
-    	camera_id int not null,
-    	purpose nvarchar(255) not null,
+    lane_id int not null,
+    camera_id int not null,
+    purpose nvarchar(255) not null,
 	display_position int not null,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
    	foreign key (lane_id) references lanes(id),
-    	foreign key (camera_id) references cameras(id),
+    foreign key (camera_id) references cameras(id)
 )
 
 CREATE TABLE lane_control_units(
@@ -109,7 +109,133 @@ CREATE TABLE lane_control_units(
 	alarm nvarchar(255) null,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
-    	foreign key (lane_id) references lanes(id),
-    	foreign key (control_unit_id) references control_units(id)
+    foreign key (lane_id) references lanes(id),
+    foreign key (control_unit_id) references control_units(id)
 )
 
+CREATE TABLE customer_groups(
+	id int identity(1, 1) primary key,
+	code nvarchar(255) not null,
+	name nvarchar(255) not null,
+	deleted bit not null default 0,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null
+)
+
+CREATE TABLE customers(
+	id int identity(1, 1) primary key,
+	code nvarchar(255) not null,
+	name nvarchar(255) not null,
+	phone nvarchar(255),
+	address nvarchar(255),
+	customer_group_id int,
+	deleted bit not null default 0,	
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null,
+	foreign key (customer_group_id) references customer_groups(id)
+)
+
+CREATE TABLE card_groups(
+	id int identity(1, 1) primary key,
+	code nvarchar(255) not null,
+	name nvarchar(255) not null,
+	type nvarchar(255) not null,
+	vehicle_type nvarchar(255) not null,
+	free_minutes INT NULL,
+	first_block_minutes INT NULL,
+	first_block_price DECIMAL(18,2) NULL,
+	next_block_minutes INT NULL,
+	next_block_price DECIMAL(18,2) NULL,
+	status bit not null default 1, 
+	deleted bit not null default 0,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null
+)
+
+CREATE TABLE card_group_lanes(
+	id int identity(1, 1) primary key,
+	card_group_id int not null,
+	lane_id int not null,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null,
+	foreign key (card_group_id) references card_groups(id),
+	foreign key (lane_id) references lanes(id)	
+)
+
+CREATE TABLE cards(
+	id int identity(1, 1) primary key,
+	code nvarchar(255) not null,
+	name nvarchar(255) not null,
+	card_group_id int not null, 
+	customer_id int null,
+	note nvarchar(255),
+	status nvarchar(255) not null,
+	deleted bit not null default 0,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null,
+	foreign key (card_group_id) references card_groups(id),
+	foreign key (customer_id) references customers(id)
+)
+
+CREATE TABLE entry_logs(
+	id int identity(1, 1) primary key,
+	plate_number nvarchar(255),
+	card_id int not null,
+	card_group_id int null,
+	lane_id int not null,
+	customer_id int,
+	entry_time datetime not null default getdate(),
+	image_url nvarchar(255) null,
+	note nvarchar(255) null,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null,
+	foreign key (card_id) references cards(id),
+	foreign key (card_group_id) references card_groups(id),
+	foreign key (customer_id) references customers(id),
+	foreign key (lane_id) references lanes(id)
+)
+
+CREATE TABLE exit_logs (
+    id int identity(1,1) primary key,
+    entry_log_id int NOT NULL, 
+    exit_plate_number nvarchar(255)	 NULL, 
+    card_id int NOT NULL, 
+    card_group_id int NOT NULL, 
+    entry_lane_id int NOT NULL, 
+    exit_lane_id int NOT NULL, 
+    entry_time datetime NOT NULL, 
+    exit_time datetime NOT NULL, 
+    total_duration time,
+    total_price decimal(18,2) not null, 
+    note nvarchar(255) NULL, 
+    image_url nvarchar(255) NULL, 
+    deleted bit NOT NULL default 0, 
+    created_at datetime default GETDATE() NOT NULL, 
+    updated_at datetime default GETDATE() NOT NULL,
+    foreign key (entry_log_id) references entry_logs(id), 
+    foreign key (card_id) references cards(id), 
+    foreign key (card_group_id) references card_groups(id), 
+    foreign key (entry_lane_id) references lanes(id), 
+    foreign key (exit_lane_id) references lanes(id) 
+)
+
+CREATE TABLE warning_events (
+    id int identity(1, 1) primary key,           
+    plate_number nvarchar(255) NULL,             
+    lane_id int,                                 
+    warning_type nvarchar(255) NOT NULL,         
+    note nvarchar(255),                          
+    created_at datetime default getdate() NOT NULL, 
+    image_url nvarchar(255),                     
+    foreign key (lane_id) references lanes(id)   
+)
+
+CREATE TABLE revenue_reports(
+	id int identity(1, 1) primary key,
+	card_group_id int, 
+	exit_count int not null default 0,
+	revenue decimal(18, 2) not null default 0.00,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null,
+	foreign key (card_group_id) references card_groups(id)
+)

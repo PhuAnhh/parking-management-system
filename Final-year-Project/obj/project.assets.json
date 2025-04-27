@@ -5177,11 +5177,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\phanp\\source\\repos\\Final-year-Project\\Final-year-Project\\Final-year-Project.csproj",
+      "projectUniqueName": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Final-year-Project.csproj",
       "projectName": "Final-year-Project",
-      "projectPath": "C:\\Users\\phanp\\source\\repos\\Final-year-Project\\Final-year-Project\\Final-year-Project.csproj",
+      "projectPath": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\Final-year-Project.csproj",
       "packagesPath": "C:\\Users\\phanp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\phanp\\source\\repos\\Final-year-Project\\Final-year-Project\\obj\\",
+      "outputPath": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Final-year-Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
