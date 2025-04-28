@@ -20,6 +20,7 @@ namespace Final_year_Project.Persistence.Repositories
         private ILedRepository _ledRepository;
         private ICustomerGroupRepository _customerGroupRepository;
         private ICustomerRepository _customerRepository;
+        private ICardGroupRepository _cardGroupRepository;
 
         public UnitOfWork(DeviceServiceContext context)
         {
@@ -36,7 +37,7 @@ namespace Final_year_Project.Persistence.Repositories
         public ILedRepository Leds => _ledRepository ??= new LedRepository(_context);
         public ICustomerGroupRepository CustomerGroups => _customerGroupRepository ??= new CustomerGroupRepository(_context);
         public ICustomerRepository Customers => _customerRepository ??= new CustomerRepository(_context);
-
+        public ICardGroupRepository CardGroups => _cardGroupRepository ??= new CardGroupRepository(_context);
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();

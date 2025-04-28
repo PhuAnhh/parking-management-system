@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Final_year_Project.Domain.EnumTypes;
 
 namespace Final_year_Project.Domain.Entities;
 
@@ -11,9 +12,9 @@ public partial class CardGroup
 
     public string Name { get; set; } = null!;
 
-    public string Type { get; set; } = null!;
+    public CardGroupType Type { get; set; }
 
-    public string VehicleType { get; set; } = null!;
+    public CardGroupVehicleType VehicleType { get; set; } 
 
     public int? FreeMinutes { get; set; }
 

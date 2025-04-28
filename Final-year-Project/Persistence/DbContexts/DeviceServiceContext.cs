@@ -173,6 +173,10 @@ public partial class DeviceServiceContext : DbContext
                 .HasDefaultValue(true)
                 .HasColumnName("status");
             entity.Property(e => e.Type)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (CardGroupType)Enum.Parse(typeof(CardGroupType), v)
+                )
                 .HasMaxLength(255)
                 .HasColumnName("type");
             entity.Property(e => e.UpdatedAt)
@@ -180,6 +184,10 @@ public partial class DeviceServiceContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");
             entity.Property(e => e.VehicleType)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (CardGroupVehicleType)Enum.Parse(typeof(CardGroupVehicleType), v)
+                )
                 .HasMaxLength(255)
                 .HasColumnName("vehicle_type");
         });

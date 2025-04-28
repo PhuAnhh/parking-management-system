@@ -26,6 +26,8 @@ namespace Final_year_Project.Application.Repositories
 
         ICustomerRepository Customers { get; }
 
+        ICardGroupRepository CardGroups { get; }
+
         Task<int> SaveChangesAsync();
     }
 }
