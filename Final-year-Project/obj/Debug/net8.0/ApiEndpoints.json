@@ -119,6 +119,125 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Final_year_Project.Api.Controllers.CardController",
+    "Method": "GetAll",
+    "RelativePath": "api/Card",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Final_year_Project.Application.Models.CardDto, Final-year-Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Final_year_Project.Api.Controllers.CardController",
+    "Method": "Create",
+    "RelativePath": "api/Card",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createCardDto",
+        "Type": "Final_year_Project.Application.Models.CreateCardDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Final_year_Project.Application.Models.CardDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Final_year_Project.Api.Controllers.CardController",
+    "Method": "GetById",
+    "RelativePath": "api/Card/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Final_year_Project.Application.Models.CardDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Final_year_Project.Api.Controllers.CardController",
+    "Method": "Update",
+    "RelativePath": "api/Card/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateCardDto",
+        "Type": "Final_year_Project.Application.Models.UpdateCardDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Final_year_Project.Application.Models.CardDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Final_year_Project.Api.Controllers.CardController",
+    "Method": "Delete",
+    "RelativePath": "api/Card/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Final_year_Project.Api.Controllers.CardGroupController",
     "Method": "GetAll",
     "RelativePath": "api/CardGroup",

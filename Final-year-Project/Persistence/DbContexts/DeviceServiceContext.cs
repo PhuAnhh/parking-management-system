@@ -125,6 +125,10 @@ public partial class DeviceServiceContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("note");
             entity.Property(e => e.Status)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (CardStatus)Enum.Parse(typeof(CardStatus), v)
+                )
                 .HasMaxLength(255)
                 .HasColumnName("status");
             entity.Property(e => e.UpdatedAt)
@@ -217,7 +221,7 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.Lane).WithMany(p => p.CardGroupLanes)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__card_grou__lane___0A338187");
         });
 
@@ -590,12 +594,12 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.Camera).WithMany(p => p.LaneCameras)
                 .HasForeignKey(d => d.CameraId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__lane_came__camer__318258D2");
 
             entity.HasOne(d => d.Lane).WithMany(p => p.LaneCameras)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__lane_came__lane___308E3499");
         });
 
@@ -631,12 +635,12 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.ControlUnit).WithMany(p => p.LaneControlUnits)
                 .HasForeignKey(d => d.ControlUnitId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__lane_cont__contr__373B3228");
 
             entity.HasOne(d => d.Lane).WithMany(p => p.LaneControlUnits)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__lane_cont__lane___36470DEF");
         });
 

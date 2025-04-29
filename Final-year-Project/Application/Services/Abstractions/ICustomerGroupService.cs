@@ -12,6 +12,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<CustomerGroupDto> GetByIdAsync(int id);
         Task<CustomerGroupDto> CreateAsync(CreateCustomerGroupDto createCustomerGroupDto);
         Task<CustomerGroupDto> UpdateAsync(int id, UpdateCustomerGroupDto updateCustomerGroupDto);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id, bool useSoftDelete);
     }
 }

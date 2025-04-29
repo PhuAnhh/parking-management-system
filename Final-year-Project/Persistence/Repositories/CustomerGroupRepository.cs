@@ -18,12 +18,17 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<CustomerGroup>> GetAllAsync()
         {
-            return await _context.CustomerGroups.ToListAsync();
+            return await _context.CustomerGroups
+                .Where(cg => !cg.Deleted)
+                .ToListAsync();
         }
 
         public async Task<CustomerGroup> GetByIdAsync(int id)
         {
-            return await _context.CustomerGroups.FindAsync(id);
+            return await _context.CustomerGroups
+                .Include(c => c.Customers)
+                .FirstOrDefaultAsync(c => c.Id == id);
+                //.FindAsync(id);
         }
 
         public async Task CreateAsync(CustomerGroup customerGroup)

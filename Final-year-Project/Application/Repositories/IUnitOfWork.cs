@@ -28,6 +28,8 @@ namespace Final_year_Project.Application.Repositories
 
         ICardGroupRepository CardGroups { get; }
 
+        ICardRepository Cards { get; }
+
         Task<int> SaveChangesAsync();
     }
 }

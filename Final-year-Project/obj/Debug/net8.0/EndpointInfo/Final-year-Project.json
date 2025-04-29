@@ -207,6 +207,208 @@
         }
       }
     },
+    "/api/Card": {
+      "get": {
+        "tags": [
+          "Card"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CardDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CardDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CardDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCardDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCardDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCardDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Card/{id}": {
+      "get": {
+        "tags": [
+          "Card"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Card"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Card"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/CardGroup": {
       "get": {
         "tags": [
@@ -1895,6 +2097,48 @@
         ],
         "type": "string"
       },
+      "CardDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardGroupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CardStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "CardGroupDto": {
         "type": "object",
         "properties": {
@@ -1911,12 +2155,10 @@
             "nullable": true
           },
           "type": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CardGroupType"
           },
           "vehicleType": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CardGroupVehicleType"
           },
           "freeMinutes": {
             "type": "integer",
@@ -1964,6 +2206,29 @@
           }
         },
         "additionalProperties": false
+      },
+      "CardGroupType": {
+        "enum": [
+          "Month",
+          "Day"
+        ],
+        "type": "string"
+      },
+      "CardGroupVehicleType": {
+        "enum": [
+          "Car",
+          "Motorbike",
+          "Bicycle"
+        ],
+        "type": "string"
+      },
+      "CardStatus": {
+        "enum": [
+          "Locked",
+          "Active",
+          "Inactive"
+        ],
+        "type": "string"
       },
       "ComputerDto": {
         "type": "object",
@@ -2115,6 +2380,36 @@
         },
         "additionalProperties": false
       },
+      "CreateCardDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardGroupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CardStatus"
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateCardGroupDto": {
         "type": "object",
         "properties": {
@@ -2127,12 +2422,10 @@
             "nullable": true
           },
           "type": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CardGroupType"
           },
           "vehicleType": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CardGroupVehicleType"
           },
           "freeMinutes": {
             "type": "integer",
@@ -2778,6 +3071,36 @@
         },
         "additionalProperties": false
       },
+      "UpdateCardDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardGroupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CardStatus"
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateCardGroupDto": {
         "type": "object",
         "properties": {
@@ -2790,12 +3113,10 @@
             "nullable": true
           },
           "type": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CardGroupType"
           },
           "vehicleType": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/CardGroupVehicleType"
           },
           "freeMinutes": {
             "type": "integer",

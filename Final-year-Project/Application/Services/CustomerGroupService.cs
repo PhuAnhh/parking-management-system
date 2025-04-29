@@ -100,16 +100,49 @@ namespace Final_year_Project.Application.Services
             };
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id, bool useSoftDelete)
         {
-            var customerGroup = await _unitOfWork.CustomerGroups.GetByIdAsync(id);
+            try
+            {
+                var customerGroup = await _unitOfWork.CustomerGroups.GetByIdAsync(id);
+                if (customerGroup == null) return false;
 
-            if (customerGroup == null)
+                if (useSoftDelete)
+                {
+                    customerGroup.Deleted = true;
+                    customerGroup.UpdatedAt = DateTime.UtcNow;
+
+                    if (customerGroup.Customers != null && customerGroup.Customers.Any())
+                    {
+                        foreach (var customer in customerGroup.Customers)
+                        {
+                            customer.Deleted = true;
+                            customer.UpdatedAt = DateTime.UtcNow;
+                            _unitOfWork.Customers.Update(customer);
+                        }
+                    }
+                    _unitOfWork.CustomerGroups.Update(customerGroup);
+                }
+                else
+                {
+                    if (customerGroup.Customers != null && customerGroup.Customers.Any())
+                    {
+                        foreach (var customer in customerGroup.Customers)
+                        {
+                            _unitOfWork.Customers.Delete(customer);
+                        }
+                    }
+
+                    _unitOfWork.CustomerGroups.Delete(customerGroup);
+                }
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception)
+            {
                 return false;
-
-            _unitOfWork.CustomerGroups.Delete(customerGroup);
-            await _unitOfWork.SaveChangesAsync();
-            return true;
+            }
         }
     }
 }

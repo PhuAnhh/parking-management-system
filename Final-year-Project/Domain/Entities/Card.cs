@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Final_year_Project.Domain.EnumTypes;
 
 namespace Final_year_Project.Domain.Entities;
 
@@ -17,7 +18,7 @@ public partial class Card
 
     public string? Note { get; set; }
 
-    public string Status { get; set; } = null!;
+    public CardStatus Status { get; set; }
 
     public bool Deleted { get; set; }
 

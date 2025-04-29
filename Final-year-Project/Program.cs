@@ -26,6 +26,7 @@ builder.Services.AddScoped<ILedService, LedService>();
 builder.Services.AddScoped<ICustomerGroupService, CustomerGroupService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICardGroupService, CardGroupService>();
+builder.Services.AddScoped<ICardService, CardService>();
 
 builder.Services.AddCors(options =>
 {

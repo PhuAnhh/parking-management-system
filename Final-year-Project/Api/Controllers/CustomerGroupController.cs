@@ -58,7 +58,7 @@ namespace Final_year_Project.Api.Controllers
         //[Authorize(Policy = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
-            var result = await _customerGroupService.DeleteAsync(id);
+            var result = await _customerGroupService.DeleteAsync(id, true);
 
             if (!result)
                 return NotFound();
