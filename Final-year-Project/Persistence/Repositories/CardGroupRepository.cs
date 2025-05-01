@@ -18,12 +18,18 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<CardGroup>> GetAllAsync()
         {
-            return await _context.CardGroups.AsNoTracking().ToListAsync();
+            return await _context.CardGroups
+                .Where(cg => !cg.Deleted)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<CardGroup> GetByIdAsync(int id)
         {
-            return await _context.CardGroups.FindAsync(id);
+            return await _context.CardGroups
+                .Include(c => c.Cards)
+                .FirstOrDefaultAsync(c => c.Id == id);
+                //.FindAsync(id);
         }
 
         public async Task CreateAsync(CardGroup cardGroup)

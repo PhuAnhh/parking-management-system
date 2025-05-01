@@ -56,7 +56,7 @@ namespace Final_year_Project.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var result = await _cardGroupService.DeleteAsync(id);
+            var result = await _cardGroupService.DeleteAsync(id, true);
 
             if (!result)
                 return NotFound();

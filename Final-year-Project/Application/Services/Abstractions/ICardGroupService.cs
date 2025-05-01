@@ -12,6 +12,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<CardGroupDto> GetByIdAsync(int id);
         Task<CardGroupDto> CreateAsync(CreateCardGroupDto createCardGroupDto);
         Task<CardGroupDto> UpdateAsync(int id, UpdateCardGroupDto updateCardGroupDto);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id, bool useSoftDelete);
     }
 }
