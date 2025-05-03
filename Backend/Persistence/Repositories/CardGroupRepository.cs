@@ -27,8 +27,9 @@ namespace Final_year_Project.Persistence.Repositories
         public async Task<CardGroup> GetByIdAsync(int id)
         {
             return await _context.CardGroups
-                .Include(c => c.Cards)
-                .FirstOrDefaultAsync(c => c.Id == id);
+                .Include(cg => cg.CardGroupLanes)
+                .Include(cg => cg.Cards)
+                .FirstOrDefaultAsync(cg => cg.Id == id);
                 //.FindAsync(id);
         }
 

@@ -30,6 +30,8 @@ namespace Final_year_Project.Application.Repositories
 
         ICardRepository Cards { get; }
 
+        ICardGroupLaneRepository CardGroupLanes { get; }
+
         Task<int> SaveChangesAsync();
     }
 }

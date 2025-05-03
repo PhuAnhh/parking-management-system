@@ -190,10 +190,10 @@
                       <thead>
                         <tr>
                           <th style="width: 60px; min-width: 60px;">#</th>
-                          <th>Mã</th>
                           <th>Tên</th>
-                          <th>Loại</th>
-                          <th>Loại phương tiện</th>
+                          <th>Mã</th>
+                          <th style="text-align: center;">Loại</th>
+                          <th style="text-align: center;">Loại phương tiện</th>
                           <th style="width: 60px; min-width: 60px; text-align: center;">TT</th>
                           <th style="width: 130px; min-width: 130px; text-align: center;"></th>
                         </tr>
@@ -201,16 +201,16 @@
                       <tbody>
                          <tr *ngFor="let cardGroup of cardGroups; let i = index">
                           <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
-                          <td>{{ cardGroup.code }}</td>
-                          <td>{{ cardGroup.name }}</td> 
-                          <td>
+                          <td>{{ cardGroup.name }}</td>
+                          <td>{{ cardGroup.code }}</td> 
+                          <td style="text-align: center;">
                             <nz-tag *ngIf="getCardGroupType(cardGroup.type) as opt" 
                               [nzColor]="cardGroup.type === 'Month' ? '#1d39c4' : '#d4b106'" 
                               style="display: inline-flex; align-items: center; gap: 4px; border-radius: 8px;">
                               {{ opt.label }}
                             </nz-tag>
                           </td>
-                          <td>
+                          <td style="text-align: center;">
                             <nz-tag *ngIf="getCardGroupVehicleType(cardGroup.vehicleType) as opt" [nzColor]="opt.color" style="border-radius: 8px;">
                               {{ opt.label}}
                             </nz-tag>
@@ -254,7 +254,7 @@
   <nz-modal 
   [nzContent]="addCardGroupTpl" 
   [(nzVisible)]="isAddModalVisible" 
-  nzTitle="Thêm mới Nhóm khách hàng" 
+  nzTitle="Thêm mới Nhóm thẻ" 
   nzOktext="Lưu" 
   nzCancelText="Hủy bỏ" 
   (nzOnCancel)="handleCancel()" 
@@ -324,7 +324,7 @@
   <nz-modal 
   [nzContent]="editCardGroupTpl" 
   [(nzVisible)]="isEditModalVisible" 
-  nzTitle="Cập nhật Nhóm khách hàng" 
+  nzTitle="Cập nhật Nhóm thẻ" 
   nzOktext="Lưu" 
   nzCancelText="Hủy bỏ" 
   (nzOnCancel)="handleEditCancel()" 
@@ -371,17 +371,20 @@
         </div>
       </div>
 
-      <div nz-row [nzGutter]="16">
+      <div nz-row [nzGutter]="16" >
         <div nz-col [nzSpan]="24">
-          <div class="form-group fit-width-transfer">
-            <label style="margin-bottom: 10px;">Làn</label>
-            <nz-transfer
-              [nzDataSource]="lanes"
-              [nzTitles]="['Làn trong hệ thống', 'Làn được cho phép']"
-              (nzSelectChange)="selectLaneChange($event)"
-              (nzChange)="changeLaneTransfer($event)"
-            >
-            </nz-transfer>
+          <div class="form-group">
+            <label style="margin-bottom: 10px; display: block;">Làn</label>
+            <div style="display: flex; justify-content: space-between;">
+              <nz-transfer
+                [nzDataSource]="lanes"
+                [nzTitles]="['Làn trong hệ thống', 'Làn được cho phép']"
+                (nzSelectChange)="selectLaneChange($event)"
+                (nzChange)="changeLaneTransfer($event)"
+                [nzListStyle]="{ 'width': '255px', 'height': '210px' }"
+              >
+              </nz-transfer>
+            </div>
           </div>
         </div>
       </div>

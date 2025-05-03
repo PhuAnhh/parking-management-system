@@ -22,6 +22,7 @@ namespace Final_year_Project.Persistence.Repositories
         private ICustomerRepository _customerRepository;
         private ICardGroupRepository _cardGroupRepository;
         private ICardRepository _cardRepository;
+        private ICardGroupLaneRepository _cardLaneRepository;
 
         public UnitOfWork(DeviceServiceContext context)
         {
@@ -40,6 +41,8 @@ namespace Final_year_Project.Persistence.Repositories
         public ICustomerRepository Customers => _customerRepository ??= new CustomerRepository(_context);
         public ICardGroupRepository CardGroups => _cardGroupRepository ??= new CardGroupRepository(_context);
         public ICardRepository Cards => _cardRepository ??= new CardRepository(_context);
+
+        public ICardGroupLaneRepository CardGroupLanes => _cardLaneRepository ??= new CardGroupLaneRepository(_context);
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();

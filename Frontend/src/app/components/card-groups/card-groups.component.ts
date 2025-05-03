@@ -73,9 +73,9 @@ cardGroupTypes = [
 ];
 
 cardGroupVehicleTypes = [
-  { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: 'pink'},
+  { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: 'orange'},
   { label: 'Xe máy', value: CardGroupVehicleType.MOTORBIKE, color: 'red'},
-  { label: 'Xe đạp', value: CardGroupVehicleType.BICYCLE, color: 'yellow'},
+  { label: 'Xe đạp', value: CardGroupVehicleType.BICYCLE, color: 'green'},
 ];
 
 getCardGroupType(value: string){

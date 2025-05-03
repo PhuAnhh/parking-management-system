@@ -184,6 +184,15 @@ namespace Final_year_Project.Application.Services
                             _unitOfWork.Cards.Update(card);
                         }
                     }
+
+                    if (cardGroup.CardGroupLanes != null && cardGroup.CardGroupLanes.Any())
+                    {
+                        foreach (var cardGroupLane in cardGroup.CardGroupLanes)
+                        {
+                            _unitOfWork.CardGroupLanes.Delete(cardGroupLane);
+                        }
+                    }
+
                     _unitOfWork.CardGroups.Update(cardGroup);
                 }
                 else
@@ -193,6 +202,13 @@ namespace Final_year_Project.Application.Services
                         foreach (var card in cardGroup.Cards)
                         {
                             _unitOfWork.Cards.Delete(card);
+                        }
+                    }
+
+                    {
+                        foreach (var cardGroupLane in cardGroup.CardGroupLanes)
+                        {
+                            _unitOfWork.CardGroupLanes.Delete(cardGroupLane);
                         }
                     }
 
