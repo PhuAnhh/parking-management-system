@@ -1,0 +1,329 @@
+<nz-layout class="layout">
+    <nz-sider nzwidth="236px" class="menu-sidebar show-for-large" style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
+      <div class="logo">
+        <img src="../../../assets/images/logo/logo-system.png" alt="Logo">
+      </div>
+      <div class="custom-dark-menu">
+        <ul nz-menu nzTheme="dark" nzMode="inline">
+          <li nz-submenu nzTitle="Quản lý bãi xe">
+            <ul>
+              <li nz-menu-item [routerLink]="'/dashboard'">
+                <span nz-icon nzType="dashboard" nzTheme="fill"></span>
+                <span>Trang chủ</span>
+              </li>
+              <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
+                <ul>
+                  <li nz-menu-item [routerLink]="">Xe vào bãi</li>
+                  <li nz-menu-item [routerLink]="">Xe đã ra</li>
+                  <li nz-menu-item [routerLink]="">Sự kiện cảnh báo</li>
+                  <li nz-menu-item [routerLink]="">Báo cáo doanh thu</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Quản lý khách hàng">
+            <ul>
+              <li nz-menu-item [routerLink]="'/customer-groups'">
+                <span nz-icon nzType="github" nzTheme="fill"></span>
+                <span>Nhóm khách hàng</span> 
+              </li>
+              <li nz-menu-item [routerLink]="'/customers'">
+                <span nz-icon nzType="gitlab" nzTheme="fill"></span>
+                <span>Khách hàng</span>
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Quản lý thẻ">
+            <ul>
+              <li nz-menu-item [routerLink]="'/card-groups'">
+                <span nz-icon nzType="apple" nzTheme="fill"></span>
+                <span>Nhóm thẻ</span>
+              </li>
+              <li nz-menu-item [routerLink]="'/cards'">
+                <span nz-icon nzType="android" nzTheme="fill"></span>
+                <span>Thẻ</span>
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Quản lý thiết bị">
+            <ul>
+              <li nz-menu-item [routerLink]="'/gates'">
+                <span nz-icon nzType="bank" nzTheme="fill"></span>
+                <span>Cổng</span>
+              </li>
+              <li nz-menu-item [routerLink]="'/computers'">
+                <span nz-icon nzType="laptop" nzTheme="outline"></span>
+                <span>Máy tính</span>
+              </li>
+              <li nz-menu-item [routerLink]="'/cameras'">
+                <span nz-icon nzType="camera" nzTheme="fill"></span>
+                <span>Camera</span>
+              </li>
+              <li nz-menu-item [routerLink]="'/control_units'">
+                <span nz-icon nzType="control" nzTheme="fill"></span>
+                <span>Bộ điều khiển</span>
+              </li>
+              <li nz-menu-item [routerLink]="'/lanes'">
+                <span nz-icon nzType="sliders" nzTheme="fill"></span>
+                <span>Làn</span>
+              </li>
+              <li nz-menu-item [routerLink]="'/leds'">
+                <span nz-icon nzType="bulb" nzTheme="fill"></span>
+                <span>Led</span>
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Quản lý tài khoản">
+            <ul>
+              <li nz-menu-item>
+                <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
+                <span>Quyền hạn</span>
+              </li>
+              <li nz-menu-item>
+                <span nz-icon nzType="team" nzTheme="outline"></span>
+                <span>Nhóm người dùng</span>
+              </li>
+              <li nz-menu-item>
+                <span nz-icon nzType="user" nzTheme="outline"></span>
+                <span>Người dùng</span>
+              </li>
+            </ul>
+          </li>
+          <li nz-menu-item>
+            <span class="custom-icon">
+              <img src="../../../assets/images/logo/ic-cms.svg" width="20px" alt="CMS">
+            </span>
+            <span style="color: #f15922; font-weight: 900; margin-left: 10px;">i</span>
+            <span style="color: #6abcff; font-weight: bold;">Parking</span>
+          </li>
+        </ul>
+    </div>
+    </nz-sider>
+    <nz-layout class="ant-layout right-layout">
+      <nz-header class="ant-layout-header">
+          <div>
+            <button nz-button nzType="primary" class="ant-btn1">
+              <span nz-icon nzType="search" style="color: #637381;">
+              </span>
+              <span style="color:#637381 ;">Tìm kiếm thư mục</span>
+            </button>
+          </div>
+          <div>
+            <button nz-button nzType="primary" class="ant-btn2">Nhập file excel
+            </button>
+            <span style="margin-right: 15px;" nz-dropdown nzplacement="bottomRight">Admin</span>
+          </div>
+      </nz-header>
+      <nz-content>
+        <nz-breadcrumb>
+          <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
+            <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
+              <span>Quản lý khách hàng</span>
+              <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
+            </div>
+            <nz-breadcrumb-item>
+              <span class="ant-breadcrumb-link">
+                <a href="/#/gates">Khách hàng</a>
+              </span>
+            </nz-breadcrumb-item>
+          </div>
+        </nz-breadcrumb>
+        <div class="inner-content">
+            <nz-card class="ant-card card-wrapper-content">
+                <div class="ant-card-body" style="padding: 24px 0px;"> 
+                    <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
+                        <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
+                            <fieldset>
+                                <label for="keyword"class="input-label" style="color: #0c68e9;">Từ khóa</label>
+                                <nz-input-group nzsearch class=" ant-input-search ant-input-group-wrapper">
+                                    <span class="ant-input-wrapper ant-input-group">
+                                        <input type="text" nz-input id="keyword" class="ant-input" placeholder="Từ khóa..." [(ngModel)]="searchKeyword">
+                                        <span nz-input-group-slot type="addon" class="ant-input-group-addon">
+                                            <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
+                                                <span nz-icon nzType="search" class="anticon"></span>
+                                            </button>
+                                        </span>
+                                    </span>
+                                </nz-input-group>
+                            </fieldset>
+                        </nz-col>
+                        <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
+                            <table-action>
+                                <div nz-row class="ant-row">  
+                                    <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
+                                        <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap ng-star-inserted" style="width: 100%; height: 100%; gap: 6px; flex: unset;">
+                                            <button (click)="loadCustomers()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
+                                                <span nz-icon class="anticon">
+                                                    <fa-icon class="ng-fa-icon">
+                                                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
+                                                    </fa-icon>
+                                                </span>
+                                                <span class="ng-star-inserted">Tải lại</span>
+                                            </button> 
+                                            <nz-divider class="ant-divider ant-divider-vertical ng-star-inserted"></nz-divider>
+                                            <button (click)="showAddCustomerModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary ng-star-inserted">
+                                                <span nz-icon class="anticon">
+                                                    <fa-ico class="ng-fa-icon">
+                                                        <img src="../../../assets/images/logo/plus-solid.svg" style="height: 14px; width: 14px;" alt="">
+                                                    </fa-ico>
+                                                </span>
+                                                <span class="ng-star-inserted">Thêm mới</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </table-action>
+                        </nz-col>
+                    </nz-row>
+                    <nz-table
+                      #customerTable
+                      [nzData]="customers"
+                      [nzTotal]="total"
+                      [nzPageSize]="pageSize"
+                      [nzPageIndex]="pageIndex"
+                      [nzFrontPagination]="false"
+                      [nzShowSizeChanger]="true"
+                      [nzPageSizeOptions]="[10, 20, 30, 40]"
+                      [nzShowTotal]="paginationTemplate"
+                      (nzQueryParams)="onQueryParamsChange($event)"
+                      [nzLoading]="loading">
+                      <thead>
+                        <tr>
+                          <th style="width: 60px; min-width: 60px;">#</th>
+                          <th>Mã</th>
+                          <th>Tên</th>
+                          <th>Số điện thoại</th>
+                          <th>Địa chỉ</th>
+                          <th>Nhóm khách hàng</th>
+                          <th style="width: 130px; min-width: 130px; text-align: center;"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let customer of customers; let i = index">
+                          <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                          <td>{{ customer.name }}</td>
+                          <td>{{ customer.code }}</td> 
+                          <td>{{ customer.phone }}</td> 
+                          <td>{{ customer.address }}</td>   
+                          <td>{{ getCustomerGroupById(customer.customerGroupId) }}</td> 
+                          <td style="text-align: center;">
+                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only ng-star-inserted" (click)="updateCustomer(customer.id)">
+                              <span nz-icon nzType="edit" nzTheme="outline"></span>
+                            </button>
+                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only ng-star-inserted" (click)="deleteCustomer(customer.id)">
+                              <span nz-icon nzType="delete" nzTheme="outline"></span>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <ng-template #paginationTemplate>
+                        Tổng số {{ total }} dữ liệu
+                      </ng-template>
+                    </nz-table>
+                    
+                     <!-- <button nz-button class="ant-btn">
+                      <nz-float-button-content>
+                        <div class="ant-float-btn-icon ng-star-inserted">
+                          <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
+                        </div>
+                      </nz-float-button-content>
+                    </button>  -->
+                </div>
+            </nz-card>
+        </div>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+  
+
+  <nz-modal 
+  [nzContent]="addCustomerTpl" 
+  [(nzVisible)]="isAddModalVisible" 
+  nzTitle="Thêm mới Khách hàng" 
+  nzOktext="Lưu" 
+  nzCancelText="Hủy bỏ" 
+  (nzOnCancel)="handleCancel()" 
+  (nzOnOk)="handleOk()"
+  class="custom-modal"></nz-modal>
+  <ng-template #addCustomerTpl>
+    <form [formGroup]="customerForm"> 
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerName" class="required-label" style="margin-bottom: 10px;">Tên</label>
+            <input id="customerName" nz-input formControlName="name" style="border-radius: 8px;"/>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
+            <input id="customerCode" nz-input formControlName="code" style="border-radius: 8px;"/>
+          </div>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerPhone" style="margin-bottom: 10px;">Số điện thoại</label>
+            <input id="customerPhone" nz-input formControlName="phone" style="border-radius: 8px;"/>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerAddress" style="margin-bottom: 10px;">Địa chỉ</label>
+            <input id="customerAddress" nz-input formControlName="address" style="border-radius: 8px;"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customerCustomerGroupId" style="margin-bottom: 10px;">Nhóm khách hàng</label>
+        <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
+          <nz-option *ngFor="let customerGroup of customerGroups" [nzValue]="customerGroup.id" [nzLabel]="customerGroup.name"></nz-option>
+        </nz-select>      
+      </div>
+    </form>
+  </ng-template>
+  
+<nz-modal [nzContent]="editCustomerTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Khách hàng" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
+  <ng-template #editCustomerTpl>
+    <form [formGroup]="editCustomerForm"> 
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerName" class="required-label" style="margin-bottom: 10px;">Tên</label>
+            <input id="customerName" nz-input formControlName="name" style="border-radius: 8px;"/>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
+            <input id="customerCode" nz-input formControlName="code" style="border-radius: 8px;"/>
+          </div>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerPhone" style="margin-bottom: 10px;">Số điện thoại</label>
+            <input id="customerPhone" nz-input formControlName="phone" style="border-radius: 8px;"/>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerAddress" style="margin-bottom: 10px;">Địa chỉ</label>
+            <input id="customerAddress" nz-input formControlName="address" style="border-radius: 8px;"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customerCustomerGroupId" style="margin-bottom: 10px;">Nhóm khách hàng</label>
+        <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
+          <nz-option *ngFor="let customerGroup of customerGroups" [nzValue]="customerGroup.id" [nzLabel]="customerGroup.name"></nz-option>
+        </nz-select>      
+      </div>
+    </form>
+  </ng-template>

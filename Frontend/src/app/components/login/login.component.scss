@@ -1,0 +1,98 @@
+.outer{
+    height: 100vh;
+    background: linear-gradient(to top, #737378 50%, hsl(240, 6%, 10%) 90%) no-repeat;
+}
+
+// .panel-heading{
+//     text-align: center; 
+//     margin-bottom: 10px;
+// }
+
+#forget{
+    min-width: 100px;   
+    margin-left: auto;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.form-inline label{
+    padding-right: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.btn{
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+.panel {
+    min-height: 380px;
+    width: 350px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; 
+    padding: 20px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.panel-heading{
+    text-align: center;
+}
+
+
+
+.input-field{
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;    
+    border: 1px solid #ddd; 
+    
+}
+
+.input-field.error{
+    border: 1px solid red;
+    color: red;
+}
+
+input[type = 'text'],
+input[type = 'password']{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+.fa-eye-slash.btn{
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+}
+
+.btn-primary{
+    color: white;
+    background-color: #737378;
+    border-color: #737378;
+}
+
+a{
+    color: #272729;
+    text-decoration: none;
+}
