@@ -109,7 +109,7 @@ constructor(
       type: [CardGroupType.MONTH, [Validators.required]], 
       vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
       status: [true],
-      laneIds: [[], []]
+      laneIds: [[]]
     });
 
     this.editCardGroupForm = this.fb.group({
@@ -118,7 +118,7 @@ constructor(
       type: [CardGroupType.MONTH, [Validators.required]], 
       vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
       status: [true],
-      laneIds: [[], []]
+      laneIds: [[]]
     });
   }
 
@@ -177,7 +177,8 @@ constructor(
     this.cardGroupForm.reset({
       status: true,
       type: CardGroupType.MONTH,
-      vehicleType: CardGroupVehicleType.CAR
+      vehicleType: CardGroupVehicleType.CAR,
+      laneIds: []
     });
     this.cardGroupLanes = [];
     this.prepareLaneTransferData();
@@ -232,6 +233,10 @@ constructor(
 
     const newCardGroup = this.cardGroupForm.value;
 
+    if (!newCardGroup.laneIds) {
+      newCardGroup.laneIds = [];
+    }
+
     const isDupicate = this.cardGroups.some(cardGroup => cardGroup.code === newCardGroup.code);
 
     if(isDupicate) {
@@ -281,6 +286,10 @@ constructor(
     const updatedCardGroup = {
       ...this.editCardGroupForm.value,
     };
+
+    if (!updatedCardGroup.laneIds) {
+      updatedCardGroup.laneIds = [];
+    }
     
     console.log('Updated CardGroup:', updatedCardGroup);  
 
