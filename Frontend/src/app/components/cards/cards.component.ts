@@ -184,10 +184,10 @@ export class CardsComponent {
       return;
     }
 
+    const newCard = this.cardForm.value;
+
     const isDuplicateName = this.cards.some(card => card.name === newCard.name);
     const isDuplicateCode = this.cards.some(card => card.code === newCard.code);
-
-    const newCard = this.cardForm.value;
     
     if(isDuplicateName) {
       this.notification.error(

@@ -99,11 +99,11 @@ namespace Final_year_Project.Application.Services
             if (card == null)
                 return null;
 
-            card.Name = card.Name;
-            card.Code = card.Code;
-            card.CardGroupId = card.CardGroupId;
-            card.CustomerId = card.CustomerId;
-            card.Note = card.Note;
+            card.Name = updateCardDto.Name;
+            card.Code = updateCardDto.Code;
+            card.CardGroupId = updateCardDto.CardGroupId;
+            card.CustomerId = updateCardDto.CustomerId;
+            card.Note = updateCardDto.Note;
             card.Status = updateCardDto.Status;
             card.UpdatedAt = DateTime.UtcNow;
 

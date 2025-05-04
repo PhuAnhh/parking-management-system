@@ -325,15 +325,13 @@
               <nz-collapse-panel nzHeader="Cấu hình phí" [nzActive]="false">                
                 <div class="form-group">
                   <label for="cardGroupfreeMinutes" style="margin-bottom: 10px; display: block; font-weight: 500;">Số phút được miễn phí</label>
-                  <input 
-                    nz-input
-                    type="number" 
+                  <nz-input-number
                     id="cardGroupfreeMinutes" 
                     formControlName="freeMinutes" 
-                    min="0" 
+                    [nzMin]="0"
                     placeholder="Nhập số phút miễn phí"
                     style="width: 100%; border-radius: 8px;"
-                  />
+                  ></nz-input-number>
                 </div>
                 
                 <div style="margin-top: 20px;">
@@ -342,28 +340,30 @@
                       <label style="font-weight: 500;">Khoảng đầu tiên</label>
                     </div>
                     <div nz-col [nzSpan]="6">
-                      <input 
-                        nz-input
-                        type="number" 
-                        formControlName="firstBlockMinutes" 
-                        min="0" 
-                        placeholder="Phút"
+                      <nz-input-number
+                        [nzMin]="0"
+                        formControlName="firstBlockMinutes"
+                        [nzFormatter]="formatMinutes"
+                        [nzParser]="parseMinutes"
+                        nzPlaceHolder="Phút"
                         style="width: 100%; border-radius: 8px;"
-                      />
+                      ></nz-input-number>
                     </div>
                     
                     <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
                       <label style="font-weight: 500;">Phí</label>
                     </div>
                     <div nz-col [nzSpan]="6">
-                      <input 
-                        nz-input
-                        type="number" 
-                        formControlName="firstBlockPrice" 
-                        min="0" 
-                        placeholder="VNĐ"
+                      <nz-input-number
+                        [nzMin]="0"
+                        [nzStep]="1000"
+                        [nzPrecision]="2"
+                        formControlName="firstBlockPrice"
+                        [nzFormatter]="formatPrice"
+                        [nzParser]="parsePrice"
+                        nzPlaceHolder="Phút"
                         style="width: 100%; border-radius: 8px;"
-                      />
+                      ></nz-input-number>
                     </div>
                     
                     <div *ngIf="!isNextBlockVisible" nz-col [nzSpan]="4" style="text-align: center;">
@@ -385,28 +385,30 @@
                     <label style="font-weight: 500;">Khoảng tiếp theo</label>
                   </div>
                   <div nz-col [nzSpan]="6">
-                    <input 
-                      nz-input
-                      type="number" 
-                      formControlName="nextBlockMinutes" 
-                      min="0" 
-                      placeholder="Phút"
+                    <nz-input-number
+                      [nzMin]="0"
+                      formControlName="nextBlockMinutes"
+                      [nzFormatter]="formatMinutes"
+                      [nzParser]="parseMinutes"
+                      nzPlaceHolder="Phút"
                       style="width: 100%; border-radius: 8px;"
-                    />
+                    ></nz-input-number>
                   </div>
                   
                   <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
                     <label style="font-weight: 500;">Phí</label>
                   </div>
                   <div nz-col [nzSpan]="6">
-                    <input 
-                      nz-input
-                      type="number" 
-                      formControlName = "nextBlockPrice"
-                      min="0" 
-                      placeholder="VNĐ"
+                    <nz-input-number
+                      [nzMin]="0"
+                      [nzStep]="1000"
+                      [nzPrecision]="2"
+                      formControlName="nextBlockPrice"
+                      [nzFormatter]="formatPrice"
+                      [nzParser]="parsePrice"
+                      nzPlaceHolder="Phút"
                       style="width: 100%; border-radius: 8px;"
-                    />
+                    ></nz-input-number>
                   </div>
                   
                   <div nz-col [nzSpan]="4" style="text-align: center;">
@@ -505,15 +507,13 @@
               <nz-collapse-panel nzHeader="Cấu hình phí" [nzActive]="isFeeConfigExpanded">                
                 <div class="form-group">
                   <label for="cardGroupfreeMinutes" style="margin-bottom: 10px; display: block; font-weight: 500;">Số phút được miễn phí</label>
-                  <input 
-                    nz-input
-                    type="number" 
+                  <nz-input-number
                     id="cardGroupfreeMinutes" 
                     formControlName="freeMinutes" 
-                    min="0" 
-                    placeholder="Nhập số phút miễn phí"
+                    [nzMin]="0"
+                    nzPlaceHolder="Nhập số phút miễn phí"
                     style="width: 100%; border-radius: 8px;"
-                  />
+                  ></nz-input-number>
                 </div>
                 
                 <div style="margin-top: 20px;">
@@ -522,28 +522,30 @@
                       <label style="font-weight: 500;">Khoảng đầu tiên</label>
                     </div>
                     <div nz-col [nzSpan]="6">
-                      <input 
-                        nz-input
-                        type="number" 
-                        formControlName="firstBlockMinutes" 
-                        min="0" 
-                        placeholder="Phút"
+                      <nz-input-number
+                        [nzMin]="0"
+                        formControlName="firstBlockMinutes"
+                        [nzFormatter]="formatMinutes"
+                        [nzParser]="parseMinutes"
+                        nzPlaceHolder="Phút"
                         style="width: 100%; border-radius: 8px;"
-                      />
+                      ></nz-input-number>
                     </div>
                     
                     <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
                       <label style="font-weight: 500;">Phí</label>
                     </div>
                     <div nz-col [nzSpan]="6">
-                      <input 
-                        nz-input
-                        type="number" 
-                        formControlName="firstBlockPrice" 
-                        min="0" 
-                        placeholder="VNĐ"
+                      <nz-input-number
+                        [nzMin]="0"
+                        [nzStep]="1000"
+                        [nzPrecision]="2"
+                        formControlName="firstBlockPrice"
+                        [nzFormatter]="formatPrice"
+                        [nzParser]="parsePrice"
+                        nzPlaceHolder="VNĐ"
                         style="width: 100%; border-radius: 8px;"
-                      />
+                      ></nz-input-number>
                     </div>
                     
                     <div *ngIf="!isNextBlockVisible" nz-col [nzSpan]="4" style="text-align: center;">
@@ -565,28 +567,30 @@
                     <label style="font-weight: 500;">Khoảng tiếp theo</label>
                   </div>
                   <div nz-col [nzSpan]="6">
-                    <input 
-                      nz-input
-                      type="number" 
-                      formControlName="nextBlockMinutes" 
-                      min="0" 
-                      placeholder="Phút"
+                    <nz-input-number
+                      [nzMin]="0"
+                      formControlName="nextBlockMinutes"
+                      [nzFormatter]="formatMinutes"
+                      [nzParser]="parseMinutes"
+                      nzPlaceHolder="Phút"
                       style="width: 100%; border-radius: 8px;"
-                    />
+                    ></nz-input-number>
                   </div>
                   
                   <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
                     <label style="font-weight: 500;">Phí</label>
                   </div>
                   <div nz-col [nzSpan]="6">
-                    <input 
-                      nz-input
-                      type="number" 
-                      formControlName = "nextBlockPrice"
-                      min="0" 
-                      placeholder="VNĐ"
+                    <nz-input-number
+                      [nzMin]="0"
+                      [nzStep]="1000"
+                      [nzPrecision]="2"
+                      formControlName="nextBlockPrice"
+                      [nzFormatter]="formatPrice"
+                      [nzParser]="parsePrice"
+                      nzPlaceHolder="VNĐ"
                       style="width: 100%; border-radius: 8px;"
-                    />
+                    ></nz-input-number>
                   </div>
                   
                   <div nz-col [nzSpan]="4" style="text-align: center;">

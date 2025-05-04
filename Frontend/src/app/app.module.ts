@@ -37,6 +37,7 @@ import { NzNotificationModule  } from 'ng-zorro-antd/notification';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTransferModule, TransferItem } from 'ng-zorro-antd/transfer';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 
 import { GatesComponent } from './components/gates/gates.component';
@@ -104,7 +105,8 @@ registerLocaleData(en);
     NzNotificationModule,
     NzRadioModule,
     NzTransferModule,
-    NzCollapseModule
+    NzCollapseModule,
+    NzInputNumberModule
 
   ],
   providers: [

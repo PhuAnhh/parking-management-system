@@ -123,46 +123,46 @@ namespace Final_year_Project.Application.Services
                     computer.Deleted = true;
                     computer.UpdatedAt = DateTime.UtcNow;
 
-                    if (computer.Cameras != null && computer.Cameras.Any())
-                    {
-                        foreach (var camera in computer.Cameras)
-                        {
-                            camera.Deleted = true;
-                            camera.UpdatedAt = DateTime.UtcNow;
-                            _unitOfWork.Cameras.Update(camera);  
-                        }
-                    }
+                    //if (computer.Cameras != null && computer.Cameras.Any())
+                    //{
+                    //    foreach (var camera in computer.Cameras)
+                    //    {
+                    //        camera.Deleted = true;
+                    //        camera.UpdatedAt = DateTime.UtcNow;
+                    //        _unitOfWork.Cameras.Update(camera);  
+                    //    }
+                    //}
 
-                    // Soft delete cho tất cả control_units liên quan
-                    if (computer.ControlUnits != null && computer.ControlUnits.Any())
-                    {
-                        foreach (var controlUnit in computer.ControlUnits)
-                        {
-                            controlUnit.Deleted = true;
-                            controlUnit.UpdatedAt = DateTime.UtcNow;
-                            _unitOfWork.ControlUnits.Update(controlUnit); 
-                        }
-                    }
+                    //// Soft delete cho tất cả control_units liên quan
+                    //if (computer.ControlUnits != null && computer.ControlUnits.Any())
+                    //{
+                    //    foreach (var controlUnit in computer.ControlUnits)
+                    //    {
+                    //        controlUnit.Deleted = true;
+                    //        controlUnit.UpdatedAt = DateTime.UtcNow;
+                    //        _unitOfWork.ControlUnits.Update(controlUnit); 
+                    //    }
+                    //}
 
-                    if (computer.Lanes != null && computer.Lanes.Any())
-                    {
-                        foreach (var lane in computer.Lanes)
-                        {
-                            lane.Deleted = true;
-                            lane.UpdatedAt = DateTime.UtcNow;
-                            _unitOfWork.Lanes.Update(lane);  // Cập nhật lane
-                        }
-                    }
+                    //if (computer.Lanes != null && computer.Lanes.Any())
+                    //{
+                    //    foreach (var lane in computer.Lanes)
+                    //    {
+                    //        lane.Deleted = true;
+                    //        lane.UpdatedAt = DateTime.UtcNow;
+                    //        _unitOfWork.Lanes.Update(lane);  // Cập nhật lane
+                    //    }
+                    //}
 
-                    if (computer.Leds != null && computer.Leds.Any())
-                    {
-                        foreach (var led in computer.Leds)
-                        {
-                            led.Deleted = true;
-                            led.UpdatedAt = DateTime.UtcNow;
-                            _unitOfWork.Leds.Update(led);  // Cập nhật led
-                        }
-                    }
+                    //if (computer.Leds != null && computer.Leds.Any())
+                    //{
+                    //    foreach (var led in computer.Leds)
+                    //    {
+                    //        led.Deleted = true;
+                    //        led.UpdatedAt = DateTime.UtcNow;
+                    //        _unitOfWork.Leds.Update(led);  // Cập nhật led
+                    //    }
+                    //}
 
                     _unitOfWork.Computers.Update(computer);
                 }

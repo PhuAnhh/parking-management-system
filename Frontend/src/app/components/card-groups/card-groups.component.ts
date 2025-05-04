@@ -43,6 +43,45 @@ export class CardGroupsComponent {
   isNextBlockVisible = false;
   isFeeConfigExpanded = false;
 
+  formatMinutes = (value: number): string => {
+    return `${value} Phút`;
+  }
+  
+  // Parse giá trị từ chuỗi về số
+  parseMinutes = (value: string): number => {
+    return value ? parseInt(value.replace(' Phút', ''), 10) : 0;
+  }
+
+  formatPrice = (value: number): string => {
+    if (value === null || value === undefined) return '';
+    
+    // Chuyển đổi số thành chuỗi có 2 chữ số thập phân
+    const fixedValue = value.toFixed(2);
+    
+    // Tách phần nguyên và phần thập phân
+    const parts = fixedValue.split('.');
+    const integerPart = parts[0];
+    const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+    
+    // Thêm dấu phẩy phân cách hàng nghìn cho phần nguyên
+    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    
+    // Loại bỏ phần thập phân nếu là .00
+    const displayDecimal = (decimalPart === '.00') ? '' : decimalPart;
+    
+    return `${formattedIntegerPart}${displayDecimal}`;
+  }
+  
+  // Parse giá trị từ chuỗi có định dạng phân cách hàng nghìn về số thập phân
+  parsePrice = (value: string): number => {
+    if (!value) return 0;
+    
+    // Loại bỏ dấu phẩy phân cách hàng nghìn
+    const cleanValue = value.replace(/,/g, '');
+    
+    // Chuyển đổi về số thập phân
+    return parseFloat(cleanValue) || 0;
+  }
 
 cardGroupTypes = [
   { label: 'Tháng', value: CardGroupType.MONTH, color: 'pink'},
@@ -86,11 +125,11 @@ constructor(
       type: [CardGroupType.MONTH, [Validators.required]], 
       vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
       laneIds: [[]],
-      freeMinutes: [null],
-      firstBlockMinutes: [null],
-      firstBlockPrice: [null],
-      nextBlockMinutes: [null],
-      nextBlockPrice: [null],
+      freeMinutes: 0,
+      firstBlockMinutes: 60,
+      firstBlockPrice: 0.00,
+      nextBlockMinutes: 60,
+      nextBlockPrice: 0.00,
     });
 
     this.editCardGroupForm = this.fb.group({
@@ -99,11 +138,11 @@ constructor(
       type: [CardGroupType.MONTH, [Validators.required]], 
       vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
       laneIds: [[]],
-      freeMinutes: [null],
-      firstBlockMinutes: [null],
-      firstBlockPrice: [null],
-      nextBlockMinutes: [null],
-      nextBlockPrice: [null],
+      freeMinutes: 0,
+      firstBlockMinutes: 60,
+      firstBlockPrice: 0.00,
+      nextBlockMinutes: 60,
+      nextBlockPrice: 0.00,
     });
   }
 
@@ -181,7 +220,12 @@ constructor(
       status: true,
       type: CardGroupType.MONTH,
       vehicleType: CardGroupVehicleType.CAR,
-      laneIds: [],
+      laneIds: [],  
+      freeMinutes: 0,
+      firstBlockMinutes: 60,
+      firstBlockPrice: 0,
+      nextBlockMinutes: 60,
+      nextBlockPrice: 0
     });
     this.cardGroupLanes = [];
     
@@ -227,11 +271,11 @@ constructor(
         vehicleType: cardGroup.vehicleType,
         status: cardGroup.status,
         laneIds: this.cardGroupLanes,
-        freeMinutes: cardGroup.freeMinutes,
-        firstBlockMinutes: cardGroup.firstBlockMinutes,
-        firstBlockPrice: cardGroup.firstBlockPrice,
-        nextBlockMinutes: cardGroup.nextBlockMinutes,
-        nextBlockPrice: cardGroup.nextBlockPrice
+        freeMinutes: cardGroup.freeMinutes !== undefined ? cardGroup.freeMinutes : 0,
+      firstBlockMinutes: cardGroup.firstBlockMinutes !== undefined ? cardGroup.firstBlockMinutes : 60,
+      firstBlockPrice: cardGroup.firstBlockPrice !== undefined ? cardGroup.firstBlockPrice : 0,
+      nextBlockMinutes: cardGroup.nextBlockMinutes !== undefined ? cardGroup.nextBlockMinutes : 60,
+      nextBlockPrice: cardGroup.nextBlockPrice !== undefined ? cardGroup.nextBlockPrice : 0
       });
   
       // Kiểm tra xem phần "Khoảng tiếp theo" có cần hiển thị không
