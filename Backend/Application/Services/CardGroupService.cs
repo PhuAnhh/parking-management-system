@@ -127,10 +127,10 @@ namespace Final_year_Project.Application.Services
         public async Task<CardGroupDto> UpdateAsync(int id, UpdateCardGroupDto updateCardGroupDto)
         {
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(id);
-
             if (cardGroup == null)
                 return null;
 
+            // Cập nhật thông tin cơ bản
             cardGroup.Name = updateCardGroupDto.Name;
             cardGroup.Type = updateCardGroupDto.Type;
             cardGroup.VehicleType = updateCardGroupDto.VehicleType;
@@ -142,8 +142,45 @@ namespace Final_year_Project.Application.Services
             cardGroup.Status = updateCardGroupDto.Status;
             cardGroup.UpdatedAt = DateTime.UtcNow;
 
+            // Cập nhật danh sách Lane
+            // Lấy tất cả CardGroupLane hiện tại của CardGroup này
+            var currentCardGroupLanes = (await _unitOfWork.CardGroupLanes.GetAllAsync())
+                .Where(cgl => cgl.CardGroupId == id)
+                .ToList();
+
+            // Xóa các liên kết không còn trong danh sách mới
+            foreach (var cardGroupLane in currentCardGroupLanes)
+            {
+                if (updateCardGroupDto.LaneIds == null || !updateCardGroupDto.LaneIds.Contains(cardGroupLane.LaneId))
+                {
+                    _unitOfWork.CardGroupLanes.Delete(cardGroupLane);
+                }
+            }
+
+            // Thêm các liên kết mới
+            if (updateCardGroupDto.LaneIds != null)
+            {
+                var existingLaneIds = currentCardGroupLanes.Select(cgl => cgl.LaneId).ToList();
+                var laneIdsToAdd = updateCardGroupDto.LaneIds.Except(existingLaneIds).ToList();
+
+                foreach (var laneId in laneIdsToAdd)
+                {
+                    await _unitOfWork.CardGroupLanes.CreateAsync(new CardGroupLane
+                    {
+                        CardGroupId = cardGroup.Id,
+                        LaneId = laneId
+                    });
+                }
+            }
+
             _unitOfWork.CardGroups.Update(cardGroup);
             await _unitOfWork.SaveChangesAsync();
+
+            // Lấy lại danh sách LaneIds sau khi cập nhật
+            var updatedCardGroupLanes = (await _unitOfWork.CardGroupLanes.GetAllAsync())
+                .Where(cgl => cgl.CardGroupId == id)
+                .ToList();
+            var laneIds = updatedCardGroupLanes.Select(cgl => cgl.LaneId).ToList();
 
             return new CardGroupDto
             {
@@ -159,9 +196,11 @@ namespace Final_year_Project.Application.Services
                 NextBlockPrice = cardGroup.NextBlockPrice,
                 Status = cardGroup.Status,
                 CreatedAt = cardGroup.CreatedAt,
-                UpdatedAt = cardGroup.UpdatedAt
+                UpdatedAt = cardGroup.UpdatedAt,
+                LaneIds = laneIds
             };
         }
+
 
         public async Task<bool> DeleteAsync(int id, bool useSoftDelete)
         {

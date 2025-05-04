@@ -36,6 +36,8 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzNotificationModule  } from 'ng-zorro-antd/notification';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTransferModule, TransferItem } from 'ng-zorro-antd/transfer';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+
 
 import { GatesComponent } from './components/gates/gates.component';
 import { ComputersComponent } from './components/computers/computers.component';
@@ -101,7 +103,8 @@ registerLocaleData(en);
     FormsModule,
     NzNotificationModule,
     NzRadioModule,
-    NzTransferModule
+    NzTransferModule,
+    NzCollapseModule
 
   ],
   providers: [

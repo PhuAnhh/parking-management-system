@@ -307,14 +307,123 @@
             <label style="margin-bottom: 10px; display: block;">Làn</label>
             <div style="display: flex; justify-content: space-between;">
               <nz-transfer
-                [nzDataSource]="lanes"
+                [nzDataSource]="transferData"
                 [nzTitles]="['Làn trong hệ thống', 'Làn được cho phép']"
-                (nzSelectChange)="selectLaneChange($event)"
-                (nzChange)="changeLaneTransfer($event)"
+                (nzChange)="transferChange($event)"
                 [nzListStyle]="{ 'width': '255px', 'height': '210px' }"
               >
               </nz-transfer>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="16" style="margin-top: 10px;">
+        <div nz-col [nzSpan]="24">
+          <div class="form-group">
+            <nz-collapse>
+              <nz-collapse-panel nzHeader="Cấu hình phí" [nzActive]="false">                
+                <div class="form-group">
+                  <label for="cardGroupfreeMinutes" style="margin-bottom: 10px; display: block; font-weight: 500;">Số phút được miễn phí</label>
+                  <input 
+                    nz-input
+                    type="number" 
+                    id="cardGroupfreeMinutes" 
+                    formControlName="freeMinutes" 
+                    min="0" 
+                    placeholder="Nhập số phút miễn phí"
+                    style="width: 100%; border-radius: 8px;"
+                  />
+                </div>
+                
+                <div style="margin-top: 20px;">
+                  <div nz-row [nzGutter]="16" style="display: flex; align-items: center;">
+                    <div nz-col [nzSpan]="6">
+                      <label style="font-weight: 500;">Khoảng đầu tiên</label>
+                    </div>
+                    <div nz-col [nzSpan]="6">
+                      <input 
+                        nz-input
+                        type="number" 
+                        formControlName="firstBlockMinutes" 
+                        min="0" 
+                        placeholder="Phút"
+                        style="width: 100%; border-radius: 8px;"
+                      />
+                    </div>
+                    
+                    <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
+                      <label style="font-weight: 500;">Phí</label>
+                    </div>
+                    <div nz-col [nzSpan]="6">
+                      <input 
+                        nz-input
+                        type="number" 
+                        formControlName="firstBlockPrice" 
+                        min="0" 
+                        placeholder="VNĐ"
+                        style="width: 100%; border-radius: 8px;"
+                      />
+                    </div>
+                    
+                    <div *ngIf="!isNextBlockVisible" nz-col [nzSpan]="4" style="text-align: center;">
+                      <button 
+                        nz-button 
+                        nzType="primary" 
+                        nzShape="circle"
+                        style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
+                        (click)="showNextBlock()"
+                      >
+                        <i nz-icon nzType="plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="isNextBlockVisible" nz-row [nzGutter]="16" style="display: flex; align-items: center; margin-top: 15px;">
+                  <div nz-col [nzSpan]="6">
+                    <label style="font-weight: 500;">Khoảng tiếp theo</label>
+                  </div>
+                  <div nz-col [nzSpan]="6">
+                    <input 
+                      nz-input
+                      type="number" 
+                      formControlName="nextBlockMinutes" 
+                      min="0" 
+                      placeholder="Phút"
+                      style="width: 100%; border-radius: 8px;"
+                    />
+                  </div>
+                  
+                  <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
+                    <label style="font-weight: 500;">Phí</label>
+                  </div>
+                  <div nz-col [nzSpan]="6">
+                    <input 
+                      nz-input
+                      type="number" 
+                      formControlName = "nextBlockPrice"
+                      min="0" 
+                      placeholder="VNĐ"
+                      style="width: 100%; border-radius: 8px;"
+                    />
+                  </div>
+                  
+                  <div nz-col [nzSpan]="4" style="text-align: center;">
+                    <button 
+                      nz-button 
+                      nzType="primary" 
+                      nzDanger
+                      nzShape="circle"
+                      style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
+                      (click)="isNextBlockVisible = false"
+                    >
+                      <i nz-icon nzType="delete"></i>
+                    </button>
+                  </div>
+                </div>
+              </nz-collapse-panel>
+            </nz-collapse>
           </div>
         </div>
       </div>
@@ -377,14 +486,124 @@
             <label style="margin-bottom: 10px; display: block;">Làn</label>
             <div style="display: flex; justify-content: space-between;">
               <nz-transfer
-                [nzDataSource]="lanes"
+                [nzDataSource]="transferData"
                 [nzTitles]="['Làn trong hệ thống', 'Làn được cho phép']"
-                (nzSelectChange)="selectLaneChange($event)"
-                (nzChange)="changeLaneTransfer($event)"
+                (nzChange)="transferChange($event)"
+                nzShowSelectAll="true"
                 [nzListStyle]="{ 'width': '255px', 'height': '210px' }"
               >
               </nz-transfer>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="16" style="margin-top: 10px;">
+        <div nz-col [nzSpan]="24">
+          <div class="form-group">
+            <nz-collapse>
+              <nz-collapse-panel nzHeader="Cấu hình phí" [nzActive]="isFeeConfigExpanded">                
+                <div class="form-group">
+                  <label for="cardGroupfreeMinutes" style="margin-bottom: 10px; display: block; font-weight: 500;">Số phút được miễn phí</label>
+                  <input 
+                    nz-input
+                    type="number" 
+                    id="cardGroupfreeMinutes" 
+                    formControlName="freeMinutes" 
+                    min="0" 
+                    placeholder="Nhập số phút miễn phí"
+                    style="width: 100%; border-radius: 8px;"
+                  />
+                </div>
+                
+                <div style="margin-top: 20px;">
+                  <div nz-row [nzGutter]="16" style="display: flex; align-items: center;">
+                    <div nz-col [nzSpan]="6">
+                      <label style="font-weight: 500;">Khoảng đầu tiên</label>
+                    </div>
+                    <div nz-col [nzSpan]="6">
+                      <input 
+                        nz-input
+                        type="number" 
+                        formControlName="firstBlockMinutes" 
+                        min="0" 
+                        placeholder="Phút"
+                        style="width: 100%; border-radius: 8px;"
+                      />
+                    </div>
+                    
+                    <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
+                      <label style="font-weight: 500;">Phí</label>
+                    </div>
+                    <div nz-col [nzSpan]="6">
+                      <input 
+                        nz-input
+                        type="number" 
+                        formControlName="firstBlockPrice" 
+                        min="0" 
+                        placeholder="VNĐ"
+                        style="width: 100%; border-radius: 8px;"
+                      />
+                    </div>
+                    
+                    <div *ngIf="!isNextBlockVisible" nz-col [nzSpan]="4" style="text-align: center;">
+                      <button 
+                        nz-button 
+                        nzType="primary" 
+                        nzShape="circle"
+                        style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
+                        (click)="showNextBlock()"
+                      >
+                        <i nz-icon nzType="plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="isNextBlockVisible" nz-row [nzGutter]="16" style="display: flex; align-items: center; margin-top: 15px;">
+                  <div nz-col [nzSpan]="6">
+                    <label style="font-weight: 500;">Khoảng tiếp theo</label>
+                  </div>
+                  <div nz-col [nzSpan]="6">
+                    <input 
+                      nz-input
+                      type="number" 
+                      formControlName="nextBlockMinutes" 
+                      min="0" 
+                      placeholder="Phút"
+                      style="width: 100%; border-radius: 8px;"
+                    />
+                  </div>
+                  
+                  <div nz-col [nzSpan]="2" style="text-align: right; padding-right: 10px;">
+                    <label style="font-weight: 500;">Phí</label>
+                  </div>
+                  <div nz-col [nzSpan]="6">
+                    <input 
+                      nz-input
+                      type="number" 
+                      formControlName = "nextBlockPrice"
+                      min="0" 
+                      placeholder="VNĐ"
+                      style="width: 100%; border-radius: 8px;"
+                    />
+                  </div>
+                  
+                  <div nz-col [nzSpan]="4" style="text-align: center;">
+                    <button 
+                      nz-button 
+                      nzType="primary" 
+                      nzDanger
+                      nzShape="circle"
+                      style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
+                      (click)="hideNextBlock()"
+                    >
+                      <i nz-icon nzType="delete"></i>
+                    </button>
+                  </div>
+                </div>
+              </nz-collapse-panel>
+            </nz-collapse>
           </div>
         </div>
       </div>

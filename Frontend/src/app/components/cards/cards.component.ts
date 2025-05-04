@@ -101,14 +101,16 @@ export class CardsComponent {
             )
           : data;
         this.total = filteredCards.length; 
+
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
         this.cards = filteredCards.slice(start, end); 
+
         this.loading = false;
         this.cdr.detectChanges();
       },
       (error) => {
-        console.error('Lỗi khi lấy danh sách máy tính:', error);
+        console.error('Lỗi khi lấy danh sách thẻ:', error);
         this.loading = true;
       }
     );
@@ -179,9 +181,31 @@ export class CardsComponent {
         'Vui lòng nhập đủ thông tin',
         {nzDuration: 3000}
       );
+      return;
     }
 
+    const isDuplicateName = this.cards.some(card => card.name === newCard.name);
+    const isDuplicateCode = this.cards.some(card => card.code === newCard.code);
+
     const newCard = this.cardForm.value;
+    
+    if(isDuplicateName) {
+      this.notification.error(
+        'Lỗi',
+        'Tên: Trường bị trùng lặp',
+        { nzDuration: 3000 }
+      );  
+      return;
+    }
+
+    if(isDuplicateCode) {
+      this.notification.error(
+        'Lỗi',
+        'Mã: Trường bị trùng lặp',
+        { nzDuration: 3000 }
+      );  
+      return;
+    }
     
     this.cardService.addCard(newCard).subscribe(
       () => {

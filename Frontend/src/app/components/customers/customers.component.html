@@ -190,8 +190,8 @@
                       <thead>
                         <tr>
                           <th style="width: 60px; min-width: 60px;">#</th>
-                          <th>Mã</th>
                           <th>Tên</th>
+                          <th>Mã</th>
                           <th>Số điện thoại</th>
                           <th>Địa chỉ</th>
                           <th>Nhóm khách hàng</th>
@@ -272,7 +272,9 @@
         <div nz-col [nzSpan]="12">
           <div class="form-group">
             <label for="customerAddress" style="margin-bottom: 10px;">Địa chỉ</label>
-            <input id="customerAddress" nz-input formControlName="address" style="border-radius: 8px;"/>
+            <nz-textarea-count [nzMaxCharacterCount]="100">
+              <textarea id="customerAddress" formControlName="address" nz-input [nzAutosize]="{ minRows: 1, maxRows: 5}" style="border-radius: 8px;"></textarea>
+            </nz-textarea-count>          
           </div>
         </div>
       </div>

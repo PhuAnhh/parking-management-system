@@ -5,6 +5,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { TransferItem, TransferChange } from 'ng-zorro-antd/transfer';
 
 enum CardGroupType{
   MONTH = 'Month',
@@ -38,34 +39,10 @@ export class CardGroupsComponent {
   currentCardGroupId: number | null = null;
   searchKeyword: string = '';
   cardGroupLanes: number[] = [];
+  transferData: any[] = [];
+  isNextBlockVisible = false;
+  isFeeConfigExpanded = false;
 
-  prepareLaneTransferData() {
-    this.lanes = this.lanes.map(lane => ({
-      key: lane.id.toString(),
-      title: lane.name,
-      description: lane.code,
-      direction: this.cardGroupLanes.includes(lane.id) ? 'right' : 'left',
-      disabled: false
-    }));
-  }
-  
-  selectLaneChange(ret: any): void {
-    console.log('select change:', ret);
-  }
-  
-  changeLaneTransfer(ret: any): void {
-    console.log('change:', ret);
-    
-    const selectedLaneIds = this.lanes
-      .filter(item => item.direction === 'right')
-      .map(item => +item.key); 
-      
-    if (this.isAddModalVisible) {
-      this.cardGroupForm.get('laneIds')?.setValue(selectedLaneIds);
-    } else if (this.isEditModalVisible) {
-      this.editCardGroupForm.get('laneIds')?.setValue(selectedLaneIds);
-    }
-  }
 
 cardGroupTypes = [
   { label: 'Tháng', value: CardGroupType.MONTH, color: 'pink'},
@@ -108,8 +85,12 @@ constructor(
       name: [null, [Validators.required]],
       type: [CardGroupType.MONTH, [Validators.required]], 
       vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
-      status: [true],
-      laneIds: [[]]
+      laneIds: [[]],
+      freeMinutes: [null],
+      firstBlockMinutes: [null],
+      firstBlockPrice: [null],
+      nextBlockMinutes: [null],
+      nextBlockPrice: [null],
     });
 
     this.editCardGroupForm = this.fb.group({
@@ -117,8 +98,12 @@ constructor(
       name: [null, [Validators.required]],
       type: [CardGroupType.MONTH, [Validators.required]], 
       vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
-      status: [true],
-      laneIds: [[]]
+      laneIds: [[]],
+      freeMinutes: [null],
+      firstBlockMinutes: [null],
+      firstBlockPrice: [null],
+      nextBlockMinutes: [null],
+      nextBlockPrice: [null],
     });
   }
 
@@ -154,7 +139,12 @@ constructor(
   loadLanes() {
     this.laneService.getLanes().subscribe(data => {
       this.lanes = data;
-      this.prepareLaneTransferData();
+      this.transferData = this.lanes.map(lane => ({
+        key: lane.id,
+        title: lane.name,
+        direction: 'left',
+        disabled: false
+      }));
     });
   }
 
@@ -163,13 +153,26 @@ constructor(
     this.loadCardGroups(this.searchKeyword); 
   }
 
-
-  
   onQueryParamsChange(params: NzTableQueryParams): void {
     const { pageSize, pageIndex } = params;
     this.pageIndex = pageIndex;
     this.pageSize = pageSize;
     this.loadCardGroups(this.searchKeyword);
+  }
+
+  transferChange(ret: TransferChange): void {
+    // Lấy các key của items bên phải (đã chọn)
+    const rightItems = ret.list.filter(item => item.direction === 'right');
+    const selectedLaneIds = rightItems.map(item => item['key']);
+    
+    // Cập nhật form hiện tại (add hoặc edit)
+    if (this.isAddModalVisible) {
+      this.cardGroupForm.patchValue({ laneIds: selectedLaneIds });
+    } else if (this.isEditModalVisible) {
+      this.editCardGroupForm.patchValue({ laneIds: selectedLaneIds });
+    }
+    
+    this.cardGroupLanes = selectedLaneIds;
   }
 
   showAddCardGroupModal() {
@@ -178,17 +181,44 @@ constructor(
       status: true,
       type: CardGroupType.MONTH,
       vehicleType: CardGroupVehicleType.CAR,
-      laneIds: []
+      laneIds: [],
     });
     this.cardGroupLanes = [];
-    this.prepareLaneTransferData();
+    
+    // Đảm bảo transferData được khởi tạo đúng từ danh sách lanes
+    this.transferData = this.lanes.map(lane => ({
+      key: lane.id,
+      title: lane.name,
+      direction: 'left',
+      disabled: false
+    }));
+  }
+
+  showNextBlock() {
+    this.isNextBlockVisible = true;
+  }
+
+  hideNextBlock() {
+    this.isNextBlockVisible = false;
+    
+    // Xóa giá trị của các trường liên quan đến khoảng tiếp theo
+    if (this.isEditModalVisible) {
+      this.editCardGroupForm.patchValue({
+        nextBlockMinutes: null,
+        nextBlockPrice: null
+      });
+    } else if (this.isAddModalVisible) {
+      this.cardGroupForm.patchValue({
+        nextBlockMinutes: null,
+        nextBlockPrice: null
+      });
+    }
   }
 
   showEditCardGroupModal(cardGroup: any) {
     this.currentCardGroupId = cardGroup.id;
-
     this.cardGroupLanes = cardGroup.laneIds || [];
-    
+  
     if (this.editCardGroupForm) {
       this.editCardGroupForm.patchValue({
         name: cardGroup.name,
@@ -196,10 +226,35 @@ constructor(
         type: cardGroup.type,
         vehicleType: cardGroup.vehicleType,
         status: cardGroup.status,
-        laneIds: this.cardGroupLanes
+        laneIds: this.cardGroupLanes,
+        freeMinutes: cardGroup.freeMinutes,
+        firstBlockMinutes: cardGroup.firstBlockMinutes,
+        firstBlockPrice: cardGroup.firstBlockPrice,
+        nextBlockMinutes: cardGroup.nextBlockMinutes,
+        nextBlockPrice: cardGroup.nextBlockPrice
       });
+  
+      // Kiểm tra xem phần "Khoảng tiếp theo" có cần hiển thị không
+      this.isNextBlockVisible = !!cardGroup.nextBlockMinutes || !!cardGroup.nextBlockPrice;
+  
+      // Kiểm tra nếu có bất kỳ cấu hình phí nào
+      this.isFeeConfigExpanded =
+        !!cardGroup.freeMinutes ||
+        !!cardGroup.firstBlockMinutes ||
+        !!cardGroup.firstBlockPrice ||
+        !!cardGroup.nextBlockMinutes ||
+        !!cardGroup.nextBlockPrice;
+  
+      // Cập nhật lại dữ liệu cho các lane
+      this.transferData = this.lanes.map(lane => ({
+        key: lane.id,
+        title: lane.name,
+        direction: this.cardGroupLanes.includes(lane.id) ? 'right' : 'left',
+        disabled: false
+      }));
+  
+      this.cdr.detectChanges();
       
-      this.prepareLaneTransferData();
       this.isEditModalVisible = true;
     } else {
       console.error('Edit form is not initialized');
@@ -207,18 +262,17 @@ constructor(
       this.showEditCardGroupModal(cardGroup);
     }
   }
+  
 
   handleCancel() {
     this.isAddModalVisible = false;
     this.cardGroupLanes = [];
-    this.prepareLaneTransferData();
   }
   
   handleEditCancel() {
     this.isEditModalVisible = false;
     this.currentCardGroupId = null;
     this.cardGroupLanes = [];
-    this.prepareLaneTransferData();
   }
 
   handleOk() {
@@ -289,6 +343,11 @@ constructor(
 
     if (!updatedCardGroup.laneIds) {
       updatedCardGroup.laneIds = [];
+    }
+
+    if (!this.isNextBlockVisible) {
+      updatedCardGroup.nextBlockMinutes = null;
+      updatedCardGroup.nextBlockPrice = null;
     }
     
     console.log('Updated CardGroup:', updatedCardGroup);  

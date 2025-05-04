@@ -190,16 +190,16 @@
                     <thead>
                       <tr>
                         <th style="width: 60px; min-width: 60px;">#</th>
-                        <th>Mã</th>
                         <th>Tên</th>
+                        <th>Mã</th>
                         <th style="width: 130px; min-width: 130px; text-align: center;"></th>
                       </tr>
                     </thead>
                     <tbody>
                        <tr *ngFor="let customerGroup of customerGroups; let i = index">
                         <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
-                        <td>{{ customerGroup.code }}</td>
-                        <td>{{ customerGroup.name }}</td> 
+                        <td>{{ customerGroup.name }}</td>
+                        <td>{{ customerGroup.code }}</td> 
         
                         <td style="text-align: center;">
                           <button nz-button class="ant-btn edit-btn ant-btn-icon-only ng-star-inserted" (click)="updateCustomerGroup(customerGroup.id)">
