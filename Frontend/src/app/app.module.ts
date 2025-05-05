@@ -4,7 +4,6 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
 import { provideNzI18n } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -38,6 +37,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTransferModule, TransferItem } from 'ng-zorro-antd/transfer';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 
 import { GatesComponent } from './components/gates/gates.component';
@@ -50,6 +50,10 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { CustomerGroupsComponent } from './components/customer-groups/customer-groups.component';
 import { CardGroupsComponent } from './components/card-groups/card-groups.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { EntryLogsComponent } from './components/entry-logs/entry-logs.component';
+import { ExitLogsComponent } from './components/exit-logs/exit-logs.component';
+import { WarningEventsComponent } from './components/warning-events/warning-events.component';
+import { RevenueReportsComponent } from './components/revenue-reports/revenue-reports.component';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 
 const ngZorroConfig: NzConfig = {
@@ -64,7 +68,6 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
     DashboardComponent,
     GatesComponent,
     ComputersComponent,
@@ -75,7 +78,11 @@ registerLocaleData(en);
     CustomersComponent,
     CustomerGroupsComponent,
     CardGroupsComponent,
-    CardsComponent
+    CardsComponent,
+    EntryLogsComponent,
+    ExitLogsComponent,
+    WarningEventsComponent,
+    RevenueReportsComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +113,8 @@ registerLocaleData(en);
     NzRadioModule,
     NzTransferModule,
     NzCollapseModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzProgressModule,
 
   ],
   providers: [
