@@ -120,7 +120,7 @@ export class ComputersComponent {
 
   showAddComputerModal() {
     this.isAddModalVisible = true;
-    this.computerForm.reset(); 
+    this.computerForm.reset({status: true}); 
   }
 
   showEditComputerModal(computer: any) {

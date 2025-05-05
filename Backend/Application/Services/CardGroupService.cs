@@ -214,15 +214,14 @@ namespace Final_year_Project.Application.Services
                     cardGroup.Deleted = true;
                     cardGroup.UpdatedAt = DateTime.UtcNow;
 
-                    //if (cardGroup.Cards != null && cardGroup.Cards.Any())
-                    //{
-                    //    foreach (var card in cardGroup.Cards)
-                    //    {
-                    //        card.Deleted = true;
-                    //        card.UpdatedAt = DateTime.UtcNow;
-                    //        _unitOfWork.Cards.Update(card);
-                    //    }
-                    //}
+                    if (cardGroup.Cards != null && cardGroup.Cards.Any())
+                    {
+                        foreach (var card in cardGroup.Cards)
+                        {
+                            card.UpdatedAt = DateTime.UtcNow;
+                            _unitOfWork.Cards.Update(card);
+                        }
+                    }
 
                     if (cardGroup.CardGroupLanes != null && cardGroup.CardGroupLanes.Any())
                     {
@@ -244,6 +243,7 @@ namespace Final_year_Project.Application.Services
                         }
                     }
 
+                    if (cardGroup.CardGroupLanes != null && cardGroup.CardGroupLanes.Any())
                     {
                         foreach (var cardGroupLane in cardGroup.CardGroupLanes)
                         {

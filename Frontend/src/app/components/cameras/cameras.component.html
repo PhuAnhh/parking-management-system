@@ -208,7 +208,7 @@
                         <td>{{ camera.code }}</td>
                         <td style="color: #006c9c;">{{ camera.ipAddress }}</td>
                         <td>
-                          <nz-tag *ngIf="getCameraType(camera.type) as opt" [nzColor]="opt.color" style="border-radius: 8px;">
+                          <nz-tag *ngIf="getCameraType(camera.type) as opt" [nzColor]="opt.color" style="border-radius: 8px; font-size: 12px;">
                             {{ opt.label }}
                           </nz-tag>
                         </td>
@@ -288,7 +288,7 @@
         </div>
         <div nz-col [nzSpan]="12">
           <div class="form-group">
-            <label for="cameraIpAddress" style="margin-bottom: 10px;">Địa chỉ IP</label>
+            <label for="cameraIpAddress" class="required-label" style="margin-bottom: 10px;">Địa chỉ IP</label>
             <input id="cameraIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;"/>
           </div>
         </div>
@@ -357,7 +357,7 @@
         </div>
         <div nz-col [nzSpan]="12">
           <div class="form-group">
-            <label for="cameraIpAddress" style="margin-bottom: 10px;">Địa chỉ IP</label>
+            <label for="cameraIpAddress" class="required-label" style="margin-bottom: 10px;">Địa chỉ IP</label>
             <input id="cameraIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;"/>
           </div>
         </div>

@@ -208,7 +208,7 @@
                           <td>{{ controlUnit.code }}</td>
                           <td style="color: #006c9c;">{{ controlUnit.comport }}</td>
                           <td>
-                            <nz-tag *ngIf="getControlUnitType(controlUnit.type) as opt" [nzColor]="opt.color" style="border-radius: 8px;">
+                            <nz-tag *ngIf="getControlUnitType(controlUnit.type) as opt" [nzColor]="opt.color" style="border-radius: 8px; font-size: 12px;">
                               {{opt.label}}
                             </nz-tag>
                           </td>

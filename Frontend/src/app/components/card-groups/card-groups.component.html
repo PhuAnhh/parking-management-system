@@ -206,12 +206,12 @@
                           <td style="text-align: center;">
                             <nz-tag *ngIf="getCardGroupType(cardGroup.type) as opt" 
                               [nzColor]="cardGroup.type === 'Month' ? '#1d39c4' : '#d4b106'" 
-                              style="display: inline-flex; align-items: center; gap: 4px; border-radius: 8px;">
+                              style="border-radius: 8px; font-size: 12px ;">
                               {{ opt.label }}
                             </nz-tag>
                           </td>
                           <td style="text-align: center;">
-                            <nz-tag *ngIf="getCardGroupVehicleType(cardGroup.vehicleType) as opt" [nzColor]="opt.color" style="border-radius: 8px;">
+                            <nz-tag *ngIf="getCardGroupVehicleType(cardGroup.vehicleType) as opt" [nzColor]="opt.color" style="border-radius: 8px; font-size: 12px;">
                               {{ opt.label}}
                             </nz-tag>
                           </td>

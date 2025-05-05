@@ -123,13 +123,14 @@ constructor(
       code: [null, [Validators.required]],
       name: [null, [Validators.required]],
       type: [CardGroupType.MONTH, [Validators.required]], 
-      vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
+      vehicleType: [CardGroupVehicleType.CAR, [Validators.required]], 
+      status: true, 
       laneIds: [[]],
       freeMinutes: 0,
       firstBlockMinutes: 60,
       firstBlockPrice: 0.00,
-      nextBlockMinutes: 60,
-      nextBlockPrice: 0.00,
+      nextBlockMinutes: [null],
+      nextBlockPrice: [null],
     });
 
     this.editCardGroupForm = this.fb.group({
@@ -141,8 +142,8 @@ constructor(
       freeMinutes: 0,
       firstBlockMinutes: 60,
       firstBlockPrice: 0.00,
-      nextBlockMinutes: 60,
-      nextBlockPrice: 0.00,
+      nextBlockMinutes: [null],
+      nextBlockPrice: [null],
     });
   }
 
@@ -224,8 +225,6 @@ constructor(
       freeMinutes: 0,
       firstBlockMinutes: 60,
       firstBlockPrice: 0,
-      nextBlockMinutes: 60,
-      nextBlockPrice: 0
     });
     this.cardGroupLanes = [];
     

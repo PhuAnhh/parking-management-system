@@ -108,14 +108,6 @@ namespace Final_year_Project.Application.Services
 
         public async Task<bool> DeleteAsync(int id, bool useSoftDelete = true)
         {
-            //var gate = await _unitOfWork.Gates.GetByIdAsync(id);
-
-            //if (gate == null)
-            //    return false;
-
-            //_unitOfWork.Gates.Delete(gate);
-            //await _unitOfWork.SaveChangesAsync();
-            //return true;
             try
             {
                 var gate = await _unitOfWork.Gates.GetByIdAsync(id);
@@ -156,7 +148,6 @@ namespace Final_year_Project.Application.Services
             {
                 return false;
             }
-
         }
     }
 }

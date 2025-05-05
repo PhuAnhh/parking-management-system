@@ -206,7 +206,7 @@
                         <td>{{ lane.name }}</td>
                         <td>{{ lane.code }}</td>
                         <td>  
-                          <nz-tag style="border-color: #f6ffed; border-radius: 8px;"
+                          <nz-tag style="border-color: #f6ffed; border-radius: 8px; font-size: 12px;"
                             *ngIf="getLaneTypeOption(lane.type) as opt"
                             [nzColor]="opt.color"
                           >
@@ -222,7 +222,7 @@
                           ></nz-badge>
                         </td>
                         <td style="text-align: center;">
-                          <nz-tag [nzColor]="lane.loop ? '#52c41a' : '#637381'" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 8px;">
+                          <nz-tag [nzColor]="lane.loop ? '#52c41a' : '#637381'" style="display: inline-flex; align-items: center; gap: 4px; border-radius: 8px; font-size: 12px;">
                             <nz-icon
                               [nzType]="lane.loop ? 'check-circle' : 'close-circle'"
                             ></nz-icon>

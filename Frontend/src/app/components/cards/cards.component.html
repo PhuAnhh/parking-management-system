@@ -203,10 +203,10 @@
                           <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
                           <td>{{ card.name }}</td>
                           <td>{{ card.code }}</td> 
-                          <td>{{ getCardGroupNameById(card.cardGroupId) }}</td>
+                          <td style="color: #0c68e9;">{{ getCardGroupNameById(card.cardGroupId) }}</td>
                           <td>{{ card.note}}</td>
                           <td style="text-align: center;">
-                            <nz-tag [nzColor]="getStatusColor(card.status)" [ngStyle]="{'border-radius': '8px'}">
+                            <nz-tag [nzColor]="getStatusColor(card.status)" [ngStyle]="{'border-radius': '8px', 'font-size': '12px'}">
                               {{ getCardStatus(card.status)?.label || card.status }}
                             </nz-tag>
                           </td>
