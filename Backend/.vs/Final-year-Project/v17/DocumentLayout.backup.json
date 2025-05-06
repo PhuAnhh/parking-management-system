@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF05C375-2DF8-F6A9-26FC-81093568A61B}|Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\backend\\application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF05C375-2DF8-F6A9-26FC-81093568A61B}|Final-year-Project.csproj|solutionrelative:application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF05C375-2DF8-F6A9-26FC-81093568A61B}|Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\backend\\application\\services\\cardgroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF05C375-2DF8-F6A9-26FC-81093568A61B}|Final-year-Project.csproj|solutionrelative:application\\services\\cardgroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF05C375-2DF8-F6A9-26FC-81093568A61B}|Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\backend\\application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF05C375-2DF8-F6A9-26FC-81093568A61B}|Final-year-Project.csproj|solutionrelative:application\\services\\gateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF05C375-2DF8-F6A9-26FC-81093568A61B}|Final-year-Project.csproj|c:\\users\\phanp\\onedrive\\documents\\github\\final-year-project\\backend\\persistence\\repositories\\cardgrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -94,7 +94,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -102,13 +102,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "CardGroupService.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Backend\\Application\\Services\\CardGroupService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\CardGroupService.cs",
               "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Backend\\Application\\Services\\CardGroupService.cs",
               "RelativeToolTip": "Application\\Services\\CardGroupService.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAuwJ8AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAAKoAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T14:42:05.775Z",
               "EditorCaption": ""
@@ -123,8 +123,7 @@
               "RelativeToolTip": "Application\\Repositories\\ICardRepository.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAuwA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T15:01:33.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T15:01:33.839Z"
             },
             {
               "$type": "Document",
@@ -136,8 +135,7 @@
               "RelativeToolTip": "Persistence\\Repositories\\CardRepository.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAQwCYAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T07:56:56.188Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T07:56:56.188Z"
             },
             {
               "$type": "Document",
@@ -149,8 +147,7 @@
               "RelativeToolTip": "Application\\Services\\CustomerService.cs",
               "ViewState": "AgIAAGsAAAAAAAAAAADgvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T13:35:46.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T13:35:46.141Z"
             },
             {
               "$type": "Document",
@@ -162,8 +159,7 @@
               "RelativeToolTip": "Application\\Services\\ComputerService.cs",
               "ViewState": "AgIAAIsAAAAAAAAAAAAkwKAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T13:35:09.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T13:35:09.071Z"
             },
             {
               "$type": "Document",
@@ -175,18 +171,17 @@
               "RelativeToolTip": "Persistence\\Repositories\\CardGroupRepository.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAYwBkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T14:47:34.58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T14:47:34.58Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GateService.cs",
               "DocumentMoniker": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Backend\\Application\\Services\\GateService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\GateService.cs",
               "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Backend\\Application\\Services\\GateService.cs",
               "RelativeToolTip": "Application\\Services\\GateService.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAcwJUAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAkwBgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-04T13:35:52.26Z",
               "EditorCaption": ""
@@ -201,8 +196,7 @@
               "RelativeToolTip": "Application\\Repositories\\IUnitOfWork.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAswCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T14:44:15.264Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T14:44:15.264Z"
             },
             {
               "$type": "Document",
@@ -214,8 +208,7 @@
               "RelativeToolTip": "Persistence\\Repositories\\GateRepository.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAowC0AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T03:19:31.069Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T03:19:31.069Z"
             },
             {
               "$type": "Document",
@@ -227,8 +220,7 @@
               "RelativeToolTip": "Application\\Services\\CardService.cs",
               "ViewState": "AgIAAHkAAAAAAAAAAADwv4oAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T11:32:08.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T11:32:08.608Z"
             },
             {
               "$type": "Document",

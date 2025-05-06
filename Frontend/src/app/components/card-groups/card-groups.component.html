@@ -1,7 +1,7 @@
 <nz-layout class="layout">
     <nz-sider nzwidth="236px" class="menu-sidebar show-for-large" style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
       <div class="logo">
-        <img src="../../../assets/images/logo/logo-system.png" alt="Logo">
+        <img src="../../../assets/images/logo/logo.png" alt="Logo">
       </div>
       <div class="custom-dark-menu">
         <ul nz-menu nzTheme="dark" nzMode="inline">
@@ -13,10 +13,10 @@
               </li>
               <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
                 <ul>
-                  <li nz-menu-item [routerLink]="">Xe vào bãi</li>
-                  <li nz-menu-item [routerLink]="">Xe đã ra</li>
-                  <li nz-menu-item [routerLink]="">Sự kiện cảnh báo</li>
-                  <li nz-menu-item [routerLink]="">Báo cáo doanh thu</li>
+                  <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
+                  <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
+                  <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
+                  <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
                 </ul>
               </li>
             </ul>
@@ -233,14 +233,6 @@
                          Tổng số {{ total }} dữ liệu 
                       </ng-template>
                     </nz-table>
-                    
-                    <!-- <button nz-button class="ant-btn">
-                      <nz-float-button-content>
-                        <div class="ant-float-btn-icon ng-star-inserted">
-                          <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
-                        </div>
-                      </nz-float-button-content>
-                    </button> -->
                 </div>
             </nz-card>
         </div>

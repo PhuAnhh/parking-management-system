@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { provideNzI18n } from 'ng-zorro-antd/i18n';
-import { en_US } from 'ng-zorro-antd/i18n';
+import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
+import vi from '@angular/common/locales/vi';
 import { registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
@@ -38,6 +38,7 @@ import { NzTransferModule, TransferItem } from 'ng-zorro-antd/transfer';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzListModule } from 'ng-zorro-antd/list';
 
 
 import { GatesComponent } from './components/gates/gates.component';
@@ -62,7 +63,7 @@ const ngZorroConfig: NzConfig = {
   } 
 };
 
-registerLocaleData(en);
+registerLocaleData(vi);
 
 @NgModule({
   declarations: [
@@ -115,11 +116,12 @@ registerLocaleData(en);
     NzCollapseModule,
     NzInputNumberModule,
     NzProgressModule,
-
+    NzListModule
+    
   ],
   providers: [
     provideClientHydration(withEventReplay()),
-    provideNzI18n(en_US),
+    provideNzI18n(vi_VN),
     provideAnimationsAsync(),
     provideHttpClient(),
     provideNzConfig(ngZorroConfig)

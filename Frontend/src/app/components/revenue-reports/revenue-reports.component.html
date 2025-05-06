@@ -1,7 +1,7 @@
 <nz-layout class="layout">
     <nz-sider nzwidth="236px" class="menu-sidebar show-for-large" style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
       <div class="logo">
-        <img src="../../../assets/images/logo/logo-system.png" alt="Logo">
+        <img src="../../../assets/images/logo/logo.png" alt="Logo">
       </div>
       <div class="custom-dark-menu">
         <ul nz-menu nzTheme="dark" nzMode="inline">
@@ -13,10 +13,10 @@
               </li>
               <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
                 <ul>
-                  <li nz-menu-item [routerLink]="">Xe vào bãi</li>
-                  <li nz-menu-item [routerLink]="">Xe đã ra</li>
-                  <li nz-menu-item [routerLink]="">Sự kiện cảnh báo</li>
-                  <li nz-menu-item [routerLink]="">Báo cáo doanh thu</li>
+                  <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
+                  <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
+                  <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
+                  <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
                 </ul>
               </li>
             </ul>
@@ -129,8 +129,8 @@
         <div class="inner-content">
             <nz-card class="ant-card card-wrapper-content">
                 <div class="ant-card-body" style="padding: 24px 0px;"> 
-                    <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
-                        <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
+                    <nz-row [nzGutter]="12" class="ant-row filter-row" style="margin: -12px -6px;">
+                        <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
                             <fieldset>
                                 <label for="keyword"class="input-label" style="color: #0c68e9;">Nhóm thẻ</label>
                                 <nz-select nzMode="default" nzPlaceHolder="Nhóm thẻ" id="keyword" style="width: 100%;">
@@ -138,30 +138,30 @@
                                 </nz-select>
                             </fieldset>
                         </nz-col>
-                        <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
+                        <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
                             <fieldset>
                                 <label for="time" class="input-label" style="color: #0c68e9;">Phạm vi thời gian</label>
-                                <nz-range-picker id="time" nzFormat="dd/MM/yyyy" style="width: 100%;"></nz-range-picker>
+                                <nz-range-picker [(ngModel)]="defaultRange" nzShowTime nzFormat="dd/MM/yyyy HH:mm:ss" style="width: 100%;"></nz-range-picker>
                             </fieldset>
                         </nz-col>
-                        <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
-                            <table-action>
-                                <div nz-row class="ant-row">  
-                                    <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                                        <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap ng-star-inserted" style="width: 100%; height: 100%; gap: 6px; flex: unset;">
-                                            <button  nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
-                                                <span nz-icon class="anticon">
-                                                    <fa-icon class="ng-fa-icon">
-                                                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
-                                                    </fa-icon>
-                                                </span>
-                                                <span class="ng-star-inserted">Tải lại</span>
-                                            </button> 
-                                        </div>
-                                    </div>
+                        <nz-col class="ant-col" style="padding: 12px 6px; display: flex; justify-content: flex-end;">
+                          <table-action>
+                            <div nz-row class="ant-row">  
+                              <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
+                                <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap" style="width: 100%; gap: 6px;">
+                                  <button nz-button nzType="text" class="ant-btn load-btn ant-btn-text">
+                                    <span nz-icon class="anticon">
+                                      <fa-icon class="ng-fa-icon">
+                                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                 
+                                      </fa-icon>
+                                    </span>
+                                    <span>Tải lại</span>
+                                  </button> 
                                 </div>
-                            </table-action>
-                        </nz-col>
+                              </div>
+                            </div>
+                          </table-action>
+                        </nz-col>                        
                     </nz-row>
                     <nz-table 
                         nzBordered

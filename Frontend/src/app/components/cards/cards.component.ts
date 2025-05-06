@@ -12,6 +12,12 @@ enum CardStatus{
   INACTIVE = 'Inactive'
 }
 
+enum CardGroupVehicleType{
+  CAR = 'Car',
+  MOTORBIKE = 'Motorbike',
+  BICYCLE = 'Bicycle'
+}
+
 @Component({
   selector: 'app-cards',
   standalone: false,
@@ -38,6 +44,12 @@ export class CardsComponent {
     { label: 'Đang sử dụng', value: CardStatus.ACTIVE},
     { label: 'Chưa sử dụng', value: CardStatus.INACTIVE},
   ]
+
+  vehicleTypes = {
+    [CardGroupVehicleType.CAR]: 'Ô tô',
+    [CardGroupVehicleType.BICYCLE]: 'Xe đạp',
+    [CardGroupVehicleType.MOTORBIKE]: 'Xe máy',
+  }
 
   getCardStatus(value: string){
     return this.cardStatuses.find(opt => opt.value === value);
@@ -138,6 +150,18 @@ export class CardsComponent {
     const cardGroup = this.cardGroups.find(g => g.id === cardGroupId);
     return cardGroup ? cardGroup.name : '';  
   }
+
+  getVehicleTypeByCardGroupId(cardGroupId: number): string {
+    const cardGroup = this.cardGroups.find(g => g.id === cardGroupId);
+    if (!cardGroup) return '';
+  
+    const vehicleType = cardGroup.vehicleType;
+    
+    // Sử dụng as để ép kiểu, cho TypeScript biết đây là key hợp lệ
+    return this.vehicleTypes[vehicleType as CardGroupVehicleType] || vehicleType;
+  }
+
+  
 
   showAddCardModal() {
     this.isAddModalVisible = true;

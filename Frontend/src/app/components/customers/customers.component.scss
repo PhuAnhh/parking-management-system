@@ -6,10 +6,9 @@
   
   .logo {
     position: relative;
-    height: 64px;
+    height: 80px;
     overflow: hidden;
     transition: all .3s;
-    margin-bottom: 12px;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -504,4 +503,31 @@
     color: red;
   }
   
+  .card-list-container {
+    border-left: 1px solid #e8e8e8;
+    padding-left: 24px;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
   
+    .card-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .title {
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .modal-row {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  .left-form {
+    padding-right: 16px;
+  } 

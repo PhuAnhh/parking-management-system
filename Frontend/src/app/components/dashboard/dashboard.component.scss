@@ -9,7 +9,6 @@
   height: 64px;
   overflow: hidden;
   transition: all .3s;
-  margin-bottom: 12px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -26,9 +25,6 @@
 }
 
 nz-sider {
-  // overflow: auto;
-  // height: 100%;
-  // position: fixed;
   padding: 0px !important;
   top: 0;
 }
@@ -103,7 +99,7 @@ nz-breadcrumb{
   margin-bottom: 20px;
 }
 
-nz-content {
+nz-content{
   margin: 24px 16px 0;
   overflow: initial;
 }
@@ -127,8 +123,6 @@ nz-header{
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  // width: 100%;
-  // margin: 0 20px;
 }
 
 .ant-btn{
@@ -193,45 +187,6 @@ font-weight: 400;
 font-size: 14px;
 }
 
-.ant-picker, .ant-picker-input{
-border-radius: .5rem;
-display: inline-flex;
-position: relative;
-margin: 0;
-color: #000000d9;
-font-size: 14px;
-font-variant: tabular-nums;
-line-height: 1.5715;
-list-style: none;
-font-feature-settings: "tnum";
-padding: 4px 11px;
-align-items: center;
-background: #fff;
-border: 1px solid #d9d9d9;
-transition: border .3s, box-shadow .3s;
-}
-
-.ant-picker-suffix{
-display: flex;
-flex: none;
-align-self: center;
-margin-left: 4px;
-color: #00000040;
-line-height: 1;
-pointer-events: none;
-}
-
-.anticon{
-color: inherit;
-font-style: normal;
-line-height: 0;
-text-align: center;
-text-transform: none;
-display: inline-block ;
-}
-
-
-
 .ant-flex-align-center{
 align-items: center;
 }
@@ -239,8 +194,6 @@ align-items: center;
 .ant-flex-justify-center{
 justify-content: center;
 }
-
-
 
 .ant-col-xl-8{
 display: block;
@@ -254,5 +207,80 @@ max-width: 33.33333333%;
 
 ::ng-deep .ant-modal-content {
   border-radius: 8px !important;
+}
+
+.dashboard-container {
+  padding: 16px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  h2 {
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+  
+  .date-display {
+    color: #637381;
+    font-size: 14px;
+  }
+}
+
+.dashboard-card {
+  border-radius: 1.15rem !important;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  .card-content {
+    padding: 24px;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+  
+  .card-value {
+    font-size: 24px;
+    color: #1c252e;
+    font-weight: 700;
+    display: block;
+    height: 100%;
+  }
+  
+  .card-title {
+    color: #637381;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .card-background {
+    top: 0;
+    width: 140px;
+    height: 140px;
+    right: -50px;
+    opacity: 0.12;
+    border-radius: 1.5rem;
+    position: absolute;
+    transform: rotate(40deg);
+  }
+}
+
+// Media queries cho hiển thị responsive
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 

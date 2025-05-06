@@ -304,5 +304,21 @@ export class CustomersComponent {
       }
     });
   }
+
+  cardList = [
+    {
+      name: 'Thẻ VIP 1',
+      code: 'VIP001',
+      group: 'VIP',
+      status: true
+    },
+    {
+      name: 'Thẻ thường 2',
+      code: 'STD002',
+      group: 'Standard',
+      status: false
+    }
+  ];
+  
 }
 

@@ -200,8 +200,6 @@ namespace Final_year_Project.Application.Services
                 LaneIds = laneIds
             };
         }
-
-
         public async Task<bool> DeleteAsync(int id, bool useSoftDelete)
         {
             try
