@@ -226,6 +226,9 @@
                             <button nz-button class="ant-btn delete-btn ant-btn-icon-only ng-star-inserted" (click)="deleteCardGroup(cardGroup.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
+                            <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="cardGroup.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleCardGroupStatus(cardGroup.id)">
+                              <span nz-icon [nzType]="cardGroup.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
+                            </button>
                           </td>
                         </tr>
                       </tbody>

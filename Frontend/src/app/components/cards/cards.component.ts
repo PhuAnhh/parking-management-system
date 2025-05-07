@@ -374,4 +374,46 @@ export class CardsComponent {
       }
     });
   }
+
+  toggleCardStatus(cardId: number) {
+    const card = this.cards.find(c => c.id === cardId);
+    if (!card) {
+      console.error(`Không tìm thấy thẻ với id ${cardId}`);
+      return;
+    }
+
+    const isLocking = card.status === 'Active' || card.status === 'Inactive';
+    const newStatus = isLocking ? 'Locked' : 'Active';
+
+    this.modalService.confirm({
+      nzTitle: isLocking ? 'Xác nhận khóa thẻ' : 'Xác nhận mở khóa thẻ',
+      nzMaskClosable: true,
+      nzOkText: 'Xác nhận',
+      nzCancelText: 'Hủy bỏ',
+      nzClassName: 'custom-delete-modal',
+      nzOnOk: () => {
+        const updatedCard = {...card, status: newStatus};
+        
+        this.cardService.updateCard(cardId, updatedCard).subscribe(
+          () => {
+            card.status = newStatus;
+            
+            this.notification.success(
+              'Thành công',
+              isLocking ? '' : '',
+              {nzDuration: 3000}
+            );
+          },
+          (error) => {
+            console.error('Lỗi khi khóa thẻ:', error);
+            this.notification.error(
+              'Lỗi',
+              '',
+              {nzDuration: 3000}
+            );
+          }
+        );
+      }
+    });
+  }
 }

@@ -487,4 +487,47 @@ constructor(
       }
     });
   }
+
+  toggleCardGroupStatus(cardGroupId: number) {
+    const cardGroup = this.cardGroups.find(c => c.id === cardGroupId);
+    if (!cardGroup) {
+      console.error(`Không tìm thấy nhóm thẻ với id ${cardGroupId}`);
+      return;
+    }
+
+    this.modalService.confirm({
+      nzTitle: 'Xác nhận khóa nhóm thẻ',
+      nzMaskClosable: true,
+      nzOkText: 'Xác nhận',
+      nzCancelText: 'Hủy bỏ',
+      nzClassName: 'custom-delete-modal',
+      nzOnOk: () => {
+        const updatedCardGroup = {
+          ...cardGroup, 
+          status: !cardGroup.status,
+          laneIds: cardGroup.laneIds || []
+        };
+
+        this.cardGroupService.updateCardGroup(cardGroupId, updatedCardGroup).subscribe(
+          () => {
+            cardGroup.status = !cardGroup.status;
+            
+            this.notification.success(
+              'Thành công',
+              '',
+              {nzDuration: 3000}
+            );
+          },
+          (error) => {
+            console.error('Lỗi khi khóa nhóm thẻ:', error);
+            this.notification.error(
+              'Lỗi',
+              'Đã có lỗi xảy ra',
+              {nzDuration: 3000}
+            );
+          }
+        );
+      }
+    });
+  }
 }

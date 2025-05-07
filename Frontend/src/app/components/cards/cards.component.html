@@ -218,6 +218,16 @@
                             <button nz-button class="ant-btn delete-btn ant-btn-icon-only ng-star-inserted" (click)="deleteCard(card.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
+                            <button nz-button 
+                                    class="ant-btn ant-btn-icon-only" 
+                                    [ngClass]="card.status === 'Locked' ? 'disabled-btn' : 'enabled-btn'" 
+                                    (click)="toggleCardStatus(card.id)">
+                              <span nz-icon 
+                                    [nzType]="card.status === 'Locked' ? 'unlock' : 'lock'" 
+                                    nzTheme="outline">
+                              </span>
+                            </button>
+
                           </td>
                         </tr>
                       </tbody>
@@ -225,14 +235,6 @@
                          Tổng số {{ total }} dữ liệu 
                       </ng-template>
                     </nz-table>
-                    
-                    <!-- <button nz-button class="ant-btn">
-                      <nz-float-button-content>
-                        <div class="ant-float-btn-icon ng-star-inserted">
-                          <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
-                        </div>
-                      </nz-float-button-content>
-                    </button> -->
                 </div>
             </nz-card>
         </div>

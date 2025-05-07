@@ -1,10 +1,18 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerGroupService } from '../../services/customer-group.service';
+import { CardService } from '../../services/card.service';
+import { CardGroupService } from '../../services/card-group.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+
+enum CardStatus {
+  LOCKED = 'Locked',
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive'
+}
 
 @Component({
   selector: 'app-customers',
@@ -15,6 +23,8 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class CustomersComponent {
   customers: any[] = [];
   customerGroups: any[] = [];
+  cards: any[] = [];
+  cardGroups: any[] = [];
   pageIndex = 1;
   pageSize = 10;
   total = 0;
@@ -27,9 +37,25 @@ export class CustomersComponent {
   currentCustomerId: number | null = null;
   searchKeyword: string = '';
 
+  // Card liên quan
+  customerCards: any[] = [];
+  isCardModalVisible = false;
+  isAddCardModalVisible = false;
+  selectedCustomer: any = null;
+  cardForm!: FormGroup;
+  availableCards: any[] = [];
+
+  cardStatuses = [
+    { label: 'Đã khóa', value: CardStatus.LOCKED},
+    { label: 'Đang sử dụng', value: CardStatus.ACTIVE},
+    { label: 'Chưa sử dụng', value: CardStatus.INACTIVE},
+  ];
+
   constructor(
     private customerService: CustomerService, 
     private customerGroupService: CustomerGroupService,
+    private cardService: CardService,
+    private cardGroupService: CardGroupService, 
     private cdr: ChangeDetectorRef,
     private modalService: NzModalService,
     private fb: FormBuilder,
@@ -41,6 +67,8 @@ export class CustomersComponent {
   ngOnInit() {
     this.loadCustomers();
     this.loadCustomerGroups();
+    this.loadAllCards();
+    this.loadCardGroups();
   }
 
   initForm() {
@@ -61,6 +89,10 @@ export class CustomersComponent {
       customerGroupId: [null],
       status: [true]
     });
+
+    this.cardForm = this.fb.group({
+      cardId: [null, [Validators.required]]
+    });
   }
 
   loadCustomers(searchKeyword: string = '') {
@@ -76,8 +108,6 @@ export class CustomersComponent {
             )
           : data;
           
-          console.log('Kết quả đã lọc:', filteredCustomers);
-  
         this.total = filteredCustomers.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
@@ -88,6 +118,17 @@ export class CustomersComponent {
       (error) => {
         console.error('Lỗi khi lấy danh sách khách hàng:', error);
         this.loading = false;
+      }
+    );
+  }
+
+  loadAllCards() {
+    this.cardService.getCards().subscribe(
+      (data: any[]) => {
+        this.cards = data;
+      },
+      (error) => {
+        console.error('Lỗi khi lấy danh sách thẻ:', error);
       }
     );
   }
@@ -103,9 +144,20 @@ export class CustomersComponent {
     });
   }
 
+  loadCardGroups() {
+    this.cardGroupService.getCardGroups().subscribe(data => {
+      this.cardGroups = data;
+    });
+  }
+
   getCustomerGroupById(customerGroupId: number): string {
     const customerGroup = this.customerGroups.find(g => g.id === customerGroupId);
     return customerGroup ? customerGroup.name : '';  
+  }
+
+  getCardGroupNameById(cardGroupId: number): string {
+    const cardGroup = this.cardGroups.find(g => g.id === cardGroupId);
+    return cardGroup ? cardGroup.name : '';  
   }
   
   onQueryParamsChange(params: NzTableQueryParams): void {
@@ -122,6 +174,7 @@ export class CustomersComponent {
 
   showEditCustomerModal(customer: any) {
     this.currentCustomerId = customer.id;
+    this.selectedCustomer = customer;
     
     if (this.editCustomerForm) {
       this.editCustomerForm.patchValue({
@@ -131,6 +184,8 @@ export class CustomersComponent {
         address: customer.address,
         customerGroupId: customer.customerGroupId,
       });
+
+      this.loadCustomerCards(customer.id);
       this.isEditModalVisible = true;
     } else {
       console.error('Edit form is not initialized');
@@ -305,20 +360,162 @@ export class CustomersComponent {
     });
   }
 
-  cardList = [
-    {
-      name: 'Thẻ VIP 1',
-      code: 'VIP001',
-      group: 'VIP',
-      status: true
-    },
-    {
-      name: 'Thẻ thường 2',
-      code: 'STD002',
-      group: 'Standard',
-      status: false
-    }
-  ];
-  
-}
+  // Phương thức quản lý thẻ cho khách hàng
+  showCustomerCards(customer: any) {
+    this.selectedCustomer = customer;
+    this.loadCustomerCards(customer.id);
+    this.isCardModalVisible = true;
+  }
 
+  loadCustomerCards(customerId: number) {
+    this.cardService.getCards().subscribe(
+      (cards: any[]) => {
+        // Lấy tất cả thẻ của khách hàng này, bất kể trạng thái nào
+        this.customerCards = cards.filter(card => card.customerId === customerId);
+  
+        const assignedCardIds = this.customerCards.map(card => card.id);
+        
+        // Lọc các thẻ có thể được gán cho khách hàng
+        this.availableCards = cards.filter(card => 
+          // Thẻ chưa được gán cho khách hàng nào
+          (!card.customerId || card.customerId === null) || 
+          // HOẶC thẻ đã được gán cho khách hàng khác nhưng inactive
+          (card.customerId !== customerId && card.status === CardStatus.INACTIVE && !assignedCardIds.includes(card.id))
+        );
+        this.cdr.detectChanges();
+      },
+      (error) => {
+        console.error('Lỗi khi lấy danh sách thẻ của khách hàng:', error);
+      }
+    );
+  }
+
+  showAddCardModal() {
+    if (!this.selectedCustomer) {
+      this.notification.error(
+        'Lỗi',
+        'Vui lòng chọn khách hàng trước',
+        { nzDuration: 3000 }
+      );
+      return;
+    }
+
+    this.cardForm.reset();
+    this.isAddCardModalVisible = true;
+  }
+
+  handleCardCancel() {
+    this.isCardModalVisible = false;
+    this.selectedCustomer = null;
+  }
+
+  handleAddCardCancel() {
+    this.isAddCardModalVisible = false;
+  }
+
+  handleAddCardOk() {
+    if (this.cardForm.invalid) {
+      this.notification.warning(
+        '',
+        'Vui lòng chọn thẻ',
+        {nzDuration: 3000}
+      );
+      return;
+    }
+
+    const cardId = this.cardForm.value.cardId;
+    const card = this.availableCards.find(c => c.id === cardId);
+    
+    if (!card) {
+      this.notification.error(
+        'Lỗi',
+        'Thẻ không tồn tại hoặc đã được gán cho khách hàng khác',
+        { nzDuration: 3000 }
+      );
+      return;
+    }
+
+    const updatedCard = {
+      ...card,
+      customerId: this.selectedCustomer.id,
+      status: CardStatus.ACTIVE
+    };
+
+    this.cardService.updateCard(cardId, updatedCard).subscribe(
+      () => {
+        this.availableCards = this.availableCards.filter(c => c.id !== cardId);
+
+        this.loadCustomerCards(this.selectedCustomer.id);
+
+        this.isAddCardModalVisible = false;
+        this.notification.success(
+          'Thành công',
+          '',
+          {nzDuration: 3000}
+        );
+      },
+      (error) => {
+        console.error('Lỗi khi gán thẻ cho khách hàng:', error);
+        this.notification.error(
+          'Lỗi',
+          '',
+          {nzDuration: 3000}
+        );
+      }
+    );
+  }
+
+  removeCardFromCustomer(cardId: number) {
+    this.modalService.confirm({
+      nzTitle: 'Bạn có chắc chắn muốn hủy liên kết thẻ này khỏi khách hàng?',
+      nzMaskClosable: true,
+      nzOkText: 'Xác nhận',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzCancelText: 'Hủy bỏ',
+      nzClassName: 'custom-delete-modal',
+      nzOnOk: () => {
+        const card = this.customerCards.find(c => c.id === cardId);
+        if (!card) return;
+
+        const updatedCard = {
+          ...card,
+          customerId: null
+        };
+
+        this.cardService.updateCard(cardId, updatedCard).subscribe(
+          () => {
+            this.loadCustomerCards(this.selectedCustomer.id);
+            this.notification.success(
+              'Thành công',
+              '',
+              {nzDuration: 3000}
+            );
+          },
+          (error) => {
+            console.error('Lỗi khi hủy liên kết thẻ:', error);
+            this.notification.error(
+              'Lỗi',
+              'Không thể hủy liên kết thẻ. Vui lòng thử lại',
+              {nzDuration: 3000}
+            );
+          }
+        );
+      }
+    });
+  }
+
+  getCardStatusLabel(status: string): string {
+    const cardStatus = this.cardStatuses.find(s => s.value === status);
+    return cardStatus ? cardStatus.label : status;
+  }
+
+  getStatusColor(status: string): string {
+    switch(status) {
+      case 'Locked': return '#ff5500';
+      case 'Active': return '#87d068';
+      case 'Inactive': return '#108ee9';
+      default: return '';
+    }
+  }
+}
