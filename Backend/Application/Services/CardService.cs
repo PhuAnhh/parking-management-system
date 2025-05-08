@@ -110,6 +110,8 @@ namespace Final_year_Project.Application.Services
             _unitOfWork.Cards.Update(card);
             await _unitOfWork.SaveChangesAsync();
 
+            var updatedCard = await _unitOfWork.Cards.GetByIdAsync(id); 
+
             return new CardDto
             {
                 Id = card.Id,

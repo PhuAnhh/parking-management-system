@@ -23,7 +23,9 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<Card> GetByIdAsync(int id)
         {
-            return await _context.Cards.FindAsync(id);
+            return await _context.Cards
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task CreateAsync(Card card)

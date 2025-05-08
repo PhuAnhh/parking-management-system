@@ -184,8 +184,12 @@ export class CustomersComponent {
         address: customer.address,
         customerGroupId: customer.customerGroupId,
       });
-
-      this.loadCustomerCards(customer.id);
+  
+      // Load danh sách thẻ của khách hàng này với timeout nhỏ để đảm bảo form được cập nhật trước
+      setTimeout(() => {
+        this.loadCustomerCards(customer.id);
+      }, 100);
+      
       this.isEditModalVisible = true;
     } else {
       console.error('Edit form is not initialized');
@@ -370,8 +374,12 @@ export class CustomersComponent {
   loadCustomerCards(customerId: number) {
     this.cardService.getCards().subscribe(
       (cards: any[]) => {
+        console.log("Tất cả thẻ từ API:", cards);
+        console.log("Lọc thẻ cho khách hàng ID:", customerId);
+        
         // Lấy tất cả thẻ của khách hàng này, bất kể trạng thái nào
         this.customerCards = cards.filter(card => card.customerId === customerId);
+        console.log("Danh sách thẻ của khách hàng sau khi lọc:", this.customerCards);
   
         const assignedCardIds = this.customerCards.map(card => card.id);
         
@@ -382,10 +390,17 @@ export class CustomersComponent {
           // HOẶC thẻ đã được gán cho khách hàng khác nhưng inactive
           (card.customerId !== customerId && card.status === CardStatus.INACTIVE && !assignedCardIds.includes(card.id))
         );
+        
+        // Đảm bảo UI được cập nhật
         this.cdr.detectChanges();
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách thẻ của khách hàng:', error);
+        this.notification.error(
+          'Lỗi',
+          'Không thể tải danh sách thẻ',
+          {nzDuration: 3000}
+        );
       }
     );
   }
@@ -422,7 +437,7 @@ export class CustomersComponent {
       );
       return;
     }
-
+  
     const cardId = this.cardForm.value.cardId;
     const card = this.availableCards.find(c => c.id === cardId);
     
@@ -434,31 +449,34 @@ export class CustomersComponent {
       );
       return;
     }
-
+  
     const updatedCard = {
       ...card,
       customerId: this.selectedCustomer.id,
       status: CardStatus.ACTIVE
     };
-
+  
     this.cardService.updateCard(cardId, updatedCard).subscribe(
-      () => {
-        this.availableCards = this.availableCards.filter(c => c.id !== cardId);
-
-        this.loadCustomerCards(this.selectedCustomer.id);
-
+      (response) => {
+        // Đóng modal trước
         this.isAddCardModalVisible = false;
+        this.cardForm.reset();
+        
+        // Thông báo thành công
         this.notification.success(
           'Thành công',
-          '',
+          'Đã gán thẻ cho khách hàng',
           {nzDuration: 3000}
         );
+        
+        // Quan trọng: Tải lại toàn bộ danh sách thẻ để đảm bảo đồng bộ
+        this.loadCustomerCards(this.selectedCustomer.id);
       },
       (error) => {
         console.error('Lỗi khi gán thẻ cho khách hàng:', error);
         this.notification.error(
           'Lỗi',
-          '',
+          'Không thể gán thẻ cho khách hàng',
           {nzDuration: 3000}
         );
       }
@@ -477,20 +495,24 @@ export class CustomersComponent {
       nzOnOk: () => {
         const card = this.customerCards.find(c => c.id === cardId);
         if (!card) return;
-
+  
         const updatedCard = {
           ...card,
-          customerId: null
+          customerId: null,
+          status: CardStatus.INACTIVE  // Thay đổi trạng thái thành INACTIVE khi hủy liên kết
         };
-
+  
         this.cardService.updateCard(cardId, updatedCard).subscribe(
-          () => {
-            this.loadCustomerCards(this.selectedCustomer.id);
+          (response) => {
+            // Thông báo thành công
             this.notification.success(
               'Thành công',
-              '',
+              'Đã hủy liên kết thẻ',
               {nzDuration: 3000}
             );
+            
+            // Quan trọng: Tải lại toàn bộ danh sách thẻ để đảm bảo đồng bộ
+            this.loadCustomerCards(this.selectedCustomer.id);
           },
           (error) => {
             console.error('Lỗi khi hủy liên kết thẻ:', error);
