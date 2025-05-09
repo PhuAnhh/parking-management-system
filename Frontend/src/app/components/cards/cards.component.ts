@@ -87,7 +87,7 @@ export class CardsComponent {
       cardGroupId: [null, [Validators.required]],
       customerId: [null],
       note: [null],
-      status: [CardStatus.INACTIVE, [Validators.required]]
+      status: [CardStatus.INACTIVE, [Validators.required]],
     });
 
     this.editCardForm = this.fb.group({
@@ -179,7 +179,8 @@ export class CardsComponent {
         code: card.code,
         cardGroupId: card.cardGroupId,
         note: card.note,
-        status: card.status 
+        status: card.status,
+        customerId: card.customerId
       });
       this.isEditModalVisible = true;
     } else {
@@ -267,8 +268,13 @@ export class CardsComponent {
       );
       return;
     }
+
+    const currentCard = this.cards.find(c => c.id === this.currentCardId);
     
-    const updatedCard = this.editCardForm.value;
+    const updatedCard = {
+      ...currentCard,
+      ...this.editCardForm.value
+    };
 
     const isDupicateName = this.cards.some(card =>
       card.name === updatedCard.name && card.id !== this.currentCardId
