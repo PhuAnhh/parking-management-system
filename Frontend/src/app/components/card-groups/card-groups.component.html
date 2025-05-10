@@ -152,23 +152,23 @@
                             <table-action>
                                 <div nz-row class="ant-row">  
                                     <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                                        <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap ng-star-inserted" style="width: 100%; height: 100%; gap: 6px; flex: unset;">
+                                        <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap" style="width: 100%; height: 100%; gap: 6px; flex: unset;">
                                             <button (click)="loadCardGroups()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
                                                 <span nz-icon class="anticon">
                                                     <fa-icon class="ng-fa-icon">
                                                         <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
                                                     </fa-icon>
                                                 </span>
-                                                <span class="ng-star-inserted">Tải lại</span>
+                                                <span>Tải lại</span>
                                             </button> 
-                                            <nz-divider class="ant-divider ant-divider-vertical ng-star-inserted"></nz-divider>
-                                            <button (click)="showAddCardGroupModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary ng-star-inserted">
+                                            <nz-divider class="ant-divider ant-divider-vertical"></nz-divider>
+                                            <button (click)="showAddCardGroupModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary">
                                                 <span nz-icon class="anticon">
                                                     <fa-ico class="ng-fa-icon">
                                                         <img src="../../../assets/images/logo/plus-solid.svg" style="height: 14px; width: 14px;" alt="">
                                                     </fa-ico>
                                                 </span>
-                                                <span class="ng-star-inserted">Thêm mới</span>
+                                                <span>Thêm mới</span>
                                             </button>
                                         </div>
                                     </div>
@@ -223,10 +223,10 @@
                             </ng-template>
                           </td>
                           <td style="text-align: center;">
-                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only ng-star-inserted" (click)="updateCardGroup(cardGroup.id)">
+                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only" (click)="updateCardGroup(cardGroup.id)">
                               <span nz-icon nzType="edit" nzTheme="outline"></span>
                             </button>
-                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only ng-star-inserted" (click)="deleteCardGroup(cardGroup.id)">
+                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteCardGroup(cardGroup.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
                             <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="cardGroup.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleCardGroupStatus(cardGroup.id)">

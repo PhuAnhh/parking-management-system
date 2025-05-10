@@ -9,7 +9,9 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DeviceService");
+var connectionString = builder.Environment.IsDevelopment()
+    ? builder.Configuration.GetConnectionString("LocalConnection")
+    : builder.Configuration.GetConnectionString("RemoteConnection");
 
 builder.Services.AddDbContext<DeviceServiceContext>(options =>
     options.UseSqlServer(connectionString)

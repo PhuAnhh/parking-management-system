@@ -119,8 +119,8 @@
               <span>Thiết bị</span>
               <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
             </div>
-            <nz-breadcrumb-item class="ng-star-inserted">
-              <span class="ant-breadcrumb-link ng-star-inserted">
+            <nz-breadcrumb-item>
+              <span class="ant-breadcrumb-link">
                 <a href="/#/control-units">Bộ điều khiển</a>
               </span>
             </nz-breadcrumb-item>
@@ -130,43 +130,46 @@
 
             <nz-card class="ant-card card-wrapper-content ant-card-bordered">
                 <div class="ant-card-body" style="padding: 24px 0px;"> 
-                    <nz-row class="ant-row filter-row ng-star-inserted" style="margin: -12px -6px;">
+                    <nz-row class="ant-row filter-row " style="margin: -12px -6px;">
                         <nz-col nzxl="8" nzlg="8" nzmd="12" nzsm="24" nzxs="24" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-8" style="padding: 12px 6px;">
                             <fieldset>
-                                <label for="keyword"class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                                <nz-input-group nzsearch class="ant-input-search-enter-button ant-input-search ant-input-group-wrapper">
-                                    <span class="ant-input-wrapper ant-input-group ng-star-inserted">
-                                        <input type="text" nz-input id="keyword" class="ant-input" placeholder="Từ khóa..." [(ngModel)]="searchKeyword">
-                                        <span nz-input-group-slot type="addon" class="ant-input-group-addon ng-star-inserted">
-                                            <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-input-search-button ant-btn-icon-only ng-star-inserted">
-                                                <span nz-icon nzType="search" class="anticon anticon-search"></span>
-                                            </button>
-                                        </span>
-                                    </span>
-                                </nz-input-group>
-                            </fieldset>
+                              <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
+                              <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
+                                  <span class="ant-input-wrapper ant-input-group">
+                                      <input type="text" nz-input id="keyword" class="ant-input" 
+                                            placeholder="Từ khóa..." 
+                                            [(ngModel)]="searchKeyword"
+                                            (keyup.enter)="onSearch()">
+                                      <span nz-input-group-slot type="addon" class="ant-input-group-addon">
+                                          <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
+                                              <span nz-icon nzType="search" class="anticon"></span>
+                                          </button>
+                                      </span>
+                                  </span>
+                              </nz-input-group>
+                          </fieldset>
                         </nz-col>
                         <nz-col nzxl="16" nzlg="16" nzmd="12" nzsm="24" nzxs="24" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
                             <table-action>
                                 <div nz-row class="ant-row">  
                                     <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                                        <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap ng-star-inserted" style="width: 100%; height: 100%; gap: 6px; flex: unset;">
+                                        <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap " style="width: 100%; height: 100%; gap: 6px; flex: unset;">
                                             <button (click)="loadControlUnits()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
                                               <span nz-icon class="anticon">
                                                     <fa-icon class="ng-fa-icon">
                                                         <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
                                                     </fa-icon>
                                                 </span>
-                                                <span class="ng-star-inserted">Tải lại</span>
+                                                <span class="">Tải lại</span>
                                             </button> 
-                                            <nz-divider class="ant-divider ant-divider-vertical ng-star-inserted"></nz-divider>
-                                            <button (click)="showAddControlUnitModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary ng-star-inserted">
+                                            <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
+                                            <button (click)="showAddControlUnitModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary ">
                                                 <span nz-icon class="anticon">
                                                     <fa-ico class="ng-fa-icon">
                                                         <img src="../../../assets/images/logo/plus-solid.svg" style="height: 14px; width: 14px;" alt="">
                                                     </fa-ico>
                                                 </span>
-                                                <span class="ng-star-inserted">Thêm mới</span>
+                                                <span class="">Thêm mới</span>
                                             </button>
                                         </div>
                                     </div>
@@ -218,10 +221,10 @@
                             </ng-template>
                           </td>
                           <td style="text-align: center;">
-                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only ng-star-inserted" (click)="updateControlUnit(controlUnit.id)">
+                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateControlUnit(controlUnit.id)">
                               <span nz-icon nzType="edit" nzTheme="outline"></span>
                             </button>
-                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only ng-star-inserted" (click)="deleteControlUnit(controlUnit.id)">
+                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteControlUnit(controlUnit.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
                             <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="controlUnit.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleControlUnitStatus(controlUnit.id)">
@@ -242,7 +245,7 @@
                     >
                     <button nz-button class="ant-btn">
                       <nz-float-button-content>
-                        <div class="ant-float-btn-icon ng-star-inserted">
+                        <div class="ant-float-btn-icon ">
                           <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
                         </div>
                       </nz-float-button-content>
