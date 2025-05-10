@@ -18,7 +18,7 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<CardGroupLane>> GetAllAsync()
         {
-            return await _context.CardGroupLanes.AsNoTracking().ToListAsync();
+            return await _context.CardGroupLanes.ToListAsync();
 
         }
 

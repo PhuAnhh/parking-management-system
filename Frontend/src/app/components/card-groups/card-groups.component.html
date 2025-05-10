@@ -132,18 +132,21 @@
                     <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
                         <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
                             <fieldset>
-                                <label for="keyword"class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                                <nz-input-group nzsearch class=" ant-input-search ant-input-group-wrapper">
-                                    <span class="ant-input-wrapper ant-input-group">
-                                        <input type="text" nz-input id="keyword" class="ant-input" placeholder="Từ khóa..." [(ngModel)]="searchKeyword">
-                                        <span nz-input-group-slot type="addon" class="ant-input-group-addon">
-                                            <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
-                                                <span nz-icon nzType="search" class="anticon"></span>
-                                            </button>
-                                        </span>
-                                    </span>
-                                </nz-input-group>
-                            </fieldset>
+                              <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
+                              <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
+                                  <span class="ant-input-wrapper ant-input-group">
+                                      <input type="text" nz-input id="keyword" class="ant-input" 
+                                            placeholder="Từ khóa..." 
+                                            [(ngModel)]="searchKeyword"
+                                            (keyup.enter)="onSearch()">
+                                      <span nz-input-group-slot type="addon" class="ant-input-group-addon">
+                                          <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
+                                              <span nz-icon nzType="search" class="anticon"></span>
+                                          </button>
+                                      </span>
+                                  </span>
+                              </nz-input-group>
+                          </fieldset>
                         </nz-col>
                         <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
                             <table-action>

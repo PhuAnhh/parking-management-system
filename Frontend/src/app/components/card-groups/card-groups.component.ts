@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CardGroupService } from '../../services/card-group.service';
 import { LaneService } from '../../services/lane.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -7,12 +7,12 @@ import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { TransferItem, TransferChange } from 'ng-zorro-antd/transfer';
 
-enum CardGroupType{
+enum CardGroupType {
   MONTH = 'Month',
   DAY = 'Day'
 }
 
-enum CardGroupVehicleType{
+enum CardGroupVehicleType {
   CAR = 'Car',
   MOTORBIKE = 'Motorbike',
   BICYCLE = 'Bicycle'
@@ -24,86 +24,60 @@ enum CardGroupVehicleType{
   templateUrl: './card-groups.component.html',
   styleUrl: './card-groups.component.scss'
 })
-export class CardGroupsComponent {
+export class CardGroupsComponent implements OnInit {
+  // Data properties
   cardGroups: any[] = [];
   lanes: any[] = [];
+  transferData: TransferItem[] = [];
+  cardGroupLanes: number[] = [];
+  
+  // UI state properties
   pageIndex = 1;
   pageSize = 10;
   total = 0;
   loading = true;
-  isAddModalVisible = false; 
-  isEditModalVisible = false; 
-  cardGroupForm!: FormGroup; 
-  editCardGroupForm!: FormGroup; 
-  isVisible = false;
-  currentCardGroupId: number | null = null;
-  searchKeyword: string = '';
-  cardGroupLanes: number[] = [];
-  transferData: any[] = [];
+  isAddModalVisible = false;
+  isEditModalVisible = false;
   isNextBlockVisible = false;
   isFeeConfigExpanded = false;
-
-  formatMinutes = (value: number): string => {
-    return `${value} Phút`;
-  }
+  currentCardGroupId: number | null = null;
+  searchKeyword = '';
   
-  // Parse giá trị từ chuỗi về số
-  parseMinutes = (value: string): number => {
-    return value ? parseInt(value.replace(' Phút', ''), 10) : 0;
-  }
+  // Form groups
+  cardGroupForm!: FormGroup;
+  editCardGroupForm!: FormGroup;
+  
+  // Options for dropdowns
+  cardGroupTypes = [
+    { label: 'Tháng', value: CardGroupType.MONTH, color: 'pink' },
+    { label: 'Ngày', value: CardGroupType.DAY, color: 'red' }
+  ];
+
+  cardGroupVehicleTypes = [
+    { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: 'orange' },
+    { label: 'Xe máy', value: CardGroupVehicleType.MOTORBIKE, color: 'red' },
+    { label: 'Xe đạp', value: CardGroupVehicleType.BICYCLE, color: 'green' }
+  ];
+
+  // Formatter/Parser methods
+  formatMinutes = (value: number): string => `${value} Phút`;
+  parseMinutes = (value: string): number => value ? parseInt(value.replace(' Phút', ''), 10) : 0;
 
   formatPrice = (value: number): string => {
     if (value === null || value === undefined) return '';
     
-    // Chuyển đổi số thành chuỗi có 2 chữ số thập phân
     const fixedValue = value.toFixed(2);
-    
-    // Tách phần nguyên và phần thập phân
     const parts = fixedValue.split('.');
-    const integerPart = parts[0];
-    const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
-    
-    // Thêm dấu phẩy phân cách hàng nghìn cho phần nguyên
-    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    
-    // Loại bỏ phần thập phân nếu là .00
-    const displayDecimal = (decimalPart === '.00') ? '' : decimalPart;
+    const formattedIntegerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const displayDecimal = (parts[1] === '00') ? '' : `.${parts[1]}`;
     
     return `${formattedIntegerPart}${displayDecimal}`;
   }
   
-  // Parse giá trị từ chuỗi có định dạng phân cách hàng nghìn về số thập phân
-  parsePrice = (value: string): number => {
-    if (!value) return 0;
-    
-    // Loại bỏ dấu phẩy phân cách hàng nghìn
-    const cleanValue = value.replace(/,/g, '');
-    
-    // Chuyển đổi về số thập phân
-    return parseFloat(cleanValue) || 0;
-  }
+  parsePrice = (value: string): number => value ? parseFloat(value.replace(/,/g, '')) || 0 : 0;
 
-cardGroupTypes = [
-  { label: 'Tháng', value: CardGroupType.MONTH, color: 'pink'},
-  { label: 'Ngày', value: CardGroupType.DAY, color: 'red'},
-];
-
-cardGroupVehicleTypes = [
-  { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: 'orange'},
-  { label: 'Xe máy', value: CardGroupVehicleType.MOTORBIKE, color: 'red'},
-  { label: 'Xe đạp', value: CardGroupVehicleType.BICYCLE, color: 'green'},
-];
-
-getCardGroupType(value: string){
-  return this.cardGroupTypes.find(opt => opt.value === value);
-}
-
-getCardGroupVehicleType(value: string){
-  return this.cardGroupVehicleTypes.find(opt => opt.value === value);
-}
-
-constructor(
-    private cardGroupService: CardGroupService, 
+  constructor(
+    private cardGroupService: CardGroupService,
     private laneService: LaneService,
     private cdr: ChangeDetectorRef,
     private modalService: NzModalService,
@@ -111,69 +85,67 @@ constructor(
     private notification: NzNotificationService
   ) {
     this.initForm();
-  }  
+  }
 
   ngOnInit() {
     this.loadCardGroups();
     this.loadLanes();
   }
 
-  initForm() {
-    this.cardGroupForm = this.fb.group({
-      code: [null, [Validators.required]],
-      name: [null, [Validators.required]],
-      type: [CardGroupType.MONTH, [Validators.required]], 
-      vehicleType: [CardGroupVehicleType.CAR, [Validators.required]], 
-      status: true, 
-      laneIds: [[]],
-      freeMinutes: 0,
-      firstBlockMinutes: 60,
-      firstBlockPrice: 0.00,
-      nextBlockMinutes: [null],
-      nextBlockPrice: [null],
-    });
-
-    this.editCardGroupForm = this.fb.group({
-      code: [null, [Validators.required]],
-      name: [null, [Validators.required]],
-      type: [CardGroupType.MONTH, [Validators.required]], 
-      vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],  
-      laneIds: [[]],
-      freeMinutes: 0,
-      firstBlockMinutes: 60,
-      firstBlockPrice: 0.00,
-      nextBlockMinutes: [null],
-      nextBlockPrice: [null],
-    });
+  // Helper methods
+  getCardGroupType(value: string) {
+    return this.cardGroupTypes.find(opt => opt.value === value);
   }
 
+  getCardGroupVehicleType(value: string) {
+    return this.cardGroupVehicleTypes.find(opt => opt.value === value);
+  }
+
+  // Form initialization
+  initForm() {
+    const defaultFormConfig = {
+      code: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      type: [CardGroupType.MONTH, [Validators.required]],
+      vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],
+      status: true,
+      laneIds: [[]],
+      freeMinutes: 0,
+      firstBlockMinutes: 60,
+      firstBlockPrice: 0.00,
+      nextBlockMinutes: [null],
+      nextBlockPrice: [null]
+    };
+    
+    this.cardGroupForm = this.fb.group(defaultFormConfig);
+    this.editCardGroupForm = this.fb.group(defaultFormConfig);
+  }
+
+  // Data loading methods
   loadCardGroups(searchKeyword: string = '') {
     this.loading = true;
   
-    this.cardGroupService.getCardGroups().subscribe(
-      (data: any[]) => {
-        console.log(data);
+    this.cardGroupService.getCardGroups().subscribe({
+      next: (data: any[]) => {
         const filteredCardGroups = searchKeyword
           ? data.filter(cardGroup =>
               cardGroup.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||
               cardGroup.code.toLowerCase().includes(searchKeyword.toLowerCase())
             )
           : data;
-          
-          console.log('Kết quả đã lọc:', filteredCardGroups);
   
         this.total = filteredCardGroups.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
-        this.cardGroups = filteredCardGroups.slice(start, end); 
+        this.cardGroups = filteredCardGroups.slice(start, end);
         this.loading = false;
         this.cdr.detectChanges();
       },
-      (error) => {
+      error: (error) => {
         console.error('Lỗi khi lấy danh sách nhóm thẻ:', error);
         this.loading = false;
       }
-    );
+    });
   }
   
   loadLanes() {
@@ -188,9 +160,9 @@ constructor(
     });
   }
 
+  // Event handlers
   onSearch() {
-    console.log(this.searchKeyword);
-    this.loadCardGroups(this.searchKeyword); 
+    this.loadCardGroups(this.searchKeyword);
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
@@ -201,42 +173,93 @@ constructor(
   }
 
   transferChange(ret: TransferChange): void {
-    // Lấy các key của items bên phải (đã chọn)
-    const rightItems = ret.list.filter(item => item.direction === 'right');
+    // Update the direction of changed items in transferData
+    ret.list.forEach(item => {
+      const index = this.transferData.findIndex(data => data['key'] === item['key']);
+      if (index !== -1) {
+        this.transferData[index].direction = item.direction;
+      }
+    });
+    
+    // Get all right side items after the update
+    const rightItems = this.transferData.filter(item => item.direction === 'right');
     const selectedLaneIds = rightItems.map(item => item['key']);
     
-    // Cập nhật form hiện tại (add hoặc edit)
-    if (this.isAddModalVisible) {
-      this.cardGroupForm.patchValue({ laneIds: selectedLaneIds });
-    } else if (this.isEditModalVisible) {
-      this.editCardGroupForm.patchValue({ laneIds: selectedLaneIds });
-    }
-    
+    // Update the current form
+    const form = this.isAddModalVisible ? this.cardGroupForm : this.editCardGroupForm;
+    form.patchValue({ laneIds: selectedLaneIds });
     this.cardGroupLanes = selectedLaneIds;
   }
 
+  // Modal handling methods
   showAddCardGroupModal() {
-    this.isAddModalVisible = true;
     this.cardGroupForm.reset({
       status: true,
       type: CardGroupType.MONTH,
       vehicleType: CardGroupVehicleType.CAR,
-      laneIds: [],  
+      laneIds: [],
       freeMinutes: 0,
       firstBlockMinutes: 60,
-      firstBlockPrice: 0,
+      firstBlockPrice: 0
     });
-    this.cardGroupLanes = [];
     
-    // Đảm bảo transferData được khởi tạo đúng từ danh sách lanes
+    this.cardGroupLanes = [];
+    this.isNextBlockVisible = false;
+    
+    // Reset all transfer items to left side
     this.transferData = this.lanes.map(lane => ({
       key: lane.id,
       title: lane.name,
       direction: 'left',
       disabled: false
     }));
+    
+    this.isAddModalVisible = true;
   }
 
+  showEditCardGroupModal(cardGroup: any) {
+    this.currentCardGroupId = cardGroup.id;
+    this.cardGroupLanes = cardGroup.laneIds || [];
+  
+    const formValues = {
+      name: cardGroup.name,
+      code: cardGroup.code,
+      type: cardGroup.type,
+      vehicleType: cardGroup.vehicleType,
+      status: cardGroup.status,
+      laneIds: this.cardGroupLanes,
+      freeMinutes: cardGroup.freeMinutes ?? 0,
+      firstBlockMinutes: cardGroup.firstBlockMinutes ?? 60,
+      firstBlockPrice: cardGroup.firstBlockPrice ?? 0,
+      nextBlockMinutes: cardGroup.nextBlockMinutes ?? null,
+      nextBlockPrice: cardGroup.nextBlockPrice ?? null
+    };
+    
+    this.editCardGroupForm.patchValue(formValues);
+    
+    // Check if "Next Block" section should be visible
+    this.isNextBlockVisible = !!cardGroup.nextBlockMinutes || !!cardGroup.nextBlockPrice;
+    
+    // Check if fee config should be expanded
+    this.isFeeConfigExpanded =
+      !!cardGroup.freeMinutes ||
+      !!cardGroup.firstBlockMinutes ||
+      !!cardGroup.firstBlockPrice ||
+      !!cardGroup.nextBlockMinutes ||
+      !!cardGroup.nextBlockPrice;
+  
+    // Update transfer data
+    this.transferData = this.lanes.map(lane => ({
+      key: lane.id,
+      title: lane.name,
+      direction: this.cardGroupLanes.includes(lane.id) ? 'right' : 'left',
+      disabled: false
+    }));
+  
+    this.isEditModalVisible = true;
+    this.cdr.detectChanges();
+  }
+  
   showNextBlock() {
     this.isNextBlockVisible = true;
   }
@@ -244,68 +267,13 @@ constructor(
   hideNextBlock() {
     this.isNextBlockVisible = false;
     
-    // Xóa giá trị của các trường liên quan đến khoảng tiếp theo
-    if (this.isEditModalVisible) {
-      this.editCardGroupForm.patchValue({
-        nextBlockMinutes: null,
-        nextBlockPrice: null
-      });
-    } else if (this.isAddModalVisible) {
-      this.cardGroupForm.patchValue({
-        nextBlockMinutes: null,
-        nextBlockPrice: null
-      });
-    }
+    // Clear next block fields
+    const form = this.isEditModalVisible ? this.editCardGroupForm : this.cardGroupForm;
+    form.patchValue({
+      nextBlockMinutes: null,
+      nextBlockPrice: null
+    });
   }
-
-  showEditCardGroupModal(cardGroup: any) {
-    this.currentCardGroupId = cardGroup.id;
-    this.cardGroupLanes = cardGroup.laneIds || [];
-  
-    if (this.editCardGroupForm) {
-      this.editCardGroupForm.patchValue({
-        name: cardGroup.name,
-        code: cardGroup.code,
-        type: cardGroup.type,
-        vehicleType: cardGroup.vehicleType,
-        status: cardGroup.status,
-        laneIds: this.cardGroupLanes,
-        freeMinutes: cardGroup.freeMinutes !== undefined ? cardGroup.freeMinutes : 0,
-      firstBlockMinutes: cardGroup.firstBlockMinutes !== undefined ? cardGroup.firstBlockMinutes : 60,
-      firstBlockPrice: cardGroup.firstBlockPrice !== undefined ? cardGroup.firstBlockPrice : 0,
-      nextBlockMinutes: cardGroup.nextBlockMinutes !== undefined ? cardGroup.nextBlockMinutes : 60,
-      nextBlockPrice: cardGroup.nextBlockPrice !== undefined ? cardGroup.nextBlockPrice : 0
-      });
-  
-      // Kiểm tra xem phần "Khoảng tiếp theo" có cần hiển thị không
-      this.isNextBlockVisible = !!cardGroup.nextBlockMinutes || !!cardGroup.nextBlockPrice;
-  
-      // Kiểm tra nếu có bất kỳ cấu hình phí nào
-      this.isFeeConfigExpanded =
-        !!cardGroup.freeMinutes ||
-        !!cardGroup.firstBlockMinutes ||
-        !!cardGroup.firstBlockPrice ||
-        !!cardGroup.nextBlockMinutes ||
-        !!cardGroup.nextBlockPrice;
-  
-      // Cập nhật lại dữ liệu cho các lane
-      this.transferData = this.lanes.map(lane => ({
-        key: lane.id,
-        title: lane.name,
-        direction: this.cardGroupLanes.includes(lane.id) ? 'right' : 'left',
-        disabled: false
-      }));
-  
-      this.cdr.detectChanges();
-      
-      this.isEditModalVisible = true;
-    } else {
-      console.error('Edit form is not initialized');
-      this.initForm();
-      this.showEditCardGroupModal(cardGroup);
-    }
-  }
-  
 
   handleCancel() {
     this.isAddModalVisible = false;
@@ -318,129 +286,81 @@ constructor(
     this.cardGroupLanes = [];
   }
 
+  // Form submission handlers
   handleOk() {
     if (this.cardGroupForm.invalid) {
-      this.notification.warning(
-        '',
-        'Vui lòng nhập đủ thông tin',
-        {nzDuration: 3000}
-      );
+      this.notification.warning('', 'Vui lòng nhập đủ thông tin', {nzDuration: 3000});
       return;
     }
 
     const newCardGroup = this.cardGroupForm.value;
+    newCardGroup.laneIds = newCardGroup.laneIds || [];
 
-    if (!newCardGroup.laneIds) {
-      newCardGroup.laneIds = [];
-    }
-
-    const isDupicate = this.cardGroups.some(cardGroup => cardGroup.code === newCardGroup.code);
-
-    if(isDupicate) {
-      this.notification.error(
-        'Lỗi',
-        'Tên: Trường bị trùng lặp',
-        { nzDuration: 3000 }
-      );
+    if (this.cardGroups.some(cardGroup => cardGroup.code === newCardGroup.code)) {
+      this.notification.error('Lỗi', 'Tên: Trường bị trùng lặp', {nzDuration: 3000});
       return;
     }
 
-    this.cardGroupService.addCardGroup(newCardGroup).subscribe(() => {
-      this.loadCardGroups();
-      this.isAddModalVisible = false; 
-      this.notification.success(
-        'Thành công',
-        '',
-        {
+    this.cardGroupService.addCardGroup(newCardGroup).subscribe({
+      next: () => {
+        this.loadCardGroups();
+        this.isAddModalVisible = false;
+        this.notification.success('Thành công', '', {
           nzPlacement: 'topRight',
           nzDuration: 3000
-        }
-      )
-    },
-    (error) => {
-      console.error('Lỗi khi thêm nhóm thẻ:', error);
-      this.notification.error(
-        'Lỗi',
-        '', 
-        {
+        });
+      },
+      error: (error) => {
+        console.error('Lỗi khi thêm nhóm thẻ:', error);
+        this.notification.error('Lỗi', '', {
           nzPlacement: 'topRight',
           nzDuration: 3000
-        }
-      )
+        });
+      }
     });
   }
 
   handleEditOk() {
     if (this.editCardGroupForm.invalid) {
-      this.notification.warning(
-        '',
-        'Vui lòng nhập đủ thông tin',
-        {nzDuration: 3000}
-      );
+      this.notification.warning('', 'Vui lòng nhập đủ thông tin', {nzDuration: 3000});
       return;
     }
     
-    const updatedCardGroup = {
-      ...this.editCardGroupForm.value,
-    };
-
-    if (!updatedCardGroup.laneIds) {
-      updatedCardGroup.laneIds = [];
-    }
+    const updatedCardGroup = {...this.editCardGroupForm.value};
+    updatedCardGroup.laneIds = updatedCardGroup.laneIds || [];
 
     if (!this.isNextBlockVisible) {
       updatedCardGroup.nextBlockMinutes = null;
       updatedCardGroup.nextBlockPrice = null;
     }
-    
-    console.log('Updated CardGroup:', updatedCardGroup);  
 
-    const isDupicate = this.cardGroups.some(cardGroup =>
+    const isDuplicate = this.cardGroups.some(cardGroup =>
       cardGroup.code === updatedCardGroup.code && cardGroup.id !== this.currentCardGroupId
     );
 
-    if (isDupicate) {
-      this.notification.error(
-        'Lỗi',
-        'Tên: Trường bị trùng lặp',
-        { nzDuration: 3000 }
-      );
+    if (isDuplicate) {
+      this.notification.error('Lỗi', 'Tên: Trường bị trùng lặp', {nzDuration: 3000});
       return;
     }
 
     if (this.currentCardGroupId) {
-      this.cardGroupService.updateCardGroup(this.currentCardGroupId, updatedCardGroup).subscribe(
-        () => {
+      this.cardGroupService.updateCardGroup(this.currentCardGroupId, updatedCardGroup).subscribe({
+        next: () => {
           this.loadCardGroups();
           this.isEditModalVisible = false;
           this.currentCardGroupId = null;
-          this.notification.success(
-            'Thành công',
-            '',
-            {nzDuration: 3000}
-          );
+          this.notification.success('Thành công', '', {nzDuration: 3000});
         },
-        (error) => {
+        error: (error) => {
           console.error('Lỗi khi cập nhật', error);
-
-          if(error.error && error.error.message){
-            this.notification.error(
-              'Lỗi',
-              error.error.message,
-              {nzDuration: 3000}
-          );
-          } else {
-            this.notification.error(
-              'Lỗi',
-              'Không thể cập nhật nhóm thẻ. Vui lòng thử lại',
-              {nzDuration: 3000}
-            );
-          }
+          const errorMessage = error.error?.message || 'Không thể cập nhật nhóm thẻ. Vui lòng thử lại';
+          this.notification.error('Lỗi', errorMessage, {nzDuration: 3000});
         }
-      );
+      });
     }
   }
 
+  // Actions on card groups
   updateCardGroup(id: number) {
     const cardGroup = this.cardGroups.find(g => g.id === id);
     if (cardGroup) {
@@ -452,7 +372,7 @@ constructor(
 
   deleteCardGroup(id: number) {
     this.modalService.confirm({
-      nzTitle:'Bạn có chắc chắn muốn xóa?',
+      nzTitle: 'Bạn có chắc chắn muốn xóa?',
       nzMaskClosable: true,
       nzOkText: 'Xóa',
       nzOkType: 'primary',
@@ -460,30 +380,22 @@ constructor(
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        this.cardGroupService.deleteCardGroup(id).subscribe(
-          () => {
+        this.cardGroupService.deleteCardGroup(id).subscribe({
+          next: () => {
             this.loadCardGroups();
-            this.notification.success(
-              'Thành công',
-              '',
-              {
-                nzPlacement: 'topRight',
-                nzDuration: 3000
-              }
-            )
+            this.notification.success('Thành công', '', {
+              nzPlacement: 'topRight',
+              nzDuration: 3000
+            });
           },
-          (error) => {
+          error: (error) => {
             console.error('Lỗi khi xóa nhóm thẻ:', error);
-            this.notification.error(
-              'Lỗi',
-              '', 
-              {
-                nzPlacement: 'topRight',
-                nzDuration: 3000
-              }
-            );
+            this.notification.error('Lỗi', '', {
+              nzPlacement: 'topRight',
+              nzDuration: 3000
+            });
           }
-        );
+        });
       }
     });
   }
@@ -503,30 +415,21 @@ constructor(
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
         const updatedCardGroup = {
-          ...cardGroup, 
+          ...cardGroup,
           status: !cardGroup.status,
           laneIds: cardGroup.laneIds || []
         };
 
-        this.cardGroupService.updateCardGroup(cardGroupId, updatedCardGroup).subscribe(
-          () => {
+        this.cardGroupService.updateCardGroup(cardGroupId, updatedCardGroup).subscribe({
+          next: () => {
             cardGroup.status = !cardGroup.status;
-            
-            this.notification.success(
-              'Thành công',
-              '',
-              {nzDuration: 3000}
-            );
+            this.notification.success('Thành công', '', {nzDuration: 3000});
           },
-          (error) => {
+          error: (error) => {
             console.error('Lỗi khi khóa nhóm thẻ:', error);
-            this.notification.error(
-              'Lỗi',
-              'Đã có lỗi xảy ra',
-              {nzDuration: 3000}
-            );
+            this.notification.error('Lỗi', 'Đã có lỗi xảy ra', {nzDuration: 3000});
           }
-        );
+        });
       }
     });
   }
