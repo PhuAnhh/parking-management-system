@@ -454,3 +454,85 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Các file cần ignore trong dự án Visual Studio
+
+# Temporary files
+*.futdcache.v2
+*.exe
+*.apphost.exe
+
+# Files liên quan đến backup
+DocumentLayout.backup.json
+*.suo
+*.user
+*.userosscache
+
+# Cache và logs của Visual Studio
+.vs/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Build results
+*.pdb
+*.ilk
+*.obj
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.log
+*.tlog
+*.scc
+
+# ReSharper settings
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Coverlet, DotCover, và các công cụ coverage khác
+coverage*.json
+coverage*.xml
+*.dotCover
+.axoCover/*
+!.axoCover/settings.json
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# Các file của NUnit, MSTest, và các công cụ test khác
+TestResult.xml
+nunit-*.xml
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Thêm các file hệ thống khác mà bạn không muốn commit
+~$*
+*~
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Các file .bak (Backup files)
+Backup*/
+
+# Các file cấu hình trong IDE khác
+.vscode/
+*.code-workspace
