@@ -156,6 +156,11 @@ nz-footer {
 }
 
 /* ===== BUTTON STYLES ===== */
+.load-btn {
+  display: inline-flex;
+  align-items: center;
+}
+
 .ant-btn1 {
   background-color: rgba(145 158 171 / .08); 
   border-color: rgba(145 158 171 / .08);
