@@ -146,11 +146,6 @@ nz-footer {
   height: 100%;
 }
 
-.card-wrapper-content {
-  box-shadow: 0 0 2px #919eab33,0 12px 24px -4px #919eab1f;
-  border-radius: 1.15rem !important;
-  height: 100%;
-}
 .ant-card-body {
   height: 100%;
 }
@@ -302,33 +297,6 @@ nz-footer {
 }
 
 /* ===== UTILITY CLASSES ===== */
-.anticon {
-  color: inherit;
-  font-style: normal;
-  line-height: 0;
-  text-align: center;
-  text-transform: none;
-  display: inline-block;
-}
-
-.ant-flex-wrap-nowrap {
-  flex-wrap: nowrap;
-}
-
-.ant-flex-align-center {
-  align-items: center;
-}
-
-.ant-flex {
-  display: flex;
-}
-
-.ant-col-xl-8 {
-  display: block;
-  flex: 0 0 33.33333333%;
-  max-width: 33.33333333%;
-}
-
 .icon-green {
   color: #52c41a; 
 }
@@ -370,3 +338,28 @@ nz-footer {
 ::ng-deep .ant-pagination-item-link {
   border-radius: 50% !important;
 }
+
+.card-list-container {
+    border-left: 1px solid hsl(0, 0%, 91%);
+    padding-left: 24px;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+  
+    .card-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .title {
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .modal-row {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+  }

@@ -55,7 +55,7 @@ export class CardGroupsComponent implements OnInit {
 
   cardGroupVehicleTypes = [
     { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: 'orange' },
-    { label: 'Xe máy', value: CardGroupVehicleType.MOTORBIKE, color: 'red' },
+    { label: 'Xe máy', value: CardGroupVehicleType.MOTORBIKE, color: 'cyan' },
     { label: 'Xe đạp', value: CardGroupVehicleType.BICYCLE, color: 'green' }
   ];
 

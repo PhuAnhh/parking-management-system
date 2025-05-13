@@ -39,6 +39,8 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+
 
 
 import { GatesComponent } from './components/gates/gates.component';
@@ -116,7 +118,8 @@ registerLocaleData(vi);
     NzCollapseModule,
     NzInputNumberModule,
     NzProgressModule,
-    NzListModule
+    NzListModule,
+    NzDropDownModule
     
   ],
   providers: [
