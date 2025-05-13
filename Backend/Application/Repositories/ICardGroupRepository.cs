@@ -11,5 +11,6 @@ namespace Final_year_Project.Application.Repositories
         Task CreateAsync(CardGroup cardGroup);
         void Update(CardGroup cardGroup);
         void Delete(CardGroup cardGroup);
+        Task<List<int>> GetAllowedLaneIdsAsync(int cardGroupId);
     }
 }

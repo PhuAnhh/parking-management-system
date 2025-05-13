@@ -30,6 +30,8 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICardGroupService, CardGroupService>();
 builder.Services.AddScoped<ICardService, CardService>();
 
+builder.Services.AddScoped<IEntryLogService, EntryLogService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",

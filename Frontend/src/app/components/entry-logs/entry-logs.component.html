@@ -137,52 +137,46 @@
                       </div>
                       <div nz-flex class="ant-flex info ant-flex-vertical ant-flex-justify-normal ant-flex-align-normal ant-flex-wrap-nowrap" style="margin-top: 7px;">
                         <p class="stat-title">Tổng số xe đang gửi</p>
-                        <p class="stat-value">0 lượt</p>
+                        <p class="stat-value">{{totalVehicles}} lượt</p>
                       </div>
                     </div>
                   </div>
-                  
-                  <nz-divider nztype="vertical" class="divider"></nz-divider>
-                  
+                                    
                   <div nz-col nzXl="5" nzLg="11" nzMd="11" nzSm="12" nzXs="24" class="stat-info" style="padding: 10px;">
                     <div nz-flex nzGap="20px" class="ant-flex ant-flex-justify-normal ant-flex-align-normal ant-flex-wrap-nowrap" style="gap: 20px; ">
                       <div nz-flex nzAlign="center" nzJustify="center" class="ant-flex entry-statitic ant-flex-justify-center ant-flex-align-center ant-flex-wrap-nowrap position-relative">
-                        <nz-progress [nzPercent]="7" nzStrokeLinecap="round" nzType="circle" [nzWidth]="56" [nzStrokeColor]="'rgb(255, 213, 145)'" ></nz-progress>
+                        <nz-progress [nzPercent]="carPercent" nzStrokeLinecap="round" nzType="circle" [nzWidth]="56" [nzStrokeColor]="'rgb(255, 213, 145)'" ></nz-progress>
                         <img src="../../../assets/images/logo/ic-car.svg" alt="" class="icon-overlay">
                       </div>
                       <div nz-flex class="ant-flex info ant-flex-vertical ant-flex-justify-normal ant-flex-align-normal ant-flex-wrap-nowrap" style="margin-top: 7px;">
                         <p class="stat-title">Ô tô</p>
-                        <p class="stat-value">0 lượt</p>
+                        <p class="stat-value">{{totalCars}} lượt</p>
                       </div>
                     </div>
                   </div>
-                  
-                  <nz-divider nzType="vertical" class="divider"></nz-divider>
                   
                   <div nz-col nzXl="5" nzLg="11" nzMd="11" nzSm="12" nzXs="24" class="stat-info" style="padding: 10px;">
                     <div nz-flex nzGap="20px" class="ant-flex ant-flex-justify-normal ant-flex-align-normal ant-flex-wrap-nowrap" style="gap: 20px; ">
                       <div nz-flex nzAlign="center" nzJustify="center" class="ant-flex entry-statitic ant-flex-justify-center ant-flex-align-center ant-flex-wrap-nowrap position-relative">
-                        <nz-progress [nzPercent]="90" nzStrokeLinecap="round" nzType="circle" [nzWidth]="56" [nzStrokeColor]="'rgb(135, 232, 222)'" ></nz-progress>
+                        <nz-progress [nzPercent]="motorbikePercent" nzStrokeLinecap="round" nzType="circle" [nzWidth]="56" [nzStrokeColor]="'rgb(135, 232, 222)'" ></nz-progress>
                         <img src="../../../assets/images/logo/ic-motor.svg" alt="" class="icon-overlay">
                       </div>
                       <div nz-flex class="ant-flex info ant-flex-vertical ant-flex-justify-normal ant-flex-align-normal ant-flex-wrap-nowrap" style="margin-top: 7px;">
                         <p class="stat-title">Xe máy</p>
-                        <p class="stat-value">0 lượt</p>
+                        <p class="stat-value">{{totalMotorbikes}} lượt</p>
                       </div>
                     </div>
                   </div>
                   
-                  <nz-divider nzType="vertical" class="divider"></nz-divider>
-                  
                   <div nz-col nzXl="5" nzLg="11" nzMd="11" nzSm="12" nzXs="24"  style="padding: 10px;">
                     <div nz-flex nzGap="20px" class="ant-flex ant-flex-justify-normal ant-flex-align-normal ant-flex-wrap-nowrap" style="gap: 20px; ">
                       <div nz-flex nzAlign="center" nzJustify="center" class="ant-flex entry-statitic ant-flex-justify-center ant-flex-align-center ant-flex-wrap-nowrap position-relative">
-                        <nz-progress [nzPercent]="3" nzStrokeLinecap="round" nzType="circle" [nzWidth]="56" [nzStrokeColor]="'rgb(183, 235, 143)'" ></nz-progress>
+                        <nz-progress [nzPercent]="bicyclePercent" nzStrokeLinecap="round" nzType="circle" [nzWidth]="56" [nzStrokeColor]="'rgb(183, 235, 143)'" ></nz-progress>
                         <img src="../../../assets/images/logo/ic-bike.svg" alt="" class="icon-overlay">
                       </div>
                       <div nz-flex class="ant-flex info ant-flex-vertical ant-flex-justify-normal ant-flex-align-normal ant-flex-wrap-nowrap" style="margin-top: 7px;">
                         <p class="stat-title">Xe đạp</p>
-                        <p class="stat-value">0 lượt</p>
+                        <p class="stat-value">{{totalBicycles}} lượt</p>
                       </div>
                     </div>
                   </div>
@@ -193,25 +187,28 @@
                     <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
                         <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
                             <fieldset>
-                                <label for="keyword"class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                                <nz-input-group nzsearch class=" ant-input-search ant-input-group-wrapper">
-                                    <span class="ant-input-wrapper ant-input-group">
-                                        <input type="text" nz-input id="keyword" class="ant-input" placeholder="Từ khóa...">
-                                        <span nz-input-group-slot type="addon" class="ant-input-group-addon">
-                                            <button nz-button nzType="primary"  class="ant-btn ant-btn-primary ant-btn-icon-only">
-                                                <span nz-icon nzType="search" class="anticon"></span>
-                                            </button>
-                                        </span>
-                                    </span>
-                                </nz-input-group>
-                            </fieldset>
+                              <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
+                              <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
+                                  <span class="ant-input-wrapper ant-input-group">
+                                      <input type="text" nz-input id="keyword" class="ant-input" 
+                                            placeholder="Từ khóa..." 
+                                            [(ngModel)]="searchKeyword"
+                                            (keyup.enter)="onSearch()">
+                                      <span nz-input-group-slot type="addon" class="ant-input-group-addon">
+                                          <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
+                                              <span nz-icon nzType="search" class="anticon"></span>
+                                          </button>
+                                      </span>
+                                  </span>
+                              </nz-input-group>
+                          </fieldset>
                         </nz-col>
                         <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
                             <table-action>
                                 <div nz-row class="ant-row">  
                                     <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
                                         <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap " style="width: 100%; height: 100%; gap: 6px; flex: unset;">
-                                            <button  nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
+                                            <button (click)="loadEntryLogs()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
                                                 <span nz-icon class="anticon">
                                                     <fa-icon class="ng-fa-icon">
                                                         <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
@@ -220,7 +217,7 @@
                                                 <span class="">Tải lại</span>
                                             </button> 
                                             <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
-                                            <button nz-button nzType="primary" class="add-btn" style="display: flex; align-items: center;">
+                                            <button (click)="showAddEntryLogModal()" nz-button nzType="primary" class="add-btn" style="display: flex; align-items: center;">
                                               <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
                                               <span>Ghi vé vào</span>
                                             </button>
@@ -230,9 +227,9 @@
                             </table-action>
                         </nz-col>
                     </nz-row>
-                    <nz-table> 
-                        <!-- #customerTable
-                      [nzData]="customers"
+                    <nz-table
+                      #customerTable
+                      [nzData]="entryLogs"
                       [nzTotal]="total"
                       [nzPageSize]="pageSize"
                       [nzPageIndex]="pageIndex"
@@ -241,7 +238,7 @@
                       [nzPageSizeOptions]="[10, 20, 30, 40]"
                       [nzShowTotal]="paginationTemplate"
                       (nzQueryParams)="onQueryParamsChange($event)"
-                      [nzLoading]="loading" -->
+                      [nzLoading]="loading">
                       <thead>
                         <tr>
                           <th style="width: 60px; min-width: 60px;">#</th>
@@ -252,39 +249,48 @@
                           <th>Làn vào</th>
                           <th>Giờ vào</th>
                           <th>Ghi chú</th>
-                          <th style="width: 130px; min-width: 130px; text-align: center;"></th>
+                          <th style="width: 80px; min-width: 130px; text-align: center;"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        <!-- <tr *ngFor="let customer of customers; let i = index">
+                        <tr *ngFor="let entryLog of entryLogs; let i = index">
                           <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
-                          <td>{{ customer.name }}</td>
-                          <td>{{ customer.code }}</td> 
-                          <td>{{ customer.phone }}</td> 
-                          <td>{{ customer.address }}</td>   
-                          <td>{{ getCustomerGroupById(customer.customerGroupId) }}</td> 
+                          <td>{{ entryLog.plateNumber }}</td>
+                          <td>
+                            {{ getCardNameById(entryLog.cardId) }}
+                            <span *ngIf="entryLog.cardId" style="color: #3f42549d; display: block; font-size: 12px;">
+                              {{ getCardCodeById(entryLog.cardId) }}
+                            </span>
+                          </td>
+                          <td>
+                            {{ getCardGroupNameById(entryLog.cardGroupId) }}
+                            <ng-container *ngIf="getVehicleTypeInfoByCardGroupId(entryLog.cardGroupId) as vehicleType">
+                              <span
+                                style="display: block; font-size: 12px;"
+                                [style.color]="vehicleType.color"
+                              >
+                                {{ vehicleType.label }}
+                              </span>
+                            </ng-container>
+                          </td>
+                          <td>{{ getCustomerNameById(entryLog.customerId) }}</td>   
+                          <td style = "color: #35A200;">{{ getLaneNameById(entryLog.laneId) }}</td>
+                          <td>{{ entryLog.entryTime | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                          <td>{{ entryLog.note }}</td>
                           <td style="text-align: center;">
-                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateCustomer(customer.id)">
-                              <span nz-icon nzType="edit" nzTheme="outline"></span>
+                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only ">
+                              <span nz-icon nzType="picture" nzTheme="fill"></span>
                             </button>
-                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteCustomer(customer.id)">
-                              <span nz-icon nzType="delete" nzTheme="outline"></span>
+                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only">
+                              <span nz-icon nzType="ellipsis" nzTheme="outline"></span>
                             </button>
                           </td>
-                        </tr> -->
+                        </tr>
                       </tbody>
                       <ng-template #paginationTemplate>
-                        <!-- Tổng số {{ total }} dữ liệu -->
+                        Tổng số {{ total }} dữ liệu
                       </ng-template>
                     </nz-table>
-                    
-                     <!-- <button nz-button class="ant-btn">
-                      <nz-float-button-content>
-                        <div class="ant-float-btn-icon ">
-                          <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
-                        </div>
-                      </nz-float-button-content>
-                    </button>  -->
                 </div>
             </nz-card>
         </div>
@@ -293,28 +299,28 @@
   </nz-layout>
   
 
-  <!-- <nz-modal 
-  [nzContent]="addCustomerTpl" 
+  <nz-modal 
+  [nzContent]="addEntryLogTpl" 
   [(nzVisible)]="isAddModalVisible" 
-  nzTitle="Thêm mới Khách hàng" 
+  nzTitle="Ghi vé vào" 
   nzOktext="Lưu" 
   nzCancelText="Hủy bỏ" 
   (nzOnCancel)="handleCancel()" 
   (nzOnOk)="handleOk()"
   class="custom-modal"></nz-modal>
-  <ng-template #addCustomerTpl>
-    <form [formGroup]="customerForm"> 
+  <ng-template #addEntryLogTpl>
+    <form [formGroup]="entryLogForm"> 
       <div nz-row [nzGutter]="16">
         <div nz-col [nzSpan]="12">
           <div class="form-group">
-            <label for="customerName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="customerName" nz-input formControlName="name" style="border-radius: 8px;"/>
+            <label for="entryLogPlateNumber" class="required-label" style="margin-bottom: 10px;">Biển số</label>
+            <input id="entryLogPlateNumber" nz-input formControlName="plateNumber" style="border-radius: 8px;"/>
           </div>
         </div>
         <div nz-col [nzSpan]="12">
           <div class="form-group">
-            <label for="customerCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="customerCode" nz-input formControlName="code" style="border-radius: 8px;"/>
+            <label for="entryLogCard" class="required-label" style="margin-bottom: 10px;">Thẻ</label>
+            <input id="entryLogCard" nz-input formControlName="cardId" style="border-radius: 8px;"/>
           </div>
         </div>
       </div>
@@ -322,13 +328,13 @@
       <div nz-row [nzGutter]="16">
         <div nz-col [nzSpan]="12">
           <div class="form-group">
-            <label for="customerPhone" style="margin-bottom: 10px;">Số điện thoại</label>
-            <input id="customerPhone" nz-input formControlName="phone" style="border-radius: 8px;"/>
+            <label for="entryLogCardGroup" style="margin-bottom: 10px;">Nhóm thẻ</label>
+            <input id="entryLogCardGroup" nz-input formControlName="cardGroupId" style="border-radius: 8px;"/>
           </div>
         </div>
         <div nz-col [nzSpan]="12">
           <div class="form-group">
-            <label for="customerAddress" style="margin-bottom: 10px;">Địa chỉ</label>
+            <label for="customerAddress" style="margin-bottom: 10px;">Khách hàng</label>
             <nz-textarea-count [nzMaxCharacterCount]="100">
               <textarea id="customerAddress" formControlName="address" nz-input [nzAutosize]="{ minRows: 1, maxRows: 5}" style="border-radius: 8px;"></textarea>
             </nz-textarea-count>          
@@ -337,15 +343,15 @@
       </div>
 
       <div class="form-group">
-        <label for="customerCustomerGroupId" style="margin-bottom: 10px;">Nhóm khách hàng</label>
-        <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
-          <nz-option *ngFor="let customerGroup of customerGroups" [nzValue]="customerGroup.id" [nzLabel]="customerGroup.name"></nz-option>
-        </nz-select>      
+        <label for="customerCustomerGroupId" style="margin-bottom: 10px;">Khách hàng</label>
+        <!-- <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
+          <nz-option *ngFor="let customer of customers" [nzValue]="customer.id" [nzLabel]="customer.name"></nz-option>
+        </nz-select>       -->
       </div>
     </form>
   </ng-template>
   
-<nz-modal [nzContent]="editCustomerTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Khách hàng" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
+<!-- <nz-modal [nzContent]="editCustomerTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Khách hàng" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
   <ng-template #editCustomerTpl>
     <form [formGroup]="editCustomerForm"> 
       <div nz-row [nzGutter]="16">

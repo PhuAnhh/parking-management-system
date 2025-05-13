@@ -47,5 +47,13 @@ namespace Final_year_Project.Persistence.Repositories
         {
             _context.CardGroups.Remove(cardGroup);
         }
+
+        public async Task<List<int>> GetAllowedLaneIdsAsync(int cardGroupId)
+        {
+            return await _context.CardGroupLanes
+                .Where(x => x.CardGroupId == cardGroupId)
+                .Select(x => x.LaneId)
+                .ToListAsync();
+        }
     }
 }
