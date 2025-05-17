@@ -243,8 +243,8 @@
                         <tr>
                           <th style="width: 60px; min-width: 60px;">#</th>
                           <th>Biển số</th>
-                          <th>Định danh</th>
-                          <th>Nhóm định danh</th>
+                          <th>Thẻ</th>
+                          <th>Nhóm thẻ</th>
                           <th>Khách hàng</th>
                           <th>Làn vào</th>
                           <th>Giờ vào</th>
@@ -281,9 +281,32 @@
                             <button nz-button class="ant-btn edit-btn ant-btn-icon-only ">
                               <span nz-icon nzType="picture" nzTheme="fill"></span>
                             </button>
-                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only">
+                            <button 
+                              nz-button 
+                              class="ant-btn delete-btn ant-btn-icon-only" 
+                              nz-dropdown 
+                              [nzDropdownMenu]="menu" 
+                              nzTrigger="hover" 
+                              nzPlacement="bottomRight">
                               <span nz-icon nzType="ellipsis" nzTheme="outline"></span>
                             </button>
+
+                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <ul nz-menu style="border-radius: 8px;">
+                              <li nz-menu-item>
+                                <div style="display: flex; align-items: center; gap: 3px; color: #f15922;" (click)="deleteEntryLog(entryLog.id)">
+                                  <span nz-icon nzType="delete" nzTheme="fill"></span>
+                                  <span class="menu-text">Xóa sự kiện</span>
+                                </div>
+                              </li>
+                              <li nz-menu-item>
+                                <div style="display: flex; align-items: center; gap: 3px; color: #0c68e9;">
+                                  <span nz-icon nzType="check-square" nzTheme="fill"></span>
+                                  <span class="menu-text">Ghi vé ra</span>
+                                </div>
+                              </li>
+                            </ul>
+                          </nz-dropdown-menu>
                           </td>
                         </tr>
                       </tbody>
@@ -335,18 +358,24 @@
         <div nz-col [nzSpan]="12">
           <div class="form-group">
             <label for="customerAddress" style="margin-bottom: 10px;">Khách hàng</label>
-            <nz-textarea-count [nzMaxCharacterCount]="100">
-              <textarea id="customerAddress" formControlName="address" nz-input [nzAutosize]="{ minRows: 1, maxRows: 5}" style="border-radius: 8px;"></textarea>
-            </nz-textarea-count>          
+            <input id="customerAddress" nz-input formControlName="customerId" style="border-radius: 8px;"/>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="customerCustomerGroupId" style="margin-bottom: 10px;">Khách hàng</label>
-        <!-- <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
-          <nz-option *ngFor="let customer of customers" [nzValue]="customer.id" [nzLabel]="customer.name"></nz-option>
-        </nz-select>       -->
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="entryLogCardGroup" style="margin-bottom: 10px;">Làn vào</label>
+            <input id="entryLogCardGroup" nz-input formControlName="cardGroupId" style="border-radius: 8px;"/>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="customerAddress" style="margin-bottom: 10px;">Ghi chú</label>
+            <input id="customerAddress" nz-input formControlName="customerId" style="border-radius: 8px;"/>
+          </div>
+        </div>
       </div>
     </form>
   </ng-template>
