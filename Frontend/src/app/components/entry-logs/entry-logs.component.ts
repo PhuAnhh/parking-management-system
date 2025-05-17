@@ -63,13 +63,24 @@ export class EntryLogsComponent implements OnInit{
       this.initForm();
     }  
   
-    ngOnInit() {
-      this.loadEntryLogs();
-      this.loadCards();
-      this.loadCardGroups();
-      this.loadLanes();
-      this.loadCustomers();
-    }
+  ngOnInit() {
+    // Tải cards và cardGroups
+    this.cardService.getCards().subscribe(data => {
+      this.cards = data;
+      
+      // Sau khi có cards, tải cardGroups
+      this.cardGroupService.getCardGroups().subscribe(data => {
+        this.cardGroups = data;
+        
+        // Sau khi đã có cả cards và cardGroups, tải entryLogs
+        this.loadEntryLogs();
+      });
+    });
+    
+    // Tải lanes và customers
+    this.loadLanes();
+    this.loadCustomers();
+  }
   
     initForm() {
       this.entryLogForm = this.fb.group({
