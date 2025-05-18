@@ -339,6 +339,10 @@ nz-footer {
   border-radius: 50% !important;
 }
 
+::ng-deep .ant-select-dropdown {
+  border-radius: 8px !important;
+}
+
 .child-form-header .ant-col {
   padding: 10px !important;
   background-color: #68868921;

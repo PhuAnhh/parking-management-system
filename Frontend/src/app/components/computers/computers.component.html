@@ -248,7 +248,15 @@
 </nz-layout>
 
 
-<nz-modal [nzContent]="addComputerTpl" [(nzVisible)]="isAddModalVisible" nzTitle="Thêm mới Máy tính" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"></nz-modal>
+<nz-modal 
+[nzContent]="addComputerTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Máy tính" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()">
+</nz-modal>
   <ng-template #addComputerTpl>
     <form [formGroup]="computerForm"> 
       <div class="form-group">

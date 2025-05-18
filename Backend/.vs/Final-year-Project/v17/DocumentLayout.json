@@ -114,8 +114,7 @@
               "RelativeToolTip": "Domain\\Entities\\Card.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAowB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T11:28:00.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T11:28:00.644Z"
             },
             {
               "$type": "Document",
@@ -127,8 +126,7 @@
               "RelativeToolTip": "Application\\Services\\CardGroupService.cs",
               "ViewState": "AgIAAFIAAAAAAAAAAAAqwGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T14:42:05.775Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T14:42:05.775Z"
             },
             {
               "$type": "Document",
@@ -138,7 +136,7 @@
               "RelativeDocumentMoniker": "Persistence\\Repositories\\CardRepository.cs",
               "ToolTip": "C:\\Users\\phanp\\OneDrive\\Documents\\GitHub\\Final-year-Project\\Backend\\Persistence\\Repositories\\CardRepository.cs",
               "RelativeToolTip": "Persistence\\Repositories\\CardRepository.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA1wBkAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBkAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-04T07:56:56.188Z",
               "EditorCaption": ""
@@ -189,8 +187,7 @@
               "RelativeToolTip": "Application\\Services\\CardService.cs",
               "ViewState": "AgIAAGcAAAAAAAAAAADwv20AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T11:32:08.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T11:32:08.608Z"
             },
             {
               "$type": "Document",

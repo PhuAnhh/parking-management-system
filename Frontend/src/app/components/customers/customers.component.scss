@@ -339,6 +339,11 @@ nz-footer {
   border-radius: 50% !important;
 }
 
+::ng-deep .ant-select-dropdown {
+  border-radius: 8px !important;
+}
+
+
 .card-list-container {
     border-left: 1px solid hsl(0, 0%, 91%);
     padding-left: 24px;

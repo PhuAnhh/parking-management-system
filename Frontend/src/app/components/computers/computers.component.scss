@@ -338,3 +338,7 @@ nz-footer {
 ::ng-deep .ant-pagination-item-link {
   border-radius: 50% !important;
 }
+
+::ng-deep .ant-select-dropdown {
+  border-radius: 8px !important;
+}
