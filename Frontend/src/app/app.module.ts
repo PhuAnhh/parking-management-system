@@ -3,7 +3,6 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { provideNzI18n } from 'ng-zorro-antd/i18n';
 import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
 import vi from '@angular/common/locales/vi';
@@ -70,7 +69,6 @@ registerLocaleData(vi);
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     DashboardComponent,
     GatesComponent,
     ComputersComponent,

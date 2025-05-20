@@ -119,33 +119,21 @@
   nz-footer {
     text-align: center;
   }
-  
-//   li[nz-menu-item] {
-//     padding-left: 25px !important;
-//   }
-//  li[nztitle="Báo cáo"] > .ant-menu-submenu-title {
-//   padding-left: 25px !important;
-// }
-::ng-deep li[nz-menu-item] {
-  &.ant-menu-item {
-    padding-left: 25px !important; // Trang chủ
+
+  ::ng-deep li[nz-menu-item] {
+    &.ant-menu-item {
+      padding-left: 25px !important; // Trang chủ
+    }
   }
-}
 
-::ng-deep li[nz-submenu] > .ant-menu-submenu-title {
-  padding-left: 25px !important; // Báo cáo
-}
-
-li[nz-submenu][nzTitle="Báo cáo"] .ant-menu-sub .ant-menu-item {
-    padding-left: 25px !important;
+  ::ng-deep li[nz-submenu] > .ant-menu-submenu-title {
+    padding-left: 25px !important; // Báo cáo
   }
 
   nz-header{
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-    // width: 100%;
-    // margin: 0 20px;
   }
   
   .ant-btn1{
@@ -587,5 +575,3 @@ li[nz-submenu][nzTitle="Báo cáo"] .ant-menu-sub .ant-menu-item {
       margin: 0;
     }
   }
-
-  

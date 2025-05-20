@@ -336,7 +336,7 @@ nzCancelText="Hủy bỏ"
         <div nz-col [nzSpan]="13" class="card-list-container">
           <div class="card-list-header" style="border-bottom: 1px solid #e8e8e8; padding-bottom: 8px;">
             <span class="title">Danh sách Thẻ của khách hàng</span>
-            <button nz-button nzType="primary" style="border-radius: 8px" (click)="showAddCardModal()">
+            <button nz-button nzType="primary" style="border-radius: 8px; display: flex; align-items: center;" (click)="showAddCardModal()">
               <span nz-icon nzType="plus"></span>
               <span>Thêm mới</span>
             </button>
@@ -390,7 +390,7 @@ nzCancelText="Hủy bỏ"
                         (click)="removeCardFromCustomer(card.id)"
                       >
                         <span style="display: flex; align-items: center;">
-                          <span nz-icon nzType="minus"></span>
+                          <span nz-icon nzType="delete" nzTheme="outline"></span>
                         </span>
                       </button>
 

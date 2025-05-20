@@ -330,7 +330,9 @@
   nzCancelText="Hủy bỏ" 
   (nzOnCancel)="handleCancel()" 
   (nzOnOk)="handleOk()"
-  class="custom-modal"></nz-modal>
+  class="custom-modal"
+  nzWidth="700px"
+  ></nz-modal>
   <ng-template #addEntryLogTpl>
     <form [formGroup]="entryLogForm"> 
       <div nz-row [nzGutter]="16">
@@ -379,45 +381,3 @@
       </div>
     </form>
   </ng-template>
-  
-<!-- <nz-modal [nzContent]="editCustomerTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Khách hàng" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
-  <ng-template #editCustomerTpl>
-    <form [formGroup]="editCustomerForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="customerName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="customerName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="customerCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="customerCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
-      </div>
-
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="customerPhone" style="margin-bottom: 10px;">Số điện thoại</label>
-            <input id="customerPhone" nz-input formControlName="phone" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="customerAddress" style="margin-bottom: 10px;">Địa chỉ</label>
-            <input id="customerAddress" nz-input formControlName="address" style="border-radius: 8px;"/>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="customerCustomerGroupId" style="margin-bottom: 10px;">Nhóm khách hàng</label>
-        <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
-          <nz-option *ngFor="let customerGroup of customerGroups" [nzValue]="customerGroup.id" [nzLabel]="customerGroup.name"></nz-option>
-        </nz-select>      
-      </div>
-    </form>
-  </ng-template> -->
