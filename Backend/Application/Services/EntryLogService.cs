@@ -35,6 +35,7 @@ namespace Final_year_Project.Application.Services
                     ImageUrl = entryLog.ImageUrl,
                     Note = entryLog.Note,
                     CreatedAt = entryLog.CreatedAt,
+                    UpdatedAt = entryLog.UpdatedAt,
                 });
             }
 
@@ -60,11 +61,26 @@ namespace Final_year_Project.Application.Services
                 ImageUrl = entryLog.ImageUrl,
                 Note = entryLog.Note,
                 CreatedAt = entryLog.CreatedAt,
+                UpdatedAt = entryLog.UpdatedAt,
             };
         }
 
         public async Task<EntryLogDto> CreateAsync(CreateEntryLogDto createEntryLogDto)
         {
+            if (string.IsNullOrEmpty(createEntryLogDto.PlateNumber))
+                throw new ArgumentException("Plate number is required.");
+            if (createEntryLogDto.CardId <= 0)
+                throw new ArgumentException("Invalid card ID.");
+            if (createEntryLogDto.LaneId <= 0)
+                throw new ArgumentException("Invalid lane ID.");
+
+            // Chuẩn hóa biển số xe trước khi kiểm tra và lưu
+            createEntryLogDto.PlateNumber = StandardizePlateNumber(createEntryLogDto.PlateNumber);
+
+            if (!IsValidPlateNumberFormat(createEntryLogDto.PlateNumber))
+                throw new ArgumentException("Invalid plate number format. Expected format is like '30A12345'.");
+
+
             // 1. Lấy thông tin thẻ
             var card = await _unitOfWork.Cards.GetByIdAsync(createEntryLogDto.CardId);
             if (card == null)
@@ -94,7 +110,20 @@ namespace Final_year_Project.Application.Services
             if (!lane.Status)
                 throw new Exception("Lane is not active.");
 
-            // 5. Tạo EntryLog mới
+            // 5. Kiểm tra thẻ đã vào mà chưa ra
+            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(card.Id);
+            if (hasActiveEntry)
+                throw new Exception("Card already in use - vehicle has not exited.");
+
+            // 6. Kiểm tra biển số xe đã vào mà chưa ra
+            if (!string.IsNullOrWhiteSpace(createEntryLogDto.PlateNumber))
+            {
+                var plateInUse = await _unitOfWork.EntryLogs.IsPlateNumberInUseAsync(createEntryLogDto.PlateNumber);
+                if (plateInUse)
+                    throw new Exception("Plate number is already in the parking lot.");
+            }
+
+            // 7. Tạo EntryLog mới
             var entryLog = new EntryLog
             {
                 PlateNumber = createEntryLogDto.PlateNumber,
@@ -126,7 +155,6 @@ namespace Final_year_Project.Application.Services
             };
         }
 
-
         public async Task<bool> DeleteAsync(int id)
         {
             var entryLog = await _unitOfWork.EntryLogs.GetByIdAsync(id);
@@ -137,6 +165,33 @@ namespace Final_year_Project.Application.Services
             _unitOfWork.EntryLogs.Delete(entryLog);
             await _unitOfWork.SaveChangesAsync();
             return true;
+        }
+        private string StandardizePlateNumber(string plateNumber)
+        {
+            if (string.IsNullOrEmpty(plateNumber))
+                return string.Empty;
+
+            // Loại bỏ tất cả khoảng trắng
+            plateNumber = plateNumber.Replace(" ", "");
+                
+            // Loại bỏ các ký tự đặc biệt như dấu gạch ngang, dấu chấm, v.v.
+            plateNumber = plateNumber.Replace("-", "").Replace(".", "").Replace("_", "");
+
+            // Chuyển đổi về chữ hoa để thống nhất định dạng
+            plateNumber = plateNumber.ToUpper();
+
+            return plateNumber;
+        }
+
+        private bool IsValidPlateNumberFormat(string plateNumber)
+        {
+            if (string.IsNullOrEmpty(plateNumber))
+                return false;
+
+            // Định dạng biển số của Việt Nam là: 
+            // - 1-2 số + 1 chữ cái + 5 số (30A12345)
+            var regex = new System.Text.RegularExpressions.Regex(@"^\d{1,2}[A-Z]\d{5}$");
+            return regex.IsMatch(plateNumber);
         }
     }
 }

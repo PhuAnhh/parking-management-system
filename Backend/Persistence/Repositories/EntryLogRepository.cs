@@ -9,16 +9,18 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class EntryLogRepository : IEntryLogRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public EntryLogRepository(DeviceServiceContext context)
+        public EntryLogRepository(ParkingManagementContext context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<EntryLog>> GetAllAsync()
         {
-            return await _context.EntryLogs.ToListAsync();
+            return await _context.EntryLogs
+                .Where(e => !e.Exited)   
+                .ToListAsync();
         }
 
         public async Task<EntryLog> GetByIdAsync(int id)
@@ -31,9 +33,31 @@ namespace Final_year_Project.Persistence.Repositories
             await _context.EntryLogs.AddAsync(entryLog);
         }
 
+        public void Update(EntryLog entryLog)
+        {
+            _context.EntryLogs.Update(entryLog);
+        }
+
         public void Delete(EntryLog entryLog)
         {
             _context.EntryLogs.Remove(entryLog);
+        }
+
+        public async Task<bool> HasActiveEntryAsync(int cardId)
+        {
+            return await _context.EntryLogs
+                .AsNoTracking()
+                .AnyAsync(e => e.CardId == cardId && !e.Exited);
+        }
+        public async Task<bool> IsPlateNumberInUseAsync(string plateNumber)
+        {
+            if (string.IsNullOrWhiteSpace(plateNumber)) return false;
+
+            // Biển số đã được chuẩn hóa trước khi kiểm tra
+            return await _context.EntryLogs
+                .AsNoTracking()
+                .Include(e => e.ExitLogs)
+                .AnyAsync(e => e.PlateNumber == plateNumber && !e.Exited);
         }
     }
 }

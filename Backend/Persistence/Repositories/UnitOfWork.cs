@@ -9,7 +9,7 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DeviceServiceContext _context;
+        private readonly ParkingManagementContext _context;
         private ICameraRepository _cameraRepository;
         private IComputerRepository _computerRepository;
         private IControlUnitRepository _controlUnitRepository;
@@ -24,8 +24,9 @@ namespace Final_year_Project.Persistence.Repositories
         private ICardRepository _cardRepository;
         private ICardGroupLaneRepository _cardLaneRepository;
         private IEntryLogRepository _entryLogRepository;
+        private IExitLogRepository _exitLogRepository;
 
-        public UnitOfWork(DeviceServiceContext context)
+        public UnitOfWork(ParkingManagementContext context)
         {
             _context = context;
         }
@@ -44,6 +45,7 @@ namespace Final_year_Project.Persistence.Repositories
         public ICardRepository Cards => _cardRepository ??= new CardRepository(_context);
         public ICardGroupLaneRepository CardGroupLanes => _cardLaneRepository ??= new CardGroupLaneRepository(_context);
         public IEntryLogRepository EntryLogs => _entryLogRepository ??= new EntryLogRepository(_context);
+        public IExitLogRepository ExitLogs => _exitLogRepository ??= new ExitLogRepository(_context);
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();

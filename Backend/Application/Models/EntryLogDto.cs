@@ -21,6 +21,12 @@
         public string? Note { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
+
+        public bool Exited { get; set; } = false;
+
+
     }
 
     public class CreateEntryLogDto

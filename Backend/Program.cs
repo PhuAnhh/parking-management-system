@@ -9,11 +9,9 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Environment.IsDevelopment()
-    ? builder.Configuration.GetConnectionString("LocalConnection")
-    : builder.Configuration.GetConnectionString("RemoteConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<DeviceServiceContext>(options =>
+builder.Services.AddDbContext<ParkingManagementContext>(options =>
     options.UseSqlServer(connectionString)
 );
 
@@ -31,6 +29,7 @@ builder.Services.AddScoped<ICardGroupService, CardGroupService>();
 builder.Services.AddScoped<ICardService, CardService>();
 
 builder.Services.AddScoped<IEntryLogService, EntryLogService>();
+builder.Services.AddScoped<IExitLogService, ExitLogService>();
 
 builder.Services.AddCors(options =>
 {
