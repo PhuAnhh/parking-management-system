@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Final_year_Project.Domain.Entities;
+namespace Final_year_Project.Entities;
 
 public partial class RevenueReport
 {

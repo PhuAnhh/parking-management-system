@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class LaneRepository : ILaneRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public LaneRepository(DeviceServiceContext context)
+        public LaneRepository(ParkingManagementContext context)
         {
             _context = context;
         }

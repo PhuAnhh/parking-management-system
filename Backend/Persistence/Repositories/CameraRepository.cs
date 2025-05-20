@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class CameraRepository : ICameraRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public CameraRepository(DeviceServiceContext context)
+        public CameraRepository(ParkingManagementContext context)
         {
             _context = context;
         }

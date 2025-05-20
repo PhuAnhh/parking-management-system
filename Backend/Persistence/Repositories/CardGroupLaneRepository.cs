@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class CardGroupLaneRepository : ICardGroupLaneRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public CardGroupLaneRepository(DeviceServiceContext context)
+        public CardGroupLaneRepository(ParkingManagementContext context)
         {
             _context = context;
         }

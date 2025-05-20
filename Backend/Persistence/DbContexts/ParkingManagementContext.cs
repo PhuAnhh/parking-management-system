@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Domain.Entities;
@@ -6,9 +7,9 @@ using Final_year_Project.Domain.EnumTypes;
 
 namespace Final_year_Project.Persistence.DbContexts;
 
-public partial class DeviceServiceContext : DbContext
+public partial class ParkingManagementContext : DbContext
 {
-    public DeviceServiceContext(DbContextOptions<DeviceServiceContext> options)
+    public ParkingManagementContext(DbContextOptions<ParkingManagementContext> options)
         : base(options)
     {
     }
@@ -221,7 +222,7 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.Lane).WithMany(p => p.CardGroupLanes)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__card_grou__lane___0A338187");
         });
 
@@ -427,7 +428,7 @@ public partial class DeviceServiceContext : DbContext
 
         modelBuilder.Entity<ExitLog>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__exit_log__3213E83F28017FC8");
+            entity.HasKey(e => e.Id).HasName("PK__exit_log__3213E83FF9DD5CCA");
 
             entity.ToTable("exit_logs");
 
@@ -438,7 +439,6 @@ public partial class DeviceServiceContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
-            entity.Property(e => e.Deleted).HasColumnName("deleted");
             entity.Property(e => e.EntryLaneId).HasColumnName("entry_lane_id");
             entity.Property(e => e.EntryLogId).HasColumnName("entry_log_id");
             entity.Property(e => e.EntryTime)
@@ -461,35 +461,31 @@ public partial class DeviceServiceContext : DbContext
             entity.Property(e => e.TotalPrice)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("total_price");
-            entity.Property(e => e.UpdatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
 
             entity.HasOne(d => d.CardGroup).WithMany(p => p.ExitLogs)
                 .HasForeignKey(d => d.CardGroupId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__exit_logs__card___2116E6DF");
+                .HasConstraintName("FK__exit_logs__card___370627FE");
 
             entity.HasOne(d => d.Card).WithMany(p => p.ExitLogs)
                 .HasForeignKey(d => d.CardId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__exit_logs__card___2022C2A6");
+                .HasConstraintName("FK__exit_logs__card___361203C5");
 
             entity.HasOne(d => d.EntryLane).WithMany(p => p.ExitLogEntryLanes)
                 .HasForeignKey(d => d.EntryLaneId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__exit_logs__entry__220B0B18");
+                .HasConstraintName("FK__exit_logs__entry__37FA4C37");
 
             entity.HasOne(d => d.EntryLog).WithMany(p => p.ExitLogs)
                 .HasForeignKey(d => d.EntryLogId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__exit_logs__entry__1F2E9E6D");
+                .HasConstraintName("FK__exit_logs__entry__351DDF8C");
 
             entity.HasOne(d => d.ExitLane).WithMany(p => p.ExitLogExitLanes)
                 .HasForeignKey(d => d.ExitLaneId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__exit_logs__exit___22FF2F51");
+                .HasConstraintName("FK__exit_logs__exit___38EE7070");
         });
 
         modelBuilder.Entity<Gate>(entity =>
@@ -594,12 +590,12 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.Camera).WithMany(p => p.LaneCameras)
                 .HasForeignKey(d => d.CameraId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__lane_came__camer__318258D2");
 
             entity.HasOne(d => d.Lane).WithMany(p => p.LaneCameras)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__lane_came__lane___308E3499");
         });
 
@@ -635,12 +631,12 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.ControlUnit).WithMany(p => p.LaneControlUnits)
                 .HasForeignKey(d => d.ControlUnitId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__lane_cont__contr__373B3228");
 
             entity.HasOne(d => d.Lane).WithMany(p => p.LaneControlUnits)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__lane_cont__lane___36470DEF");
         });
 
@@ -689,7 +685,7 @@ public partial class DeviceServiceContext : DbContext
 
         modelBuilder.Entity<RevenueReport>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__revenue___3213E83FE46486B0");
+            entity.HasKey(e => e.Id).HasName("PK__revenue___3213E83F4C1D649E");
 
             entity.ToTable("revenue_reports");
 
@@ -710,12 +706,13 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.CardGroup).WithMany(p => p.RevenueReports)
                 .HasForeignKey(d => d.CardGroupId)
-                .HasConstraintName("FK__revenue_r__card___2D7CBDC4");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__revenue_r__card___436BFEE3");
         });
 
         modelBuilder.Entity<WarningEvent>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__warning___3213E83F060FC3D8");
+            entity.HasKey(e => e.Id).HasName("PK__warning___3213E83F5A3B4BC4");
 
             entity.ToTable("warning_events");
 
@@ -732,7 +729,7 @@ public partial class DeviceServiceContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("note");
             entity.Property(e => e.PlateNumber)
-                .HasMaxLength(255)
+                .HasMaxLength(50)
                 .HasColumnName("plate_number");
             entity.Property(e => e.WarningType)
                 .HasMaxLength(255)
@@ -740,7 +737,8 @@ public partial class DeviceServiceContext : DbContext
 
             entity.HasOne(d => d.Lane).WithMany(p => p.WarningEvents)
                 .HasForeignKey(d => d.LaneId)
-                .HasConstraintName("FK__warning_e__lane___26CFC035");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__warning_e__lane___3CBF0154");
         });
 
         OnModelCreatingPartial(modelBuilder);

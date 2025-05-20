@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Final_year_Project.Domain.Entities;
+namespace Final_year_Project.Entities;
 
 public partial class EntryLog
 {
@@ -27,7 +27,7 @@ public partial class EntryLog
 
     public DateTime UpdatedAt { get; set; }
 
-    public bool Exited { get; set; } = false;
+    public bool Exited { get; set; }
 
     public virtual Card Card { get; set; } = null!;
 

@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class LedRepository : ILedRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public LedRepository(DeviceServiceContext context)
+        public LedRepository(ParkingManagementContext context)
         {
             _context = context;
         }

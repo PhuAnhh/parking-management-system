@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class ComputerRepository : IComputerRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public ComputerRepository(DeviceServiceContext context)
+        public ComputerRepository(ParkingManagementContext context)
         {
             _context = context;
         }

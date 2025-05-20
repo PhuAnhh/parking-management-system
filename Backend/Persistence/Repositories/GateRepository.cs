@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class GateRepository : IGateRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public GateRepository(DeviceServiceContext context)
+        public GateRepository(ParkingManagementContext context)
         {
             _context = context;
         }

@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class ControlUnitRepository : IControlUnitRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public ControlUnitRepository(DeviceServiceContext context)
+        public ControlUnitRepository(ParkingManagementContext context)
         {
             _context = context;
         }

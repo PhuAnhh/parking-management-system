@@ -9,9 +9,9 @@ namespace Final_year_Project.Persistence.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        public readonly DeviceServiceContext _context;
+        public readonly ParkingManagementContext _context;
 
-        public CustomerRepository(DeviceServiceContext context)
+        public CustomerRepository(ParkingManagementContext context)
         {
             _context = context;
         }
