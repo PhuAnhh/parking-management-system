@@ -35,8 +35,17 @@ namespace Final_year_Project.Persistence.Repositories
 
         public void Update(Card card)
         {
+            var tracked = _context.ChangeTracker.Entries<Card>()
+                .FirstOrDefault(e => e.Entity.Id == card.Id);
+
+            if (tracked != null)
+            {
+                _context.Entry(tracked.Entity).State = EntityState.Detached;
+            }
+
             _context.Cards.Update(card);
         }
+
 
         public void Delete(Card card)
         {

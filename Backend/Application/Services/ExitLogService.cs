@@ -76,43 +76,43 @@ namespace Final_year_Project.Application.Services
             if (createExitLogDto.EntryLogId <= 0)
                 throw new ArgumentException("EntryLogId is required.");
 
-            // Lấy EntryLog gốc
+            // Lấy EntryLog
             var entryLog = await _unitOfWork.EntryLogs.GetByIdAsync(createExitLogDto.EntryLogId);
             if (entryLog == null)
                 throw new Exception("Entry log not found.");
 
-            // Lấy nhóm thẻ (card group)    
+            //Lấy CardGroup
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(entryLog.CardGroupId ?? 0);
             if (cardGroup == null)
                 throw new Exception("Card group not found.");
 
-            // Kiểm tra lane ra có trong nhóm thẻ không
+            //Kiểm tra Lane ra trong CardGroup
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
             if (!allowedLaneIds.Contains(createExitLogDto.ExitLaneId))
                 throw new Exception("Exit lane is not allowed for this card group.");
 
-            // Kiểm tra trạng thái lane ra
+            //Kiểm tra trạng thái Lane ra
             var exitLane = await _unitOfWork.Lanes.GetByIdAsync(createExitLogDto.ExitLaneId);
             if (exitLane == null || !exitLane.Status)
                 throw new Exception("Exit lane is invalid or inactive.");
 
-            // Kiểm tra lane vào
+            //Kiểm tra Lane vào 
             var entryLane = await _unitOfWork.Lanes.GetByIdAsync(entryLog.LaneId);
             if (entryLane == null || !entryLane.Status)
                 throw new Exception("Entry lane is invalid or inactive.");
 
-            // Xác định thời gian ra
+            //Xác định thời gian ra khỏi bãi
             var exitTime = createExitLogDto.ExitTime != default ? createExitLogDto.ExitTime : DateTime.UtcNow;
             if (exitTime <= entryLog.EntryTime)
                 throw new Exception("Exit time must be after entry time.");
 
-            // Tính tổng thời gian
+            //Tính tổng thời gian
             var duration = exitTime - entryLog.EntryTime;
-
-            // Tính giá dựa trên thời gian và quy tắc nhóm thẻ
+            
+            //Tính giá dựa trên thời gian và quy tắc CardGroup
             decimal totalPrice = CalculatePrice(duration, cardGroup);
 
-            // Tạo exit log mới
+            //Tạo ExitLog
             var exitLog = new ExitLog
             {
                 EntryLogId = entryLog.Id,
@@ -135,6 +135,23 @@ namespace Final_year_Project.Application.Services
             entryLog.Exited = true;
             _unitOfWork.EntryLogs.Update(entryLog);
 
+            // Xóa liên kết Card (Day) khi xe ra khỏi bãi
+            if (exitLog.CardId > 0)
+            {
+                var card = await _unitOfWork.Cards.GetByIdAsync(exitLog.CardId);
+                if (card != null)
+                {
+                    var cardGroupOfCard = await _unitOfWork.CardGroups.GetByIdAsync(card.CardGroupId);
+                    if (cardGroupOfCard != null && cardGroupOfCard.Type == CardGroupType.Day)
+                    {
+                        card.CustomerId = null;
+                        card.Status = CardStatus.Inactive; // hoặc trạng thái phù hợp
+                        card.UpdatedAt = DateTime.UtcNow;
+                        _unitOfWork.Cards.Update(card);
+                    }
+                }
+            }
+
             await _unitOfWork.SaveChangesAsync();
 
             return new ExitLogDto
@@ -155,6 +172,7 @@ namespace Final_year_Project.Application.Services
                 CreatedAt = exitLog.CreatedAt,
             };
         }
+
 
         private decimal CalculatePrice(TimeSpan duration, CardGroup cardGroup)
         {
