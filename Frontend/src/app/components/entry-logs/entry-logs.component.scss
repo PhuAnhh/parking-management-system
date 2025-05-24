@@ -500,6 +500,10 @@
   ::ng-deep .ant-pagination-item-link {
     border-radius: 50% !important;
   }
+
+  ::ng-deep .ant-tooltip-inner {
+    border-radius: 8px;  
+  }
   
   .required-label::after {
     content: ' *';

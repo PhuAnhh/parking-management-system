@@ -242,10 +242,6 @@ max-width: 33.33333333%;
   position: relative;
   overflow: hidden;
   
-  .card-content {
-    padding: 24px;
-  }
-  
   .card-header {
     display: flex;
     justify-content: space-between;
@@ -257,7 +253,7 @@ max-width: 33.33333333%;
   .card-value {
     font-size: 24px;
     color: #1c252e;
-    font-weight: 700;
+    font-weight: 600;
     display: block;
     height: 100%;
   }
@@ -277,7 +273,7 @@ max-width: 33.33333333%;
     opacity: 0.12;
     border-radius: 1.5rem;
     position: absolute;
-    transform: rotate(40deg);
+    transform: rotate(50deg);
   }
 }
 

@@ -29,6 +29,9 @@
         public string? ImageUrl { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public EntryLogDto? EntryLog { get; set; }
+
     }
 
     public class CreateExitLogDto

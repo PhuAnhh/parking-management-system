@@ -36,6 +36,8 @@ namespace Final_year_Project.Application.Repositories
 
         IExitLogRepository ExitLogs { get; }
 
+        IRevenueReportRepository RevenueReports { get; }
+
         Task<int> SaveChangesAsync();
     }
 }

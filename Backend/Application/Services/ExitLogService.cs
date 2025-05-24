@@ -39,6 +39,15 @@ namespace Final_year_Project.Application.Services
                     ImageUrl = exitLog.ImageUrl,
                     Note = exitLog.Note,
                     CreatedAt = exitLog.CreatedAt,
+                    EntryLog = exitLog.EntryLog == null ? null : new EntryLogDto
+                    {
+                        Id = exitLog.EntryLog.Id,
+                        PlateNumber = exitLog.EntryLog.PlateNumber,
+                        CardId = exitLog.EntryLog.CardId,
+                        CardGroupId = exitLog.EntryLog.CardGroupId,
+                        LaneId = exitLog.EntryLog.LaneId,
+                        CustomerId = exitLog.EntryLog.CustomerId
+                    }
                 });
             }
 
@@ -123,7 +132,7 @@ namespace Final_year_Project.Application.Services
                 ExitLaneId = createExitLogDto.ExitLaneId,
                 EntryTime = entryLog.EntryTime,
                 ExitTime = exitTime,
-                TotalDuration = duration.Ticks,
+                TotalDuration = (long)duration.TotalMilliseconds,
                 TotalPrice = totalPrice,
                 Note = createExitLogDto.Note,
                 ImageUrl = createExitLogDto.ImageUrl,
@@ -145,11 +154,33 @@ namespace Final_year_Project.Application.Services
                     if (cardGroupOfCard != null && cardGroupOfCard.Type == CardGroupType.Day)
                     {
                         card.CustomerId = null;
-                        card.Status = CardStatus.Inactive; // hoặc trạng thái phù hợp
+                        card.Status = CardStatus.Inactive;
                         card.UpdatedAt = DateTime.UtcNow;
                         _unitOfWork.Cards.Update(card);
                     }
                 }
+            }
+
+            var revenueReport = await _unitOfWork.RevenueReports.GetByCardGroupIdAsync(exitLog.CardGroupId);
+
+            if (revenueReport != null)
+            {
+                revenueReport.ExitCount += 1;
+                revenueReport.Revenue += exitLog.TotalPrice;
+                revenueReport.UpdatedAt = DateTime.UtcNow;
+                _unitOfWork.RevenueReports.Update(revenueReport);
+            }
+            else
+            {
+                var newReport = new RevenueReport
+                {
+                    CardGroupId = exitLog.CardGroupId,
+                    ExitCount = 1,
+                    Revenue = exitLog.TotalPrice,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                };
+                await _unitOfWork.RevenueReports.CreateAsync(newReport);
             }
 
             await _unitOfWork.SaveChangesAsync();

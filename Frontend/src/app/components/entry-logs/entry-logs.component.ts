@@ -82,22 +82,22 @@ export class EntryLogsComponent implements OnInit{
     this.loadCustomers();
   }
   
-    initForm() {
-      this.entryLogForm = this.fb.group({
-        plateNumber: [null, [Validators.required]],
-        cardId: [null, [Validators.required]],
-        cardGroupId: [null, [Validators.required]],
-        laneId: [null, [Validators.required]],
-        customerId: [null],
-        entryTime: [null, [Validators.required]],
-        imageUrl: [null],
-        note: [null],
-      });
-    }
+  initForm() {
+    this.entryLogForm = this.fb.group({
+      plateNumber: [null, [Validators.required]],
+      cardId: [null, [Validators.required]],
+      cardGroupId: [null, [Validators.required]],
+      laneId: [null, [Validators.required]],
+      customerId: [null],
+      entryTime: [null, [Validators.required]],
+      imageUrl: [null],
+      note: [null],
+    });
+  }
 
-    loadEntryLogs(searchKeyword: string = '') {
+  loadEntryLogs(searchKeyword: string = '') {
     this.loading = true;
-  
+
     this.entryLogService.getEntryLogs().subscribe(
       (data: any[]) => {
         console.log(data);
@@ -107,7 +107,7 @@ export class EntryLogsComponent implements OnInit{
           : data;
           
           console.log('Kết quả đã lọc:', filteredEntryLogs);
-  
+
         this.total = filteredEntryLogs.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
@@ -129,12 +129,12 @@ export class EntryLogsComponent implements OnInit{
   }
 
   countVehiclesByType(vehicleType: CardGroupVehicleType, logs: any[]): number {
-  return logs.filter(log => {
-    const card = this.cards.find(c => c.id === log.cardId);
-    const cardGroup = card ? this.cardGroups.find(cg => cg.id === card.cardGroupId) : null;
-    return cardGroup && cardGroup.vehicleType === vehicleType;
-  }).length;
-}
+    return logs.filter(log => {
+      const card = this.cards.find(c => c.id === log.cardId);
+      const cardGroup = card ? this.cardGroups.find(cg => cg.id === card.cardGroupId) : null;
+      return cardGroup && cardGroup.vehicleType === vehicleType;
+    }).length;
+  }
 
 
   loadCards() {
@@ -162,8 +162,8 @@ export class EntryLogsComponent implements OnInit{
   }
 
   getCardNameById(cardId: number): string {
-  const card = this.cards.find(c => c.id === cardId);
-  return card ? card.name : '';
+    const card = this.cards.find(c => c.id === cardId);
+    return card ? card.name : '';
   }
 
   getCardCodeById(cardId: number): string {
@@ -177,11 +177,11 @@ export class EntryLogsComponent implements OnInit{
   }
 
   getVehicleTypeInfoByCardGroupId(cardGroupId: number): { label: string; color: string } | null {
-  const cardGroup = this.cardGroups.find(g => g.id === cardGroupId);
-  if (!cardGroup) return null;
+    const cardGroup = this.cardGroups.find(g => g.id === cardGroupId);
+    if (!cardGroup) return null;
 
-  return this.vehicleTypes.find(v => v.value === cardGroup.vehicleType) || null;
-}
+    return this.vehicleTypes.find(v => v.value === cardGroup.vehicleType) || null;
+  }
 
 
   getCustomerNameById(customerId: number): string {

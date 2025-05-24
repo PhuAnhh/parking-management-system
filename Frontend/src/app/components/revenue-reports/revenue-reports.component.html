@@ -1,272 +1,183 @@
 <nz-layout class="layout">
-    <nz-sider nzwidth="236px" class="menu-sidebar show-for-large" style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
-      <div class="logo">
-        <img src="../../../assets/images/logo/logo.png" alt="Logo">
-      </div>
-      <div class="custom-dark-menu">
-        <ul nz-menu nzTheme="dark" nzMode="inline">
-          <li nz-submenu nzTitle="Quản lý bãi xe">
-            <ul>
-              <li nz-menu-item [routerLink]="'/dashboard'">
-                <span nz-icon nzType="dashboard" nzTheme="fill"></span>
-                <span>Trang chủ</span>
-              </li>
-              <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
-                <ul>
-                  <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
-                  <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
-                  <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
-                  <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý khách hàng">
-            <ul>
-              <li nz-menu-item [routerLink]="'/customer-groups'">
-                <span nz-icon nzType="github" nzTheme="fill"></span>
-                <span>Nhóm khách hàng</span> 
-              </li>
-              <li nz-menu-item [routerLink]="'/customers'">
-                <span nz-icon nzType="gitlab" nzTheme="fill"></span>
-                <span>Khách hàng</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý thẻ">
-            <ul>
-              <li nz-menu-item [routerLink]="'/card-groups'">
-                <span nz-icon nzType="apple" nzTheme="fill"></span>
-                <span>Nhóm thẻ</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/cards'">
-                <span nz-icon nzType="android" nzTheme="fill"></span>
-                <span>Thẻ</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý thiết bị">
-            <ul>
-              <li nz-menu-item [routerLink]="'/gates'">
-                <span nz-icon nzType="bank" nzTheme="fill"></span>
-                <span>Cổng</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/computers'">
-                <span nz-icon nzType="laptop" nzTheme="outline"></span>
-                <span>Máy tính</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/cameras'">
-                <span nz-icon nzType="camera" nzTheme="fill"></span>
-                <span>Camera</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/control_units'">
-                <span nz-icon nzType="control" nzTheme="fill"></span>
-                <span>Bộ điều khiển</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/lanes'">
-                <span nz-icon nzType="sliders" nzTheme="fill"></span>
-                <span>Làn</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/leds'">
-                <span nz-icon nzType="bulb" nzTheme="fill"></span>
-                <span>Led</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý tài khoản">
-            <ul>
-              <li nz-menu-item>
-                <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
-                <span>Quyền hạn</span>
-              </li>
-              <li nz-menu-item>
-                <span nz-icon nzType="team" nzTheme="outline"></span>
-                <span>Nhóm người dùng</span>
-              </li>
-              <li nz-menu-item>
-                <span nz-icon nzType="user" nzTheme="outline"></span>
-                <span>Người dùng</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-menu-item>
-            <span class="custom-icon">
-              <img src="../../../assets/images/logo/ic-cms.svg" width="20px" alt="CMS">
-            </span>
-            <span style="color: #f15922; font-weight: 900; margin-left: 10px;">i</span>
-            <span style="color: #6abcff; font-weight: bold;">Parking</span>
-          </li>
-        </ul>
+  <nz-sider 
+    nzwidth="236px" 
+    class="menu-sidebar show-for-large" 
+    style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;"
+  >
+    <div class="logo">
+      <img src="../../../assets/images/logo/logo.png" alt="Logo">
+    </div>
+    <div class="custom-dark-menu">
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-submenu nzTitle="Quản lý bãi xe">
+          <ul>
+            <li nz-menu-item [routerLink]="'/dashboard'">
+              <span nz-icon nzType="dashboard" nzTheme="fill"></span>
+              <span>Trang chủ</span>
+            </li>
+            <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
+              <ul>
+                <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
+                <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
+                <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
+                <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Quản lý khách hàng">
+          <ul>
+            <li nz-menu-item [routerLink]="'/customer-groups'">
+              <span nz-icon nzType="github" nzTheme="fill"></span>
+              <span>Nhóm khách hàng</span> 
+            </li>
+            <li nz-menu-item [routerLink]="'/customers'">
+              <span nz-icon nzType="gitlab" nzTheme="fill"></span>
+              <span>Khách hàng</span>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Quản lý thẻ">
+          <ul>
+            <li nz-menu-item [routerLink]="'/card-groups'">
+              <span nz-icon nzType="apple" nzTheme="fill"></span>
+              <span>Nhóm thẻ</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/cards'">
+              <span nz-icon nzType="android" nzTheme="fill"></span>
+              <span>Thẻ</span>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Quản lý thiết bị">
+          <ul>
+            <li nz-menu-item [routerLink]="'/gates'">
+              <span nz-icon nzType="bank" nzTheme="fill"></span>
+              <span>Cổng</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/computers'">
+              <span nz-icon nzType="laptop" nzTheme="outline"></span>
+              <span>Máy tính</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/cameras'">
+              <span nz-icon nzType="camera" nzTheme="fill"></span>
+              <span>Camera</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/control_units'">
+              <span nz-icon nzType="control" nzTheme="fill"></span>
+              <span>Bộ điều khiển</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/lanes'">
+              <span nz-icon nzType="sliders" nzTheme="fill"></span>
+              <span>Làn</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/leds'">
+              <span nz-icon nzType="bulb" nzTheme="fill"></span>
+              <span>Led</span>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Quản lý tài khoản">
+          <ul>
+            <li nz-menu-item>
+              <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
+              <span>Quyền hạn</span>
+            </li>
+            <li nz-menu-item>
+              <span nz-icon nzType="team" nzTheme="outline"></span>
+              <span>Nhóm người dùng</span>
+            </li>
+            <li nz-menu-item>
+              <span nz-icon nzType="user" nzTheme="outline"></span>
+              <span>Người dùng</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
     </nz-sider>
     <nz-layout class="ant-layout right-layout">
       <nz-header class="ant-layout-header">
-          <div>
-            <button nz-button nzType="primary" class="ant-btn1">
-              <span nz-icon nzType="search" style="color: #637381;">
-              </span>
-              <span style="color:#637381 ;">Tìm kiếm thư mục</span>
-            </button>
-          </div>
-          <div>
-            <span style="margin-right: 15px;" nz-dropdown nzplacement="bottomRight">Admin</span>
-          </div>
+        <div>
+          <button nz-button nzType="primary" class="ant-btn1">
+            <span nz-icon nzType="search" style="color: #637381;">
+            </span>
+            <span style="color:#637381 ;">Tìm kiếm thư mục</span>
+          </button>
+        </div>
+        <div>
+          <span style="margin-right: 15px;" nz-dropdown nzplacement="bottomRight">Admin</span>
+        </div>
       </nz-header>
       <nz-content>
         <nz-breadcrumb>
-          <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
+          <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
             <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
               <span>Quản lý bãi xe</span>
               <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
             </div>
             <nz-breadcrumb-item>
               <span class="ant-breadcrumb-link">
-                <a href="/#/gates">Sự kiện cảnh báo</a>
+                <a href="/#/revenue-reports">Báo cáo doanh thu</a>
               </span>
             </nz-breadcrumb-item>
           </div>
         </nz-breadcrumb>
         <div class="inner-content">
-            <nz-card class="ant-card card-wrapper-content">
-                <div class="ant-card-body" style="padding: 24px 0px;"> 
-                    <nz-row [nzGutter]="12" class="ant-row filter-row" style="margin: -12px -6px;">
-                        <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
-                            <fieldset>
-                                <label for="keyword"class="input-label" style="color: #0c68e9;">Nhóm thẻ</label>
-                                <nz-select nzMode="default" nzPlaceHolder="Nhóm thẻ" id="keyword" style="width: 100%;">
-                                    <nz-option></nz-option>
-                                </nz-select>
-                            </fieldset>
-                        </nz-col>
-                        <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
-                            <fieldset>
-                                <label for="time" class="input-label" style="color: #0c68e9;">Phạm vi thời gian</label>
-                                <nz-range-picker [(ngModel)]="defaultRange" nzShowTime nzFormat="dd/MM/yyyy HH:mm:ss" style="width: 100%;"></nz-range-picker>
-                            </fieldset>
-                        </nz-col>
-                        <nz-col class="ant-col" style="padding: 12px 6px; display: flex; justify-content: flex-end;">
-                          <table-action>
-                            <div nz-row class="ant-row">  
-                              <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                                <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap" style="width: 100%; gap: 6px;">
-                                  <button nz-button nzType="text" class="ant-btn load-btn ant-btn-text">
-                                    <span nz-icon class="anticon">
-                                      <fa-icon class="ng-fa-icon">
-                                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                 
-                                      </fa-icon>
-                                    </span>
-                                    <span>Tải lại</span>
-                                  </button> 
-                                </div>
-                              </div>
-                            </div>
-                          </table-action>
-                        </nz-col>                        
-                    </nz-row>
-                    <nz-table 
-                        nzBordered
-                    >
-                    <!-- #gateTable
-                      [nzData]="gates"
-                      [nzTotal]="total"
-                      [nzPageSize]="pageSize"
-                      [nzPageIndex]="pageIndex"
-                      [nzFrontPagination]="false"
-                      [nzShowSizeChanger]="true"
-                      [nzPageSizeOptions]="[10, 20, 30, 40]"
-                      [nzShowTotal]="paginationTemplate"
-                      (nzQueryParams)="onQueryParamsChange($event)"
-                      [nzLoading]="loading" -->
-                      <thead>
-                        <tr>
-                          <th style="width: 60px; min-width: 60px; text-align: center">#</th>
-                          <th>Nhóm thẻ</th>
-                          <th style="text-align: right;">Số lượt ra</th>
-                          <th style="text-align: right;">Doanh thu</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr style="background-color: #6abcff; color: white;">
-                            <td colspan="2">Tổng số</td>
-                            <td nzellipsis nzalign="right" style="text-align: right;">0</td>
-                            <td nzellipsis nzalign="right" style="text-align: right;">0</td>
-                        </tr>
-                        <!-- <tr *ngFor="let gate of gates; let i = index">
-                          <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
-                          <td>{{ gate.name }}</td>
-                          <td>{{ gate.code }}</td>
-                          <td style="text-align: center;">
-                            <i *ngIf="gate.status; else falseIcon" nz-icon nzType="check-circle" class="icon-green" style="font-size: 18px;"></i>
-                            <ng-template #falseIcon>
-                              <i nz-icon nzType="close-circle" class="icon-red" style="font-size: 18px;"></i>
-                            </ng-template>
-                          </td>
-                          <td style="text-align: center;">
-                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateGate(gate.id)">
-                              <span nz-icon nzType="edit" nzTheme="outline"></span>
-                            </button>
-                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteGate(gate.id)">
-                              <span nz-icon nzType="delete" nzTheme="outline"></span>
-                            </button>
-                            <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="gate.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleGateStatus(gate.id)">
-                              <span nz-icon [nzType]="gate.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
-                            </button>
-                          </td>
-                        </tr> -->
-                      </tbody>
-                      <ng-template #paginationTemplate>
-                        <!-- Tổng số {{ total }} dữ liệu -->
-                      </ng-template>
-                    </nz-table>
-                    
-                </div>
-            </nz-card>
+          <nz-card class="ant-card card-wrapper-content">
+            <div class="ant-card-body" style="padding: 24px 0px;"> 
+              <nz-row [nzGutter]="12" class="ant-row filter-row" style="margin: -12px -6px;">
+                <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
+                  <fieldset>
+                    <label for="keyword"class="input-label" style="color: #0c68e9;">Nhóm thẻ</label>
+                    <nz-select 
+                      [(ngModel)]="selectedCardGroupId" 
+                      (ngModelChange)="onCardGroupChange()"
+                      nzPlaceHolder="Nhóm thẻ" 
+                      id="cardGroupSelect" 
+                      [nzAllowClear]="true"
+                      style="width: 100%;">
+                      <nz-option *ngFor="let group of cardGroups" [nzValue]="group.id" [nzLabel]="group.name"></nz-option>
+                    </nz-select>
+                  </fieldset>
+                </nz-col>
+                <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
+                  <fieldset>
+                    <label for="time" class="input-label" style="color: #0c68e9;">Phạm vi thời gian</label>
+                    <nz-range-picker [(ngModel)]="defaultRange" nzShowTime nzFormat="dd/MM/yyyy HH:mm:ss" style="width: 100%;"></nz-range-picker>
+                  </fieldset>
+                </nz-col>           
+              </nz-row>
+              <nz-table 
+              [nzData]="revenueReports"
+              [nzLoading]="loading"
+              [nzPagination]="false"
+              [nzShowPagination]="false">
+              <thead>
+                <tr>
+                  <th style="width: 60px; min-width: 60px; text-align: center">#</th>
+                  <th>Nhóm thẻ</th>
+                  <th style="text-align: right;">Số lượt ra</th>
+                  <th style="text-align: right;">Doanh thu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let report of revenueReports; let i = index">
+                  <td style="text-align: center;">{{ i + 1 }}</td>
+                  <td>{{ getCardGroupNameById(report.cardGroupId) }}</td>
+                  <td style="text-align: right;">{{ report.exitCount }}</td>
+                  <td style="text-align: right;">{{ report.revenue | number:'1.0-2' }}</td>
+                </tr>
+                <tr style="background-color: #6abcff; color: white;">
+                  <td colspan="2">Tổng số</td>
+                  <td style="text-align: right;">{{ getTotalExitCount() }}</td>
+                  <td style="text-align: right;">{{ getTotalRevenue() | number:'1.0-2' }}</td>
+                </tr>
+              </tbody>
+              </nz-table>
+            </div>
+          </nz-card>
         </div>
       </nz-content>
     </nz-layout>
   </nz-layout>
-  
-
-  <!-- <nz-modal 
-  [nzContent]="addGateTpl" 
-  [(nzVisible)]="isAddModalVisible" 
-  nzTitle="Thêm mới Cổng" 
-  nzOktext="Lưu" 
-  nzCancelText="Hủy bỏ" 
-  (nzOnCancel)="handleCancel()" 
-  (nzOnOk)="handleOk()"
-  class="custom-modal"></nz-modal>
-  <ng-template #addGateTpl>
-    <form [formGroup]="gateForm"> 
-      <div class="form-group">
-        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên:</label>
-        <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
-      </div>
-      
-      <div class="form-group">
-        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã:</label>
-        <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-      </div>
-    </form>
-  </ng-template>
-  
-  <nz-modal [nzContent]="editGateTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Cổng" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
-  <ng-template #editGateTpl>
-    <form [formGroup]="editGateForm"> 
-      <div class="form-group">
-        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên:</label>
-        <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
-      </div>
-      
-      <div class="form-group">
-        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã:</label>
-        <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-      </div>
-
-      <div class="form-group">
-        <label for="gateStatus" style="margin-bottom: 10px;">Kích hoạt:</label>
-        <label nz-checkbox formControlName="status" style="margin-left: 10px;" ></label>
-      </div>
-    </form>
-  </ng-template>
-   -->

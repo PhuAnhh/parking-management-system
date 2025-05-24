@@ -25,9 +25,6 @@
   }
   
   nz-sider {
-    // overflow: auto;
-    // height: 100%;
-    // position: fixed;
     padding: 0px !important;
     top: 0;
   }
@@ -93,7 +90,6 @@
   }
   
   .ant-layout-header{
-    // background: #f0f2f5!important;
     height: 64px;
     color: rgba(0, 0, 0, .85);
     line-height: 64px;
@@ -130,12 +126,11 @@
     padding-left: 25px !important; // Báo cáo
   }
   
+  
   nz-header{
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-    // width: 100%;
-    // margin: 0 20px;
   }
   
   .ant-btn1{
@@ -144,14 +139,6 @@
     color: #637381;
     border-radius: 8px;
     margin-left: 15px;
-  }
-  
-  .ant-btn2{
-    background-color: rgba(145 158 171 / .08); 
-    border-color: rgba(145 158 171 / .08);
-    border-radius: 8px;
-    color: #637381;
-    margin-right: 30px;
   }
   
   .ant-row{
@@ -182,14 +169,6 @@
     align-items: center;
   }
   
-  .ant-card-head-tittle{
-    display: inline-block;
-    flex: 1;
-    padding: 16px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
   
   .ant-card-extra{
   float: right;
@@ -257,12 +236,6 @@
   display: flex;
   }
   
-  // .ant-col-xl-8{
-  // display: block;
-  // flex: 0 0 33.33333333%;
-  // max-width: 33.33333333%;
-  // }
-  
   .inner-content{
     background-color: #f0f2f5 !important;
     padding: 0 !important;
@@ -291,42 +264,6 @@
     padding-bottom: 24px;
   }
   
-  .ant-table table{
-    width: 100%;
-  }
-  .ant-input-group{
-    padding: 0;
-    line-height: 1.5715;
-    list-style: none;
-    font-feature-settings: "tnum";
-    display: table;
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    position: relative;
-    color: #000000d9;   
-    font-size: 14px;
-  }
-  
-  .ant-btn-text{
-    border-color: transparent;
-    background: 0 0;
-    box-shadow: none;
-    color: #141a21;
-  }
-  
-  .wrapper-table-action button{
-    padding: 4px 10px !important;
-    font-weight: 500 !important;
-    color: #1c252e;
-  }
-  
-  .ant-input-search{
-    left: -1px;
-    padding: 0;
-    border-radius: 20px;
-  }
-  
   .ant-card-body{
     height: 100%;
   }
@@ -335,138 +272,15 @@
     color: #fff !important;
     border-radius: 8px;
   }
-  
-  .ant-btn-primary{
-    // border-color: #0c68e9;
-    // background: #0c68e9;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
-    box-shadow: 0 2px #0000000b;
-  }
-  
-  .edit-btn{
-    background-color: #e6eaed;
-    color: #1c252e;
-    margin: 2px;
-    width: 27px;
-    height: 27px;
-    border-radius: 10px;
-    border: 2px solid #e6eaed;
-  }
-  
-  .edit-btn:hover{
-    background-color: #f6ffed;   /* nền xanh nhạt */
-    border-color: #52c41a;       /* viền xanh lá */
-    color: #52c41a; 
-  }
-  
-  .delete-btn{
-    background-color: #e6eaed;
-    color: #1c252e;
-    margin: 2px;
-    width: 27px;
-    height: 27px;
-    border-radius: 10px;
-    border: 2px solid #e6eaed;
-    transition: all 0.3s;
-  }
-  
-  .delete-btn:hover{
-    background-color: #fff1f0;   /* nền đỏ nhạt */
-    border-color: #fe8486;       /* viền đỏ */
-    color: #e57c7e;
-  }
-  
-  .enabled-btn,
-    .disabled-btn{
-      background-color: #e6eaed;
-      color: #1c252e;
-      margin: 2px;
-      width: 27px;
-      height: 27px;
-      border-radius: 10px;
-      border: 2px solid #e6eaed;
-      transition: all 0.3s;
-    }
-  
-    .enabled-btn:hover,
-    .disabled-btn:hover{
-      background-color: #f8fde2;
-      color: #eff300;
-      border-color: #f4f748;
-    }
-  
-  .ant-btn-icon-only>.anticon{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .pagination{
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-  }
-  
-  .gate-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 8px;
-    background: #f8f9fa;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+
   .form-group{
     margin-bottom: 15px;
-  }
-  
-  .ant-float-btn-top{
-    padding: 0 !important;
-  }
-  
-  .ant-float-btn-circle{
-    height: 40px;
-    border-radius: 50%;
-  }
-  
-  .ant-float-btn{
-    position: fixed;
-    z-index: 99;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    overflow: hidden;
-    border: none;
-    cursor: pointer;
-    inset-inline-end: 24px;
-    inset-block-end: 48px;
   }
   
   ::ng-deep .ant-modal-footer .ant-btn {
     border-radius: 8px !important;
   }
-  
-  ::ng-deep .ant-modal-content,
-    ::ng-deep .ant-modal-header {
-      border-radius: 8px !important;
-    }
-  
-    ::ng-deep .custom-delete-modal .ant-btn {
-      border-radius: 8px !important;
-    }
-    
-    ::ng-deep .custom-delete-modal .ant-modal-content {
-      border-radius: 8px !important;
-    }
-  
-  .icon-green {
-    color: #52c41a; 
-  }
-  
-  .icon-red {
-    color: #ff4d4f; 
-  }
-  
+
   #keyword.ant-input,
   .ant-input-search .ant-input-wrapper .ant-input {
     border-radius: 8px 0 0 8px !important;
@@ -504,14 +318,12 @@
     border-radius: 50% !important;
   }
   
-  .required-label::after {
-    content: ' *';
-    color: red;
-  }
-  
   ::ng-deep .ant-select-selection-placeholder {
     text-align: left !important; 
     left: 0 !important; 
   }
-  
+
+  ::ng-deep .ant-select-selection-item {
+  text-align: left !important;
+}
   

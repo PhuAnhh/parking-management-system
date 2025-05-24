@@ -18,7 +18,10 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<ExitLog>> GetAllAsync()
         {
-            return await _context.ExitLogs.ToListAsync();
+            return await _context.ExitLogs
+                .Include(e => e.EntryLog)
+                .ToListAsync();
+
         }
 
         public async Task<ExitLog> GetByIdAsync(int id)
