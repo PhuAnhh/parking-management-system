@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { EntryLogService } from '../../services/entry-log.service';
+import { ExitLogService } from '../../services/exit-log.service';
 import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
 import { LaneService } from '../../services/lane.service';
@@ -22,6 +23,8 @@ enum CardGroupVehicleType{
   styleUrl: './entry-logs.component.scss'
 })
 export class EntryLogsComponent implements OnInit{
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+
   entryLogs: any[] = [];
   cards: any[] = [];
   cardGroups: any[] = [];
@@ -31,17 +34,24 @@ export class EntryLogsComponent implements OnInit{
   pageSize = 10;
   total = 0;
   loading = true;
-  isAddModalVisible = false; 
-  isEditModalVisible = false; 
-  entryLogForm!: FormGroup; 
-  isVisible = false;
-  currentEntryLogId: number | null = null;
   searchKeyword: string = '';
+
+  isAddEntryModalVisible = false; 
+  isAddExitModalVisible = false;
+  
+  entryLogForm!: FormGroup; 
+  exitLogForm!: FormGroup;
+
+  selectedEntryLog: any = null;
 
   totalVehicles: number = 0;
   totalCars: number = 0;
   totalMotorbikes: number = 0;
   totalBicycles: number = 0;
+
+  videoElement!: HTMLVideoElement;
+  capturedImage: string | null = null;
+  cameraOn = false;
 
   vehicleTypes = [    
     { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: '#d46b08' },
@@ -51,6 +61,7 @@ export class EntryLogsComponent implements OnInit{
 
   constructor(
       private entryLogService: EntryLogService, 
+      private exitLogService: ExitLogService,
       private cardService: CardService, 
       private cardGroupService: CardGroupService,
       private laneService: LaneService,
@@ -92,6 +103,13 @@ export class EntryLogsComponent implements OnInit{
       entryTime: [null, [Validators.required]],
       imageUrl: [null],
       note: [null],
+    });
+
+    this.exitLogForm = this.fb.group({
+      exitPlateNumber: [null],
+      exitLaneId: [null, [Validators.required]],
+      note: [null, [Validators.required]],
+      // imageUrl: ['']
     });
   }
 
@@ -136,7 +154,6 @@ export class EntryLogsComponent implements OnInit{
     }).length;
   }
 
-
   loadCards() {
     this.cardService.getCards().subscribe(data => {
       this.cards = data;
@@ -161,6 +178,12 @@ export class EntryLogsComponent implements OnInit{
     });
   }
 
+  loadExitLogs(){
+    this.exitLogService.getExitLogs().subscribe(data => {
+      console.log('Exit logs loaded: ', data)
+    });
+  }
+
   getCardNameById(cardId: number): string {
     const card = this.cards.find(c => c.id === cardId);
     return card ? card.name : '';
@@ -182,7 +205,6 @@ export class EntryLogsComponent implements OnInit{
 
     return this.vehicleTypes.find(v => v.value === cardGroup.vehicleType) || null;
   }
-
 
   getCustomerNameById(customerId: number): string {
     const customer = this.customers.find(c => c.id === customerId);
@@ -219,12 +241,26 @@ export class EntryLogsComponent implements OnInit{
   }
 
   showAddEntryLogModal() {
-    this.isAddModalVisible = true;
+    this.isAddEntryModalVisible = true;
     this.entryLogForm.reset(); 
   }
 
+  showAddExitLogModal(entryLog?: any) {
+    this.selectedEntryLog = entryLog;
+    this.isAddExitModalVisible = true;
+    
+    this.exitLogForm.reset();
+    if (entryLog) {
+      this.exitLogForm.patchValue({
+        exitPlateNumber: entryLog.plateNumber
+      });
+    }
+  }
+
   handleCancel() {
-    this.isAddModalVisible = false;
+    this.isAddEntryModalVisible = false;
+    this.isAddExitModalVisible = false;
+    this.selectedEntryLog = null;
   }
 
   handleOk() {
@@ -241,7 +277,7 @@ export class EntryLogsComponent implements OnInit{
 
     this.entryLogService.addEntryLog(newEntryLog).subscribe(() => {
       this.loadEntryLogs();
-      this.isAddModalVisible = false; 
+      this.isAddEntryModalVisible = false; 
       this.notification.success(
         'Thành công',
         '',
@@ -263,6 +299,77 @@ export class EntryLogsComponent implements OnInit{
       )
     });
   }
+
+  handleExitOk() {
+    if (this.exitLogForm.invalid) {
+      this.notification.warning(
+        '',
+        'Vui lòng nhập đủ thông tin',
+        { nzDuration: 3000 }
+      );
+      return;
+    }
+
+    const formValue = this.exitLogForm.value;
+
+    const newExitLog = {
+      entryLogId: this.selectedEntryLog?.id,
+      exitPlateNumber: formValue.exitPlateNumber,
+      exitLaneId: formValue.exitLaneId,
+      note: formValue.note,
+    };
+
+    this.exitLogService.addExitLog(newExitLog).subscribe({
+      next: () => {
+        this.loadEntryLogs();
+        this.isAddExitModalVisible = false;
+        this.selectedEntryLog = null;
+        this.notification.success(
+          'Thành công',
+          'Ghi vé ra thành công',
+          {
+            nzPlacement: 'topRight',
+            nzDuration: 3000
+          }
+        );
+      },
+      error: (error) => {
+        console.error('Lỗi khi ghi vé ra:', error);
+        const message = error?.error?.message;
+
+        if (message === 'Exit lane is not allowed for this card group.') {
+          this.notification.error(
+            'Lỗi',
+            'Nhóm thẻ không được phép sử dụng làn này',
+            {
+              nzPlacement: 'topRight',
+              nzDuration: 3000
+            }
+          );
+        } else if (message === 'Exit lane is invalid or inactive.') {
+          this.notification.error(
+            'Lỗi',
+            'Làn đã bị vô hiệu hóa',
+            {
+              nzPlacement: 'topRight',
+              nzDuration: 3000
+            }
+          );
+        }
+        else {
+          this.notification.error(
+            'Lỗi',
+            '',
+            {
+              nzPlacement: 'topRight',
+              nzDuration: 3000
+            }
+          );
+        }
+      }
+    });
+  }
+
 
   deleteEntryLog(id: number) {
     this.modalService.confirm({
@@ -300,5 +407,63 @@ export class EntryLogsComponent implements OnInit{
         );
       }
     });
+  }
+
+  openCamera() {
+    if (this.cameraOn) {
+      // Tắt camera
+      const videoElem = this.videoPlayer?.nativeElement;
+      const stream = videoElem?.srcObject as MediaStream;
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        videoElem.srcObject = null;
+      }
+      this.cameraOn = false;
+      return;
+    }
+
+    // Bật camera và chờ DOM render videoPlayer
+    this.cameraOn = true;
+
+    setTimeout(() => {
+      if (!this.videoPlayer) {
+        console.error('videoPlayer chưa được khởi tạo');
+        return;
+      }
+
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(newStream => {
+          const videoElem = this.videoPlayer.nativeElement;
+          videoElem.srcObject = newStream;
+          videoElem.play();
+          console.log('Camera đã được bật');
+        })
+        .catch(err => {
+          console.error('Lỗi mở camera:', err);
+        });
+    });
+  }
+
+  captureImage() {
+    const video = this.videoPlayer.nativeElement;
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      this.capturedImage = canvas.toDataURL('image/png');
+
+      // Dừng camera sau khi chụp
+      const stream = video.srcObject as MediaStream;
+      stream?.getTracks().forEach(track => track.stop());
+      video.srcObject = null;
+    }
+  }
+
+  retakePhoto() {
+    this.capturedImage = null;
+    this.openCamera(); 
   }
 }

@@ -42,7 +42,7 @@ export class ExitLogsComponent implements OnInit{
   isVisible = false;
   currentEntryLogId: number | null = null;
   searchKeyword: string = '';
-    dashboardItems: DashboardItem[] = [];
+  dashboardItems: DashboardItem[] = [];
 
 
   vehicleTypes = [    

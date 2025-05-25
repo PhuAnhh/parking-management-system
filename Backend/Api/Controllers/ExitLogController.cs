@@ -38,8 +38,16 @@ namespace Final_year_Project.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ExitLogDto>> Create(CreateExitLogDto createExitLogDto)
         {
-            var createdExitLog = await _exitLogService.CreateAsync(createExitLogDto);
-            return CreatedAtAction(nameof(GetById), new { id = createdExitLog.Id }, createdExitLog);
+            try
+            {
+                var createdExitLog = await _exitLogService.CreateAsync(createExitLogDto);
+                return CreatedAtAction(nameof(GetById), new { id = createdExitLog.Id }, createdExitLog);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
+
     }
 }

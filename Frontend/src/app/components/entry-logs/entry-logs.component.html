@@ -452,7 +452,7 @@
                         </li>
                         <li nz-menu-item>
                           <div style="display: flex; align-items: center; gap: 3px; color: #0c68e9;"
-                          >
+                          (click)="showAddExitLogModal(entryLog)">
                             <span nz-icon nzType="check-square" nzTheme="fill"></span>
                             <span class="menu-text">Ghi vé ra</span>
                           </div>
@@ -472,7 +472,7 @@
 
 <nz-modal 
   [nzContent]="addEntryLogTpl" 
-  [(nzVisible)]="isAddModalVisible" 
+  [(nzVisible)]="isAddEntryModalVisible" 
   nzTitle="Ghi vé vào" 
   nzOktext="Lưu" 
   nzCancelText="Hủy bỏ" 
@@ -581,37 +581,45 @@
   </form>
 </ng-template>
 
-<!-- <nz-modal 
+<nz-modal 
   [nzContent]="addExitLogTpl" 
   [(nzVisible)]="isAddExitModalVisible" 
   nzTitle="Ghi vé ra" 
   nzOktext="Lưu" 
   nzCancelText="Hủy bỏ" 
   (nzOnCancel)="handleCancel()" 
-  (nzOnOk)="handleOk()"
-  class="custom-modal">
+  (nzOnOk)="handleExitOk()"
+  class="custom-modal"
+  nzWidth="700px">
 </nz-modal>
 
 <ng-template #addExitLogTpl>
   <form [formGroup]="exitLogForm"> 
-    <div nz-row [nzGutter]="16">
-      <div nz-col [nzSpan]="24">
-        <div class="form-group">
-          <label 
-            for="exitLogPlateNumber" 
-            class="required-label" 
-            style="margin-bottom: 10px;">
-            Biển số
-          </label>
-          <input 
-            id="exitLogPlateNumber" 
-            nz-input 
-            formControlName="plateNumber" 
-            placeholder="Nhập biển số xe"
-            style="border-radius: 8px;"/>
-        </div>
-      </div>
+    <div nz-row [nzGutter]="16" nzAlign="middle">
+  <div nz-col [nzSpan]="20">
+    <div class="form-group">
+      <label for="exitLogPlateNumber" style="margin-bottom: 10px;">
+        Biển số
+      </label>
+      <input 
+        id="exitLogPlateNumber" 
+        nz-input 
+        formControlName="exitPlateNumber" 
+        style="border-radius: 8px; width: 100%;" />
     </div>
+  </div>
+  <div nz-col [nzSpan]="4" style="text-align: center;">
+    <button style="border-radius: 8px; width: 100%; margin-top: 16px;"
+      nz-button
+      nzType="default"
+      (click)="openCamera()"
+      nzTooltipTitle="Mở camera"
+    >
+      <i nz-icon nzType="camera" nzTheme="outline"></i>
+    </button>
+  </div>
+</div>
+
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="24">
@@ -624,9 +632,9 @@
           </label>
           <nz-select 
             id="exitLogLane"
-            formControlName="laneId"
-            nzPlaceHolder="Chọn làn ra"
-            style="width: 100%; border-radius: 8px;">
+            formControlName="exitLaneId"
+            style="width: 100%; border-radius: 8px;"
+            nzAllowClear="true">
             <nz-option 
               *ngFor="let lane of lanes" 
               [nzValue]="lane.id" 
@@ -642,18 +650,34 @@
         <div class="form-group">
           <label 
             for="exitLogNote" 
+            class="required-label"
             style="margin-bottom: 10px;">
             Ghi chú
           </label>
-          <nz-textarea 
-            id="exitLogNote" 
-            formControlName="note"
-            placeholder="Nhập ghi chú (tùy chọn)"
-            [nzRows]="3"
-            style="border-radius: 8px;">
-          </nz-textarea>
+          <textarea 
+            nz-input 
+            formControlName="note" 
+            rows="2" 
+            style="border-radius: 8px; margin-bottom: 10px;">
+          </textarea>
         </div>
       </div>
     </div>
   </form>
-</ng-template> -->
+
+  <video
+    #videoPlayer
+    *ngIf="cameraOn && !capturedImage"
+    autoplay
+    muted
+    style="transform: scaleX(-1); border-radius: 8px; width: 100%; cursor: pointer;"
+    (click)="captureImage()"
+  ></video>
+
+  <img
+    *ngIf="capturedImage"
+    [src]="capturedImage"
+    style="width: 100%; border-radius: 8px; cursor: pointer; transform: scaleX(-1);"
+    (click)="retakePhoto()"
+  />
+</ng-template>

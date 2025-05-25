@@ -4,7 +4,9 @@
       "outDir": "./out-tsc/server",
       "target": "ES2022",
       "module": "NodeNext",
-      "types": [],
+      "types": [
+        "@angular/localize"
+      ],
       "moduleResolution": "NodeNext",
       "allowSyntheticDefaultImports": true
     },
