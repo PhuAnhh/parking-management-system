@@ -137,7 +137,11 @@
                       id="cardGroupSelect" 
                       [nzAllowClear]="true"
                       style="width: 100%;">
-                      <nz-option *ngFor="let group of cardGroups" [nzValue]="group.id" [nzLabel]="group.name"></nz-option>
+                      <nz-option 
+                        *ngFor="let group of cardGroups" 
+                        [nzValue]="group.id" 
+                        [nzLabel]="group.name">
+                      </nz-option>
                     </nz-select>
                   </fieldset>
                 </nz-col>

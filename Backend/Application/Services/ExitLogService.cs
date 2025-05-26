@@ -5,15 +5,19 @@ using Final_year_Project.Application.Repositories;
 using Final_year_Project.Application.Services.Abstractions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Final_year_Project.Application.Services
 {
     public class ExitLogService : IExitLogService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ExitLogService(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _env;
+
+        public ExitLogService(IUnitOfWork unitOfWork , IWebHostEnvironment env)
         {
             _unitOfWork = unitOfWork;
+            _env = env;
         }
 
         public async Task<IEnumerable<ExitLogDto>> GetAllAsync()
@@ -82,6 +86,13 @@ namespace Final_year_Project.Application.Services
 
         public async Task<ExitLogDto> CreateAsync(CreateExitLogDto createExitLogDto)
         {
+            // Xử lý lưu file ảnh base64 thành file và lấy đường dẫn mới
+            if (!string.IsNullOrEmpty(createExitLogDto.ImageUrl) && createExitLogDto.ImageUrl.StartsWith("data:image"))
+            {
+                var imageUrl = await SaveImageFileAsync(createExitLogDto.ImageUrl);
+                createExitLogDto.ImageUrl = imageUrl; // Gán lại URL ảnh để lưu vào DB
+            }
+
             if (createExitLogDto.EntryLogId <= 0)
                 throw new ArgumentException("EntryLogId is required.");
 
@@ -90,10 +101,21 @@ namespace Final_year_Project.Application.Services
             if (entryLog == null)
                 throw new Exception("Entry log not found.");
 
-            //Lấy CardGroup
+            // Lấy thông tin thẻ từ EntryLog
+            var card = await _unitOfWork.Cards.GetByIdAsync(entryLog.CardId);
+            if (card == null)
+                throw new Exception("Card not found.");
+
+            if (card.Status != CardStatus.Active)
+                throw new Exception("Card is not active.");
+
+            // Lấy CardGroup
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(entryLog.CardGroupId ?? 0);
             if (cardGroup == null)
                 throw new Exception("Card group not found.");
+
+            if (!cardGroup.Status)
+                throw new Exception("Card group is not active.");
 
             //Kiểm tra Lane ra trong CardGroup
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
@@ -147,16 +169,16 @@ namespace Final_year_Project.Application.Services
             // Xóa liên kết Card (Day) khi xe ra khỏi bãi
             if (exitLog.CardId > 0)
             {
-                var card = await _unitOfWork.Cards.GetByIdAsync(exitLog.CardId);
-                if (card != null)
+                var exitCard = await _unitOfWork.Cards.GetByIdAsync(exitLog.CardId);
+                if (exitCard != null)
                 {
-                    var cardGroupOfCard = await _unitOfWork.CardGroups.GetByIdAsync(card.CardGroupId);
+                    var cardGroupOfCard = await _unitOfWork.CardGroups.GetByIdAsync(exitCard.CardGroupId);
                     if (cardGroupOfCard != null && cardGroupOfCard.Type == CardGroupType.Day)
                     {
-                        card.CustomerId = null;
-                        card.Status = CardStatus.Inactive;
-                        card.UpdatedAt = DateTime.UtcNow;
-                        _unitOfWork.Cards.Update(card);
+                        exitCard.CustomerId = null;
+                        exitCard.Status = CardStatus.Inactive;
+                        exitCard.UpdatedAt = DateTime.UtcNow;
+                        _unitOfWork.Cards.Update(exitCard);
                     }
                 }
             }
@@ -247,6 +269,29 @@ namespace Final_year_Project.Application.Services
             }
 
             return totalPrice;
+        }
+
+        private async Task<string?> SaveImageFileAsync(string? base64Image)
+        {
+            if (string.IsNullOrEmpty(base64Image))
+                return null;
+
+            // Xử lý loại bỏ header "data:image/png;base64,"
+            var base64Data = Regex.Replace(base64Image, "^data:image/[^;]+;base64,", string.Empty);
+            var bytes = Convert.FromBase64String(base64Data);
+
+            var fileName = $"{Guid.NewGuid()}.png";
+            var imagesFolder = Path.Combine(_env.WebRootPath, "images");
+
+            if (!Directory.Exists(imagesFolder))
+                Directory.CreateDirectory(imagesFolder);
+
+            var filePath = Path.Combine(imagesFolder, fileName);
+
+            await File.WriteAllBytesAsync(filePath, bytes);
+
+            // Trả về đường dẫn relative cho FE dùng
+            return $"/images/{fileName}";
         }
     }
 }

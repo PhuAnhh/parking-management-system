@@ -9,6 +9,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { HttpClient } from '@angular/common/http';
 
 enum CardGroupVehicleType{
   CAR = 'Car',
@@ -53,6 +54,8 @@ export class EntryLogsComponent implements OnInit{
   capturedImage: string | null = null;
   cameraOn = false;
 
+  isFullScreenModalVisible = false;
+
   vehicleTypes = [    
     { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: '#d46b08' },
     { label: 'Xe máy', value: CardGroupVehicleType.MOTORBIKE, color: "#08979C" },
@@ -69,7 +72,8 @@ export class EntryLogsComponent implements OnInit{
       private cdr: ChangeDetectorRef,
       private modalService: NzModalService,
       private fb: FormBuilder,
-      private notification: NzNotificationService
+      private notification: NzNotificationService,
+      private http: HttpClient
     ) {
       this.initForm();
     }  
@@ -100,7 +104,6 @@ export class EntryLogsComponent implements OnInit{
       cardGroupId: [null, [Validators.required]],
       laneId: [null, [Validators.required]],
       customerId: [null],
-      entryTime: [null, [Validators.required]],
       imageUrl: [null],
       note: [null],
     });
@@ -109,7 +112,7 @@ export class EntryLogsComponent implements OnInit{
       exitPlateNumber: [null],
       exitLaneId: [null, [Validators.required]],
       note: [null, [Validators.required]],
-      // imageUrl: ['']
+      imageUrl: [null]
     });
   }
 
@@ -273,30 +276,69 @@ export class EntryLogsComponent implements OnInit{
       return;
     }
 
-    const newEntryLog = this.entryLogForm.value;
+    const formValue = this.entryLogForm.value;
 
-    this.entryLogService.addEntryLog(newEntryLog).subscribe(() => {
-      this.loadEntryLogs();
-      this.isAddEntryModalVisible = false; 
-      this.notification.success(
-        'Thành công',
-        '',
-        {
-          nzPlacement: 'topRight',
-          nzDuration: 3000
+    const newEntryLog = {
+      ...formValue,
+      imageUrl: this.capturedImage 
+    };
+
+    this.entryLogService.addEntryLog(newEntryLog).subscribe({
+      next: () => {
+        this.loadEntryLogs();
+        this.isAddEntryModalVisible = false; 
+
+        this.capturedImage = null;
+        this.cameraOn = false;
+
+        this.notification.success(
+          'Thành công',
+          'Ghi vé vào thành công',
+          {
+            nzPlacement: 'topRight',
+            nzDuration: 3000
+          }
+        );
+      },
+      error: (error) => {
+        console.error('Lỗi khi ghi vé vào:', error);
+        
+        const message = error?.error?.message || error?.message || '';
+        let errorMessage = 'Có lỗi xảy ra khi ghi vé vào';
+        
+        if (message.includes('Invalid plate number format')) {
+          errorMessage = 'Định dạng biển số xe không hợp lệ. Định dạng mong đợi như "30A12345"';
+        } else if (message.includes('Card not found')) {
+          errorMessage = 'Không tìm thấy thẻ';
+        } else if (message.includes('Card is not active')) {
+          errorMessage = 'Thẻ không hoạt động';
+        } else if (message.includes('Card group not found for the selected card group')) {
+          errorMessage = 'Không tìm thấy nhóm thẻ cho thẻ đã chọn';
+        } else if (message.includes('Card group is not active')) {
+          errorMessage = 'Nhóm thẻ không hoạt động';
+        } else if (message.includes('Lane is not allowed for the selected card group.')) {
+          errorMessage = 'Làn không được phép cho nhóm thẻ đã chọn';
+        } else if (message.includes('Lane not found')) {
+          errorMessage = 'Không tìm thấy làn';
+        } else if (message.includes('Lane is not active')) {
+          errorMessage = 'Làn không hoạt động';
+        } else if (message.includes('Card already in use - vehicle has not exited')) {
+          errorMessage = 'Thẻ đang được sử dụng - xe chưa ra khỏi bãi';
+        } else if (message.includes('Plate number is already in the parking lot')) {
+          errorMessage = 'Biển số xe đã có trong bãi đỗ';
+        } else if (message) {
+          errorMessage = message;
         }
-      )
-    },
-    (error) => {
-      console.error('Lỗi khi thêm xe vào bãi:', error);
-      this.notification.error(
-        'Lỗi',
-        '', 
-        {
-          nzPlacement: 'topRight',
-          nzDuration: 3000
-        }
-      )
+
+        this.notification.error(
+          'Lỗi',
+          errorMessage,
+          {
+            nzPlacement: 'topRight',
+            nzDuration: 5000
+          }
+        );
+      }
     });
   }
 
@@ -317,6 +359,7 @@ export class EntryLogsComponent implements OnInit{
       exitPlateNumber: formValue.exitPlateNumber,
       exitLaneId: formValue.exitLaneId,
       note: formValue.note,
+      imageUrl: this.capturedImage,
     };
 
     this.exitLogService.addExitLog(newExitLog).subscribe({
@@ -324,6 +367,9 @@ export class EntryLogsComponent implements OnInit{
         this.loadEntryLogs();
         this.isAddExitModalVisible = false;
         this.selectedEntryLog = null;
+        this.capturedImage = null;
+        this.cameraOn = false;
+        
         this.notification.success(
           'Thành công',
           'Ghi vé ra thành công',
@@ -335,45 +381,52 @@ export class EntryLogsComponent implements OnInit{
       },
       error: (error) => {
         console.error('Lỗi khi ghi vé ra:', error);
-        const message = error?.error?.message;
+        
+        const message = error?.error?.message || error?.message || '';
+        let errorMessage = 'Có lỗi xảy ra khi ghi vé ra';
 
-        if (message === 'Exit lane is not allowed for this card group.') {
-          this.notification.error(
-            'Lỗi',
-            'Nhóm thẻ không được phép sử dụng làn này',
-            {
-              nzPlacement: 'topRight',
-              nzDuration: 3000
-            }
-          );
-        } else if (message === 'Exit lane is invalid or inactive.') {
-          this.notification.error(
-            'Lỗi',
-            'Làn đã bị vô hiệu hóa',
-            {
-              nzPlacement: 'topRight',
-              nzDuration: 3000
-            }
-          );
+        if (message.includes('Entry log not found')) {
+          errorMessage = 'Không tìm thấy vé vào';
+        } else if (message.includes('Card not found')) {
+          errorMessage = 'Không tìm thấy thẻ';
+        } else if (message.includes('Card is not active')) {
+          errorMessage = 'Thẻ không hoạt động';
+        } else if (message.includes('Card group not found')) {
+          errorMessage = 'Không tìm thấy nhóm thẻ';
+        } else if (message.includes('Card group is not active')) {
+          errorMessage = 'Nhóm thẻ không hoạt động';
+        } else if (message.includes('Exit lane is not allowed for this card group')) {
+          errorMessage = 'Nhóm thẻ không cho phép làn ra này';
+        } else if (message.includes('Exit lane is invalid or inactive')) {
+          errorMessage = 'Làn ra không hoạt động';
+        } else if (message.includes('Entry lane is invalid or inactive')) {
+          errorMessage = 'Làn vào không hoạt động';
+        } else if (message.includes('Exit time must be after entry time')) {
+          errorMessage = 'Thời gian ra phải sau thời gian vào';
+        } else if (message) {
+          errorMessage = message;
         }
-        else {
-          this.notification.error(
-            'Lỗi',
-            '',
-            {
-              nzPlacement: 'topRight',
-              nzDuration: 3000
-            }
-          );
-        }
+
+        this.notification.error(
+          'Lỗi',
+          errorMessage,
+          {
+            nzPlacement: 'topRight',
+            nzDuration: 5000
+          }
+        );
       }
     });
   }
 
-
   deleteEntryLog(id: number) {
     this.modalService.confirm({
       nzTitle:'Bạn có chắc chắn muốn xóa?',
+      nzContent: `
+        <div class="delete-warning-text">
+          LƯU Ý: Bạn sẽ không thể hoàn tác khi xóa sự kiện
+        </div>
+      `,
       nzMaskClosable: true,
       nzOkText: 'Xóa',
       nzOkType: 'primary',
@@ -452,10 +505,12 @@ export class EntryLogsComponent implements OnInit{
 
     const ctx = canvas.getContext('2d');
     if (ctx) {
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      this.capturedImage = canvas.toDataURL('image/png');
+      const base64Image = canvas.toDataURL('image/png');
+      this.capturedImage = base64Image;
 
-      // Dừng camera sau khi chụp
       const stream = video.srcObject as MediaStream;
       stream?.getTracks().forEach(track => track.stop());
       video.srcObject = null;
@@ -465,5 +520,22 @@ export class EntryLogsComponent implements OnInit{
   retakePhoto() {
     this.capturedImage = null;
     this.openCamera(); 
+  }
+
+  onCardChange(cardId: number): void {
+    const selectedCard = this.cards.find(card => card.id === cardId);
+
+    this.entryLogForm.patchValue({
+      cardGroupId: selectedCard?.cardGroupId || null,
+      customerId: selectedCard?.customerId || null
+    });
+  }
+
+  openFullScreenModal(): void {
+    this.isFullScreenModalVisible = true;
+  }
+
+  handleCancel1(): void {
+    this.isFullScreenModalVisible = false;
   }
 }

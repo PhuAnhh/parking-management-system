@@ -455,6 +455,11 @@
     ::ng-deep .custom-delete-modal .ant-modal-content {
       border-radius: 8px !important;
     }
+
+    ::ng-deep .delete-warning-text {
+      color: #ff4d4f; 
+      font-style: italic;
+    }
   
   .icon-green {
     color: #52c41a; 
@@ -579,3 +584,28 @@
       margin: 0;
     }
   }
+
+  ::ng-deep .dark-modal {
+  .ant-modal-content {
+    background-color: #252525 !important;
+    color: white;
+  }
+  
+  .ant-modal-header {
+    background-color: #252525 !important;
+    border-bottom: 1px solid #434343;
+    
+    .ant-modal-title {
+      color: white !important;
+    }
+  }
+  
+  .ant-modal-body {
+    background-color: #252525 !important;
+    color: white;
+  }
+  
+  .ant-modal-close {
+    color: white !important;
+  }
+}

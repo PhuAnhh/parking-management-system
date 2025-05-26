@@ -5,15 +5,19 @@ using Final_year_Project.Application.Repositories;
 using Final_year_Project.Application.Services.Abstractions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Final_year_Project.Application.Services
 {
     public class EntryLogService : IEntryLogService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public EntryLogService(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _env;
+
+        public EntryLogService(IUnitOfWork unitOfWork, IWebHostEnvironment env)
         {
             _unitOfWork = unitOfWork;
+            _env = env;
         }
 
         public async Task<IEnumerable<EntryLogDto>> GetAllAsync()
@@ -67,6 +71,13 @@ namespace Final_year_Project.Application.Services
 
         public async Task<EntryLogDto> CreateAsync(CreateEntryLogDto createEntryLogDto)
         {
+            // Xử lý lưu file ảnh base64 thành file và lấy đường dẫn mới
+            if (!string.IsNullOrEmpty(createEntryLogDto.ImageUrl) && createEntryLogDto.ImageUrl.StartsWith("data:image"))
+            {
+                var imageUrl = await SaveImageFileAsync(createEntryLogDto.ImageUrl);
+                createEntryLogDto.ImageUrl = imageUrl; // Gán lại URL ảnh để lưu vào DB
+            }
+
             if (string.IsNullOrEmpty(createEntryLogDto.PlateNumber))
                 throw new ArgumentException("Plate number is required.");
             if (createEntryLogDto.CardId <= 0)
@@ -192,6 +203,29 @@ namespace Final_year_Project.Application.Services
             // - 1-2 số + 1 chữ cái + 5 số (30A12345)
             var regex = new System.Text.RegularExpressions.Regex(@"^\d{1,2}[A-Z]\d{5}$");
             return regex.IsMatch(plateNumber);
+        }
+
+        private async Task<string?> SaveImageFileAsync(string? base64Image)
+        {
+            if (string.IsNullOrEmpty(base64Image))
+                return null;
+
+            // Xử lý loại bỏ header "data:image/png;base64,"
+            var base64Data = Regex.Replace(base64Image, "^data:image/[^;]+;base64,", string.Empty);
+            var bytes = Convert.FromBase64String(base64Data);
+
+            var fileName = $"{Guid.NewGuid()}.png";
+            var imagesFolder = Path.Combine(_env.WebRootPath, "images");
+
+            if (!Directory.Exists(imagesFolder))
+                Directory.CreateDirectory(imagesFolder);
+
+            var filePath = Path.Combine(imagesFolder, fileName);
+
+            await File.WriteAllBytesAsync(filePath, bytes);
+
+            // Trả về đường dẫn relative cho FE dùng
+            return $"/images/{fileName}";
         }
     }
 }

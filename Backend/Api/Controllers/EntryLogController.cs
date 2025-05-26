@@ -38,8 +38,16 @@ namespace Final_year_Project.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<EntryLogDto>> Create(CreateEntryLogDto createEntryLogDto)
         {
-            var createdEntryLog = await _entryLogService.CreateAsync(createEntryLogDto);
-            return CreatedAtAction(nameof(GetById), new { id = createdEntryLog.Id }, createdEntryLog);
+            try
+            {
+                var createdEntryLog = await _entryLogService.CreateAsync(createEntryLogDto);
+                return CreatedAtAction(nameof(GetById), new { id = createdEntryLog.Id }, createdEntryLog);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+
         }
 
         [HttpDelete("{id}")]
