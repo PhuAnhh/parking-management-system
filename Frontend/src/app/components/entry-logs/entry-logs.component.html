@@ -294,10 +294,10 @@
         <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 12px;">
           <div class="ant-card-body" style="padding: 24px 0px;"> 
             <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
-              <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
+              <nz-col [nzSpan]="4" style="padding: 12px 6px;">
                 <fieldset>
                   <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                  <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
+                  <nz-input-group nzSearch class="ant-input-search ant-input-group-wrapper">
                     <span class="ant-input-wrapper ant-input-group">
                       <input 
                         type="text" 
@@ -320,49 +320,60 @@
                   </nz-input-group>
                 </fieldset>
               </nz-col>
-              
-              <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
-                <table-action>
-                  <div nz-row class="ant-row">  
-                    <div 
-                      nz-col 
-                      nzxl="24" 
-                      nzlg="24" 
-                      nzmd="0" 
-                      nzsm="0" 
-                      nzxs="0" 
-                      class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                      <div 
-                        nz-flex 
-                        nzgap="6px" 
-                        class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap" 
-                        style="width: 100%; height: 100%; gap: 6px; flex: unset;">
-                        <button 
-                          (click)="loadEntryLogs()" 
-                          nz-button 
-                          nztype="text" 
-                          class="ant-btn load-btn ant-btn-text">
-                          <span nz-icon class="anticon">
-                            <fa-icon class="ng-fa-icon">
-                              <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
-                            </fa-icon>
-                          </span>
-                          <span class="">Tải lại</span>
-                        </button>
-                        <nz-divider class="ant-divider ant-divider-vertical"></nz-divider>
-                        <button 
-                          (click)="showAddEntryLogModal()" 
-                          nz-button 
-                          nzType="primary" 
-                          class="add-btn" 
-                          style="display: flex; align-items: center;">
-                          <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
-                          <span>Ghi vé vào</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </table-action>
+
+              <nz-col [nzSpan]="4" style="padding: 12px 6px;">
+                <fieldset>
+                  <label class="input-label" style="color: #0c68e9;">Nhóm thẻ</label>
+                  <nz-select [(ngModel)]="selectedCardGroupId" (ngModelChange)="onCardGroupChange()" nzPlaceHolder="Nhóm thẻ" [nzAllowClear]="true" style="width: 100%;">
+                    <nz-option *ngFor="let group of cardGroups" [nzValue]="group.id" [nzLabel]="group.name"></nz-option>
+                  </nz-select>
+                </fieldset>
+              </nz-col>
+
+              <nz-col [nzSpan]="4" style="padding: 12px 6px;">
+                <fieldset>
+                  <label class="input-label" style="color: #0c68e9;">Làn</label>
+                  <nz-select [(ngModel)]="selectedLaneId" (ngModelChange)="onLaneChange()" nzPlaceHolder="Làn" [nzAllowClear]="true" style="width: 100%;">
+                    <nz-option *ngFor="let lane of lanes" [nzValue]="lane.id" [nzLabel]="lane.name"></nz-option>
+                  </nz-select>
+                </fieldset>
+              </nz-col>
+
+              <nz-col [nzSpan]="7" style="padding: 12px 6px;">
+                <label for="entryTime" class="input-label" style="color: #0c68e9;">Ngày giờ vào</label>
+                <nz-range-picker 
+                  [nzShowTime]="true"
+                  [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
+                  nzFormat="dd/MM/yyyy HH:mm:ss" 
+                  style="width: 100%;">
+                </nz-range-picker>
+              </nz-col>
+
+              <nz-col [nzSpan]="5" style="padding: 12px 6px;">
+                <div nz-row nzJustify="end" nzAlign="middle" style="height: 100%;">
+                  <button 
+                    (click)="loadEntryLogs()" 
+                    nz-button 
+                    nzType="text" 
+                    class="ant-btn load-btn ant-btn-text">
+                    <span nz-icon class="anticon">
+                      <fa-icon class="ng-fa-icon">
+                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
+                      </fa-icon>
+                    </span>
+                    <span>Tải lại</span>
+                  </button>
+                  <nz-divider class="ant-divider ant-divider-vertical"></nz-divider>
+                  <button 
+                    (click)="showAddEntryLogModal()" 
+                    nz-button 
+                    nzType="primary" 
+                    class="add-btn" 
+                    style="display: flex; align-items: center;">
+                    <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
+                    <span>Ghi vé vào</span>
+                  </button>
+                </div>
               </nz-col>
             </nz-row>
             
@@ -594,7 +605,7 @@
             style="width: 100%; border-radius: 8px;"
             nzAllowClear="true">
             <nz-option 
-              *ngFor="let lane of lanes" 
+              *ngFor="let lane of filteredEntryLanes"
               [nzValue]="lane.id" 
               [nzLabel]="lane.name">
             </nz-option>
@@ -774,6 +785,9 @@
         nz-flex
         nzalign="center"
       >
+        <nz-image-group nz-flex nzalign="center" nzjustify="center">
+          <img nz-image alt style="height: 60vh;" src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        </nz-image-group>
       </div>
       <div
         nz-col
@@ -783,9 +797,37 @@
         nzsm="24"
         nzxs="24"
       >
-        <div style="background-color: rgb(37, 37, 37); padding: 20px; border-radius: 8px;">
+        <div style="background-color: rgb(37, 37, 37); padding-left:  10px; padding-right: 10px; border: 2px solid #202020;">
           <p>Chi tiết</p>
           <div>
+            <div nz-row>
+              <span nz-icon nzType="car" nzTheme="fill"></span>
+              <div>
+                <span>Biển số</span>
+                <span>29C1</span>
+              </div>
+            </div>
+            <div nz-row>
+              <span nz-icon nzType="car" nzTheme="fill"></span>
+              <div>
+                <span>Ngày tạo</span>
+                <span>29C1</span>
+              </div>
+            </div>
+            <div nz-row>
+              <span nz-icon nzType="car" nzTheme="fill"></span>
+              <div>
+                <span>Làn</span>
+                <span>29C1</span>
+              </div>
+            </div>
+            <div nz-row>
+              <span nz-icon nzType="car" nzTheme="fill"></span>
+              <div>
+                <span>Thẻ</span>
+                <span>29C1</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -151,10 +151,11 @@
         <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 24px;">
           <div class="ant-card-body" style="padding: 24px 0px;"> 
             <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
-              <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
+
+              <nz-col [nzSpan]="6" style="padding: 12px 6px;">
                 <fieldset>
                   <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                  <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
+                  <nz-input-group nzSearch class="ant-input-search ant-input-group-wrapper">
                     <span class="ant-input-wrapper ant-input-group">
                       <input 
                         type="text" 
@@ -177,42 +178,72 @@
                   </nz-input-group>
                 </fieldset>
               </nz-col>
-              
-              <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
-                <table-action>
-                  <div nz-row class="ant-row">  
-                    <div 
-                      nz-col 
-                      nzxl="24" 
-                      nzlg="24" 
-                      nzmd="0" 
-                      nzsm="0" 
-                      nzxs="0" 
-                      class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                      <div 
-                        nz-flex 
-                        nzgap="6px" 
-                        class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap" 
-                        style="width: 100%; height: 100%; gap: 6px; flex: unset;">
-                        <button 
-                          (click)="loadExitLogs()" 
-                          nz-button 
-                          nztype="text" 
-                          class="ant-btn load-btn ant-btn-text">
-                          <span nz-icon class="anticon">
-                            <fa-icon class="ng-fa-icon">
-                              <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
-                            </fa-icon>
-                          </span>
-                          <span class="">Tải lại</span>
-                        </button> 
-                      </div>
-                    </div>
-                  </div>
-                </table-action>
+
+              <nz-col [nzSpan]="4" style="padding: 12px 6px;">
+                <fieldset>
+                  <label class="input-label" style="color: #0c68e9;">Nhóm thẻ</label>
+                  <nz-select 
+                    [(ngModel)]="selectedCardGroupId" 
+                    (ngModelChange)="onCardGroupChange()"
+                    nzAllowClear 
+                    nzPlaceHolder="Nhóm thẻ" 
+                    style="width: 100%;">
+                    <nz-option 
+                      *ngFor="let group of cardGroups" 
+                      [nzValue]="group.id" 
+                      [nzLabel]="group.name">
+                    </nz-option>
+                  </nz-select>
+                </fieldset>
+              </nz-col>
+
+              <nz-col [nzSpan]="4" style="padding: 12px 6px;">
+                <fieldset>
+                  <label class="input-label" style="color: #0c68e9;">Làn</label>
+                  <nz-select 
+                    [(ngModel)]="selectedLaneId" 
+                    (ngModelChange)="onLaneChange()"
+                    nzAllowClear 
+                    nzPlaceHolder="Làn" 
+                    style="width: 100%;">
+                    <nz-option 
+                      *ngFor="let lane of lanes" 
+                      [nzValue]="lane.id" 
+                      [nzLabel]="lane.name">
+                    </nz-option>
+                  </nz-select>
+                </fieldset>
+              </nz-col>
+
+              <nz-col [nzSpan]="7" style="padding: 12px 6px;">
+                <label for="entryTime" class="input-label" style="color: #0c68e9;">Ngày giờ ra</label>
+                <nz-range-picker 
+                  [nzShowTime]="true"
+                  [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
+                  nzFormat="dd/MM/yyyy HH:mm:ss" 
+                  style="width: 100%;">
+                </nz-range-picker>
+              </nz-col>
+
+              <nz-col [nzSpan]="3" style="padding: 12px 6px;">
+                <div 
+                  style="display: flex; height: 100%; align-items: end; justify-content: end;">
+                  <button 
+                    (click)="loadExitLogs()" 
+                    nz-button 
+                    nzType="text" 
+                    class="ant-btn load-btn ant-btn-text">
+                    <span nz-icon>
+                      <fa-icon>
+                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">
+                      </fa-icon>
+                    </span>
+                    <span>Tải lại</span>
+                  </button>
+                </div>
               </nz-col>
             </nz-row>
-            
+
             <nz-table
               #customerTable
               [nzData]="exitLogs"

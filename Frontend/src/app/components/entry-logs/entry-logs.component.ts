@@ -17,6 +17,13 @@ enum CardGroupVehicleType{
   BICYCLE = 'Bicycle'
 }
 
+enum LaneType {
+  IN = 'In',
+  OUT = 'Out', 
+  KIOSKIN = 'KioskIn',
+  DYNAMIC = 'Dynamic'
+}
+
 @Component({
   selector: 'app-entry-logs',
   standalone: false,
@@ -24,6 +31,7 @@ enum CardGroupVehicleType{
   styleUrl: './entry-logs.component.scss'
 })
 export class EntryLogsComponent implements OnInit{
+  
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
 
   entryLogs: any[] = [];
@@ -31,19 +39,24 @@ export class EntryLogsComponent implements OnInit{
   cardGroups: any[] = [];
   lanes: any[] = [];
   customers: any[] = [];
+
   pageIndex = 1;
   pageSize = 10;
   total = 0;
   loading = true;
   searchKeyword: string = '';
+  selectedCardGroupId: number | null = null;
+  selectedLaneId: number | null = null;
 
   isAddEntryModalVisible = false; 
   isAddExitModalVisible = false;
-  
+  isFullScreenModalVisible = false;
+  selectedEntryLog: any = null;
+  filteredEntryLanes: any[] = [];
+  filteredExitLanes: any[] = [];
+
   entryLogForm!: FormGroup; 
   exitLogForm!: FormGroup;
-
-  selectedEntryLog: any = null;
 
   totalVehicles: number = 0;
   totalCars: number = 0;
@@ -53,8 +66,6 @@ export class EntryLogsComponent implements OnInit{
   videoElement!: HTMLVideoElement;
   capturedImage: string | null = null;
   cameraOn = false;
-
-  isFullScreenModalVisible = false;
 
   vehicleTypes = [    
     { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: '#d46b08' },
@@ -77,7 +88,7 @@ export class EntryLogsComponent implements OnInit{
     ) {
       this.initForm();
     }  
-  
+
   ngOnInit() {
     // Tải cards và cardGroups
     this.cardService.getCards().subscribe(data => {
@@ -96,7 +107,7 @@ export class EntryLogsComponent implements OnInit{
     this.loadLanes();
     this.loadCustomers();
   }
-  
+
   initForm() {
     this.entryLogForm = this.fb.group({
       plateNumber: [null, [Validators.required]],
@@ -121,13 +132,25 @@ export class EntryLogsComponent implements OnInit{
 
     this.entryLogService.getEntryLogs().subscribe(
       (data: any[]) => {
-        console.log(data);
-        const filteredEntryLogs = searchKeyword
-          ? data.filter(entryLog =>
-              entryLog.plateNumber.toLowerCase().includes(searchKeyword.toLowerCase()))
-          : data;
-          
-          console.log('Kết quả đã lọc:', filteredEntryLogs);
+        let filteredEntryLogs = data;
+        
+        if (searchKeyword) {
+          filteredEntryLogs = filteredEntryLogs.filter(entryLog =>
+            entryLog.plateNumber.toLowerCase().includes(searchKeyword.toLowerCase())
+          );
+        }
+        
+        if (this.selectedCardGroupId) {
+          filteredEntryLogs = filteredEntryLogs.filter(entryLog => 
+            entryLog.cardGroupId === this.selectedCardGroupId
+          );
+        }
+
+        if (this.selectedLaneId) {
+          filteredEntryLogs = filteredEntryLogs.filter(entryLog => 
+            entryLog.laneId === this.selectedLaneId
+          );
+        }
 
         this.total = filteredEntryLogs.length;
         const start = (this.pageIndex - 1) * this.pageSize;
@@ -147,14 +170,6 @@ export class EntryLogsComponent implements OnInit{
         this.loading = false;
       }
     );
-  }
-
-  countVehiclesByType(vehicleType: CardGroupVehicleType, logs: any[]): number {
-    return logs.filter(log => {
-      const card = this.cards.find(c => c.id === log.cardId);
-      const cardGroup = card ? this.cardGroups.find(cg => cg.id === card.cardGroupId) : null;
-      return cardGroup && cardGroup.vehicleType === vehicleType;
-    }).length;
   }
 
   loadCards() {
@@ -185,6 +200,14 @@ export class EntryLogsComponent implements OnInit{
     this.exitLogService.getExitLogs().subscribe(data => {
       console.log('Exit logs loaded: ', data)
     });
+  }
+
+  countVehiclesByType(vehicleType: CardGroupVehicleType, logs: any[]): number {
+    return logs.filter(log => {
+      const card = this.cards.find(c => c.id === log.cardId);
+      const cardGroup = card ? this.cardGroups.find(cg => cg.id === card.cardGroupId) : null;
+      return cardGroup && cardGroup.vehicleType === vehicleType;
+    }).length;
   }
 
   getCardNameById(cardId: number): string {
@@ -230,12 +253,28 @@ export class EntryLogsComponent implements OnInit{
   get bicyclePercent(): number {
     return this.totalVehicles === 0 ? 0 : Math.round((this.totalBicycles / this.totalVehicles) * 100);
   }
-  
+
+  getEntryLanes(): any[] {
+    return this.lanes.filter(lane => lane.type !== LaneType.OUT);
+  }
+
+  getExitLanes(): any[] {
+    return this.lanes.filter(lane => lane.type !== LaneType.IN);
+  }
+
   onSearch() {
     console.log(this.searchKeyword);
     this.loadEntryLogs(this.searchKeyword); 
   }
-  
+
+  onCardGroupChange(): void {
+    this.loadEntryLogs();
+  }
+
+  onLaneChange(): void {
+    this.loadEntryLogs();
+  }
+
   onQueryParamsChange(params: NzTableQueryParams): void {
     const { pageSize, pageIndex } = params;
     this.pageIndex = pageIndex;
@@ -260,10 +299,18 @@ export class EntryLogsComponent implements OnInit{
     }
   }
 
+  openFullScreenModal(): void {
+    this.isFullScreenModalVisible = true;
+  }
+
   handleCancel() {
     this.isAddEntryModalVisible = false;
     this.isAddExitModalVisible = false;
     this.selectedEntryLog = null;
+  }
+
+  handleCancel1(): void {
+    this.isFullScreenModalVisible = false;
   }
 
   handleOk() {
@@ -310,6 +357,8 @@ export class EntryLogsComponent implements OnInit{
           errorMessage = 'Định dạng biển số xe không hợp lệ. Định dạng mong đợi như "30A12345"';
         } else if (message.includes('Card not found')) {
           errorMessage = 'Không tìm thấy thẻ';
+        } else if (message.includes('Card is locked')) {
+          errorMessage = 'Thẻ bị khóa';
         } else if (message.includes('Card is not active')) {
           errorMessage = 'Thẻ không hoạt động';
         } else if (message.includes('Card group not found for the selected card group')) {
@@ -317,7 +366,7 @@ export class EntryLogsComponent implements OnInit{
         } else if (message.includes('Card group is not active')) {
           errorMessage = 'Nhóm thẻ không hoạt động';
         } else if (message.includes('Lane is not allowed for the selected card group.')) {
-          errorMessage = 'Làn không được phép cho nhóm thẻ đã chọn';
+          errorMessage = 'Nhóm thẻ không được sử dụng làn';
         } else if (message.includes('Lane not found')) {
           errorMessage = 'Không tìm thấy làn';
         } else if (message.includes('Lane is not active')) {
@@ -396,13 +445,11 @@ export class EntryLogsComponent implements OnInit{
         } else if (message.includes('Card group is not active')) {
           errorMessage = 'Nhóm thẻ không hoạt động';
         } else if (message.includes('Exit lane is not allowed for this card group')) {
-          errorMessage = 'Nhóm thẻ không cho phép làn ra này';
+          errorMessage = 'Nhóm thẻ không được sử dụng làn';
         } else if (message.includes('Exit lane is invalid or inactive')) {
           errorMessage = 'Làn ra không hoạt động';
         } else if (message.includes('Entry lane is invalid or inactive')) {
           errorMessage = 'Làn vào không hoạt động';
-        } else if (message.includes('Exit time must be after entry time')) {
-          errorMessage = 'Thời gian ra phải sau thời gian vào';
         } else if (message) {
           errorMessage = message;
         }
@@ -417,6 +464,29 @@ export class EntryLogsComponent implements OnInit{
         );
       }
     });
+  }
+
+  onCardChange(cardId: number): void {
+    const selectedCard = this.cards.find(card => card.id === cardId);
+
+    const cardGroupId = selectedCard?.cardGroupId || null;
+    const customerId = selectedCard?.customerId || null;
+
+    this.entryLogForm.patchValue({
+      cardGroupId,
+      customerId
+    });
+
+    const cardGroup = this.cardGroups.find(group => group.id === cardGroupId);
+
+    if (cardGroup?.laneIds?.length) {
+      this.filteredEntryLanes = this.lanes.filter(lane =>
+        cardGroup.laneIds.includes(lane.id) &&
+        (lane.type === 'In' || lane.type === 'Dynamic' || lane.type === 'KioskIn')
+      );
+    } else {
+      this.filteredEntryLanes = [];
+    }
   }
 
   deleteEntryLog(id: number) {
@@ -520,22 +590,5 @@ export class EntryLogsComponent implements OnInit{
   retakePhoto() {
     this.capturedImage = null;
     this.openCamera(); 
-  }
-
-  onCardChange(cardId: number): void {
-    const selectedCard = this.cards.find(card => card.id === cardId);
-
-    this.entryLogForm.patchValue({
-      cardGroupId: selectedCard?.cardGroupId || null,
-      customerId: selectedCard?.customerId || null
-    });
-  }
-
-  openFullScreenModal(): void {
-    this.isFullScreenModalVisible = true;
-  }
-
-  handleCancel1(): void {
-    this.isFullScreenModalVisible = false;
   }
 }
