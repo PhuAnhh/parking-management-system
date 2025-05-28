@@ -12,12 +12,14 @@ namespace Final_year_Project.Application.Services
     public class ExitLogService : IExitLogService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWarningEventService _warningEventService;
         private readonly IWebHostEnvironment _env;
 
-        public ExitLogService(IUnitOfWork unitOfWork , IWebHostEnvironment env)
+        public ExitLogService(IUnitOfWork unitOfWork , IWebHostEnvironment env, IWarningEventService warningEventService)
         {
             _unitOfWork = unitOfWork;
             _env = env;
+            _warningEventService = warningEventService;
         }
 
         public async Task<IEnumerable<ExitLogDto>> GetAllAsync()
@@ -120,12 +122,26 @@ namespace Final_year_Project.Application.Services
             //Kiểm tra Lane ra trong CardGroup
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
             if (!allowedLaneIds.Contains(createExitLogDto.ExitLaneId))
+            {
+                await _warningEventService.CreateAsync(new CreateWarningEventDto
+                {
+                    PlateNumber = createExitLogDto.ExitPlateNumber,
+                    LaneId = createExitLogDto.ExitLaneId,
+                    WarningType = WarningType.CardGroupNotAllowedInLane,
+                    Note = createExitLogDto.Note,
+                    ImageUrl = createExitLogDto.ImageUrl
+                });
+
                 throw new Exception("Exit lane is not allowed for this card group.");
+            }
 
             //Kiểm tra trạng thái Lane ra
             var exitLane = await _unitOfWork.Lanes.GetByIdAsync(createExitLogDto.ExitLaneId);
             if (exitLane == null || !exitLane.Status)
                 throw new Exception("Exit lane is invalid or inactive.");
+
+            if (exitLane.Type != LaneType.Out && exitLane.Type != LaneType.Dynamic && exitLane.Type != LaneType.KioskIn)
+                throw new Exception("You are not allowed to exit through this lane.");
 
             //Kiểm tra Lane vào 
             var entryLane = await _unitOfWork.Lanes.GetByIdAsync(entryLog.LaneId);
@@ -136,6 +152,23 @@ namespace Final_year_Project.Application.Services
             var exitTime = createExitLogDto.ExitTime != default ? createExitLogDto.ExitTime : DateTime.UtcNow;
             if (exitTime <= entryLog.EntryTime)
                 throw new Exception("Exit time must be after entry time.");
+
+            // Kiểm tra nếu biển số ra không khớp với biển số vào
+            if (!string.Equals(entryLog.PlateNumber?.Trim(), createExitLogDto.ExitPlateNumber?.Trim(), StringComparison.OrdinalIgnoreCase))
+            {   
+                var warning = new WarningEvent
+                {
+                    PlateNumber = createExitLogDto.ExitPlateNumber,
+                    LaneId = createExitLogDto.ExitLaneId,
+                    WarningType = WarningType.LicensePlateMismatch,
+                    Note = $"Vào = '{entryLog.PlateNumber}', Ra = '{createExitLogDto.ExitPlateNumber}'",
+                    CreatedAt = DateTime.UtcNow,
+                    ImageUrl = createExitLogDto.ImageUrl
+                };
+
+                await _unitOfWork.WarningEvents.CreateAsync(warning);
+            }
+
 
             //Tính tổng thời gian
             var duration = exitTime - entryLog.EntryTime;
@@ -162,6 +195,16 @@ namespace Final_year_Project.Application.Services
             };
 
             await _unitOfWork.ExitLogs.CreateAsync(exitLog);
+
+            await _unitOfWork.WarningEvents.CreateAsync(new WarningEvent
+            {
+                PlateNumber = exitLog.ExitPlateNumber,
+                LaneId = exitLog.ExitLaneId,
+                WarningType = WarningType.TicketIssued,
+                Note = "Ghi vé ra",
+                CreatedAt = DateTime.UtcNow,
+                ImageUrl = exitLog.ImageUrl
+            });
 
             entryLog.Exited = true;
             _unitOfWork.EntryLogs.Update(entryLog);

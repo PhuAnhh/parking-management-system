@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Final_year_Project.Domain.EnumTypes;
 
 namespace Final_year_Project.Domain.Entities;
 
@@ -11,7 +12,7 @@ public partial class WarningEvent
 
     public int LaneId { get; set; }
 
-    public string? WarningType { get; set; }
+    public WarningType WarningType { get; set; }
 
     public string? Note { get; set; }
 

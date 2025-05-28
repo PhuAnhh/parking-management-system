@@ -26,6 +26,7 @@ namespace Final_year_Project.Persistence.Repositories
         private IEntryLogRepository _entryLogRepository;
         private IExitLogRepository _exitLogRepository;
         private IRevenueReportRepository _revenueReportRepository;
+        private IWarningEventRepository _warningEventRepository;
 
         public UnitOfWork(ParkingManagementContext context)
         {
@@ -47,8 +48,9 @@ namespace Final_year_Project.Persistence.Repositories
         public ICardGroupLaneRepository CardGroupLanes => _cardLaneRepository ??= new CardGroupLaneRepository(_context);
         public IEntryLogRepository EntryLogs => _entryLogRepository ??= new EntryLogRepository(_context);
         public IExitLogRepository ExitLogs => _exitLogRepository ??= new ExitLogRepository(_context);
-
+        public IWarningEventRepository WarningEvents => _warningEventRepository ??= new WarningEventRepository(_context);
         public IRevenueReportRepository RevenueReports => _revenueReportRepository ??= new RevenueReportRepository(_context);
+
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();

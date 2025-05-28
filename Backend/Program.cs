@@ -31,6 +31,8 @@ builder.Services.AddScoped<ICardService, CardService>();
 builder.Services.AddScoped<IEntryLogService, EntryLogService>();
 builder.Services.AddScoped<IExitLogService, ExitLogService>();
 builder.Services.AddScoped<IRevenueReportService, RevenueReportService>();
+builder.Services.AddScoped<IWarningEventService, WarningEventService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",

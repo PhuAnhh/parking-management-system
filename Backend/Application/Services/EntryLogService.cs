@@ -12,12 +12,15 @@ namespace Final_year_Project.Application.Services
     public class EntryLogService : IEntryLogService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWarningEventService _warningEventService;
         private readonly IWebHostEnvironment _env;
 
-        public EntryLogService(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+        public EntryLogService(IUnitOfWork unitOfWork, IWebHostEnvironment env
+            , IWarningEventService warningEventService)
         {
             _unitOfWork = unitOfWork;
             _env = env;
+            _warningEventService = warningEventService;
         }
 
         public async Task<IEnumerable<EntryLogDto>> GetAllAsync()
@@ -97,8 +100,23 @@ namespace Final_year_Project.Application.Services
             if (card == null)
                 throw new Exception("Card not found.");
 
-            if (card.Status != CardStatus.Active)
+            if (card.Status == CardStatus.Locked)
+            {
+                await _warningEventService.CreateAsync(new CreateWarningEventDto
+                {
+                    PlateNumber = createEntryLogDto.PlateNumber,
+                    LaneId = createEntryLogDto.LaneId,
+                    WarningType = WarningType.CardLocked,
+                    Note = createEntryLogDto.Note,
+                    ImageUrl = createEntryLogDto.ImageUrl
+                });
+
+                throw new Exception("Card is locked.");
+            }
+            else if (card.Status != CardStatus.Active)
+            {
                 throw new Exception("Card is not active.");
+            }
 
             // 2. Lấy thông tin nhóm thẻ
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(card.CardGroupId);
@@ -108,10 +126,21 @@ namespace Final_year_Project.Application.Services
             if (!cardGroup.Status)
                 throw new Exception("Card group is not active.");
 
-            // 3. Kiểm tra làn có thuộc nhóm thẻ hay không (ví dụ kiểm tra bằng danh sách làn trong nhóm thẻ)
+            // 3. Kiểm tra làn có thuộc nhóm thẻ hay không
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
             if (!allowedLaneIds.Contains(createEntryLogDto.LaneId))
+            {
+                await _warningEventService.CreateAsync(new CreateWarningEventDto
+                {
+                    PlateNumber = createEntryLogDto.PlateNumber,
+                    LaneId = createEntryLogDto.LaneId,
+                    WarningType = WarningType.CardGroupNotAllowedInLane,
+                    Note = createEntryLogDto.Note,
+                    ImageUrl = createEntryLogDto.ImageUrl
+                });
+
                 throw new Exception("Lane is not allowed for the selected card group.");
+            }
 
             // 4. Kiểm tra trạng thái làn
             var lane = await _unitOfWork.Lanes.GetByIdAsync(createEntryLogDto.LaneId);
@@ -120,6 +149,9 @@ namespace Final_year_Project.Application.Services
 
             if (!lane.Status)
                 throw new Exception("Lane is not active.");
+
+            if (lane.Type != LaneType.In && lane.Type != LaneType.KioskIn && lane.Type != LaneType.Dynamic)
+                throw new Exception("You are not allowed to enter through this lane.");
 
             // 5. Kiểm tra thẻ đã vào mà chưa ra
             var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(card.Id);
@@ -149,6 +181,16 @@ namespace Final_year_Project.Application.Services
             };
 
             await _unitOfWork.EntryLogs.CreateAsync(entryLog);
+
+            await _unitOfWork.WarningEvents.CreateAsync(new WarningEvent
+            {
+                PlateNumber = entryLog.PlateNumber,
+                LaneId = entryLog.LaneId,
+                WarningType = WarningType.TicketIssued,
+                Note = "Ghi vé vào",
+                CreatedAt = DateTime.UtcNow,
+                ImageUrl = entryLog.ImageUrl
+            });
             await _unitOfWork.SaveChangesAsync();
 
             return new EntryLogDto
@@ -169,14 +211,24 @@ namespace Final_year_Project.Application.Services
         public async Task<bool> DeleteAsync(int id)
         {
             var entryLog = await _unitOfWork.EntryLogs.GetByIdAsync(id);
-
             if (entryLog == null)
                 return false;
+
+            await _warningEventService.CreateAsync(new CreateWarningEventDto
+            {
+                PlateNumber = entryLog.PlateNumber,
+                LaneId = entryLog.LaneId,
+                WarningType = WarningType.DeletedWhileVehicleInParking,
+                Note = entryLog.Note,
+                ImageUrl = entryLog.ImageUrl
+            });
 
             _unitOfWork.EntryLogs.Delete(entryLog);
             await _unitOfWork.SaveChangesAsync();
             return true;
         }
+
+
         private string StandardizePlateNumber(string plateNumber)
         {
             if (string.IsNullOrEmpty(plateNumber))

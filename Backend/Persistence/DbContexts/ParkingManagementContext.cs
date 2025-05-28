@@ -732,6 +732,9 @@ public partial class ParkingManagementContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("plate_number");
             entity.Property(e => e.WarningType)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (WarningType)Enum.Parse(typeof(WarningType), v))
                 .HasMaxLength(255)
                 .HasColumnName("warning_type");
 

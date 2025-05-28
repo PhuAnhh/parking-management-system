@@ -257,12 +257,6 @@
   display: flex;
   }
   
-  .ant-col-xl-8{
-  display: block;
-  flex: 0 0 33.33333333%;
-  max-width: 33.33333333%;
-  }
-  
   .inner-content{
     background-color: #f0f2f5 !important;
     padding: 0 !important;
@@ -508,5 +502,20 @@
     content: ' *';
     color: red;
   }
+
+  ::ng-deep .ant-tooltip-inner {
+    border-radius: 8px;  
+  }
+
+  ::ng-deep .ant-select-selection-placeholder {
+    text-align: left !important; 
+    left: 0 !important; 
+  }
+
+  ::ng-deep .ant-select-selection-item {
+  text-align: left !important;
+}
   
-  
+::ng-deep .ant-select-dropdown {
+  border-radius: 8px !important;
+}

@@ -38,6 +38,8 @@ namespace Final_year_Project.Application.Repositories
 
         IRevenueReportRepository RevenueReports { get; }
 
+        IWarningEventRepository WarningEvents { get; }
+
         Task<int> SaveChangesAsync();
     }
 }
