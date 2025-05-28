@@ -10,6 +10,7 @@ namespace Final_year_Project.Application.Services.Abstractions
     {
         Task<IEnumerable<RevenueReportDto>> GetAllAsync();
         Task<RevenueReportDto> GetByIdAsync(int id);
+        Task<IEnumerable<RevenueReportDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate);
         Task<bool> DeleteAsync(int id);
     }
 }

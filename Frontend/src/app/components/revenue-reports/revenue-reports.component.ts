@@ -12,12 +12,12 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 export class RevenueReportsComponent implements OnInit {
   selectedCardGroupId: number | null = null;
+  selectedDateRange: Date[] | null = null;
+
   revenueReports: any[] = [];
   cardGroups: any[] = [];
-  loading = false;
-  searchKeyword = '';
 
-  defaultRange: [Date, Date] = [new Date(), new Date()];
+  loading = false;
 
   constructor(
     private revenueReportService: RevenueReportService,
@@ -27,46 +27,51 @@ export class RevenueReportsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
-
-    const end = new Date();
-    end.setHours(23, 59, 59, 999);
-
-    this.defaultRange = [start, end];
-
     this.loadRevenueReports();
     this.loadCardGroups();
   }
 
   loadRevenueReports(): void {
-  this.loading = true;
+    this.loading = true;
 
-  this.revenueReportService.getRevenueReports().subscribe({
-    next: (data: any[]) => {
-      let filtered = data;
-
-      if (this.selectedCardGroupId !== null) {
-        filtered = filtered.filter(rr => rr.cardGroupId === this.selectedCardGroupId);
-      }
-
-      this.revenueReports = filtered;
-
-      this.loading = false;
-      this.cdr.detectChanges();
-    },
-    error: () => {
-      this.notification.error('Lỗi', 'Không thể tải báo cáo doanh thu');
-      this.loading = false;
+    let serviceCall;
+    if (this.selectedDateRange && this.selectedDateRange.length === 2) {
+      serviceCall = this.revenueReportService.getRevenueReportsByDateRange(
+        this.selectedDateRange[0],
+        this.selectedDateRange[1]
+      );
+    } else {
+      serviceCall = this.revenueReportService.getRevenueReports();
     }
-  });
-}
+
+    serviceCall.subscribe({
+      next: (data: any[]) => {
+        let filteredReports = data;
+
+        if (this.selectedCardGroupId !== null) {
+          filteredReports = filteredReports.filter(report => report.cardGroupId === this.selectedCardGroupId);
+        }
+
+        this.revenueReports = filteredReports;
+        this.loading = false;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.notification.error('Lỗi', 'Không thể tải báo cáo doanh thu');
+        this.loading = false;
+      }
+    });
+  }
+
+  onDateRangeChange(): void {
+    this.loadRevenueReports();
+  }
 
   onCardGroupChange(): void {
-  this.loadRevenueReports();
-}
+    this.loadRevenueReports();
+  }
 
-  loadCardGroups(): void {
+  loadCardGroups() {
     this.cardGroupService.getCardGroups().subscribe(data => {
       this.cardGroups = data;
     });

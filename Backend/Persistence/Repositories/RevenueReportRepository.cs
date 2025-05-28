@@ -31,6 +31,13 @@ namespace Final_year_Project.Persistence.Repositories
             return await _context.RevenueReports.FirstOrDefaultAsync(r => r.CardGroupId == cardGroupId);
         }
 
+        public async Task<IEnumerable<RevenueReport>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            return await _context.RevenueReports
+                .Where(r => r.CreatedAt >= fromDate && r.CreatedAt <= toDate)
+                .ToListAsync();
+        }
+
         public async Task CreateAsync(RevenueReport revenueReport)
         {
             await _context.RevenueReports.AddAsync(revenueReport);

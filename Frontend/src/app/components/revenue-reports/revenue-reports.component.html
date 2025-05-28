@@ -125,7 +125,7 @@
         </nz-breadcrumb>
         <div class="inner-content">
           <nz-card class="ant-card card-wrapper-content">
-            <div class="ant-card-body" style="padding: 24px 0px;"> 
+            <div class="ant-card-body" style="padding: 24px 0px; width: 100%;"> 
               <nz-row [nzGutter]="12" class="ant-row filter-row" style="margin: -12px -6px;">
                 <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
                   <fieldset>
@@ -144,19 +144,27 @@
                       </nz-option>
                     </nz-select>
                   </fieldset>
-                </nz-col>
+                </nz-col>    
+
                 <nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="8" nzXl="8" class="ant-col" style="padding: 12px 6px;">
-                  <fieldset>
-                    <label for="time" class="input-label" style="color: #0c68e9;">Phạm vi thời gian</label>
-                    <nz-range-picker [(ngModel)]="defaultRange" nzShowTime nzFormat="dd/MM/yyyy HH:mm:ss" style="width: 100%;"></nz-range-picker>
-                  </fieldset>
-                </nz-col>           
+                  <label for="createdAt" class="input-label" style="color: #0c68e9;">Phạm vi thời gian</label>
+                  <nz-range-picker 
+                    [(ngModel)]="selectedDateRange" 
+                    (ngModelChange)="onDateRangeChange()"
+                    [nzShowTime]="true"
+                    nzFormat="dd/MM/yyyy hh:mm:ss" 
+                    [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
+                    style="width: 100%;">
+                  </nz-range-picker>
+                </nz-col> 
               </nz-row>
               <nz-table 
               [nzData]="revenueReports"
               [nzLoading]="loading"
               [nzPagination]="false"
-              [nzShowPagination]="false">
+              [nzShowPagination]="false"
+              [nzBordered]="true"
+              style="width: 100%;">
               <thead>
                 <tr>
                   <th style="width: 60px; min-width: 60px; text-align: center">#</th>

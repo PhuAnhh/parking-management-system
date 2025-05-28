@@ -18,7 +18,12 @@ export class RevenueReportService {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  deleteRevenueReport(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  getRevenueReportsByDateRange(fromDate: Date, toDate: Date) {
+    return this.http.get<any[]>(`${this.apiUrl}/filter-by-date`, {
+      params: {
+        fromDate: fromDate.toISOString(),
+        toDate: toDate.toISOString()
+      }
+    });
   }
 }

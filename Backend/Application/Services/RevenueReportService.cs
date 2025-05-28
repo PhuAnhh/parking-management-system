@@ -53,6 +53,26 @@ namespace Final_year_Project.Application.Services
                 UpdatedAt = report.UpdatedAt
             };
         }
+        public async Task<IEnumerable<RevenueReportDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            var reports = await _unitOfWork.RevenueReports.GetByDateRangeAsync(fromDate, toDate);
+            var reportDtos = new List<RevenueReportDto>();
+
+            foreach (var report in reports)
+            {
+                reportDtos.Add(new RevenueReportDto
+                {
+                    Id = report.Id,
+                    CardGroupId = report.CardGroupId,
+                    ExitCount = report.ExitCount,
+                    Revenue = report.Revenue,
+                    CreatedAt = report.CreatedAt,
+                    UpdatedAt = report.UpdatedAt
+                });
+            }
+
+            return reportDtos;
+        }
 
         public async Task<bool> DeleteAsync(int id)
         {
