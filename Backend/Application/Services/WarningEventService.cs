@@ -15,6 +15,28 @@ namespace Final_year_Project.Application.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<IEnumerable<WarningEventDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            var warnings = await _unitOfWork.WarningEvents.GetByDateRangeAsync(fromDate, toDate);
+            var warningDtos = new List<WarningEventDto>();
+
+            foreach (var warning in warnings)
+            {
+                warningDtos.Add(new WarningEventDto
+                {
+                    Id = warning.Id,
+                    PlateNumber = warning.PlateNumber,
+                    LaneId = warning.LaneId,
+                    WarningType = warning.WarningType,
+                    Note = warning.Note,
+                    CreatedAt = warning.CreatedAt,
+                    ImageUrl = warning.ImageUrl,
+                });
+            }
+
+            return warningDtos;
+        }
+
         public async Task<IEnumerable<WarningEventDto>> GetAllAsync()
         {
             var warnings = await _unitOfWork.WarningEvents.GetAllAsync();

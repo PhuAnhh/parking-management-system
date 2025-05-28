@@ -21,6 +21,13 @@ namespace Final_year_Project.Persistence.Repositories
             return await _context.WarningEvents.ToListAsync();
         }
 
+        public async Task<IEnumerable<WarningEvent>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            return await _context.WarningEvents
+                .Where(r => r.CreatedAt >= fromDate && r.CreatedAt <= toDate)
+                .ToListAsync();
+        }
+
         public async Task<WarningEvent> GetByIdAsync(int id)
         {
             return await _context.WarningEvents.FindAsync(id);

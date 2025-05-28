@@ -25,6 +25,13 @@ namespace Final_year_Project.Api.Controllers
             return Ok(warnings);
         }
 
+        [HttpGet("filter-by-date")]
+        public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
+        {
+            var results = await _warningEventService.GetByDateRangeAsync(fromDate, toDate);
+            return Ok(results);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<WarningEventDto>> GetById(int id)
         {

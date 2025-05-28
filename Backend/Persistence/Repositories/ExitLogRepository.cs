@@ -21,7 +21,13 @@ namespace Final_year_Project.Persistence.Repositories
             return await _context.ExitLogs
                 .Include(e => e.EntryLog)
                 .ToListAsync();
+        }
 
+        public async Task<IEnumerable<ExitLog>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            return await _context.ExitLogs
+                .Where(r => r.ExitTime >= fromDate && r.ExitTime <= toDate)
+                .ToListAsync();
         }
 
         public async Task<ExitLog> GetByIdAsync(int id)

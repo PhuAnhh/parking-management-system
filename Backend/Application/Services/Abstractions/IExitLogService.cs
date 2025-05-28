@@ -9,6 +9,7 @@ namespace Final_year_Project.Application.Services.Abstractions
     public interface IExitLogService
     {
         Task<IEnumerable<ExitLogDto>> GetAllAsync();
+        Task<IEnumerable<ExitLogDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate);
         Task<ExitLogDto> GetByIdAsync(int id);
         Task<ExitLogDto> CreateAsync(CreateExitLogDto createExitLogDto);
     }

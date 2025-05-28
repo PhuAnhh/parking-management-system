@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Application.Services;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -22,6 +23,13 @@ namespace Final_year_Project.Api.Controllers
         {
             var exitLogs = await _exitLogService.GetAllAsync();
             return Ok(exitLogs);
+        }
+
+        [HttpGet("filter-by-date")]
+        public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
+        {
+            var results = await _exitLogService.GetByDateRangeAsync(fromDate, toDate);
+            return Ok(results);
         }
 
         [HttpGet("{id}")]

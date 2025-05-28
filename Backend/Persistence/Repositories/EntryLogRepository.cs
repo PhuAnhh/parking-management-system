@@ -23,6 +23,13 @@ namespace Final_year_Project.Persistence.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<EntryLog>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            return await _context.EntryLogs
+                .Where(r => r.EntryTime >= fromDate && r.EntryTime <= toDate)
+                .ToListAsync();
+        }
+
         public async Task<EntryLog> GetByIdAsync(int id)
         {
             return await _context.EntryLogs.FindAsync(id);

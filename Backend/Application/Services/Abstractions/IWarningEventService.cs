@@ -9,6 +9,7 @@ namespace Final_year_Project.Application.Services.Abstractions
     public interface IWarningEventService
     {
         Task<IEnumerable<WarningEventDto>> GetAllAsync();
+        Task<IEnumerable<WarningEventDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate);
         Task<WarningEventDto> GetByIdAsync(int id);
         Task<WarningEventDto> CreateAsync(CreateWarningEventDto createWarningEventDto);
         Task<bool> DeleteAsync(int id);

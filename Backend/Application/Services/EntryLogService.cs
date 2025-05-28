@@ -49,6 +49,32 @@ namespace Final_year_Project.Application.Services
             return entryLogDtos;
         }
 
+        public async Task<IEnumerable<EntryLogDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            var entryLogs = await _unitOfWork.EntryLogs.GetByDateRangeAsync(fromDate, toDate);
+            var entryLogDtos = new List<EntryLogDto>();
+
+            foreach (var entryLog in entryLogs)
+            {
+                entryLogDtos.Add(new EntryLogDto
+                {
+                    Id = entryLog.Id,
+                    PlateNumber = entryLog.PlateNumber,
+                    CardId = entryLog.CardId,
+                    CardGroupId = entryLog.CardGroupId,
+                    LaneId = entryLog.LaneId,
+                    CustomerId = entryLog.CustomerId,
+                    EntryTime = entryLog.EntryTime,
+                    ImageUrl = entryLog.ImageUrl,
+                    Note = entryLog.Note,
+                    CreatedAt = entryLog.CreatedAt,
+                    UpdatedAt = entryLog.UpdatedAt,
+                });
+            }
+
+            return entryLogDtos;
+        }
+
         public async Task<EntryLogDto> GetByIdAsync(int id)
         {
             var entryLog = await _unitOfWork.EntryLogs.GetByIdAsync(id);

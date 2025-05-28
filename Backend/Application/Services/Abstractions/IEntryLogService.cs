@@ -9,6 +9,7 @@ namespace Final_year_Project.Application.Services.Abstractions
     public interface IEntryLogService
     {
         Task<IEnumerable<EntryLogDto>> GetAllAsync();
+        Task<IEnumerable<EntryLogDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate);
         Task<EntryLogDto> GetByIdAsync(int id);
         Task<EntryLogDto> CreateAsync(CreateEntryLogDto createEntryLogDto);
         Task<bool> DeleteAsync(int id);

@@ -60,6 +60,44 @@ namespace Final_year_Project.Application.Services
             return exitLogDtos;
         }
 
+        public async Task<IEnumerable<ExitLogDto>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        {
+            var exitLogs = await _unitOfWork.ExitLogs.GetByDateRangeAsync(fromDate, toDate);
+            var exitLogDtos = new List<ExitLogDto>();
+
+            foreach (var exitLog in exitLogs)
+            {
+                exitLogDtos.Add(new ExitLogDto
+                {
+                    Id = exitLog.Id,
+                    EntryLogId = exitLog.EntryLogId,
+                    ExitPlateNumber = exitLog.ExitPlateNumber,
+                    CardId = exitLog.CardId,
+                    CardGroupId = exitLog.CardGroupId,
+                    EntryLaneId = exitLog.EntryLaneId,
+                    ExitLaneId = exitLog.ExitLaneId,
+                    EntryTime = exitLog.EntryTime,
+                    ExitTime = exitLog.ExitTime,
+                    TotalDuration = exitLog.TotalDuration,
+                    TotalPrice = exitLog.TotalPrice,
+                    ImageUrl = exitLog.ImageUrl,
+                    Note = exitLog.Note,
+                    CreatedAt = exitLog.CreatedAt,
+                    EntryLog = exitLog.EntryLog == null ? null : new EntryLogDto
+                    {
+                        Id = exitLog.EntryLog.Id,
+                        PlateNumber = exitLog.EntryLog.PlateNumber,
+                        CardId = exitLog.EntryLog.CardId,
+                        CardGroupId = exitLog.EntryLog.CardGroupId,
+                        LaneId = exitLog.EntryLog.LaneId,
+                        CustomerId = exitLog.EntryLog.CustomerId
+                    }
+                });
+            }
+
+            return exitLogDtos;
+        }
+
         public async Task<ExitLogDto> GetByIdAsync(int id)
         {
             var exitLog = await _unitOfWork.ExitLogs.GetByIdAsync(id);
