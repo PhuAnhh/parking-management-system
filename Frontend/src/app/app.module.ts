@@ -39,7 +39,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 
 import { GatesComponent } from './components/gates/gates.component';
@@ -117,8 +117,8 @@ registerLocaleData(vi);
     NzInputNumberModule,
     NzProgressModule,
     NzListModule,
-    NzDropDownModule
-    
+    NzDropDownModule,
+    NzImageModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

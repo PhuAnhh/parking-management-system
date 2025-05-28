@@ -89,13 +89,6 @@
             </li>
           </ul>
         </li>
-        <li nz-menu-item>
-          <span class="custom-icon">
-            <img src="../../../assets/images/logo/ic-cms.svg" width="20px" alt="CMS">
-          </span>
-          <span style="color: #f15922; font-weight: 900; margin-left: 10px;">i</span>
-          <span style="color: #6abcff; font-weight: bold;">Parking</span>
-        </li>
       </ul>
   </div>
   </nz-sider>
@@ -187,7 +180,7 @@
                   >
                     <thead>
                       <tr>
-                        <th style="width: 60px; min-width: 60px;">#</th>
+                        <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
                         <th>Tên</th>
                         <th>Mã</th>
                         <th>Máy tính</th>
@@ -200,7 +193,7 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let led of leds; let i = index">
-                        <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                        <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
                         <td>{{ led.name }}</td>
                         <td>{{ led.code }}</td>
                         <td>{{ getComputerNameById(led.computerId) }}</td>
@@ -234,21 +227,6 @@
                       Tổng số {{ total }} dữ liệu
                     </ng-template>
                   </nz-table>
-
-                  <nz-float-button *ngIf="isVisible"
-                  [nzType]="'primary'"
-                  [nzShape]="'circle'"
-                  [nzTooltipTitle]="'Lên đầu trang'"
-                  (click)="backToTop()"
-                  >
-                    <button nz-button class="ant-btn">
-                      <nz-float-button-content>
-                        <div class="ant-float-btn-icon ">
-                          <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
-                        </div>
-                      </nz-float-button-content>
-                    </button>
-                  </nz-float-button>
               </div>
           </nz-card>
       </div>

@@ -89,13 +89,6 @@
               </li>
             </ul>
           </li>
-          <li nz-menu-item>
-            <span class="custom-icon">
-              <img src="../../../assets/images/logo/ic-cms.svg" width="20px" alt="CMS">
-            </span>
-            <span style="color: #f15922; font-weight: 900; margin-left: 10px;">i</span>
-            <span style="color: #6abcff; font-weight: bold;">Parking</span>
-          </li>
         </ul>
     </div>
     </nz-sider>
@@ -187,7 +180,7 @@
                     >
                       <thead>
                         <tr>
-                          <th style="width: 60px; min-width: 60px;">#</th>
+                          <th style="width: 60px; min-width: 60px; text-align: center">#</th>
                           <th>Tên</th>
                           <th>Mã</th>
                           <th style="width: 60px; min-width: 60px; text-align: center;">TT</th>
@@ -196,7 +189,7 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let gate of gates; let i = index">
-                          <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                          <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
                           <td>{{ gate.name }}</td>
                           <td>{{ gate.code }}</td>
                           <td style="text-align: center;">

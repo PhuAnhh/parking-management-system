@@ -47,16 +47,6 @@ export class LedsComponent implements OnInit{
   getLedType(value:string){
     return this.ledTypes.find(opt => opt.value === value);
   }
-
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isVisible = scrollPosition > 300;
-  }
-
-  backToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
   
   constructor(
     private ledService: LedService, 
@@ -137,8 +127,7 @@ export class LedsComponent implements OnInit{
   loadComputers() {
     this.computerService.getComputers().subscribe(data => {
       this.computers = data;
-    })
-    ;
+    });
   }
 
   getComputerNameById(computerId: number): string {
