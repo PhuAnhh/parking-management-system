@@ -129,10 +129,7 @@
           "options": {
             "outputPath": "dist/parking/server",
             "main": "src/server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "polyfills": [
-              "@angular/localize/init"
-            ]
+            "tsConfig": "tsconfig.server.json"
           },
           "configurations": {
             "production": {
