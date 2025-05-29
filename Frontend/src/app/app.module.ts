@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,11 +28,11 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
-import { NzNotificationModule  } from 'ng-zorro-antd/notification';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTransferModule, TransferItem } from 'ng-zorro-antd/transfer';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
@@ -40,7 +41,8 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzImageModule } from 'ng-zorro-antd/image';
-
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 import { GatesComponent } from './components/gates/gates.component';
 import { ComputersComponent } from './components/computers/computers.component';
@@ -59,9 +61,9 @@ import { RevenueReportsComponent } from './components/revenue-reports/revenue-re
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 
 const ngZorroConfig: NzConfig = {
-  pagination:{
-    nzPageSizeOptions: [10,20,30]
-  } 
+  pagination: {
+    nzPageSizeOptions: [10, 20, 30]
+  }
 };
 
 registerLocaleData(vi);
@@ -86,6 +88,7 @@ registerLocaleData(vi);
     RevenueReportsComponent
   ],
   imports: [
+    NgApexchartsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -118,7 +121,9 @@ registerLocaleData(vi);
     NzProgressModule,
     NzListModule,
     NzDropDownModule,
-    NzImageModule
+    NzImageModule,
+    NzSpinModule,
+    NzTypographyModule,
   ],
   providers: [
     provideClientHydration(withEventReplay()),

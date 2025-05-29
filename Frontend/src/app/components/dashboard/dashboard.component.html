@@ -1,114 +1,132 @@
 <nz-layout class="layout">
-  <nz-sider nzwidth="236px" class="ant-layout-sider menu-sidebar hide-for-small hide-for-medium show-for-large ant-layout-sider-dark" style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
+  <nz-sider nzwidth="236px" 
+            class="ant-layout-sider menu-sidebar hide-for-small hide-for-medium show-for-large ant-layout-sider-dark" 
+            style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
     <div class="logo">
-      <img src="../../../assets/images/logo/logo.png" alt="Logo" [routerLink]="'/dashboard'">
+      <img src="../../../assets/images/logo/logo.png" 
+           alt="Logo" 
+           [routerLink]="'/dashboard'">
     </div>
+    
     <div class="custom-dark-menu">
-    <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-submenu nzTitle="Quản lý bãi xe">
-        <ul>
-          <li nz-menu-item [routerLink]="'/dashboard'">
-            <span nz-icon nzType="dashboard" nzTheme="fill"></span>
-            <span>Trang chủ</span>
-          </li>
-          <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
-            <ul>
-              <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
-              <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
-              <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
-              <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Quản lý khách hàng">
-        <ul>
-          <li nz-menu-item [routerLink]="'/customer-groups'">
-            <span nz-icon nzType="github" nzTheme="fill"></span>
-            <span>Nhóm khách hàng</span> 
-          </li>
-          <li nz-menu-item [routerLink]="'/customers'">
-            <span nz-icon nzType="gitlab" nzTheme="fill"></span>
-            <span>Khách hàng</span>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Quản lý thẻ">
-        <ul>
-          <li nz-menu-item [routerLink]="'/card-groups'">
-            <span nz-icon nzType="apple" nzTheme="fill"></span>
-            <span>Nhóm thẻ</span>
-          </li>
-          <li nz-menu-item [routerLink]="'/cards'">
-            <span nz-icon nzType="android" nzTheme="fill"></span>
-            <span>Thẻ</span>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Quản lý thiết bị">
-        <ul>
-          <li nz-menu-item [routerLink]="'/gates'">
-            <span nz-icon nzType="bank" nzTheme="fill"></span>
-            <span>Cổng</span>
-          </li>
-          <li nz-menu-item [routerLink]="'/computers'">
-            <span nz-icon nzType="laptop" nzTheme="outline"></span>
-            <span>Máy tính</span>
-          </li>
-          <li nz-menu-item [routerLink]="'/cameras'">
-            <span nz-icon nzType="camera" nzTheme="fill"></span>
-            <span>Camera</span>
-          </li>
-          <li nz-menu-item [routerLink]="'/control_units'">
-            <span nz-icon nzType="control" nzTheme="fill"></span>
-            <span>Bộ điều khiển</span>
-          </li>
-          <li nz-menu-item [routerLink]="'/lanes'">
-            <span nz-icon nzType="sliders" nzTheme="fill"></span>
-            <span>Làn</span>
-          </li>
-          <li nz-menu-item [routerLink]="'/leds'">
-            <span nz-icon nzType="bulb" nzTheme="fill"></span>
-            <span>Led</span>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Quản lý tài khoản">
-        <ul>
-          <li nz-menu-item>
-            <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
-            <span>Quyền hạn</span>
-          </li>
-          <li nz-menu-item>
-            <span nz-icon nzType="team" nzTheme="outline"></span>
-            <span>Nhóm người dùng</span>
-          </li>
-          <li nz-menu-item>
-            <span nz-icon nzType="user" nzTheme="outline"></span>
-            <span>Người dùng</span>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-submenu nzTitle="Quản lý bãi xe">
+          <ul>
+            <li nz-menu-item [routerLink]="'/dashboard'">
+              <span nz-icon nzType="dashboard" nzTheme="fill"></span>
+              <span>Trang chủ</span>
+            </li>
+            <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
+              <ul>
+                <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
+                <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
+                <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
+                <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        
+        <li nz-submenu nzTitle="Quản lý khách hàng">
+          <ul>
+            <li nz-menu-item [routerLink]="'/customer-groups'">
+              <span nz-icon nzType="github" nzTheme="fill"></span>
+              <span>Nhóm khách hàng</span> 
+            </li>
+            <li nz-menu-item [routerLink]="'/customers'">
+              <span nz-icon nzType="gitlab" nzTheme="fill"></span>
+              <span>Khách hàng</span>
+            </li>
+          </ul>
+        </li>
+        
+        <li nz-submenu nzTitle="Quản lý thẻ">
+          <ul>
+            <li nz-menu-item [routerLink]="'/card-groups'">
+              <span nz-icon nzType="apple" nzTheme="fill"></span>
+              <span>Nhóm thẻ</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/cards'">
+              <span nz-icon nzType="android" nzTheme="fill"></span>
+              <span>Thẻ</span>
+            </li>
+          </ul>
+        </li>
+        
+        <li nz-submenu nzTitle="Quản lý thiết bị">
+          <ul>
+            <li nz-menu-item [routerLink]="'/gates'">
+              <span nz-icon nzType="bank" nzTheme="fill"></span>
+              <span>Cổng</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/computers'">
+              <span nz-icon nzType="laptop" nzTheme="outline"></span>
+              <span>Máy tính</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/cameras'">
+              <span nz-icon nzType="camera" nzTheme="fill"></span>
+              <span>Camera</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/control_units'">
+              <span nz-icon nzType="control" nzTheme="fill"></span>
+              <span>Bộ điều khiển</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/lanes'">
+              <span nz-icon nzType="sliders" nzTheme="fill"></span>
+              <span>Làn</span>
+            </li>
+            <li nz-menu-item [routerLink]="'/leds'">
+              <span nz-icon nzType="bulb" nzTheme="fill"></span>
+              <span>Led</span>
+            </li>
+          </ul>
+        </li>
+        
+        <li nz-submenu nzTitle="Quản lý tài khoản">
+          <ul>
+            <li nz-menu-item>
+              <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
+              <span>Quyền hạn</span>
+            </li>
+            <li nz-menu-item>
+              <span nz-icon nzType="team" nzTheme="outline"></span>
+              <span>Nhóm người dùng</span>
+            </li>
+            <li nz-menu-item>
+              <span nz-icon nzType="user" nzTheme="outline"></span>
+              <span>Người dùng</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </nz-sider>
+  
   <nz-layout class="ant-layout right-layout">
     <nz-header class="ant-layout-header">
       <div>
         <button nz-button nzType="primary" class="ant-btn">
-          <span nz-icon nzType="search" style="color: #637381;">
-          </span>
+          <span nz-icon nzType="search" style="color: #637381;"></span>
           <span style="color:#637381 ;">Tìm kiếm thư mục</span>
         </button>
       </div>
       <div>
-        <span style="margin-right: 15px;" nz-dropdown nzplacement="bottomRight">Admin</span>
+        <span style="margin-right: 15px;" 
+              nz-dropdown 
+              nzplacement="bottomRight">Admin</span>
       </div>
     </nz-header>
+    
     <nz-content>
       <nz-breadcrumb>
-        <div nz-flex nzalign="center" class="ant-flex breadcrumb-wrapper ant-flex-justify-normal ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
-          <div nz-flex nzalign="center" class="ant-flex ant-flex-justify-normal ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
+        <div nz-flex 
+             nzalign="center" 
+             class="ant-flex breadcrumb-wrapper ant-flex-justify-normal ant-flex-align-center ant-flex-wrap-nowrap" 
+             style="gap: 0px; flex: unset;">
+          <div nz-flex 
+               nzalign="center" 
+               class="ant-flex ant-flex-justify-normal ant-flex-align-center ant-flex-wrap-nowrap" 
+               style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
             <span>Parking</span>
             <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
           </div>
@@ -120,53 +138,79 @@
         </div>
       </nz-breadcrumb>
 
-      <nz-row class="ant-row" style="margin: -12px; margin-bottom: 12px;">
+      <nz-row class="ant-row" style="margin: -12px; margin-bottom: 3px;">
         <nz-col *ngFor="let item of dashboardItems" 
-              nzxl="6" nzlg="6" nzmd="12" nzsm="24" nzxs="24" 
-              style="padding: 12px; display: block; flex: 0 0 25%; max-width: 25%;">
+                nzxl="6" 
+                nzlg="6" 
+                nzmd="12" 
+                nzsm="24" 
+                nzxs="24" 
+                style="padding: 12px; display: block; flex: 0 0 25%; max-width: 25%;">
           <nz-card class="dashboard-card">
             <div class="card-content">
               <div class="card-header">
                 <span class="card-value">{{ item.value }}</span>
-                <img [src]="item.icon" width="38px" [alt]="item.title">
+                <img [src]="item.icon" 
+                     width="38px" 
+                     [alt]="item.title">
               </div>
               <p class="card-title">{{ item.title }}</p>
-              <div class="card-background" [style.background]="item.gradient"></div>
+              <div class="card-background" 
+                   [style.background]="item.gradient"></div>
             </div>
           </nz-card>
         </nz-col>
       </nz-row>
-      <nz-row class="ant-row " style=" margin: -12px;">
-        <nz-col nzxl="24" nzlg="24" nzmd="24" nzsm="24" nzxs="24" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-24" style="padding: 12px;">
-          <line-chart-event>
-            <nz-card class="ant-card card-wrapper-content ant-card-bordered" style="margin-bottom: 12px;">
-              <div class="ant-card-head">
-                <div class="ant-card-head-wrapper">
-                  <div class="ant-card-head-title">
-                    Lượt xe vào ra theo giờ: Vào (0), Ra(0)
-                  </div>
-                  <div class="ant-card-extra">
-                    <nz-date-picker nzFormat="dd/MM/YYYY" [(ngModel)]="today" style="border-radius: 8px;"></nz-date-picker>
-                  </div>
+      
+      <nz-row class="ant-row" style="margin: 0px -12px 0px -12px;">
+        <nz-col nzxl="24" 
+                nzlg="24" 
+                nzmd="24" 
+                nzsm="24" 
+                nzxs="24" 
+                class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-24" 
+                style="padding: 12px;">
+          <nz-card class="ant-card card-wrapper-content ant-card-bordered">
+            <div class="ant-card-head">
+              <div class="ant-card-head-wrapper">
+                <div class="ant-card-head-title">
+                  Lượt xe vào ra theo giờ: Vào ({{ totalEntry }}), Ra ({{ totalExit }})
+                </div>
+                <div class="ant-card-extra">
+                  <nz-date-picker nzFormat="dd/MM/yyyy" 
+                                  [(ngModel)]="today" 
+                                  (ngModelChange)="onDateChange()"
+                                  style="border-radius: 8px;">
+                  </nz-date-picker>
                 </div>
               </div>
-              <div class="ant-card-body">
-                <div id="chart">
-                  <apx-chart>
-                    <div style="min-height: 365px;"></div>
-                  </apx-chart>
-                </div>
-                <div  nzalign="center" nzjustify="center" class="ant-flex ant-flex-vertical ant-flex-justify-center ant-flex-align-center ant-flex-wrap-nowrap">
-                  <p nz-typography nzellipsis>Tổng doanh thu</p>
-                  <span class="fw-500" style="font-size: 18px; font-weight: 700;">0</span>
-                </div>
+            </div>
+            
+            <div class="ant-card-body">
+              <div id="chart"> 
+                 <!-- *ngIf="!chartLoading" -->
+                <apx-chart [series]="chartOptions.series!"
+                          [chart]="chartOptions.chart!"
+                          [xaxis]="chartOptions.xaxis!"
+                          [yaxis]="chartOptions.yaxis!"
+                          [dataLabels]="chartOptions.dataLabels!"
+                          [grid]="chartOptions.grid!"
+                          [stroke]="chartOptions.stroke!"
+                          [tooltip]="chartOptions.tooltip!"
+                          [colors]="chartOptions.colors!"
+                          [legend]="chartOptions.legend!">
+                </apx-chart>
               </div>
-            </nz-card>
-          </line-chart-event>
+              
+              <div *ngIf="chartLoading" 
+                   class="chart-loading" 
+                   style="display: flex; justify-content: center; align-items: center;">
+                <nz-spin></nz-spin>
+              </div>
+            </div>
+          </nz-card>
         </nz-col>
       </nz-row>
     </nz-content>
   </nz-layout>
 </nz-layout>
-
-
