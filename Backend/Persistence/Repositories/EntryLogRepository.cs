@@ -26,7 +26,7 @@ namespace Final_year_Project.Persistence.Repositories
         public async Task<IEnumerable<EntryLog>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
         {
             return await _context.EntryLogs
-                .Where(r => r.EntryTime >= fromDate && r.EntryTime <= toDate)
+                .Where(r => r.EntryTime >= fromDate && r.EntryTime <= toDate && !r.Exited)
                 .ToListAsync();
         }
 
