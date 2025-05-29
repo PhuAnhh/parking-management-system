@@ -21,6 +21,7 @@ export class WarningEventsComponent implements OnInit {
 
   selectedWarningType: number | null = null;
   selectedLaneId: number | null = null;
+  selectedDateRange: Date[] | null = null;
   searchKeyword = '';
   warnings: any[] = [];
   lanes: any[] = [];
@@ -48,49 +49,85 @@ export class WarningEventsComponent implements OnInit {
     this.loadLanes();
   }
 
-  loadWarningEvents(searchKeyword: string = '') {
+  loadWarningEvents(searchKeyword: string = ''): void {
     this.loading = true;
 
-    this.warningEventService.getWarnings().subscribe(
-      (data: any[]) => {
-        let filteredWarnings = data;
+    const serviceCall = (this.selectedDateRange?.length === 2)
+      ? this.warningEventService.getWarningsByDateRange(
+          this.selectedDateRange[0],
+          this.selectedDateRange[1]
+        )
+      : this.warningEventService.getWarnings();
 
-        if (searchKeyword) {
-          filteredWarnings = filteredWarnings.filter(warning =>
-            warning.plateNumber.toLowerCase().includes(searchKeyword.toLowerCase())
-          );
-        }
+    serviceCall.subscribe({
+      next: (data: any[]) => {
+        const filtered = this.filterWarningEvents(data, searchKeyword);
 
-        if (this.selectedWarningType) {
-          filteredWarnings = filteredWarnings.filter(warning =>
-            warning.warningType === this.selectedWarningType
-          );
-        }
-
-        if (this.selectedLaneId) {
-          filteredWarnings = filteredWarnings.filter(warning =>
-            warning.laneId === this.selectedLaneId
-          );
-        }
-
-        this.total = filteredWarnings.length;
+        this.total = filtered.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
-        this.warnings = filteredWarnings.slice(start, end);
+        this.warnings = filtered.slice(start, end);
+
         this.loading = false;
         this.cdr.detectChanges();
       },
-      (error) => {
-        console.error('Lỗi khi lấy danh sách cảnh báo:', error);
+      error: (err) => {
+        console.error('Lỗi khi lấy danh sách cảnh báo:', err);
         this.loading = false;
       }
-    );
+    });
   }
+
+  private filterWarningEvents(data: any[], keyword: string): any[] {
+    let result = data;
+
+    if (keyword) {
+      result = result.filter(warning =>
+        warning.plateNumber?.toLowerCase().includes(keyword.toLowerCase())
+      );
+    }
+
+    if (this.selectedWarningType) {
+      result = result.filter(warning =>
+        warning.warningType === this.selectedWarningType
+      );
+    }
+
+    if (this.selectedLaneId) {
+      result = result.filter(warning =>
+        warning.laneId === this.selectedLaneId
+      );
+    }
+
+    if (this.selectedDateRange && this.selectedDateRange.length === 2) {
+      const startDate = new Date(this.selectedDateRange[0]);
+      const endDate = new Date(this.selectedDateRange[1]);
+      
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(23, 59, 59, 999);
+
+      result = result.filter(warning => {
+        if (!warning.createdAt) return false;
+        
+        const warningLocalTime = new Date(warning.createdAt + 'Z');
+        
+        return warningLocalTime >= startDate && warningLocalTime <= endDate;
+      });
+    }
+
+    return result;
+  }
+
 
   loadLanes() {
     this.laneService.getLanes().subscribe(data => {
       this.lanes = data;
     });
+  }
+
+  getFormattedTime(utcTimeString: string): Date | null {
+    if (!utcTimeString) return null;
+    return new Date(utcTimeString + 'Z');
   }
 
   getLaneNameById(laneId: number): string {
@@ -119,6 +156,10 @@ export class WarningEventsComponent implements OnInit {
   }
 
   onLaneChange(): void {
+    this.loadWarningEvents();
+  }
+
+  onDateRangeChange(): void {
     this.loadWarningEvents();
   }
 }

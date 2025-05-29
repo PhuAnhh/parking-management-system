@@ -304,7 +304,7 @@
                         nz-input 
                         id="keyword" 
                         class="ant-input" 
-                        placeholder="Từ khóa..." 
+                        placeholder="Biển số" 
                         [(ngModel)]="searchKeyword"
                         (keyup.enter)="onSearch()">
                       <span nz-input-group-slot type="addon" class="ant-input-group-addon">
@@ -342,6 +342,8 @@
               <nz-col [nzSpan]="7" style="padding: 12px 6px;">
                 <label for="entryTime" class="input-label" style="color: #0c68e9;">Ngày giờ vào</label>
                 <nz-range-picker 
+                  [(ngModel)]="selectedDateRange"
+                  (ngModelChange)="onDateRangeChange()" 
                   [nzShowTime]="true"
                   [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
                   nzFormat="dd/MM/yyyy HH:mm:ss" 
@@ -430,7 +432,7 @@
                   </td>
                   <td>{{ getCustomerNameById(entryLog.customerId) }}</td>   
                   <td style="color: #35A200;">{{ getLaneNameById(entryLog.laneId) }}</td>
-                  <td>{{ entryLog.entryTime | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                  <td>{{ getFormattedTime(entryLog.entryTime) | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                   <td 
                     style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                     nz-tooltip

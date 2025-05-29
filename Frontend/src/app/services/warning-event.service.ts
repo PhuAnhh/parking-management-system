@@ -14,6 +14,15 @@ export class WarningEventService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  getWarningsByDateRange(fromDate: Date, toDate: Date) {
+    return this.http.get<any[]>(`${this.apiUrl}/filter-by-date`, {
+      params: {
+        fromDate: fromDate.toISOString(),
+        toDate: toDate.toISOString()
+      }
+    });
+  }
+
   getWarningById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }

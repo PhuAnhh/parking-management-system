@@ -5,6 +5,7 @@ import { CardGroupService } from '../../services/card-group.service';
 import { LaneService } from '../../services/lane.service';
 import { CustomerService } from '../../services/customer.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 enum CardGroupVehicleType{
   CAR = 'Car',
@@ -41,6 +42,7 @@ export class ExitLogsComponent implements OnInit{
   searchKeyword: string = '';
   selectedCardGroupId: number | null = null;
   selectedLaneId: number | null = null;
+  selectedDateRange: Date[] | null = null;
 
   isVisible = false;
   currentEntryLogId: number | null = null;
@@ -57,6 +59,7 @@ export class ExitLogsComponent implements OnInit{
       private cardGroupService: CardGroupService,
       private laneService: LaneService,
       private customerService: CustomerService,
+      private notification: NzNotificationService,
       private cdr: ChangeDetectorRef,
     ) {
       this.dashboardItems = [
@@ -93,51 +96,75 @@ export class ExitLogsComponent implements OnInit{
   initForm() {
   }
 
-  loadExitLogs(searchKeyword: string = '') {
+  loadExitLogs(searchKeyword: string = ''): void {
     this.loading = true;
 
-    this.exitLogService.getExitLogs().subscribe(
-      (data: any[]) => {
-        console.log(data);
+    const serviceCall = (this.selectedDateRange?.length === 2)
+      ? this.exitLogService.getExitLogsByDateRange(
+          this.selectedDateRange[0],
+          this.selectedDateRange[1]
+        )
+      : this.exitLogService.getExitLogs();
 
-        let filteredExitLogs = data;
+    serviceCall.subscribe({
+      next: (data: any[]) => {
+        const filtered = this.filterExitLogs(data, searchKeyword);
 
-        if (searchKeyword) {
-          filteredExitLogs = filteredExitLogs.filter(exitLog =>
-            (exitLog.entryLog?.plateNumber?.toLowerCase().includes(searchKeyword.toLowerCase())) ||
-            (exitLog.exitPlateNumber?.toLowerCase().includes(searchKeyword.toLowerCase()))
-          );
-        }
+        this.updateDashboardItems(filtered);
 
-        if (this.selectedLaneId) {
-          filteredExitLogs = filteredExitLogs.filter(exitLog =>
-            exitLog.entryLaneId === this.selectedLaneId || exitLog.exitLaneId === this.selectedLaneId
-          );
-        }
-
-        if (this.selectedCardGroupId) {
-          filteredExitLogs = filteredExitLogs.filter(exitLog =>
-            exitLog.cardGroupId === this.selectedCardGroupId
-          );
-        }
-
-        console.log('Kết quả đã lọc:', filteredExitLogs);
-
-        this.updateDashboardItems(filteredExitLogs);
-
-        this.total = filteredExitLogs.length;
+        this.total = filtered.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
-        this.exitLogs = filteredExitLogs.slice(start, end);
+        this.exitLogs = filtered.slice(start, end);
 
         this.loading = false;
         this.cdr.detectChanges();
       },
-      (error) => {
-        console.error('Lỗi khi lấy danh sách xe đã ra khỏi bãi:', error);
+      error: (err) => {
+        console.error('Lỗi khi lấy danh sách xe đã ra khỏi bãi:', err);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu xe đã ra');
         this.loading = false;
       }
-    );
+    });
+  }
+
+  private filterExitLogs(data: any[], keyword: string): any[] {
+    let result = data;
+
+    if (keyword) {
+      result = result.filter(exit =>
+        (exit.entryLog?.plateNumber?.toLowerCase().includes(keyword.toLowerCase())) ||
+        (exit.exitPlateNumber?.toLowerCase().includes(keyword.toLowerCase()))
+      );
+    }
+
+    if (this.selectedCardGroupId) {
+      result = result.filter(exit => exit.cardGroupId === this.selectedCardGroupId);
+    }
+
+    if (this.selectedLaneId) {
+      result = result.filter(exit =>
+        exit.entryLaneId === this.selectedLaneId || exit.exitLaneId === this.selectedLaneId
+      );
+    }
+
+    if (this.selectedDateRange && this.selectedDateRange.length === 2) {
+      const startDate = new Date(this.selectedDateRange[0]);
+      const endDate = new Date(this.selectedDateRange[1]);
+      
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(23, 59, 59, 999);
+
+      result = result.filter(exit => {
+        if (!exit.exitTime) return false;
+        
+        const exitLocalTime = new Date(exit.exitTime + 'Z');
+        
+        return exitLocalTime >= startDate && exitLocalTime <= endDate;
+      });
+    }
+
+    return result;
   }
 
   loadCards() {
@@ -173,6 +200,11 @@ export class ExitLogsComponent implements OnInit{
 
     this.dashboardItems[0].value = totalExitEvents;
     this.dashboardItems[1].value = totalRevenue;
+  }
+
+  getFormattedTime(utcTimeString: string): Date | null {
+    if (!utcTimeString) return null;
+    return new Date(utcTimeString + 'Z');
   }
 
   getCardNameById(cardId: number): string {
@@ -235,6 +267,10 @@ export class ExitLogsComponent implements OnInit{
   }
 
   onLaneChange(): void {
+    this.loadExitLogs();
+  }
+
+  onDateRangeChange(): void {
     this.loadExitLogs();
   }
 

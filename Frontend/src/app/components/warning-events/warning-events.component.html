@@ -120,7 +120,7 @@
           </div>
         </nz-breadcrumb>
         <div class="inner-content">
-            <nz-card class="ant-card card-wrapper-content">
+            <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 12px">
                 <div class="ant-card-body" style="padding: 24px 0px;"> 
                     <nz-row class="filter-row" style="margin: -12px -6px;">
                       <nz-col [nzSpan]="5" style="padding: 12px 6px;">
@@ -133,7 +133,7 @@
                                 nz-input 
                                 id="keyword" 
                                 class="ant-input" 
-                                placeholder="Từ khóa..." 
+                                placeholder="Biển số" 
                                 [(ngModel)]="searchKeyword"
                                 (keyup.enter)="onSearch()">
                               <span nz-input-group-slot type="addon" class="ant-input-group-addon">
@@ -190,6 +190,8 @@
                         <fieldset>
                           <label class="input-label" style="color: #0c68e9;">Ngày giờ ra</label>
                           <nz-range-picker
+                            [(ngModel)]="selectedDateRange"
+                            (ngModelChange)="onDateRangeChange()"
                             [nzShowTime]="true"
                             [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
                             nzFormat="dd/MM/yyyy HH:mm:ss"
@@ -259,8 +261,8 @@
                           </td>
                           <td>{{ warning.note }}</td>
                           <td>
-                            {{ warning.createdAt | date: 'dd/MM/yyyy' }}<br />
-                            {{ warning.createdAt | date: 'HH:mm:ss' }}
+                            {{ getFormattedTime(warning.createdAt) | date: 'dd/MM/yyyy' }}<br />
+                            {{ getFormattedTime(warning.createdAt) | date: 'HH:mm:ss' }}
                           </td>
                           <td style="text-align: center;">
                             <button 

@@ -148,10 +148,9 @@
       </nz-row>
       
       <div class="inner-content">
-        <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 24px;">
+        <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 12px;">
           <div class="ant-card-body" style="padding: 24px 0px;"> 
             <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
-
               <nz-col [nzSpan]="6" style="padding: 12px 6px;">
                 <fieldset>
                   <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
@@ -162,7 +161,7 @@
                         nz-input 
                         id="keyword" 
                         class="ant-input" 
-                        placeholder="Từ khóa..." 
+                        placeholder="BSX Vào | BSX Ra" 
                         [(ngModel)]="searchKeyword"
                         (keyup.enter)="onSearch()">
                       <span nz-input-group-slot type="addon" class="ant-input-group-addon">
@@ -218,6 +217,8 @@
               <nz-col [nzSpan]="7" style="padding: 12px 6px;">
                 <label for="entryTime" class="input-label" style="color: #0c68e9;">Ngày giờ ra</label>
                 <nz-range-picker 
+                  [(ngModel)]="selectedDateRange"
+                  (ngModelChange)="onDateRangeChange()"
                   [nzShowTime]="true"
                   [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
                   nzFormat="dd/MM/yyyy HH:mm:ss" 
@@ -312,12 +313,12 @@
                     <div style="color: #e70003;">{{ getLaneNameById(exitLog.exitLaneId) }}</div>
                   </td>
                   <td>
-                    {{ exitLog.entryTime | date: 'dd/MM/yyyy' }}<br />
-                    {{ exitLog.entryTime | date: 'HH:mm:ss' }}
+                    {{ getFormattedTime(exitLog.entryTime) | date: 'dd/MM/yyyy' }}<br />
+                    {{ getFormattedTime(exitLog.entryTime) | date: 'HH:mm:ss' }}
                   </td>
                   <td>
-                    {{ exitLog.exitTime | date: 'dd/MM/yyyy' }}<br />
-                    {{ exitLog.exitTime | date: 'HH:mm:ss' }}
+                    {{ getFormattedTime(exitLog.exitTime) | date: 'dd/MM/yyyy' }}<br />
+                    {{ getFormattedTime(exitLog.exitTime) | date: 'HH:mm:ss' }}
                   </td>
                   <td
                     nzFixed="left"

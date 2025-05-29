@@ -14,6 +14,15 @@ export class EntryLogService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  getEntryLogsByDateRange(fromDate: Date, toDate: Date) {
+    return this.http.get<any[]>(`${this.apiUrl}/filter-by-date`, {
+      params: {
+        fromDate: fromDate.toISOString(),
+        toDate: toDate.toISOString()
+      }
+    });
+  }
+
   getEntryLogById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }

@@ -34,25 +34,16 @@ export class RevenueReportsComponent implements OnInit {
   loadRevenueReports(): void {
     this.loading = true;
 
-    let serviceCall;
-    if (this.selectedDateRange && this.selectedDateRange.length === 2) {
-      serviceCall = this.revenueReportService.getRevenueReportsByDateRange(
-        this.selectedDateRange[0],
-        this.selectedDateRange[1]
-      );
-    } else {
-      serviceCall = this.revenueReportService.getRevenueReports();
-    }
+    const serviceCall = (this.selectedDateRange?.length === 2)
+      ? this.revenueReportService.getRevenueReportsByDateRange(
+          this.selectedDateRange[0],
+          this.selectedDateRange[1]
+        )
+      : this.revenueReportService.getRevenueReports();
 
     serviceCall.subscribe({
       next: (data: any[]) => {
-        let filteredReports = data;
-
-        if (this.selectedCardGroupId !== null) {
-          filteredReports = filteredReports.filter(report => report.cardGroupId === this.selectedCardGroupId);
-        }
-
-        this.revenueReports = filteredReports;
+        this.revenueReports = this.filterRevenueReports(data);
         this.loading = false;
         this.cdr.detectChanges();
       },
@@ -61,6 +52,32 @@ export class RevenueReportsComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  private filterRevenueReports(data: any[]): any[] {
+    let result = data;
+
+    if (this.selectedCardGroupId !== null) {
+      result = result.filter(report => report.cardGroupId === this.selectedCardGroupId);
+    }
+
+    if (this.selectedDateRange && this.selectedDateRange.length === 2) {
+      const startDate = new Date(this.selectedDateRange[0]);
+      const endDate = new Date(this.selectedDateRange[1]);
+      
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(23, 59, 59, 999);
+
+      result = result.filter(report => {
+        if (!report.createdAt) return false;
+        
+        const reportLocalTime = new Date(report.createdAt + 'Z');
+        
+        return reportLocalTime >= startDate && reportLocalTime <= endDate;
+      });
+    }
+
+    return result;
   }
 
   onDateRangeChange(): void {

@@ -14,6 +14,15 @@ export class ExitLogService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  getExitLogsByDateRange(fromDate: Date, toDate: Date) {
+    return this.http.get<any[]>(`${this.apiUrl}/filter-by-date`, {
+      params: {
+        fromDate: fromDate.toISOString(),
+        toDate: toDate.toISOString()
+      }
+    });
+  }
+
   getExitLogById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }

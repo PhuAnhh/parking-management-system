@@ -47,6 +47,8 @@ export class EntryLogsComponent implements OnInit{
   searchKeyword: string = '';
   selectedCardGroupId: number | null = null;
   selectedLaneId: number | null = null;
+  selectedDateRange: Date[] | null = null;
+
 
   isAddEntryModalVisible = false; 
   isAddExitModalVisible = false;
@@ -127,49 +129,75 @@ export class EntryLogsComponent implements OnInit{
     });
   }
 
-  loadEntryLogs(searchKeyword: string = '') {
+  loadEntryLogs(searchKeyword: string = ''): void {
     this.loading = true;
 
-    this.entryLogService.getEntryLogs().subscribe(
-      (data: any[]) => {
-        let filteredEntryLogs = data;
-        
-        if (searchKeyword) {
-          filteredEntryLogs = filteredEntryLogs.filter(entryLog =>
-            entryLog.plateNumber.toLowerCase().includes(searchKeyword.toLowerCase())
-          );
-        }
-        
-        if (this.selectedCardGroupId) {
-          filteredEntryLogs = filteredEntryLogs.filter(entryLog => 
-            entryLog.cardGroupId === this.selectedCardGroupId
-          );
-        }
+    const serviceCall = (this.selectedDateRange?.length === 2)
+      ? this.entryLogService.getEntryLogsByDateRange(
+          this.selectedDateRange[0],
+          this.selectedDateRange[1]
+        )
+      : this.entryLogService.getEntryLogs();
 
-        if (this.selectedLaneId) {
-          filteredEntryLogs = filteredEntryLogs.filter(entryLog => 
-            entryLog.laneId === this.selectedLaneId
-          );
-        }
+    serviceCall.subscribe({
+      next: (data: any[]) => {
+        const filteredLogs = this.filterEntryLogs(data, searchKeyword);
 
-        this.total = filteredEntryLogs.length;
+        this.total = filteredLogs.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
-        this.entryLogs = filteredEntryLogs.slice(start, end); 
-        
-        this.totalVehicles = filteredEntryLogs.length;
-        this.totalCars = this.countVehiclesByType(CardGroupVehicleType.CAR, filteredEntryLogs);
-        this.totalMotorbikes = this.countVehiclesByType(CardGroupVehicleType.MOTORBIKE, filteredEntryLogs);
-        this.totalBicycles = this.countVehiclesByType(CardGroupVehicleType.BICYCLE, filteredEntryLogs);
+        this.entryLogs = filteredLogs.slice(start, end); 
+
+        this.totalVehicles = filteredLogs.length;
+        this.totalCars = this.countVehiclesByType(CardGroupVehicleType.CAR, filteredLogs);
+        this.totalMotorbikes = this.countVehiclesByType(CardGroupVehicleType.MOTORBIKE, filteredLogs);
+        this.totalBicycles = this.countVehiclesByType(CardGroupVehicleType.BICYCLE, filteredLogs);
 
         this.loading = false;
         this.cdr.detectChanges();
       },
-      (error) => {
-        console.error('Lỗi khi lấy danh sách xe vào bãi:', error);
+      error: (err) => {
+        console.error('Lỗi khi lấy danh sách xe vào bãi:', err);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu xe vào bãi');
         this.loading = false;
       }
-    );
+    });
+  }
+
+  private filterEntryLogs(data: any[], keyword: string): any[] {
+    let result = data;
+
+    if (keyword) {
+      result = result.filter(entry =>
+        entry.plateNumber?.toLowerCase().includes(keyword.toLowerCase())
+      );
+    }
+
+    if (this.selectedCardGroupId) {
+      result = result.filter(entry => entry.cardGroupId === this.selectedCardGroupId);
+    }
+
+    if (this.selectedLaneId) {
+      result = result.filter(entry => entry.laneId === this.selectedLaneId);
+    }
+
+    if (this.selectedDateRange && this.selectedDateRange.length === 2) {
+      const startDate = new Date(this.selectedDateRange[0]);
+      const endDate = new Date(this.selectedDateRange[1]);
+      
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(23, 59, 59, 999);
+
+      result = result.filter(entry => {
+        if (!entry.entryTime) return false;
+        
+        const entryLocalTime = new Date(entry.entryTime + 'Z');
+        
+        return entryLocalTime >= startDate && entryLocalTime <= endDate;
+      });
+    }
+
+    return result;
   }
 
   loadCards() {
@@ -208,6 +236,11 @@ export class EntryLogsComponent implements OnInit{
       const cardGroup = card ? this.cardGroups.find(cg => cg.id === card.cardGroupId) : null;
       return cardGroup && cardGroup.vehicleType === vehicleType;
     }).length;
+  }
+
+  getFormattedTime(utcTimeString: string): Date | null {
+    if (!utcTimeString) return null;
+    return new Date(utcTimeString + 'Z');
   }
 
   getCardNameById(cardId: number): string {
@@ -272,6 +305,10 @@ export class EntryLogsComponent implements OnInit{
   }
 
   onLaneChange(): void {
+    this.loadEntryLogs();
+  }
+
+  onDateRangeChange() : void {
     this.loadEntryLogs();
   }
 
