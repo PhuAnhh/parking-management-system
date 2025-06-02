@@ -43,6 +43,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 import { GatesComponent } from './components/gates/gates.component';
 import { ComputersComponent } from './components/computers/computers.component';
@@ -124,6 +125,7 @@ registerLocaleData(vi);
     NzImageModule,
     NzSpinModule,
     NzTypographyModule,
+    NzEmptyModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

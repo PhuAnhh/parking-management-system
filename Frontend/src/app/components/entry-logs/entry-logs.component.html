@@ -126,7 +126,7 @@
           </div>
           <nz-breadcrumb-item>
             <span class="ant-breadcrumb-link">
-              <a href="/#/entry-logs">Xe vào bãi</a>
+              <a href="/entry-logs">Xe vào bãi</a>
             </span>
           </nz-breadcrumb-item>
         </div>
@@ -136,7 +136,8 @@
         <nz-card 
           class="stats-container" 
           [nzBorderless]="true" 
-          [nzBodyStyle]="{ padding: '0' }">
+          [nzBodyStyle]="{ padding: '0' }"
+          style="margin-bottom: 12px;">
           <div class="stats-row">
             <div 
               nz-col 
@@ -372,7 +373,7 @@
                     nzType="primary" 
                     class="add-btn" 
                     style="display: flex; align-items: center;">
-                    <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
+                    <span nz-icon nzType="edit" nzTheme="outline" class="anticon"></span>
                     <span>Ghi vé vào</span>
                   </button>
                 </div>
@@ -446,7 +447,7 @@
                       nzTooltipTitle="Xem chi tiết sự kiện"
                       nzTooltipColor="#52c41a"
                       class="ant-btn edit-btn ant-btn-icon-only"
-                      (click)="openFullScreenModal()"
+                      (click)="showDetailModal(entryLog.id)"
                     >
                       <span nz-icon nzType="picture" nzTheme="fill"></span>
                     </button>
@@ -707,7 +708,7 @@
             style="width: 100%; border-radius: 8px;"
             nzAllowClear="true">
             <nz-option 
-              *ngFor="let lane of lanes" 
+              *ngFor="let lane of filteredExitLanes" 
               [nzValue]="lane.id" 
               [nzLabel]="lane.name">
             </nz-option>
@@ -754,7 +755,7 @@
 </ng-template>
 
 <nz-modal
-  [(nzVisible)]="isFullScreenModalVisible"
+  [(nzVisible)]="isShowDetailModalVisible"
   nzTitle="Chi tiết sự kiện Xe vào bãi"
   [nzFooter]="null"
   [nzWidth]="'100vw'"
@@ -765,71 +766,127 @@
   }"
   [nzBodyStyle]="{
     height: '100vh',
-    overflow: 'hidden',
+    overflow: 'hidden'
   }"
   [nzClosable]="true"
   [nzWrapClassName]="'dark-modal'"
-  (nzOnCancel)="handleCancel1()"
-  [nzContent]="detailEventTpl">
-</nz-modal>
-
+  (nzOnCancel)="handleDetailCancel()"
+  [nzContent]="detailEventTpl"
+></nz-modal>
 
 <ng-template #detailEventTpl>
-  <div style="height: 100%; box-sizing: border-box; min-height: 400px;">
-    <div nz-row [nzGutter]="20">
+  <div 
+    nz-row 
+    [nzGutter]="40" 
+    style="padding: 50px; box-sizing: border-box; display: flex; align-items: stretch;"
+  >
+    <div 
+      nz-col 
+      [nzSpan]="16" 
+      style="display: flex; justify-content: center; align-items: center"
+    >
       <div
-        nz-col
-        nzxl="16"
-        nzlg="24"
-        nzmd="24"
-        nzsm="24"
-        nzxs="24"
-        nz-flex
-        nzalign="center"
+        [style.border]="selectedEntryLogDetail?.imageUrl ? 'none' : '2px solid #202020'"
+        style="
+          width: 100%;
+          height: 100%;
+          padding-left: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-sizing: border-box;
+        "
       >
-        <nz-image-group nz-flex nzalign="center" nzjustify="center">
-          <img nz-image alt style="height: 60vh;" src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
-        </nz-image-group>
+        <div *ngIf="selectedEntryLogDetail?.imageUrl; else noImageTemplate" 
+             style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+          <img
+            [src]="selectedEntryLogDetail.imageUrl" 
+            alt=""
+            style="max-width: 100%; max-height: 100%; object-fit: contain;"
+          />
+        </div>
+        
+        <ng-template #noImageTemplate>
+          <nz-empty nzNotFoundContent="Không có dữ liệu"></nz-empty>
+        </ng-template>
       </div>
-      <div
-        nz-col
-        nzxl="8"
-        nzlg="24"
-        nzmd="24"
-        nzsm="24"
-        nzxs="24"
-      >
-        <div style="background-color: rgb(37, 37, 37); padding-left:  10px; padding-right: 10px; border: 2px solid #202020;">
-          <p>Chi tiết</p>
-          <div>
-            <div nz-row>
-              <span nz-icon nzType="car" nzTheme="fill"></span>
-              <div>
-                <span>Biển số</span>
-                <span>29C1</span>
-              </div>
-            </div>
-            <div nz-row>
-              <span nz-icon nzType="car" nzTheme="fill"></span>
-              <div>
-                <span>Ngày tạo</span>
-                <span>29C1</span>
-              </div>
-            </div>
-            <div nz-row>
-              <span nz-icon nzType="car" nzTheme="fill"></span>
-              <div>
-                <span>Làn</span>
-                <span>29C1</span>
-              </div>
-            </div>
-            <div nz-row>
-              <span nz-icon nzType="car" nzTheme="fill"></span>
-              <div>
-                <span>Thẻ</span>
-                <span>29C1</span>
-              </div>
-            </div>
+    </div>
+
+    <div
+      nz-col
+      [nzSpan]="7"
+      style="background-color: rgb(37, 37, 37); border: 2px solid #202020; height: fit-content; padding: 10px; flex-direction: column; margin-left: 20px; display: flex; box-sizing: border-box;"
+    >
+      <p style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 20px;">Chi tiết</p>
+
+      <div *ngIf="selectedEntryLogDetail">
+        <div nz-row style="align-items: center; margin-bottom: 16px; color: white;">
+          <div nz-col [nzSpan]="2" style="text-align: center;">
+            <span nz-icon nzType="car" nzTheme="fill"></span>
+          </div>
+          <div nz-col [nzSpan]="22" style="display: flex; flex-direction: column;">
+            <span>Biển số</span>
+            <span>{{ selectedEntryLogDetail.plateNumber || 'Không có dữ liệu' }}</span>
+          </div>
+        </div>
+
+        <div nz-row style="align-items: center; margin-bottom: 16px; color: white;">
+          <div nz-col [nzSpan]="2" style="text-align: center;">
+            <span nz-icon nzType="idcard" nzTheme="fill"></span>
+          </div>
+          <div nz-col [nzSpan]="22" style="display: flex; flex-direction: column;">
+            <span>Thẻ</span>
+            <span>{{ getCardNameById(selectedEntryLogDetail.cardId) || 'Không có dữ liệu' }}</span>
+          </div>
+        </div>
+
+        <div nz-row style="align-items: center; margin-bottom: 16px; color: white;">
+          <div nz-col [nzSpan]="2" style="text-align: center;">
+            <span nz-icon nzType="database" nzTheme="fill"></span>
+          </div>
+          <div nz-col [nzSpan]="22" style="display: flex; flex-direction: column;">
+            <span>Nhóm thẻ</span>
+            <span>{{ getCardGroupNameById(selectedEntryLogDetail.cardGroupId) || 'Không có dữ liệu' }}</span>
+          </div>
+        </div>
+
+        <div nz-row style="align-items: center; margin-bottom: 16px; color: white;">
+          <div nz-col [nzSpan]="2" style="text-align: center;">
+            <span nz-icon nzType="user" nzTheme="outline"></span>
+          </div>
+          <div nz-col [nzSpan]="22" style="display: flex; flex-direction: column;">
+            <span>Khách hàng</span>
+            <span>{{ getCustomerNameById(selectedEntryLogDetail.customerId) || 'Không có dữ liệu' }}</span>
+          </div>
+        </div>
+
+        <div nz-row style="align-items: center; margin-bottom: 16px; color: white;">
+          <div nz-col [nzSpan]="2" style="text-align: center;">
+            <span nz-icon nzType="control" nzTheme="fill"></span>
+          </div>
+          <div nz-col [nzSpan]="22" style="display: flex; flex-direction: column;">
+            <span>Làn vào</span>
+            <span>{{ getLaneNameById(selectedEntryLogDetail.laneId) || 'Không có dữ liệu' }}</span>
+          </div>
+        </div>
+
+        <div nz-row style="align-items: center; margin-bottom: 16px; color: white;">
+          <div nz-col [nzSpan]="2" style="text-align: center;">
+            <span nz-icon nzType="clock-circle" nzTheme="fill"></span>
+          </div>
+          <div nz-col [nzSpan]="22" style="display: flex; flex-direction: column;">
+            <span>Giờ vào</span>
+            <span>{{ getFormattedTime(selectedEntryLogDetail.entryTime) ? (getFormattedTime(selectedEntryLogDetail.entryTime) | date: 'dd/MM/yyyy HH:mm:ss') : 'Không có dữ liệu' }}</span>
+          </div>
+        </div>
+
+        <div nz-row style="align-items: center; color: white;">
+          <div nz-col [nzSpan]="2" style="text-align: center;">
+            <span nz-icon nzType="file-text" nzTheme="fill"></span>
+          </div>
+          <div nz-col [nzSpan]="22" style="display: flex; flex-direction: column;">
+            <span>Ghi chú</span>
+            <span>{{ selectedEntryLogDetail.note || 'Không có dữ liệu' }}</span>
           </div>
         </div>
       </div>

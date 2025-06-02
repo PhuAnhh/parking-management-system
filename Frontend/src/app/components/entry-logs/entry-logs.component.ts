@@ -48,11 +48,11 @@ export class EntryLogsComponent implements OnInit{
   selectedCardGroupId: number | null = null;
   selectedLaneId: number | null = null;
   selectedDateRange: Date[] | null = null;
-
+  selectedEntryLogDetail: any = null;
 
   isAddEntryModalVisible = false; 
   isAddExitModalVisible = false;
-  isFullScreenModalVisible = false;
+  isShowDetailModalVisible = false;
   selectedEntryLog: any = null;
   filteredEntryLanes: any[] = [];
   filteredExitLanes: any[] = [];
@@ -327,17 +327,54 @@ export class EntryLogsComponent implements OnInit{
   showAddExitLogModal(entryLog?: any) {
     this.selectedEntryLog = entryLog;
     this.isAddExitModalVisible = true;
-    
     this.exitLogForm.reset();
+    this.filteredExitLanes = [];
+
     if (entryLog) {
       this.exitLogForm.patchValue({
         exitPlateNumber: entryLog.plateNumber
       });
+
+      const selectedCard = this.cards.find(card => card.id === entryLog.cardId);
+      const cardGroupId = selectedCard?.cardGroupId || null;
+
+      const cardGroup = this.cardGroups.find(group => group.id === cardGroupId);
+
+      if (cardGroup?.laneIds?.length) {
+        this.filteredExitLanes = this.lanes.filter(lane =>
+          cardGroup.laneIds.includes(lane.id) &&
+          (lane.type === 'Out' || lane.type === 'Dynamic' || lane.type === 'KioskIn')
+        );
+      }
     }
   }
 
-  openFullScreenModal(): void {
-    this.isFullScreenModalVisible = true;
+  showDetailModal(entryLogId: number): void {
+    this.loading = true;
+    
+    this.entryLogService.getEntryLogById(entryLogId).subscribe({
+      next: (data) => {
+        // Nối thêm base URL cho imageUrl nếu có
+        if (data.imageUrl) {
+          data.imageUrl = `http://localhost:5000${data.imageUrl}`;
+        }
+        this.selectedEntryLogDetail = data;
+        this.isShowDetailModalVisible = true;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Lỗi khi lấy chi tiết sự kiện:', error);
+        this.notification.error(
+          'Lỗi',
+          'Không thể tải chi tiết sự kiện',
+          {
+            nzPlacement: 'topRight',
+            nzDuration: 3000
+          }
+        );
+        this.loading = false;
+      }
+    });
   }
 
   handleCancel() {
@@ -346,8 +383,8 @@ export class EntryLogsComponent implements OnInit{
     this.selectedEntryLog = null;
   }
 
-  handleCancel1(): void {
-    this.isFullScreenModalVisible = false;
+  handleDetailCancel(): void {
+    this.isShowDetailModalVisible = false;
   }
 
   handleOk() {

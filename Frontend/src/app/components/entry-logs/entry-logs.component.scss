@@ -125,24 +125,12 @@ nz-content {
   padding: 0 !important;
 }
 
-nz-footer {
-  text-align: center;
-}
-
 .ant-btn1{
-  background-color: rgba(145 158 171 / .08); 
-  border-color: rgba(145 158 171 / .08);
+  background-color: #919EAB14;
+  border-color: #919EAB14;
   color: #637381;
   border-radius: 8px;
   margin-left: 15px;
-}
-
-.ant-btn2{
-  background-color: rgba(145 158 171 / .08); 
-  border-color: rgba(145 158 171 / .08);
-  border-radius: 8px;
-  color: #637381;
-  margin-right: 30px;
 }
 
 .ant-btn-text{
@@ -153,7 +141,7 @@ nz-footer {
 }
 
 .ant-btn-primary{
-  text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+  text-shadow: 0 -1px 0 #0000001F;
   box-shadow: 0 2px #0000000b;
 }
 
