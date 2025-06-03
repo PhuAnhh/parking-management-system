@@ -354,7 +354,6 @@ export class EntryLogsComponent implements OnInit{
     
     this.entryLogService.getEntryLogById(entryLogId).subscribe({
       next: (data) => {
-        // Nối thêm base URL cho imageUrl nếu có
         if (data.imageUrl) {
           data.imageUrl = `http://localhost:5000${data.imageUrl}`;
         }
