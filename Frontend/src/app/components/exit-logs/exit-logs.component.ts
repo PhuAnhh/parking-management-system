@@ -43,9 +43,12 @@ export class ExitLogsComponent implements OnInit{
   selectedCardGroupId: number | null = null;
   selectedLaneId: number | null = null;
   selectedDateRange: Date[] | null = null;
+  selectedExitLogDetail: any = null;
 
   isVisible = false;
   currentEntryLogId: number | null = null;
+
+  isShowDetailModalVisible = false;
 
   vehicleTypes = [    
     { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: '#d46b08' },
@@ -279,5 +282,41 @@ export class ExitLogsComponent implements OnInit{
     this.pageIndex = pageIndex;
     this.pageSize = pageSize;
     this.loadExitLogs(this.searchKeyword);
+  }
+
+  showDetailModal(exitLogId: number): void {
+    this.loading = true;
+    
+    this.exitLogService.getExitLogById(exitLogId).subscribe({
+      next: (data) => {
+        if (data.imageUrl) {
+          data.imageUrl = `http://localhost:5000${data.imageUrl}`;
+        }
+
+        if (data.entryLog?.imageUrl && !data.entryLog.imageUrl.startsWith('http')) {
+          data.entryLog.imageUrl = `http://localhost:5000${data.entryLog.imageUrl}`;
+        }
+        
+        this.selectedExitLogDetail = data;
+        this.isShowDetailModalVisible = true;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Lỗi khi lấy chi tiết sự kiện:', error);
+        this.notification.error(
+          'Lỗi',
+          'Không thể tải chi tiết sự kiện',
+          {
+            nzPlacement: 'topRight',
+            nzDuration: 3000
+          }
+        );
+        this.loading = false;
+      }
+    });
+  }
+
+  handleDetailCancel(): void {
+    this.isShowDetailModalVisible = false;
   }
 }

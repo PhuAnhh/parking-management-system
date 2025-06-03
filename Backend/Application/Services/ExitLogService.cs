@@ -52,7 +52,9 @@ namespace Final_year_Project.Application.Services
                         CardId = exitLog.EntryLog.CardId,
                         CardGroupId = exitLog.EntryLog.CardGroupId,
                         LaneId = exitLog.EntryLog.LaneId,
-                        CustomerId = exitLog.EntryLog.CustomerId
+                        CustomerId = exitLog.EntryLog.CustomerId,
+                        ImageUrl = exitLog.EntryLog.ImageUrl,
+                        Note = exitLog.EntryLog.Note
                     }
                 });
             }
@@ -90,7 +92,9 @@ namespace Final_year_Project.Application.Services
                         CardId = exitLog.EntryLog.CardId,
                         CardGroupId = exitLog.EntryLog.CardGroupId,
                         LaneId = exitLog.EntryLog.LaneId,
-                        CustomerId = exitLog.EntryLog.CustomerId
+                        CustomerId = exitLog.EntryLog.CustomerId,
+                        ImageUrl = exitLog.EntryLog.ImageUrl,
+                        Note = exitLog.EntryLog.Note
                     }
                 });
             }
@@ -121,6 +125,17 @@ namespace Final_year_Project.Application.Services
                 ImageUrl = exitLog.ImageUrl,
                 Note = exitLog.Note,
                 CreatedAt = exitLog.CreatedAt,
+                EntryLog = exitLog.EntryLog == null ? null : new EntryLogDto
+                {
+                    Id = exitLog.EntryLog.Id,
+                    PlateNumber = exitLog.EntryLog.PlateNumber,
+                    CardId = exitLog.EntryLog.CardId,
+                    CardGroupId = exitLog.EntryLog.CardGroupId,
+                    LaneId = exitLog.EntryLog.LaneId,
+                    CustomerId = exitLog.EntryLog.CustomerId,
+                    ImageUrl = exitLog.EntryLog.ImageUrl,
+                    Note = exitLog.EntryLog.Note
+                }
             };
         }
 

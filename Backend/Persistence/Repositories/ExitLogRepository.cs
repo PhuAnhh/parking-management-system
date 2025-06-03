@@ -32,7 +32,9 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<ExitLog> GetByIdAsync(int id)
         {
-            return await _context.ExitLogs.FindAsync(id);
+            return await _context.ExitLogs
+                .Include(e => e.EntryLog)
+                .FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task CreateAsync(ExitLog exitLog)
