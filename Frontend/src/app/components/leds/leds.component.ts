@@ -91,7 +91,8 @@ export class LedsComponent implements OnInit{
 
     this.ledService.getLeds().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredLeds = searchKeyword
           ? data.filter(led =>
               led.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||

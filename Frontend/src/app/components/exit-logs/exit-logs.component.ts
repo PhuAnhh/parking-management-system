@@ -113,6 +113,10 @@ export class ExitLogsComponent implements OnInit{
       next: (data: any[]) => {
         const filtered = this.filterExitLogs(data, searchKeyword);
 
+        filtered.sort((a, b) =>
+          new Date(b.exitTime + 'Z').getTime() - new Date(a.exitTime + 'Z').getTime()
+        );
+
         this.updateDashboardItems(filtered);
 
         this.total = filtered.length;

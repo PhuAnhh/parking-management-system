@@ -75,7 +75,8 @@ export class ComputersComponent {
 
     this.computerService.getComputers().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredComputers = searchKeyword
           ? data.filter(computer =>
               computer.name.toLowerCase().includes(searchKeyword.toLowerCase()) 

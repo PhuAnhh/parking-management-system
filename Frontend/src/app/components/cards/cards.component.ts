@@ -105,7 +105,8 @@ export class CardsComponent {
 
     this.cardService.getCards().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredCards = searchKeyword
           ? data.filter(card =>
               card.code.toLowerCase().includes(searchKeyword.toLowerCase()) ||

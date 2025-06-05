@@ -209,7 +209,8 @@ export class LanesComponent implements OnInit{
     
     this.laneService.getLanes().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredLanes = searchKeyword
           ? data.filter(lane =>
               lane.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||

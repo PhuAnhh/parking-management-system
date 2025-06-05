@@ -43,7 +43,11 @@ export class RevenueReportsComponent implements OnInit {
 
     serviceCall.subscribe({
       next: (data: any[]) => {
-        this.revenueReports = this.filterRevenueReports(data);
+        const sortedData = data.sort((a, b) =>
+          new Date(b.createdAt + 'Z').getTime() - new Date(a.createdAt + 'Z').getTime()
+        );
+        
+        this.revenueReports = this.filterRevenueReports(sortedData);
         this.loading = false;
         this.cdr.detectChanges();
       },

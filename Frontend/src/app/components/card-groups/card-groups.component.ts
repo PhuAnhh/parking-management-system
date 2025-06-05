@@ -127,6 +127,8 @@ export class CardGroupsComponent implements OnInit {
   
     this.cardGroupService.getCardGroups().subscribe({
       next: (data: any[]) => {
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredCardGroups = searchKeyword
           ? data.filter(cardGroup =>
               cardGroup.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||

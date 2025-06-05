@@ -100,7 +100,8 @@ export class CustomersComponent {
   
     this.customerService.getCustomers().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredCustomers = searchKeyword
           ? data.filter(customer =>
               customer.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||

@@ -69,7 +69,8 @@ export class GatesComponent implements OnInit{
   
     this.gateService.getGates().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredGates = searchKeyword
           ? data.filter(gate =>
               gate.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||

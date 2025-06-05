@@ -125,7 +125,8 @@ export class ControlUnitsComponent implements OnInit{
 
     this.controlUnitService.getControlUnits().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredControlUnits = searchKeyword
           ? data.filter(controlUnit =>
               controlUnit.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||

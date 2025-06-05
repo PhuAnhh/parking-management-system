@@ -120,7 +120,8 @@ export class CamerasComponent {
   
     this.cameraService.getCameras().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
         const filteredCameras = searchKeyword
           ? data.filter(camera =>
               camera.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||

@@ -63,6 +63,10 @@ export class WarningEventsComponent implements OnInit {
       next: (data: any[]) => {
         const filtered = this.filterWarningEvents(data, searchKeyword);
 
+        filtered.sort((a, b) =>
+          new Date(b.createdAt + 'Z').getTime() - new Date(a.createdAt + 'Z').getTime()
+        );
+
         this.total = filtered.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;

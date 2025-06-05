@@ -56,7 +56,8 @@ export class CustomerGroupsComponent {
   
     this.customerGroupService.getCustomerGroups().subscribe(
       (data: any[]) => {
-        console.log(data);
+        data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
         const filteredCustomerGroups = searchKeyword
           ? data.filter(customerGroup =>
               customerGroup.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||
