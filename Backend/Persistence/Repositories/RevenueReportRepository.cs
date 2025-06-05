@@ -33,9 +33,24 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<RevenueReport>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
         {
-            return await _context.RevenueReports
-                .Where(r => r.CreatedAt >= fromDate && r.CreatedAt <= toDate)
+            var revenueData = await _context.ExitLogs
+                .Include(el => el.CardGroup)
+                .Where(el => el.ExitTime >= fromDate && el.ExitTime <= toDate)
+                .GroupBy(el => new { 
+                    el.CardGroupId, 
+                    CardGroupName = el.CardGroup.Name 
+                })
+                .Select(g => new RevenueReport
+                {
+                    CardGroupId = g.Key.CardGroupId,
+                    ExitCount = g.Count(),
+                    Revenue = g.Sum(el => el.TotalPrice),
+                    CreatedAt = fromDate, 
+                    UpdatedAt = DateTime.Now
+                })
                 .ToListAsync();
+                
+            return revenueData;
         }
 
         public async Task CreateAsync(RevenueReport revenueReport)
