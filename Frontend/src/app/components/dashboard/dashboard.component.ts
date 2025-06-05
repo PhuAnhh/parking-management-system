@@ -12,7 +12,8 @@ import {
   ApexStroke,
   ApexGrid,
   ApexYAxis,
-  ApexLegend
+  ApexLegend,
+  ApexFill
 } from 'ng-apexcharts';
 
 export type ChartOptions = {
@@ -121,6 +122,14 @@ export class DashboardComponent implements OnInit {
         height: 350,
         type: 'line',
         zoom: { enabled: false },
+        dropShadow: {
+          enabled: true,
+          color: '#000',
+          top: 7, 
+          left: 0,
+          blur: 2,
+          opacity: 0.5
+        },
         toolbar: {
           show: true,
           tools: {
