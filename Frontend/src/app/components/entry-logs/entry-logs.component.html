@@ -549,9 +549,10 @@
             formControlName="cardId"
             style="width: 100%; border-radius: 8px;"
             nzAllowClear="true"
+            nzNotFoundContent="Vui lòng chờ xe ra khỏi bãi hoặc thêm thẻ mới"
             (ngModelChange)="onCardChange($event)">
             <nz-option 
-              *ngFor="let card of cards" 
+              *ngFor="let card of availableCards" 
               [nzValue]="card.id" 
               [nzLabel]="card.name">
             </nz-option>

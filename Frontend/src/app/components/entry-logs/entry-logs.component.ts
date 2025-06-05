@@ -56,6 +56,8 @@ export class EntryLogsComponent implements OnInit{
   selectedEntryLog: any = null;
   filteredEntryLanes: any[] = [];
   filteredExitLanes: any[] = [];
+  availableCards: any[] = []; 
+  usedCardIds: number[] = [];
 
   entryLogForm!: FormGroup; 
   exitLogForm!: FormGroup;
@@ -102,6 +104,9 @@ export class EntryLogsComponent implements OnInit{
         
         // Sau khi đã có cả cards và cardGroups, tải entryLogs
         this.loadEntryLogs();
+
+        // Cập nhật danh sách thẻ có thể sử dụng
+        this.updateAvailableCards();
       });
     });
     
@@ -129,6 +134,17 @@ export class EntryLogsComponent implements OnInit{
     });
   }
 
+  updateAvailableCards(): void {
+    // Lấy danh sách ID thẻ đã được sử dụng (xe chưa ra khỏi bãi)
+    this.usedCardIds = this.entryLogs.map(log => log.cardId);
+    
+    // Lọc ra những thẻ chưa được sử dụng và đang hoạt động
+    this.availableCards = this.cards.filter(card => 
+      !this.usedCardIds.includes(card.id) && 
+      card.isActive !== false // Chỉ lấy thẻ đang hoạt động
+    );
+  }
+
   loadEntryLogs(searchKeyword: string = ''): void {
     this.loading = true;
 
@@ -143,6 +159,10 @@ export class EntryLogsComponent implements OnInit{
       next: (data: any[]) => {
         const filteredLogs = this.filterEntryLogs(data, searchKeyword);
 
+        filteredLogs.sort((a, b) =>
+          new Date(b.entryTime + 'Z').getTime() - new Date(a.entryTime + 'Z').getTime()
+        );
+
         this.total = filteredLogs.length;
         const start = (this.pageIndex - 1) * this.pageSize;
         const end = start + this.pageSize;
@@ -152,6 +172,8 @@ export class EntryLogsComponent implements OnInit{
         this.totalCars = this.countVehiclesByType(CardGroupVehicleType.CAR, filteredLogs);
         this.totalMotorbikes = this.countVehiclesByType(CardGroupVehicleType.MOTORBIKE, filteredLogs);
         this.totalBicycles = this.countVehiclesByType(CardGroupVehicleType.BICYCLE, filteredLogs);
+
+        this.updateAvailableCards();
 
         this.loading = false;
         this.cdr.detectChanges();
@@ -322,6 +344,8 @@ export class EntryLogsComponent implements OnInit{
   showAddEntryLogModal() {
     this.isAddEntryModalVisible = true;
     this.entryLogForm.reset(); 
+
+    this.updateAvailableCards();
   }
 
   showAddExitLogModal(entryLog?: any) {
@@ -427,7 +451,7 @@ export class EntryLogsComponent implements OnInit{
         let errorMessage = 'Có lỗi xảy ra khi ghi vé vào';
         
         if (message.includes('Invalid plate number format')) {
-          errorMessage = 'Định dạng biển số xe không hợp lệ. Định dạng mong đợi như "30A12345"';
+          errorMessage = 'Vui lòng nhập đúng định dạng biển số, ví dụ: "29M14838"';
         } else if (message.includes('Card not found')) {
           errorMessage = 'Không tìm thấy thẻ';
         } else if (message.includes('Card is locked')) {
