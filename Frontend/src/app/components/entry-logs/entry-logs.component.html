@@ -80,11 +80,7 @@
           <ul>
             <li nz-menu-item>
               <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
-              <span>Quyền hạn</span>
-            </li>
-            <li nz-menu-item>
-              <span nz-icon nzType="team" nzTheme="outline"></span>
-              <span>Nhóm người dùng</span>
+              <span>Vai trò, quyền hạn</span>
             </li>
             <li nz-menu-item>
               <span nz-icon nzType="user" nzTheme="outline"></span>
@@ -607,7 +603,8 @@
             id="entrylaneId"
             formControlName="laneId"
             style="width: 100%; border-radius: 8px;"
-            nzAllowClear="true">
+            nzAllowClear="true"
+            nzNotFoundContent="Không có làn vào hợp lệ">
             <nz-option 
               *ngFor="let lane of filteredEntryLanes"
               [nzValue]="lane.id" 
@@ -693,7 +690,6 @@
       </div>
     </div>
 
-
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="24">
         <div class="form-group">
@@ -707,6 +703,7 @@
             id="exitLogLane"
             formControlName="exitLaneId"
             style="width: 100%; border-radius: 8px;"
+            nzNotFoundContent="Không có làn ra hợp lệ"
             nzAllowClear="true">
             <nz-option 
               *ngFor="let lane of filteredExitLanes" 

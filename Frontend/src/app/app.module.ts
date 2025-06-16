@@ -11,7 +11,6 @@ import { registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -45,6 +44,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GatesComponent } from './components/gates/gates.component';
 import { ComputersComponent } from './components/computers/computers.component';
 import { CamerasComponent } from './components/cameras/cameras.component';
@@ -59,6 +60,8 @@ import { EntryLogsComponent } from './components/entry-logs/entry-logs.component
 import { ExitLogsComponent } from './components/exit-logs/exit-logs.component';
 import { WarningEventsComponent } from './components/warning-events/warning-events.component';
 import { RevenueReportsComponent } from './components/revenue-reports/revenue-reports.component';
+import { UsersComponent } from './components/users/users.component';
+import { RolePermissionsComponent } from './components/role-permissions/role-permissions.component';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 
 const ngZorroConfig: NzConfig = {
@@ -72,6 +75,7 @@ registerLocaleData(vi);
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     DashboardComponent,
     GatesComponent,
     ComputersComponent,
@@ -86,7 +90,9 @@ registerLocaleData(vi);
     EntryLogsComponent,
     ExitLogsComponent,
     WarningEventsComponent,
-    RevenueReportsComponent
+    RevenueReportsComponent,
+    UsersComponent,
+    RolePermissionsComponent
   ],
   imports: [
     NgApexchartsModule,

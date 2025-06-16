@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { WarningEventService } from '../../services/warning-event.service';
 import { LaneService } from '../../services/lane.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 enum WarningType {
   CARDLOCKED = "CardLocked",
@@ -41,6 +42,7 @@ export class WarningEventsComponent implements OnInit {
   constructor(
     private warningEventService: WarningEventService,
     private laneService: LaneService,
+    private notification: NzNotificationService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -76,7 +78,7 @@ export class WarningEventsComponent implements OnInit {
         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Lỗi khi lấy danh sách cảnh báo:', err);
+        this.notification.error('Lỗi', 'Không thể tải sự kiện cảnh báo');
         this.loading = false;
       }
     });

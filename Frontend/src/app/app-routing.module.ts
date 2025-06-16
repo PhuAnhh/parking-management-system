@@ -15,10 +15,14 @@ import { EntryLogsComponent } from './components/entry-logs/entry-logs.component
 import { ExitLogsComponent } from './components/exit-logs/exit-logs.component';
 import { WarningEventsComponent } from './components/warning-events/warning-events.component';
 import { RevenueReportsComponent } from './components/revenue-reports/revenue-reports.component';
+import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './components/users/users.component';
+import { RolePermissionsComponent } from './components/role-permissions/role-permissions.component';
 
 const routes: Routes = [
   // {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'gates', component: GatesComponent},
   {path: 'computers', component: ComputersComponent},
@@ -33,7 +37,9 @@ const routes: Routes = [
   {path: 'entry-logs', component: EntryLogsComponent},
   {path: 'exit-logs', component: ExitLogsComponent},
   {path: 'warning-events', component: WarningEventsComponent},
-  {path: 'revenue-reports', component: RevenueReportsComponent}
+  {path: 'revenue-reports', component: RevenueReportsComponent},
+  {path: 'users', component: UsersComponent},
+  {path: 'role-permissions', component: RolePermissionsComponent}
 ];
 
 @NgModule({
