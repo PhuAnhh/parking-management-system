@@ -197,23 +197,16 @@ CREATE TABLE entry_logs(
 
 CREATE TABLE exit_logs (
     id int identity(1,1) primary key,
-    entry_log_id int not null, 
+    entry_log_id int not null unique, 
     exit_plate_number nvarchar(255) null, 
-    card_id int not null, 
-    card_group_id int not null, 
-    entry_lane_id int not null, 
     exit_lane_id int not null, 
-    entry_time datetime not null, 
     exit_time datetime not null, 
     total_duration bigint not null,
     total_price decimal(18,2) not null, 
     note nvarchar(255) null, 
     image_url nvarchar(255) null, 
     created_at datetime default getdate() not null, 
-    foreign key (entry_log_id) references entry_logs(id), 
-    foreign key (card_id) references cards(id), 
-    foreign key (card_group_id) references card_groups(id), 
-    foreign key (entry_lane_id) references lanes(id), 
+    foreign key (entry_log_id) references entry_logs(id),
     foreign key (exit_lane_id) references lanes(id) 
 )
 
@@ -224,7 +217,6 @@ CREATE TABLE warning_events (
     warning_type nvarchar(255) null,         
     note nvarchar(255) null,                          
     created_at datetime default getdate() not null, 
-    image_url nvarchar(255),                     
     foreign key (lane_id) references lanes(id)   
 )
 
@@ -236,4 +228,44 @@ CREATE TABLE revenue_reports(
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null,
 	foreign key (card_group_id) references card_groups(id)
+)
+
+CREATE TABLE roles(
+	id int identity(1, 1) primary key,
+	name nvarchar(255) not null,
+	description nvarchar(255) null,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null
+)
+
+CREATE TABLE users(
+	 id int identity(1, 1) primary key,
+	 username nvarchar(255) not null unique,
+	 password nvarchar(255) not null,
+	 name nvarchar(255) null,
+	 role_id int not null,
+	 status bit not null default 1,
+	 deleted bit not null default 0,
+	 created_at datetime default getdate() not null,
+	 updated_at datetime default getdate() not null,
+	 foreign key (role_id) references roles(id)
+)
+
+CREATE TABLE permissions(
+	id int identity(1, 1) primary key,
+	name nvarchar(255) not null,
+	endpoint nvarchar(255) not null,
+	method nvarchar(10) not null,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null
+)
+
+CREATE TABLE role_permissions(
+	id int identity(1, 1) primary key,
+	role_id int not null,
+	permission_id int not null,
+	created_at datetime default getdate() not null,
+	updated_at datetime default getdate() not null,
+	foreign key (role_id) references roles(id),
+	foreign key (permission_id) references permissions(id)
 )
