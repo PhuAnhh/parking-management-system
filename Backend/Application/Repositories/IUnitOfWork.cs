@@ -40,6 +40,14 @@ namespace Final_year_Project.Application.Repositories
 
         IWarningEventRepository WarningEvents { get; }
 
+        IUserRepository Users { get; }
+
+        IRoleRepository Roles { get; }
+
+        IPermissionRepository Permissions { get; }
+
+        IRolePermissionRepository RolePermissions { get; }
+
         Task<int> SaveChangesAsync();
     }
 }

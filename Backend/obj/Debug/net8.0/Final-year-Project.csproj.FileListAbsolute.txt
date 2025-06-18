@@ -517,3 +517,6 @@ C:\Users\phanp\OneDrive\Documents\GitHub\Final-year-Project\Backend\obj\Debug\ne
 C:\Users\phanp\OneDrive\Documents\GitHub\Final-year-Project\Backend\obj\Debug\net8.0\Final-year-Project.pdb
 C:\Users\phanp\OneDrive\Documents\GitHub\Final-year-Project\Backend\obj\Debug\net8.0\Final-year-Project.genruntimeconfig.cache
 C:\Users\phanp\OneDrive\Documents\GitHub\Final-year-Project\Backend\obj\Debug\net8.0\ref\Final-year-Project.dll
+C:\Users\phanp\OneDrive\Documents\GitHub\Final-year-Project\Backend\bin\Debug\net8.0\Final-year-Project.staticwebassets.runtime.json
+C:\Users\phanp\OneDrive\Documents\GitHub\Final-year-Project\Backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\phanp\OneDrive\Documents\GitHub\Final-year-Project\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

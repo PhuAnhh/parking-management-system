@@ -1,21 +1,46 @@
+<!-- login.component.html -->
 <div>
     <div class="login-page">
         <div class="row">
             <div class="background-side"></div>
             <div class="form">
                 <div class="logo-image"></div>
-                <form nz-form class="login-form">
+                <form nz-form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
                     <nz-form-item>
-                        <nz-input-group nzPrefixIcon="user" style="border-radius: 8px;" >
-                            <input type="text" nz-input formControlName="username" placeholder="Tên đăng nhập" />
-                        </nz-input-group>
+                        <nz-form-control nzErrorTip="Vui lòng nhập tên đăng nhập!">
+                            <nz-input-group nzPrefixIcon="user" style="border-radius: 8px;">
+                                <input 
+                                    type="text" 
+                                    nz-input 
+                                    formControlName="username" 
+                                    placeholder="Tên đăng nhập" 
+                                />
+                            </nz-input-group>
+                        </nz-form-control>
                     </nz-form-item>
+                    
                     <nz-form-item>
-                        <nz-input-group nzPrefixIcon="lock" style="border-radius: 8px;"> 
-                            <input type="password" nz-input formControlName="password" placeholder="Mật khẩu" />
-                        </nz-input-group>
+                        <nz-form-control nzErrorTip="Vui lòng nhập mật khẩu!">
+                            <nz-input-group nzPrefixIcon="lock" style="border-radius: 8px;"> 
+                                <input 
+                                    type="password" 
+                                    nz-input 
+                                    formControlName="password" 
+                                    placeholder="Mật khẩu" 
+                                />
+                            </nz-input-group>
+                        </nz-form-control>
                     </nz-form-item>
-                    <button nz-button class="login-form-button">Đăng nhập</button>
+                    
+                    <button 
+                        nz-button 
+                        nzType="primary" 
+                        [nzLoading]="isLoading"
+                        [disabled]="!loginForm.valid"
+                        class="login-form-button"
+                        type="submit">
+                        {{ isLoading ? 'Đang đăng nhập...' : 'Đăng nhập' }}
+                    </button>
                 </form>
             </div>
         </div>

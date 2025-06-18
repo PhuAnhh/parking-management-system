@@ -27,6 +27,10 @@ namespace Final_year_Project.Persistence.Repositories
         private IExitLogRepository _exitLogRepository;
         private IRevenueReportRepository _revenueReportRepository;
         private IWarningEventRepository _warningEventRepository;
+        private IUserRepository _userRepository;
+        private IRoleRepository _roleRepository;
+        private IPermissionRepository _permissionRepository;
+        private IRolePermissionRepository _rolePermissionRepository;
 
         public UnitOfWork(ParkingManagementContext context)
         {
@@ -50,10 +54,19 @@ namespace Final_year_Project.Persistence.Repositories
         public IExitLogRepository ExitLogs => _exitLogRepository ??= new ExitLogRepository(_context);
         public IWarningEventRepository WarningEvents => _warningEventRepository ??= new WarningEventRepository(_context);
         public IRevenueReportRepository RevenueReports => _revenueReportRepository ??= new RevenueReportRepository(_context);
+        public IUserRepository Users => _userRepository ??= new UserRepository(_context);
+        public IRoleRepository Roles => _roleRepository ??= new RoleRepository(_context);
+        public IPermissionRepository Permissions => _permissionRepository ??= new PermissionRepository(_context);
+        public IRolePermissionRepository RolePermissions => _rolePermissionRepository ??= new RolePermissionRepository(_context);
 
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

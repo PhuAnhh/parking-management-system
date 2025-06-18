@@ -10,7 +10,7 @@ import vi from '@angular/common/locales/vi';
 import { registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -43,6 +43,7 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -63,6 +64,8 @@ import { RevenueReportsComponent } from './components/revenue-reports/revenue-re
 import { UsersComponent } from './components/users/users.component';
 import { RolePermissionsComponent } from './components/role-permissions/role-permissions.component';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
+
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 const ngZorroConfig: NzConfig = {
   pagination: {
@@ -131,9 +134,15 @@ registerLocaleData(vi);
     NzImageModule,
     NzSpinModule,
     NzTypographyModule,
-    NzEmptyModule
+    NzEmptyModule,
+    NzAvatarModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     provideClientHydration(withEventReplay()),
     provideNzI18n(vi_VN),
     provideAnimationsAsync(),
