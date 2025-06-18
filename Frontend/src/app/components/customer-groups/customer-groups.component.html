@@ -75,11 +75,11 @@
         </li>
         <li nz-submenu nzTitle="Quản lý tài khoản">
           <ul>
-            <li nz-menu-item>
+            <li nz-menu-item [routerLink]="'/role-permissions'">
               <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
               <span>Vai trò, quyền hạn</span>
             </li>
-            <li nz-menu-item>
+            <li nz-menu-item [routerLink]="'/users'">
               <span nz-icon nzType="user" nzTheme="outline"></span>
               <span>Người dùng</span>
             </li>
@@ -151,7 +151,7 @@
                                               <span class="">Tải lại</span>
                                           </button> 
                                           <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
-                                          <button (click)="showAddCustomerGroupModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
+                                          <button *ngIf="loginService.hasPermission('POST:/api/customergroup')" (click)="showAddCustomerGroupModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
                                               <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
                                               <span>Thêm mới</span>
                                           </button>
@@ -188,10 +188,10 @@
                         <td>{{ customerGroup.code }}</td> 
         
                         <td style="text-align: center;">
-                          <button nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateCustomerGroup(customerGroup.id)">
+                          <button *ngIf="loginService.hasPermission('PUT:/api/customergroup/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateCustomerGroup(customerGroup.id)">
                             <span nz-icon nzType="edit" nzTheme="outline"></span>
                           </button>
-                          <button nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteCustomerGroup(customerGroup.id)">
+                          <button *ngIf="loginService.hasPermission('DELETE:/api/customergroup/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteCustomerGroup(customerGroup.id)">
                             <span nz-icon nzType="delete" nzTheme="outline"></span>
                           </button>
                         </td>

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +18,7 @@ namespace Final_year_Project.Api.Controllers
             _computerService = computerService;
         }
 
+        [RequirePermission("GET", "/api/computer")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ComputerDto>>> GetAll()
         {
@@ -24,6 +26,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(computers);
         }
 
+        [RequirePermission("GET", "/api/computer/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<ComputerDto>> GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(computer);
         }
 
+        [RequirePermission("POST", "/api/computer")]
         [HttpPost]
         public async Task<ActionResult<ComputerDto>> Create(CreateComputerDto createComputerDto)
         {
@@ -42,6 +46,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdComputer.Id }, createdComputer);
         }
 
+        [RequirePermission("PUT", "/api/computer/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<ComputerDto>> Update(int id, UpdateComputerDto updateComputerDto)
         {
@@ -53,6 +58,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedComputer);
         }
 
+        [RequirePermission("DELETE", "/api/computer/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

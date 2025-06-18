@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +18,7 @@ namespace Final_year_Project.Api.Controllers
             _ledService = ledService;
         }
 
+        [RequirePermission("GET", "/api/led")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LedDto>>> GetAll()
         {
@@ -24,6 +26,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(leds);
         }
 
+        [RequirePermission("GET", "/api/led/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<LedDto>> GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(led);
         }
 
+        [RequirePermission("POST", "/api/led")]
         [HttpPost]
         public async Task<ActionResult<LedDto>> Create(CreateLedDto createLedDto)
         {
@@ -42,6 +46,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdLed.Id }, createdLed);
         }
 
+        [RequirePermission("PUT", "/api/led/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<LedDto>> Update(int id, UpdateLedDto updateLedDto)
         {
@@ -53,6 +58,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedLed);
         }
 
+        [RequirePermission("DELETE", "/api/led/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

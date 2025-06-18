@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +18,7 @@ namespace Final_year_Project.Api.Controllers
             _customerGroupService = customerGroupService;
         }
 
+        [RequirePermission("GET", "/api/customergroup")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerGroupDto>>> GetAll()
         {
@@ -24,6 +26,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(customerGroups);
         }
 
+        [RequirePermission("GET", "/api/customergroup/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerGroupDto>> GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(customerGroup);
         }
 
+        [RequirePermission("POST", "/api/customergroup")]
         [HttpPost]
         public async Task<ActionResult<CustomerGroupDto>> Create(CreateCustomerGroupDto createCustomerGroupDto)
         {
@@ -42,6 +46,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdCustomerGroup.Id }, createdCustomerGroup);
         }
 
+        [RequirePermission("PUT", "/api/customergroup/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<CustomerGroupDto>> Update(int id, UpdateCustomerGroupDto updateCustomerGroupDto)
         {
@@ -53,9 +58,8 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedCustomerGroup);
         }
 
-
+        [RequirePermission("DELETE", "/api/customergroup/{id}")]
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _customerGroupService.DeleteAsync(id, true);

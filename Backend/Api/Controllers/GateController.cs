@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Microsoft.AspNetCore.Authorization;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +19,7 @@ namespace Final_year_Project.Api.Controllers
             _gateService = gateService;
         }
 
+        [RequirePermission("GET", "/api/gate")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GateDto>>> GetAll()
         {
@@ -24,6 +27,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(gates);
         }
 
+        [RequirePermission("GET", "/api/gate/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<GateDto>> GetById(int id)
         {
@@ -35,6 +39,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(gate);
         }
 
+        [RequirePermission("POST", "/api/gate")]
         [HttpPost]
         public async Task<ActionResult<GateDto>> Create(CreateGateDto createGateDto)
         {
@@ -42,6 +47,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdGate.Id }, createdGate);
         }
 
+        [RequirePermission("PUT", "/api/gate/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<GateDto>> Update(int id, UpdateGateDto updateGateDto)
         {
@@ -53,9 +59,8 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedGate);
         }
 
-
+        [RequirePermission("DELETE", "/api/gate/{id}")]
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _gateService.DeleteAsync(id, true);

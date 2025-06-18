@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Microsoft.AspNetCore.Authorization;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +19,7 @@ namespace Final_year_Project.Api.Controllers
             _cameraService = cameraService;
         }
 
+        [RequirePermission("GET", "/api/camera")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CameraDto>>> GetAll()
         {
@@ -24,6 +27,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(cameras);
         }
 
+        [RequirePermission("GET", "/api/camera/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<CameraDto>> GetById(int id)
         {
@@ -35,6 +39,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(camera);
         }
 
+        [RequirePermission("POST", "/api/camera")]
         [HttpPost]
         public async Task<ActionResult<CameraDto>> Create(CreateCameraDto createCameraDto)
         {
@@ -42,6 +47,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdCamera.Id }, createdCamera);
         }
 
+        [RequirePermission("PUT", "/api/camera/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<CameraDto>> Update(int id, UpdateCameraDto updateCameraDto)
         {
@@ -53,6 +59,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedCamera);
         }
 
+        [RequirePermission("DELETE", "/api/camera/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

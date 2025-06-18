@@ -29,8 +29,7 @@ namespace Final_year_Project.Application.Services
                     LaneId = warning.LaneId,
                     WarningType = warning.WarningType,
                     Note = warning.Note,
-                    CreatedAt = warning.CreatedAt,
-                    ImageUrl = warning.ImageUrl,
+                    CreatedAt = warning.CreatedAt
                 });
             }
 
@@ -51,8 +50,7 @@ namespace Final_year_Project.Application.Services
                     LaneId = warning.LaneId,
                     WarningType = warning.WarningType,
                     Note = warning.Note,
-                    CreatedAt = warning.CreatedAt,
-                    ImageUrl = warning.ImageUrl,
+                    CreatedAt = warning.CreatedAt
                 });
             }
 
@@ -73,8 +71,7 @@ namespace Final_year_Project.Application.Services
                 LaneId = warning.LaneId,
                 WarningType = warning.WarningType,
                 Note = warning.Note,
-                CreatedAt = warning.CreatedAt,
-                ImageUrl = warning.ImageUrl,
+                CreatedAt = warning.CreatedAt
             };
         }
 
@@ -86,8 +83,7 @@ namespace Final_year_Project.Application.Services
                 LaneId = createWarningEventDto.LaneId,
                 WarningType = createWarningEventDto.WarningType,
                 Note = createWarningEventDto.Note,
-                CreatedAt = DateTime.UtcNow,
-                ImageUrl = createWarningEventDto.ImageUrl,
+                CreatedAt = DateTime.UtcNow
             };
 
             await _unitOfWork.WarningEvents.CreateAsync(warning);
@@ -100,8 +96,7 @@ namespace Final_year_Project.Application.Services
                 LaneId = warning.LaneId,
                 WarningType = warning.WarningType,
                 Note = warning.Note,
-                CreatedAt = DateTime.UtcNow,
-                ImageUrl = warning.ImageUrl,
+                CreatedAt = DateTime.UtcNow
             };
         }
         public async Task<bool> DeleteAsync(int id)

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +18,7 @@ namespace Final_year_Project.Api.Controllers
             _controlUnitService = controlUnitService;
         }
 
+        [RequirePermission("GET", "/api/controlunit")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ControlUnitDto>>> GetAll()
         {
@@ -24,6 +26,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(controlUnits);
         }
 
+        [RequirePermission("GET", "/api/controlunit/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<ControlUnitDto>> GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(controlUnit);
         }
 
+        [RequirePermission("POST", "/api/controlunit")]
         [HttpPost]
         public async Task<ActionResult<ControlUnitDto>> Create(CreateControlUnitDto createControlUnitDto)
         {
@@ -42,6 +46,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdControlUnit.Id }, createdControlUnit);
         }
 
+        [RequirePermission("PUT", "/api/controlunit/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<ControlUnitDto>> Update(int id, UpdateControlUnitDto updateControlUnitDto)
         {
@@ -53,6 +58,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedControlUnit);
         }
 
+        [RequirePermission("DELETE", "/api/controlunit/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

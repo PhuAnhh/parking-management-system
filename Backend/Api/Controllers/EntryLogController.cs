@@ -4,6 +4,7 @@ using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
 using Final_year_Project.Application.Services;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace Final_year_Project.Api.Controllers
             _entryLogService = entryLogService;
         }
 
+        [RequirePermission("GET", "/api/entrylog")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EntryLogDto>>> GetAll()
         {
@@ -25,6 +27,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(entryLogs);
         }
 
+        [RequirePermission("GET", "/api/entrylog/filter-by-date")]
         [HttpGet("filter-by-date")]
         public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
         {
@@ -32,6 +35,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(results);
         }
 
+        [RequirePermission("GET", "/api/entrylog/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<EntryLogDto>> GetById(int id)
         {
@@ -43,6 +47,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(entryLog);
         }
 
+        [RequirePermission("POST", "/api/entrylog")]
         [HttpPost]
         public async Task<ActionResult<EntryLogDto>> Create(CreateEntryLogDto createEntryLogDto)
         {
@@ -55,11 +60,10 @@ namespace Final_year_Project.Api.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
-
         }
 
+        [RequirePermission("DELETE", "/api/entrylog/{id}")]
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _entryLogService.DeleteAsync(id);

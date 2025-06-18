@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +18,7 @@ namespace Final_year_Project.Api.Controllers
             _cardService = cardService;
         }
 
+        [RequirePermission("GET", "/api/card")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CardDto>>> GetAll()
         {
@@ -24,6 +26,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(cards);
         }
 
+        [RequirePermission("GET", "/api/card/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<CardDto>> GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(card);
         }
 
+        [RequirePermission("POST", "/api/card")]
         [HttpPost]
         public async Task<ActionResult<CardDto>> Create(CreateCardDto createCardDto)
         {
@@ -42,6 +46,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdCard.Id }, createdCard);
         }
 
+        [RequirePermission("PUT", "/api/card/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<CardDto>> Update(int id, UpdateCardDto updateCardDto)
         {
@@ -53,6 +58,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedCard);
         }
 
+        [RequirePermission("DELETE", "/api/card/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

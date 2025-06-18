@@ -46,7 +46,6 @@ namespace Final_year_Project.Persistence.Repositories
             _context.Cards.Update(card);
         }
 
-
         public void Delete(Card card)
         {
             _context.Cards.Remove(card);

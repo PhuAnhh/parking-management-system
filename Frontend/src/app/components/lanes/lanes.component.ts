@@ -3,6 +3,7 @@ import { LaneService } from '../../services/lane.service';
 import { ComputerService } from '../../services/computer.service';
 import { CameraService} from '../../services/camera.service';
 import { ControlUnitService } from '../../services/control-unit.service';
+import { LoginService } from '../../services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder, FormArray, Form } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -120,7 +121,8 @@ export class LanesComponent implements OnInit{
     private cdr: ChangeDetectorRef,
     private modalService: NzModalService,
     private fb: FormBuilder,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    public loginService: LoginService
   ) {
     this.initForm();
   }  

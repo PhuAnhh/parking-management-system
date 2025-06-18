@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -17,6 +18,7 @@ namespace Final_year_Project.Api.Controllers
             _laneService = laneService;
         }
 
+        [RequirePermission("GET", "/api/lane")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LaneDto>>> GetAll()
         {
@@ -24,6 +26,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(lanes);
         }
 
+        [RequirePermission("GET", "/api/lane/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<LaneDto>> GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(lane);
         }
 
+        [RequirePermission("POST", "/api/lane")]
         [HttpPost]
         public async Task<ActionResult<LaneDto>> Create(CreateLaneDto createLaneDto)
         {
@@ -42,6 +46,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdLane.Id }, createdLane);
         }
 
+        [RequirePermission("PUT", "/api/lane/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<LaneDto>> Update(int id, UpdateLaneDto updateLaneDto)
         {
@@ -53,6 +58,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedLane);
         }
 
+        [RequirePermission("DELETE", "/api/lane/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

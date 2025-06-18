@@ -3,6 +3,7 @@ import { CustomerService } from '../../services/customer.service';
 import { CustomerGroupService } from '../../services/customer-group.service';
 import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
+import { LoginService } from '../../services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -59,7 +60,8 @@ export class CustomersComponent {
     private cdr: ChangeDetectorRef,
     private modalService: NzModalService,
     private fb: FormBuilder,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    public loginService: LoginService
   ) {
     this.initForm();
   }  

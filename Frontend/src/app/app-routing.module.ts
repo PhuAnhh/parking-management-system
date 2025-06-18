@@ -21,7 +21,7 @@ import { RolePermissionsComponent } from './components/role-permissions/role-per
 
 const routes: Routes = [
   // {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'gates', component: GatesComponent},

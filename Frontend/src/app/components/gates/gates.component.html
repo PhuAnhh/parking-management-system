@@ -75,11 +75,11 @@
           </li>
           <li nz-submenu nzTitle="Quản lý tài khoản">
             <ul>
-              <li nz-menu-item>
+              <li nz-menu-item [routerLink]="'/role-permissions'">
                 <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
                 <span>Vai trò, quyền hạn</span>
               </li>
-              <li nz-menu-item>
+              <li nz-menu-item [routerLink]="'/users'">
                 <span nz-icon nzType="user" nzTheme="outline"></span>
                 <span>Người dùng</span>
               </li>
@@ -151,7 +151,7 @@
                                                 <span class="">Tải lại</span>
                                             </button> 
                                             <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
-                                            <button (click)="showAddGateModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
+                                            <button *ngIf="loginService.hasPermission('POST:/api/gate')" (click)="showAddGateModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
                                               <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
                                               <span>Thêm mới</span>
                                           </button>
@@ -195,10 +195,10 @@
                             </ng-template>
                           </td>
                           <td style="text-align: center;">
-                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateGate(gate.id)">
+                            <button *ngIf="loginService.hasPermission('PUT:/api/gate/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateGate(gate.id)">
                               <span nz-icon nzType="edit" nzTheme="outline"></span>
                             </button>
-                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteGate(gate.id)">
+                            <button *ngIf="loginService.hasPermission('DELETE:/api/gate/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteGate(gate.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
                             <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="gate.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleGateStatus(gate.id)">
@@ -211,20 +211,6 @@
                         Tổng số {{ total }} dữ liệu
                       </ng-template>
                     </nz-table>
-                    <nz-float-button *ngIf="isVisible"
-                  [nzType]="'primary'"
-                  [nzShape]="'circle'"
-                  [nzTooltipTitle]="'Lên đầu trang'"
-                  (click)="backToTop()"
-                  >
-                    <button nz-button class="ant-btn">
-                      <nz-float-button-content>
-                        <div class="ant-float-btn-icon ">
-                          <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
-                        </div>
-                      </nz-float-button-content>
-                    </button>
-                  </nz-float-button>
                 </div>
             </nz-card>
         </div>
@@ -245,12 +231,12 @@
   <ng-template #addGateTpl>
     <form [formGroup]="gateForm"> 
       <div class="form-group">
-        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên:</label>
+        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên</label>
         <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
       </div>
       
       <div class="form-group">
-        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã:</label>
+        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
         <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;"/>
       </div>
     </form>
@@ -260,12 +246,12 @@
   <ng-template #editGateTpl>
     <form [formGroup]="editGateForm"> 
       <div class="form-group">
-        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên:</label>
+        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên</label>
         <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
       </div>
       
       <div class="form-group">
-        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã:</label>
+        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
         <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;"/>
       </div>
 

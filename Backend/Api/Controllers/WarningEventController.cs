@@ -4,6 +4,7 @@ using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
 using Final_year_Project.Application.Services;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace Final_year_Project.Api.Controllers
             _warningEventService = warningEventService;
         }
 
+        [RequirePermission("GET", "/api/warningevent")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WarningEventDto>>> GetAll()
         {
@@ -25,6 +27,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(warnings);
         }
 
+        [RequirePermission("GET", "/api/warningevent/filter-by-date")]
         [HttpGet("filter-by-date")]
         public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
         {
@@ -32,6 +35,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(results);
         }
 
+        [RequirePermission("GET", "/api/warningevent/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<WarningEventDto>> GetById(int id)
         {
@@ -43,6 +47,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(warning);
         }
 
+        [RequirePermission("POST", "/api/warningevent")]
         [HttpPost]
         public async Task<ActionResult<WarningEventDto>> Create(CreateWarningEventDto createWarningEventDto)
         {
@@ -50,6 +55,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdWarning.Id }, createdWarning);
         }
 
+        [RequirePermission("DELETE", "/api/warningevent/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

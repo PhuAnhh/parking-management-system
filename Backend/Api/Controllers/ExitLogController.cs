@@ -4,6 +4,7 @@ using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
 using Final_year_Project.Application.Services;
+using Final_year_Project.Api.Authorization;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace Final_year_Project.Api.Controllers
             _exitLogService = exitLogService;
         }
 
+        [RequirePermission("GET", "/api/exitlog")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ExitLogDto>>> GetAll()
         {
@@ -25,6 +27,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(exitLogs);
         }
 
+        [RequirePermission("GET", "/api/exitlog/filter-by-date")]
         [HttpGet("filter-by-date")]
         public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
         {
@@ -32,6 +35,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(results);
         }
 
+        [RequirePermission("GET", "/api/exitlog/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<ExitLogDto>> GetById(int id)
         {
@@ -43,6 +47,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(exitLog);
         }
 
+        [RequirePermission("POST", "/api/exitlog")]
         [HttpPost]
         public async Task<ActionResult<ExitLogDto>> Create(CreateExitLogDto createExitLogDto)
         {
@@ -56,6 +61,5 @@ namespace Final_year_Project.Api.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
     }
 }

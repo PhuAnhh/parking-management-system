@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
 import { ComputerService } from '../../services/computer.service';
 import { LedService } from '../../services/led.service';
+import { LoginService } from '../../services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -54,10 +55,11 @@ export class LedsComponent implements OnInit{
     private cdr: ChangeDetectorRef,
     private modalService: NzModalService,
     private fb:FormBuilder,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    public loginService: LoginService
   ) {
     this.initForm();
-  }  
+  } 
 
   ngOnInit() {
     this.loadLeds();

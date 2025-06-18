@@ -78,11 +78,11 @@
         </li>
         <li nz-submenu nzTitle="Quản lý tài khoản">
           <ul>
-            <li nz-menu-item>
+            <li nz-menu-item [routerLink]="'/role-permissions'">
               <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
               <span>Vai trò, quyền hạn</span>
             </li>
-            <li nz-menu-item>
+            <li nz-menu-item [routerLink]="'/users'">
               <span nz-icon nzType="user" nzTheme="outline"></span>
               <span>Người dùng</span>
             </li>
