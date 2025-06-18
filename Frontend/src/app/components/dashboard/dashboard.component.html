@@ -84,11 +84,11 @@
         
         <li nz-submenu nzTitle="Quản lý tài khoản">
           <ul>
-            <li nz-menu-item>
+            <li nz-menu-item [routerLink]="'/role-permissions'">
               <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
               <span>Vai trò, quyền hạn</span>
             </li>
-            <li nz-menu-item>
+            <li nz-menu-item [routerLink]="'/users'">
               <span nz-icon nzType="user" nzTheme="outline"></span>
               <span>Người dùng</span>
             </li>
@@ -109,7 +109,22 @@
       <div>
         <span style="margin-right: 15px;" 
               nz-dropdown 
-              nzplacement="bottomRight">Admin</span>
+              [nzDropdownMenu]="userMenu"
+              nzplacement="bottomRight">
+          <nz-avatar [nzText]="displayName.charAt(0).toUpperCase()" 
+                      style="margin-right:3px">
+          </nz-avatar>
+              {{ displayName }}
+          <span nz-icon nzType="down"></span>
+        </span>
+        <nz-dropdown-menu #userMenu="nzDropdownMenu">
+          <ul nz-menu style="border-radius: 8px; margin-top: 10px;">
+            <li nz-menu-item (click)="logout()">
+              <span nz-icon nzType="logout" style="color: #fa7300;"></span>
+              <span style="margin-left: 8px;">Đăng xuất</span>
+            </li>
+          </ul>
+        </nz-dropdown-menu>
       </div>
     </nz-header>
     

@@ -3,6 +3,8 @@ import { EntryLogService } from '../../services/entry-log.service';
 import { ExitLogService } from '../../services/exit-log.service';
 import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
+import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -58,6 +60,7 @@ export class DashboardComponent implements OnInit {
   today = new Date();
   loading = true;
   chartLoading = true;
+  displayName: string = 'Admin';
   
   dashboardItems: DashboardItem[] = [
     {
@@ -99,14 +102,26 @@ export class DashboardComponent implements OnInit {
     private exitLogService: ExitLogService,
     private cardService: CardService,
     private cardGroupService: CardGroupService,
-    private cdr: ChangeDetectorRef
+    private loginService: LoginService,
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {
     this.initializeChart();
   }
 
-  ngOnInit() {
+  ngOnInit() : void {
     this.loadDashboardData();
     this.loadChartData();
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.displayName = currentUser.username;
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('permissions');
+    this.router.navigate(['/login']);
   }
 
   private initializeChart() {
