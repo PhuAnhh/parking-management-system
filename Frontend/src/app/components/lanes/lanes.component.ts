@@ -552,11 +552,11 @@ export class LanesComponent implements OnInit{
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedLane = {...lane, status: !lane.status};
+        const newLane =!lane.status;
     
-        this.laneService.updateLane(laneId, updatedLane).subscribe(
+        this.laneService.changeLaneStatus(laneId, newLane).subscribe(
           () => {
-            lane.status = !lane.status;
+            lane.status = newLane;
         
             this.notification.success(
               'Thành công',

@@ -19,7 +19,7 @@ namespace Final_year_Project.Api.Controllers
             _revenueReportService = revenueReportService;
         }
 
-        [RequirePermission("GET", "/api/revenue-report")]
+        [RequirePermission("GET", "/api/revenuereport")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RevenueReportDto>>> GetAll()
         {
@@ -27,7 +27,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(reports);
         }
 
-        [RequirePermission("GET", "/api/revenue-report/{id}")]
+        [RequirePermission("GET", "/api/revenuereport/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<RevenueReportDto>> GetById(int id)
         {
@@ -39,7 +39,6 @@ namespace Final_year_Project.Api.Controllers
             return Ok(report);
         }
 
-        [RequirePermission("GET", "/api/revenue-report/filter-by-date")]
         [HttpGet("filter-by-date")]
         public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
         {
@@ -47,7 +46,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(results);
         }
 
-        [RequirePermission("DELETE", "/api/revenue-report/{id}")]
+        [RequirePermission("DELETE", "/api/revenuereport/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

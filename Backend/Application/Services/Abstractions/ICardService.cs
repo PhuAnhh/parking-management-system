@@ -3,6 +3,7 @@ using Final_year_Project.Application.Models;
 using Final_year_Project.Application.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Final_year_Project.Domain.EnumTypes;
 
 namespace Final_year_Project.Application.Services.Abstractions
 {
@@ -13,5 +14,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<CardDto> CreateAsync(CreateCardDto createCardDto);
         Task<CardDto> UpdateAsync(int id, UpdateCardDto updateCardDto);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ChangeStatusAsync(int id, CardStatus status);
     }
 }

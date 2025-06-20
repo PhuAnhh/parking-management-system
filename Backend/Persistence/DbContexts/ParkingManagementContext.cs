@@ -789,6 +789,7 @@ public partial class ParkingManagementContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
+            entity.Property(e => e.Deleted).HasColumnName("deleted");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .HasColumnName("description");

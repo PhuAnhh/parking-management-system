@@ -388,7 +388,7 @@ export class CamerasComponent {
     });
   }
 
-  toggleCameraStatus(cameraId: number) {
+  toggleCameraStatus(cameraId: number): void {
     const camera = this.cameras.find(c => c.id === cameraId);
     if (!camera) {
       console.error(`Không tìm thấy camera với id ${cameraId}`);
@@ -402,25 +402,17 @@ export class CamerasComponent {
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedCamera = {...camera, status: !camera.status};
-    
-        this.cameraService.updateCamera(cameraId, updatedCamera).subscribe(
+        const newStatus = !camera.status;
+
+        this.cameraService.changeCameraStatus(cameraId, newStatus).subscribe(
           () => {
-            camera.status = !camera.status;
-            
-            this.notification.success(
-              'Thành công',
-              '',
-              {nzDuration: 3000}
-            );
+            camera.status = newStatus;
+
+            this.notification.success('Thành công', '', { nzDuration: 3000 });
           },
           (error) => {
             console.error('Lỗi khi cập nhật trạng thái camera:', error);
-            this.notification.error(
-              'Lỗi',
-              '',
-              {nzDuration: 3000}
-            );
+            this.notification.error('Lỗi', '', { nzDuration: 3000 });
           }
         );
       }

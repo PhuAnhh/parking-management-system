@@ -105,12 +105,12 @@
         <nz-breadcrumb>
           <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
             <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
-              <span>Thiết bị</span>
+              <span>Tài khoản</span>
               <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
             </div>
             <nz-breadcrumb-item>
               <span class="ant-breadcrumb-link">
-                <a href="/#/gates">Cổng</a>
+                <a href="/#/role-permissions">Vai trò, quyền hạn</a>
               </span>
             </nz-breadcrumb-item>
           </div>
@@ -151,7 +151,7 @@
                                                 <span class="">Tải lại</span>
                                             </button> 
                                             <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
-                                            <button (click)="showAddRoleModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
+                                            <button *ngIf="loginService.hasPermission('POST:/api/role')" (click)="showAddRoleModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
                                               <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
                                               <span>Thêm mới</span>
                                           </button>
@@ -188,10 +188,10 @@
                           <td>{{ role.name }}</td>
                           <td>{{ role.description }}</td>
                           <td style="text-align: center;">
-                            <button nz-button class="ant-btn edit-btn ant-btn-icon-only" (click)="updateRole(role.id)">
+                            <button *ngIf="loginService.hasPermission('PUT:/api/role/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only" (click)="updateRole(role.id)">
                               <span nz-icon nzType="edit" nzTheme="outline"></span>
                             </button>
-                            <button nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteRole(role.id)">
+                            <button *ngIf="loginService.hasPermission('DELETE:/api/role/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteRole(role.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
                           </td>
@@ -210,74 +210,129 @@
   
 
   <nz-modal 
-  [nzContent]="addUserTpl" 
+  [nzContent]="addRoleTpl" 
   [(nzVisible)]="isAddModalVisible" 
   nzTitle="Thêm mới Vai trò, quyền hạn" 
-  nzOktext="Lưu" 
+  nzOkText="Lưu" 
   nzCancelText="Hủy bỏ" 
   (nzOnCancel)="handleCancel()" 
   (nzOnOk)="handleOk()"
-  class="custom-modal"></nz-modal>
-  <ng-template #addUserTpl>
-    <form [formGroup]="roleForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="userUsername" class="required-label" style="margin-bottom: 10px;">Tên đăng nhập</label>
-            <input id="userUsername" nz-input formControlName="username" style="border-radius: 8px;" />
-        </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="userPassword" class="required-label" style="margin-bottom: 10px;">Mật khẩu</label>
-            <input id="userPassword" nz-input formControlName="password" type="password" style="border-radius: 8px;"/>
-        </div>
-        </div>
-      </div>
+  class="custom-modal"
+  nzWidth="1200px"
+  [nzCentered]="true"
+>
+</nz-modal>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="userName" class="required-label" style="margin-bottom: 10px;">Tên vai trò</label>
-            <input id="userName" nz-input formControlName="name" style="border-radius: 8px;" />
-            </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="userRoleId" style="margin-bottom: 10px;">Mô tả</label>
-            <input id="userRoleId" nz-input formControlName="description" style="border-radius: 8px;"/>
-        </div>
-        </div>
-      </div>
-    </form>
-  </ng-template>
-  
-  <nz-modal 
-  [nzContent]="editUserTpl" 
+<ng-template #addRoleTpl>
+  <nz-form [formGroup]="roleForm">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4" nzRequired>Tên vai trò</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <input nz-input formControlName="name" style="border-radius: 8px;"/>
+      </nz-form-control>
+    </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">Mô tả</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <textarea nz-input formControlName="description" rows="2" style="border-radius: 8px;"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4" style="margin-top: 10px;">Phân quyền chi tiết</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <nz-collapse nzBordered="false" style="background-color: white;">
+          <nz-collapse-panel 
+            *ngFor="let category of getObjectKeys(groupedPermissions); let i = index" 
+            [nzHeader]="category"
+          >
+            <nz-collapse nzBordered="false" style="background-color: white;">
+              <nz-collapse-panel
+                *ngFor="let subcategory of getObjectKeys(groupedPermissions[category]); let j = index" 
+                [nzHeader]="subcategory"
+              >
+                <nz-checkbox-wrapper 
+                  style="display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; width: 100%;">
+                  <label 
+                    *ngFor="let permission of groupedPermissions[category][subcategory]; let k = index; trackBy: trackByPermissionId"
+                    nz-checkbox
+                    [nzChecked]="isPermissionChecked(permission.id)"
+                    (nzCheckedChange)="onPermissionChange(permissions.indexOf(permission), $event)"
+                    style="white-space: nowrap;"
+                  >
+                    {{ permission.name }}
+                  </label>
+                </nz-checkbox-wrapper>
+              </nz-collapse-panel>
+            </nz-collapse>
+          </nz-collapse-panel>
+        </nz-collapse>
+      </nz-form-control>
+    </nz-form-item>
+  </nz-form>
+</ng-template>
+
+<nz-modal 
+  [nzContent]="editRoleTpl" 
   [(nzVisible)]="isEditModalVisible" 
   nzTitle="Cập nhật Vai trò, quyền hạn" 
-  nzOktext="Lưu" 
+  nzOkText="Lưu" 
   nzCancelText="Hủy bỏ" 
   (nzOnCancel)="handleEditCancel()" 
   (nzOnOk)="handleEditOk()"
-  ></nz-modal>
+  class="custom-modal"
+  nzWidth="1200px"
+  [nzCentered]="true" 
+>
+</nz-modal>
 
-  <ng-template #editUserTpl>
-    <form [formGroup]="editRoleForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="userName" class="required-label" style="margin-bottom: 10px;">Tên vai trò</label>
-            <input id="userName" nz-input formControlName="name" style="border-radius: 8px;" />
-            </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="userRoleId" style="margin-bottom: 10px;">Mô tả</label>
-            <input id="userRoleId" nz-input formControlName="description" style="border-radius: 8px;"/>
-        </div>
-        </div>
-      </div>
-    </form>
-  </ng-template>
-  
+<ng-template #editRoleTpl>
+  <nz-form [formGroup]="editRoleForm">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4" nzRequired>Tên vai trò</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <input nz-input formControlName="name" style="border-radius: 8px;"/>
+      </nz-form-control>
+    </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">Mô tả</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <textarea nz-input formControlName="description" rows="2" style="border-radius: 8px;"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4" style="margin-top: 10px;">Phân quyền chi tiết</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <nz-collapse nzBordered="false" style="background-color: white;">
+          <nz-collapse-panel 
+            *ngFor="let category of getObjectKeys(groupedPermissions)" 
+            [nzHeader]="category"
+          >
+            <nz-collapse nzBordered="false" style="background-color: white;">
+              <nz-collapse-panel 
+                *ngFor="let subcategory of getObjectKeys(groupedPermissions[category])" 
+                [nzHeader]="subcategory"
+              >
+                <nz-checkbox-wrapper 
+                  style="display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; width: 100%;">
+                  <label 
+                    *ngFor="let permission of groupedPermissions[category][subcategory]; let i = index; trackBy: trackByPermissionId"
+                    nz-checkbox
+                    [nzChecked]="isPermissionChecked(permission.id, true)"
+                    (nzCheckedChange)="onPermissionChange(permissions.indexOf(permission), $event, true)"
+                    style="white-space: nowrap;"
+                  >
+                    {{ permission.name }}
+                  </label>
+                </nz-checkbox-wrapper>
+              </nz-collapse-panel>
+            </nz-collapse>
+          </nz-collapse-panel>
+        </nz-collapse>
+      </nz-form-control>
+    </nz-form-item>
+  </nz-form>
+</ng-template>

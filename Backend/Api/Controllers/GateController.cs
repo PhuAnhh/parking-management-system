@@ -70,5 +70,16 @@ namespace Final_year_Project.Api.Controllers
 
             return NoContent();
         }
+
+        [RequirePermission("PATCH", "/api/gate/{id}/status")]
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> ChangeStatus(int id, [FromBody] ChangeStatusDto changeStatusDto)
+        {
+            var success = await _gateService.ChangeStatusAsync(id, changeStatusDto.Status);
+            if (!success)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }

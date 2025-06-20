@@ -37,4 +37,8 @@ export class UserService {
   resetPassword(id: number, resetPasswordData: any): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/${id}/reset-password`, resetPasswordData);
   }
+
+  changeUserStatus(id: number, status: boolean): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/${id}/status`, { status });
+  }
 }

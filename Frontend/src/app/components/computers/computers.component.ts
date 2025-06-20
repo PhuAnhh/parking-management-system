@@ -310,11 +310,11 @@ export class ComputersComponent {
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedComputer = {...computer, status: !computer.status};
+        const newComputer = !computer.status;
     
-        this.computerService.updateComputer(computerId, updatedComputer).subscribe(
+        this.computerService.changeComputerStatus(computerId, newComputer).subscribe(
           () => {
-            computer.status = !computer.status;
+            computer.status = newComputer;
             
             this.notification.success(
               'Thành công',

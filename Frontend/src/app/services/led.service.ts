@@ -29,4 +29,8 @@ export class LedService {
   deleteLed(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
+
+  changeLedStatus(id: number, status: boolean): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/${id}/status`, { status });
+  }
 }

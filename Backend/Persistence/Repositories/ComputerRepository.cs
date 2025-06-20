@@ -27,6 +27,9 @@ namespace Final_year_Project.Persistence.Repositories
         {
             return await _context.Computers
                 .Include(c => c.Cameras)
+                .Include(c => c.ControlUnits)
+                .Include(c => c.Lanes)
+                .Include(c => c.Leds)
                 .FirstOrDefaultAsync(c => c.Id == id);
                 //.FindAsync(id);
         }

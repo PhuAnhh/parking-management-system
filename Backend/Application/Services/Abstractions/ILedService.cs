@@ -13,5 +13,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<LedDto> CreateAsync(CreateLedDto createLedDto);
         Task<LedDto> UpdateAsync(int id, UpdateLedDto updateLedDto);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ChangeStatusAsync(int id, bool status);
     }
 }

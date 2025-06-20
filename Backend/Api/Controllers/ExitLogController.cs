@@ -27,7 +27,6 @@ namespace Final_year_Project.Api.Controllers
             return Ok(exitLogs);
         }
 
-        [RequirePermission("GET", "/api/exitlog/filter-by-date")]
         [HttpGet("filter-by-date")]
         public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
         {
@@ -51,15 +50,8 @@ namespace Final_year_Project.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ExitLogDto>> Create(CreateExitLogDto createExitLogDto)
         {
-            try
-            {
-                var createdExitLog = await _exitLogService.CreateAsync(createExitLogDto);
-                return CreatedAtAction(nameof(GetById), new { id = createdExitLog.Id }, createdExitLog);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var createdExitLog = await _exitLogService.CreateAsync(createExitLogDto);
+            return CreatedAtAction(nameof(GetById), new { id = createdExitLog.Id }, createdExitLog);
         }
     }
 }

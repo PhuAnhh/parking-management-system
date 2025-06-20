@@ -404,34 +404,30 @@ export class CardGroupsComponent implements OnInit {
     });
   }
 
-  toggleCardGroupStatus(cardGroupId: number) {
+  toggleCardGroupStatus(cardGroupId: number): void {
     const cardGroup = this.cardGroups.find(c => c.id === cardGroupId);
     if (!cardGroup) {
       console.error(`Không tìm thấy nhóm thẻ với id ${cardGroupId}`);
       return;
     }
 
+    const newStatus = !cardGroup.status;
+
     this.modalService.confirm({
-      nzTitle: 'Xác nhận khóa nhóm thẻ',
+      nzTitle: newStatus ? 'Xác nhận mở khóa nhóm thẻ' : 'Xác nhận khóa nhóm thẻ',
       nzMaskClosable: true,
       nzOkText: 'Xác nhận',
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedCardGroup = {
-          ...cardGroup,
-          status: !cardGroup.status,
-          laneIds: cardGroup.laneIds || []
-        };
-
-        this.cardGroupService.updateCardGroup(cardGroupId, updatedCardGroup).subscribe({
+        this.cardGroupService.changeCardGroupStatus(cardGroupId, newStatus).subscribe({
           next: () => {
-            cardGroup.status = !cardGroup.status;
-            this.notification.success('Thành công', '', {nzDuration: 3000});
+            cardGroup.status = newStatus;
+            this.notification.success('Thành công', '', { nzDuration: 3000 });
           },
           error: (error) => {
-            console.error('Lỗi khi khóa nhóm thẻ:', error);
-            this.notification.error('Lỗi', 'Đã có lỗi xảy ra', {nzDuration: 3000});
+            console.error('Lỗi khi thay đổi trạng thái nhóm thẻ:', error);
+            this.notification.error('Lỗi', 'Đã có lỗi xảy ra', { nzDuration: 3000 });
           }
         });
       }

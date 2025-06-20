@@ -17,12 +17,16 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<Role>> GetAllAsync()
         {
-            return await _context.Roles.ToListAsync();
+            return await _context.Roles
+                .Where(r => !r.Deleted)
+                .ToListAsync();
         }
 
         public async Task<Role?> GetByIdAsync(int id)
         {
-            return await _context.Roles.FindAsync(id);
+            return await _context.Roles
+                .Include(r => r.Users)
+                .FirstOrDefaultAsync(r => r.Id == id && !r.Deleted);
         }
 
         public async Task<Role?> GetByIdWithPermissionsAsync(int id)

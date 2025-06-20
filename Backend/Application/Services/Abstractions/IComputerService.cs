@@ -13,5 +13,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<ComputerDto> CreateAsync(CreateComputerDto createComputerDto);
         Task<ComputerDto> UpdateAsync(int id, UpdateComputerDto updateComputerDto);
         Task<bool> DeleteAsync(int id, bool useSoftDelete);
+        Task<bool> ChangeStatusAsync(int id, bool status);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Final_year_Project.Api.Authorization;
 using Final_year_Project.Application.Models;
+using Final_year_Project.Application.Services;
 using Final_year_Project.Application.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace Final_year_Project.Api.Controllers
             _userService = userService;
         }
 
-        [RequirePermission("GET", "/api/User")]
+        [RequirePermission("GET", "/api/user")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
         {
@@ -24,7 +25,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(users);
         }
 
-        [RequirePermission("GET", "/api/User/{id}")]
+        [RequirePermission("GET", "/api/user/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetById(int id)
         {
@@ -36,7 +37,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(user);
         }
 
-        [RequirePermission("POST", "/api/User")]
+        [RequirePermission("POST", "/api/user")]
         [HttpPost]
         public async Task<ActionResult<UserDto>> Create(CreateUserDto createUserDto)
         {
@@ -44,7 +45,7 @@ namespace Final_year_Project.Api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdUser.Id }, createdUser);
         }
 
-        [RequirePermission("PUT", "/api/User/{id}")]
+        [RequirePermission("PUT", "/api/user/{id}")]
         [HttpPut("{id}")]
         public async Task<ActionResult<UserDto>> Update(int id, UpdateUserDto updateUserDto)
         {
@@ -56,7 +57,7 @@ namespace Final_year_Project.Api.Controllers
             return Ok(updatedUser);
         }
 
-        [RequirePermission("DELETE", "/api/User/{id}")]
+        [RequirePermission("DELETE", "/api/user/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -68,44 +69,38 @@ namespace Final_year_Project.Api.Controllers
             return NoContent();
         }
 
-        [RequirePermission("PATCH", "/api/User/{id}/change-password")]
+        [RequirePermission("PATCH", "/api/user/{id}/status")]
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> ChangeStatus(int id, [FromBody] ChangeStatusDto changeStatusDto)
+        {
+            var success = await _userService.ChangeStatusAsync(id, changeStatusDto.Status);
+            if (!success)
+                return NotFound();
+
+            return NoContent();
+        }
+
         [HttpPatch("{id}/change-password")]
         public async Task<ActionResult> ChangePassword(int id, [FromBody] ChangePasswordDto changePasswordDto)
         {
             var success = await _userService.ChangePasswordAsync(id, changePasswordDto);
             if (!success)
             {
-                return NotFound(new { message = $"User with ID {id} not found." });
+                return NotFound();
             }
             return Ok(new { message = "Password changed successfully." });
         }
 
-        [RequirePermission("PATCH", "/api/User/{id}/reset-password")]
+        [RequirePermission("PATCH", "/api/user/{id}/reset-password")]
         [HttpPatch("{id}/reset-password")]
         public async Task<ActionResult> ResetPassword(int id, [FromBody] ResetPasswordDto resetPasswordDto)
         {
-            if (!ModelState.IsValid)
+            var success = await _userService.ResetPasswordAsync(id, resetPasswordDto);
+            if (!success)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
-
-            try
-            {
-                var success = await _userService.ResetPasswordAsync(id, resetPasswordDto);
-                if (!success)
-                {
-                    return NotFound(new { message = $"User with ID {id} not found." });
-                }
-                return Ok(new { message = "Password reset successfully." });
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "An error occurred while resetting the password.", error = ex.Message });
-            }
+            return Ok(new { message = "Password reset successfully." });
         }
     }
 }

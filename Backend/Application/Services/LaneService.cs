@@ -322,5 +322,19 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> ChangeStatusAsync(int id, bool status)
+        {
+            var lane = await _unitOfWork.Lanes.GetByIdAsync(id);
+            if (lane == null) return false;
+
+            lane.Status = status;
+            lane.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Lanes.Update(lane);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

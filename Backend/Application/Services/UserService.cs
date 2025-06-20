@@ -109,6 +109,20 @@ namespace Final_year_Project.Application.Services
             return true;
         }
 
+        public async Task<bool> ChangeStatusAsync(int id, bool status)
+        {
+            var user = await _unitOfWork.Users.GetByIdAsync(id);
+            if (user == null) return false;
+
+            user.Status = status;
+            user.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Users.Update(user);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<bool> ChangePasswordAsync(int userId, ChangePasswordDto changePasswordDto)
         {
             if (changePasswordDto.NewPassword != changePasswordDto.ConfirmPassword)

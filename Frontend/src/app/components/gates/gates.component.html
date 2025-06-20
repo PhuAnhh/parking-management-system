@@ -201,7 +201,7 @@
                             <button *ngIf="loginService.hasPermission('DELETE:/api/gate/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteGate(gate.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
-                            <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="gate.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleGateStatus(gate.id)">
+                            <button *ngIf="loginService.hasPermission('PATCH:/api/gate/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="gate.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleGateStatus(gate.id)">
                               <span nz-icon [nzType]="gate.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
                             </button>
                           </td>

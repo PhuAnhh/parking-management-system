@@ -292,5 +292,19 @@ namespace Final_year_Project.Application.Services
                 return false;
             }
         }
+
+        public async Task<bool> ChangeStatusAsync(int id, bool status)
+        {
+            var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(id);
+            if (cardGroup == null) return false;
+
+            cardGroup.Status = status;
+            cardGroup.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.CardGroups.Update(cardGroup);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

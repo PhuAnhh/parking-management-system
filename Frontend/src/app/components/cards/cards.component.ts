@@ -384,7 +384,7 @@ export class CardsComponent {
     });
   }
 
-  toggleCardStatus(cardId: number) {
+  toggleCardStatus(cardId: number): void {
     const card = this.cards.find(c => c.id === cardId);
     if (!card) {
       console.error(`Không tìm thấy thẻ với id ${cardId}`);
@@ -401,27 +401,16 @@ export class CardsComponent {
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedCard = {...card, status: newStatus};
-        
-        this.cardService.updateCard(cardId, updatedCard).subscribe(
-          () => {
+        this.cardService.changeCardStatus(cardId, newStatus).subscribe({
+          next: () => {
             card.status = newStatus;
-            
-            this.notification.success(
-              'Thành công',
-              isLocking ? '' : '',
-              {nzDuration: 3000}
-            );
+            this.notification.success('Thành công', '', { nzDuration: 3000 });
           },
-          (error) => {
-            console.error('Lỗi khi khóa thẻ:', error);
-            this.notification.error(
-              'Lỗi',
-              '',
-              {nzDuration: 3000}
-            );
+          error: (error) => {
+            console.error('Lỗi khi cập nhật trạng thái thẻ:', error);
+            this.notification.error('Lỗi', '', { nzDuration: 3000 });
           }
-        );
+        });
       }
     });
   }

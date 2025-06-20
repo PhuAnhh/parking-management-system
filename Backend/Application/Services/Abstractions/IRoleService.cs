@@ -8,6 +8,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<RoleDto> GetByIdAsync(int id);
         Task<RoleDto> CreateAsync(CreateRoleDto createRoleDto);
         Task<RoleDto> UpdateAsync(int id, UpdateRoleDto updateRoleDto);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id, bool useSoftDelete);
     }
 }

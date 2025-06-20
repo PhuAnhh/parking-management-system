@@ -234,6 +234,7 @@ CREATE TABLE roles(
 	id int identity(1, 1) primary key,
 	name nvarchar(255) not null,
 	description nvarchar(255) null,
+	deleted bit  not null default 0,
 	created_at datetime default getdate() not null,
 	updated_at datetime default getdate() not null
 )

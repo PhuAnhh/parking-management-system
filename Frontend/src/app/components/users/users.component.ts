@@ -406,11 +406,11 @@ export class UsersComponent implements OnInit{
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedUser = {...user, status: !user.status};
+        const newUser = !user.status;
     
-        this.userService.updateUser(userId, updatedUser).subscribe(
+        this.userService.changeUserStatus(userId, newUser).subscribe(
           () => {
-            user.status = !user.status;
+            user.status = newUser;
             
             this.notification.success(
               'Thành công',

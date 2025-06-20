@@ -27,7 +27,6 @@ namespace Final_year_Project.Api.Controllers
             return Ok(warnings);
         }
 
-        [RequirePermission("GET", "/api/warningevent/filter-by-date")]
         [HttpGet("filter-by-date")]
         public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
         {

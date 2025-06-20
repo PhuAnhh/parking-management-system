@@ -149,5 +149,19 @@ namespace Final_year_Project.Application.Services
                 return false;
             }
         }
+
+        public async Task<bool> ChangeStatusAsync(int id, bool status)
+        {
+            var gate = await _unitOfWork.Gates.GetByIdAsync(id);
+            if (gate == null) return false;
+
+            gate.Status = status;
+            gate.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Gates.Update(gate);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

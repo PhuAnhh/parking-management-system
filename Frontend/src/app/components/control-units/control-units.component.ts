@@ -407,11 +407,11 @@ export class ControlUnitsComponent implements OnInit{
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedControlUnit = {...controlUnit, status: !controlUnit.status};
+        const newControlUnit =!controlUnit.status;
     
-        this.controlUnitService.updateControlUnit(controlUnitId, updatedControlUnit).subscribe(
+        this.controlUnitService.changeControlUnitStatus(controlUnitId, newControlUnit).subscribe(
           () => {
-            controlUnit.status = !controlUnit.status;
+            controlUnit.status = newControlUnit;
             
             this.notification.success(
               'Thành công',

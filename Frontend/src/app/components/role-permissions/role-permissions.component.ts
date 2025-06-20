@@ -1,9 +1,24 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { RoleService } from '../../services/role.service';
+import { LoginService } from '../../services/login.service';
+import { PermissionService } from '../../services/permission.service';
+
+interface Permission {
+  id: number;
+  name: string;
+  endpoint: string;
+  method: string;
+}
+
+interface GroupedPermissions {
+  [category: string]: {
+    [subcategory: string]: Permission[];
+  };
+}
 
 @Component({
   selector: 'app-role-permissions',
@@ -13,10 +28,13 @@ import { RoleService } from '../../services/role.service';
 })
 export class RolePermissionsComponent implements OnInit{
   roles: any[] = [];
+  permissions: Permission[] = [];
+  groupedPermissions: GroupedPermissions = {};
   pageIndex = 1;
   pageSize = 10;
   total = 0;
   loading = true;
+  permissionsLoading = true;
   isAddModalVisible = false; 
   isEditModalVisible = false; 
   roleForm!: FormGroup; 
@@ -24,30 +42,125 @@ export class RolePermissionsComponent implements OnInit{
   currentRoleId: number | null = null;
   searchKeyword: string = '';
 
+  // Mapping cho categories và subcategories
+  private readonly permissionConfig: { [key: string]: { category: string; subcategory: string } } = {
+    'gate': { category: 'Quản lý thiết bị', subcategory: 'Cổng' },
+    'computer': { category: 'Quản lý thiết bị', subcategory: 'Máy tính' },
+    'camera': { category: 'Quản lý thiết bị', subcategory: 'Camera' },
+    'controlunit': { category: 'Quản lý thiết bị', subcategory: 'Bộ điều khiển' },
+    'lane': { category: 'Quản lý thiết bị', subcategory: 'Làn' },
+    'led': { category: 'Quản lý thiết bị', subcategory: 'Led' },
+    'card': { category: 'Quản lý thẻ', subcategory: 'Thẻ' },
+    '/cardgroup': { category: 'Quản lý thẻ', subcategory: 'Nhóm thẻ' },
+    'customer': { category: 'Quản lý khách hàng', subcategory: 'Khách hàng' },
+    '/customergroup': { category: 'Quản lý khách hàng', subcategory: 'Nhóm khách hàng' },
+    'entrylog': { category: 'Quản lý bãi xe', subcategory: 'Xe vào bãi' },
+    'exitlog': { category: 'Quản lý bãi xe', subcategory: 'Xe ra bãi' },  
+    'warningevent': { category: 'Quản lý bãi xe', subcategory: 'Cảnh báo' },
+    'revenuereport': { category: 'Quản lý bãi xe', subcategory: 'Báo cáo doanh thu' },
+    'role': { category: 'Quản lý tài khoản', subcategory: 'Vai trò, quyền hạn'},
+    'user': { category: 'Quản lý tài khoản', subcategory: 'Người dùng' }
+  };
+
   constructor(
-    private roleService: RoleService, 
+    private roleService: RoleService,
+    private permissionService: PermissionService,
     private cdr: ChangeDetectorRef,
     private modalService: NzModalService,
     private fb: FormBuilder,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    public loginService: LoginService
   ) {
     this.initForm();
   }  
 
   ngOnInit() {
     this.loadRoles();
+    this.loadPermissions();
   }
 
   initForm() {
     this.roleForm = this.fb.group({
       name: [null, [Validators.required]],
-      description: [null]
+      description: [null],
+      permissionIds: this.fb.array([])
     });
 
     this.editRoleForm = this.fb.group({
       name: [null, [Validators.required]],
-      description: [null]
+      description: [null],
+      permissionIds: this.fb.array([])
     });
+  }
+
+  get permissionIdsFormArray(): FormArray {
+    return this.roleForm.get('permissionIds') as FormArray;
+  }
+
+  get editPermissionIdsFormArray(): FormArray {
+    return this.editRoleForm.get('permissionIds') as FormArray;
+  }
+
+  loadPermissions() {
+    this.permissionService.getPermissions().subscribe(
+      (data: Permission[]) => {
+        this.permissions = data;
+        this.groupPermissions();
+        this.cdr.detectChanges();
+      },
+      (error) => {
+        console.error('Lỗi khi lấy danh sách quyền:', error);
+      }
+    );
+  }
+
+  groupPermissions() {
+    this.groupedPermissions = {};
+    
+    this.permissions.forEach(permission => {
+      // Giả sử bạn có logic để phân loại permission theo category và subcategory
+      // Ví dụ dựa trên endpoint hoặc name
+      const category = this.getCategoryFromPermission(permission);
+      const subcategory = this.getSubcategoryFromPermission(permission);
+      
+      if (!this.groupedPermissions[category]) {
+        this.groupedPermissions[category] = {};
+      }
+      
+      if (!this.groupedPermissions[category][subcategory]) {
+        this.groupedPermissions[category][subcategory] = [];
+      }
+      
+      this.groupedPermissions[category][subcategory].push(permission);
+    });
+  }
+
+  getCategoryFromPermission(permission: Permission): string {
+    const key = this.getPermissionKey(permission);
+    return this.permissionConfig[key]?.category || 'Khác';
+  }
+
+  getSubcategoryFromPermission(permission: Permission): string {
+    const key = this.getPermissionKey(permission);
+    return this.permissionConfig[key]?.subcategory || 'Khác';
+  }
+
+  private getPermissionKey(permission: Permission): string {
+    const searchText = `${permission.endpoint} ${permission.name}`.toLowerCase();
+    
+    // Sắp xếp keys theo độ dài giảm dần để tìm match chính xác nhất trước
+    const sortedKeys = Object.keys(this.permissionConfig).sort((a, b) => b.length - a.length);
+    
+    // Tìm key match chính xác nhất
+    const foundKey = sortedKeys.find(key => 
+      searchText.includes(key)
+    );
+    
+    return foundKey || '';
+  }
+
+  getObjectKeys(obj: any): string[] {
+    return Object.keys(obj);
   }
 
   loadRoles(searchKeyword: string = '') {
@@ -92,7 +205,8 @@ export class RolePermissionsComponent implements OnInit{
 
   showAddRoleModal() {
     this.isAddModalVisible = true;
-    this.roleForm.reset({status: true}); 
+    this.roleForm.reset();
+    this.initPermissionCheckboxes();
   }
 
   showEditRoleModal(role: any) {
@@ -103,12 +217,56 @@ export class RolePermissionsComponent implements OnInit{
         name: role.name,
         description: role.description
       });
+      this.initEditPermissionCheckboxes(role.permissions || []);
       this.isEditModalVisible = true;
     } else {
       console.error('Edit form is not initialized');
       this.initForm();
       this.showEditRoleModal(role);
     }
+  }
+
+  initPermissionCheckboxes() {
+    const permissionFormArray = this.permissionIdsFormArray;
+    permissionFormArray.clear();
+    
+    this.permissions.forEach(() => {
+      permissionFormArray.push(this.fb.control(false));
+    });
+  }
+
+  initEditPermissionCheckboxes(rolePermissions: any[]) {
+    const permissionFormArray = this.editPermissionIdsFormArray;
+    permissionFormArray.clear();
+    
+    this.permissions.forEach(permission => {
+      const isChecked = rolePermissions.some(rp => rp.id === permission.id);
+      permissionFormArray.push(this.fb.control(isChecked));
+    });
+  }
+
+  onPermissionChange(permissionIndex: number, checked: boolean, isEdit: boolean = false) {
+    const formArray = isEdit ? this.editPermissionIdsFormArray : this.permissionIdsFormArray;
+    formArray.at(permissionIndex).setValue(checked);
+  }
+
+  getSelectedPermissionIds(isEdit: boolean = false): number[] {
+    const formArray = isEdit ? this.editPermissionIdsFormArray : this.permissionIdsFormArray;
+    const selectedIds: number[] = [];
+    
+    formArray.controls.forEach((control, index) => {
+      if (control.value) {
+        selectedIds.push(this.permissions[index].id);
+      }
+    });
+    
+    return selectedIds;
+  }
+
+  isPermissionChecked(permissionId: number, isEdit: boolean = false): boolean {
+    const formArray = isEdit ? this.editPermissionIdsFormArray : this.permissionIdsFormArray;
+    const permissionIndex = this.permissions.findIndex(p => p.id === permissionId);
+    return permissionIndex >= 0 ? formArray.at(permissionIndex).value : false;
   }
 
   handleCancel() {
@@ -130,11 +288,18 @@ export class RolePermissionsComponent implements OnInit{
       return;
     }
 
-    const newRole = this.roleForm.value;
+    const formValue = this.roleForm.value;
+    const selectedPermissionIds = this.getSelectedPermissionIds();
+    
+    const newRole = {
+      name: formValue.name,
+      description: formValue.description,
+      permissionIds: selectedPermissionIds
+    };
 
-    const isDupicate = this.roles.some(role => role.name === newRole.name);
+    const isDuplicate = this.roles.some(role => role.name === newRole.name);
 
-    if(isDupicate) {
+    if(isDuplicate) {
       this.notification.error(
         'Lỗi',
         'Tên: Trường bị trùng lặp',
@@ -159,7 +324,7 @@ export class RolePermissionsComponent implements OnInit{
       console.error('Lỗi khi thêm vai trò:', error);
       this.notification.error(
         'Lỗi',
-        '', 
+        error.error?.message || '', 
         {
           nzPlacement: 'topRight',
           nzDuration: 3000
@@ -178,17 +343,22 @@ export class RolePermissionsComponent implements OnInit{
       return;
     }
     
+    const formValue = this.editRoleForm.value;
+    const selectedPermissionIds = this.getSelectedPermissionIds(true);
+    
     const updatedRole = {
-      ...this.editRoleForm.value,
+      name: formValue.name,
+      description: formValue.description,
+      permissionIds: selectedPermissionIds
     };
     
     console.log('Updated Role:', updatedRole);  
 
-    const isDupicate = this.roles.some(role =>
+    const isDuplicate = this.roles.some(role =>
       role.name === updatedRole.name && role.id !== this.currentRoleId
     );
 
-    if (isDupicate) {
+    if (isDuplicate) {
       this.notification.error(
         'Lỗi',
         'Tên: Trường bị trùng lặp',
@@ -221,7 +391,7 @@ export class RolePermissionsComponent implements OnInit{
           } else {
             this.notification.error(
               'Lỗi',
-              'Không thể cập nhật vai trò. Vui lòng thử lại',
+              '',
               {nzDuration: 3000}
             );
           }
@@ -265,7 +435,7 @@ export class RolePermissionsComponent implements OnInit{
             console.error('Lỗi khi xóa vai trò:', error);
             this.notification.error(
               'Lỗi',
-              '', 
+              error.error?.message || '', 
               {
                 nzPlacement: 'topRight',
                 nzDuration: 3000
@@ -275,5 +445,9 @@ export class RolePermissionsComponent implements OnInit{
         );
       }
     });
+  }
+
+  trackByPermissionId(index: number, permission: Permission): number {
+    return permission.id;
   }
 }

@@ -105,12 +105,12 @@
         <nz-breadcrumb>
           <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
             <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
-              <span>Thiết bị</span>
+              <span>Tài khoản</span>
               <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
             </div>
             <nz-breadcrumb-item>
               <span class="ant-breadcrumb-link">
-                <a href="/#/gates">Cổng</a>
+                <a href="/#/users">Người dùng</a>
               </span>
             </nz-breadcrumb-item>
           </div>
@@ -206,7 +206,7 @@
                             <button *ngIf="loginService.hasPermission('DELETE:/api/user/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteUser(user.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
-                            <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="user.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleUserStatus(user.id)">
+                            <button *ngIf="loginService.hasPermission('PATCH:/api/user/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="user.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleUserStatus(user.id)">
                               <span nz-icon [nzType]="user.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
                             </button>
                           </td>

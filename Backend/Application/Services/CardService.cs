@@ -138,6 +138,21 @@ namespace Final_year_Project.Application.Services
 
             return true;
         }
+
+        public async Task<bool> ChangeStatusAsync(int id, CardStatus status)
+        {
+            var card = await _unitOfWork.Cards.GetByIdAsync(id);
+            if (card == null) return false;
+
+            card.Status = status;
+            card.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Cards.Update(card);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }
 

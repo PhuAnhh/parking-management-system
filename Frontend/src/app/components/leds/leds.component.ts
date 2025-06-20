@@ -370,11 +370,11 @@ export class LedsComponent implements OnInit{
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedLed = {...led, status: !led.status};
+        const newLed = !led.status;
     
-        this.ledService.updateLed(ledId, updatedLed).subscribe(
+        this.ledService.changeLedStatus(ledId, newLed).subscribe(
           () => {
-            led.status = !led.status;
+            led.status = newLed;
             
             this.notification.success(
               'Thành công',

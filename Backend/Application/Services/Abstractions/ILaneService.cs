@@ -13,5 +13,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<LaneDto> CreateAsync(CreateLaneDto createLaneDto);
         Task<LaneDto> UpdateAsync(int id, UpdateLaneDto updateLaneDto);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ChangeStatusAsync(int id, bool status);
     }
 }

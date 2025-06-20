@@ -140,5 +140,19 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> ChangeStatusAsync(int id, bool status)
+        {
+            var led = await _unitOfWork.Leds.GetByIdAsync(id);
+            if (led == null) return false;
+
+            led.Status = status;
+            led.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Leds.Update(led);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

@@ -5,6 +5,7 @@ import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
 import { LaneService } from '../../services/lane.service';
 import { CustomerService } from '../../services/customer.service';
+import { LoginService } from '../../services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -88,7 +89,8 @@ export class EntryLogsComponent implements OnInit{
       private modalService: NzModalService,
       private fb: FormBuilder,
       private notification: NzNotificationService,
-      private http: HttpClient
+      private http: HttpClient,
+      public loginService: LoginService
     ) {
       this.initForm();
     }  

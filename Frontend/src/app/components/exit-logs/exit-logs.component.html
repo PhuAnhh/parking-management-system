@@ -337,6 +337,7 @@
                   </td>
                   <td style="text-align: center;">
                     <button 
+                      *ngIf="loginService.hasPermission('GET:/api/exitlog/{id}')"
                       nz-button 
                       nz-tooltip
                       nzTooltipTitle="Xem chi tiết sự kiện"

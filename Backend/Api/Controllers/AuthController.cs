@@ -25,22 +25,14 @@ namespace Final_year_Project.Api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            try
-            {
-                var result = await _authService.LoginAsync(request);
+            var result = await _authService.LoginAsync(request);
 
-                if (result.Success)
-                {
-                    return Ok(result);
-                }
-
-                return BadRequest(result);
-            }
-            catch (Exception ex)
+            if (result.Success)
             {
-                _logger.LogError(ex, "Error in login endpoint");
-                return StatusCode(500, new { message = "Internal server error" });
+                return Ok(result);
             }
+
+            return BadRequest(result);
         }
     }
 }

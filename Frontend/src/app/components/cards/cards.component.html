@@ -206,7 +206,8 @@
                             <button *ngIf="loginService.hasPermission('DELETE:/api/card/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteCard(card.id)">
                               <span nz-icon nzType="delete" nzTheme="outline"></span>
                             </button>
-                            <button nz-button 
+                            <button *ngIf="loginService.hasPermission('PATCH:/api/card/{id}/status')" 
+                                    nz-button 
                                     class="ant-btn ant-btn-icon-only" 
                                     [ngClass]="card.status === 'Locked' ? 'disabled-btn' : 'enabled-btn'" 
                                     (click)="toggleCardStatus(card.id)">
@@ -215,7 +216,6 @@
                                     nzTheme="outline">
                               </span>
                             </button>
-
                           </td>
                         </tr>
                       </tbody>

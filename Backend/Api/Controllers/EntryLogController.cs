@@ -27,7 +27,6 @@ namespace Final_year_Project.Api.Controllers
             return Ok(entryLogs);
         }
 
-        [RequirePermission("GET", "/api/entrylog/filter-by-date")]
         [HttpGet("filter-by-date")]
         public async Task<IActionResult> GetByDateRange(DateTime fromDate, DateTime toDate)
         {
@@ -51,15 +50,8 @@ namespace Final_year_Project.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<EntryLogDto>> Create(CreateEntryLogDto createEntryLogDto)
         {
-            try
-            {
-                var createdEntryLog = await _entryLogService.CreateAsync(createEntryLogDto);
-                return CreatedAtAction(nameof(GetById), new { id = createdEntryLog.Id }, createdEntryLog);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var createdEntryLog = await _entryLogService.CreateAsync(createEntryLogDto);
+            return CreatedAtAction(nameof(GetById), new { id = createdEntryLog.Id }, createdEntryLog);
         }
 
         [RequirePermission("DELETE", "/api/entrylog/{id}")]

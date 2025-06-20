@@ -13,5 +13,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<GateDto> CreateAsync(CreateGateDto createGateDto);
         Task<GateDto> UpdateAsync(int id, UpdateGateDto updateGateDto);
         Task<bool> DeleteAsync(int id, bool useSoftDelete);
+        Task<bool> ChangeStatusAsync(int id, bool status);
     }
 }

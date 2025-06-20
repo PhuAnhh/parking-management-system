@@ -311,11 +311,11 @@ export class GatesComponent implements OnInit{
       nzCancelText: 'Hủy bỏ',
       nzClassName: 'custom-delete-modal',
       nzOnOk: () => {
-        const updatedGate = {...gate, status: !gate.status};
+        const newGate = !gate.status;
     
-        this.gateService.updateGate(gateId, updatedGate).subscribe(
+        this.gateService.changeGateStatus(gateId, newGate).subscribe(
           () => {
-            gate.status = !gate.status;
+            gate.status = newGate;
             
             this.notification.success(
               'Thành công',

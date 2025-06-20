@@ -13,5 +13,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<ControlUnitDto> CreateAsync(CreateControlUnitDto createControlUnitDto);
         Task<ControlUnitDto> UpdateAsync(int id, UpdateControlUnitDto updateControlUnitDto);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ChangeStatusAsync(int id, bool status);
     }
 }

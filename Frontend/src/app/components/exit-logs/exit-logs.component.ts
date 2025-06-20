@@ -4,6 +4,7 @@ import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
 import { LaneService } from '../../services/lane.service';
 import { CustomerService } from '../../services/customer.service';
+import { LoginService } from '../../services/login.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
@@ -64,6 +65,7 @@ export class ExitLogsComponent implements OnInit{
       private customerService: CustomerService,
       private notification: NzNotificationService,
       private cdr: ChangeDetectorRef,
+      public loginService: LoginService
     ) {
       this.dashboardItems = [
         {

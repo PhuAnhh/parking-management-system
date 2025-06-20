@@ -13,5 +13,6 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<CameraDto> CreateAsync(CreateCameraDto createCameraDto);
         Task<CameraDto> UpdateAsync(int id, UpdateCameraDto updateCameraDto);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ChangeStatusAsync(int id, bool status);
     }
 }

@@ -204,7 +204,7 @@
                           <button *ngIf="loginService.hasPermission('DELETE:/api/computer/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteComputer(computer.id)">
                             <span nz-icon nzType="delete" nzTheme="outline"></span>
                           </button>
-                          <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="computer.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleComputerStatus(computer.id)">
+                          <button *ngIf="loginService.hasPermission('PATCH:/api/computer/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="computer.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleComputerStatus(computer.id)">
                             <span nz-icon [nzType]="computer.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
                           </button>
                         </td>
@@ -214,21 +214,6 @@
                       Tổng số {{ total }} dữ liệu
                     </ng-template>
                   </nz-table>
-
-                  <nz-float-button *ngIf="isVisible"
-                  [nzType]="'primary'"
-                  [nzShape]="'circle'"
-                  [nzTooltipTitle]="'Lên đầu trang'"
-                  (click)="backToTop()"
-                  >
-                    <button nz-button class="ant-btn">
-                      <nz-float-button-content>
-                        <div class="ant-float-btn-icon">
-                          <nz-icon nzType="vertical-align-top" nztheme="outline" class="anticon"></nz-icon>
-                        </div>
-                      </nz-float-button-content>
-                    </button>
-                  </nz-float-button>
               </div>
           </nz-card>
       </div>

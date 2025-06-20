@@ -361,3 +361,8 @@ nz-footer {
 ::ng-deep .ant-pagination-item-link {
   border-radius: 50% !important;
 }
+
+::ng-deep .ant-collapse-arrow {
+  color: #1890ff;
+  display: flex;
+}

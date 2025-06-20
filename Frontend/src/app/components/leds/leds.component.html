@@ -213,7 +213,7 @@
                           <button *ngIf="loginService.hasPermission('PUT:/api/led/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteLed(led.id)">
                             <span nz-icon nzType="delete" nzTheme="outline"></span>
                           </button>
-                          <button nz-button class="ant-btn ant-btn-icon-only" [ngClass]="led.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleLedStatus(led.id)">
+                          <button *ngIf="loginService.hasPermission('PATCH:/api/led/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="led.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleLedStatus(led.id)">
                             <span nz-icon [nzType]="led.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
                           </button>
                         </td>
@@ -229,7 +229,6 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
-
 
 <nz-modal [nzContent]="addLedTpl" [(nzVisible)]="isAddModalVisible" nzTitle="Thêm mới Led" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"></nz-modal>
   <ng-template #addLedTpl>

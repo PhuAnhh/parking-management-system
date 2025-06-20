@@ -127,21 +127,42 @@ namespace Final_year_Project.Application.Services
             return MapToRoleDto(updatedRole!);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id, bool useSoftDelete)
         {
             var role = await _unitOfWork.Roles.GetByIdAsync(id);
-            if (role == null)
+            if (role == null) return false;
+
+            try
+            {
+                if (useSoftDelete)
+                {
+                    // XÓA MỀM: chỉ đánh dấu Deleted = true
+                    role.Deleted = true;
+                    role.UpdatedAt = DateTime.UtcNow;
+                    _unitOfWork.Roles.Update(role);
+                }
+                else
+                {
+                    // Kiểm tra nếu có users đang dùng role này
+                    if (role.Users != null && role.Users.Any())
+                    {
+                        throw new InvalidOperationException("Không thể xóa vai trò vì có người dùng đang sử dụng.");
+                    }
+
+                    // Xóa các phân quyền (bảng trung gian role_permissions)
+                    await _unitOfWork.RolePermissions.DeleteByRoleIdAsync(id);
+
+                    // Xóa cứng role
+                    _unitOfWork.Roles.Delete(role);
+                }
+
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
             {
                 return false;
             }
-
-            await _unitOfWork.RolePermissions.DeleteByRoleIdAsync(id);
-
-            _unitOfWork.Roles.Delete(role);
-
-            await _unitOfWork.SaveChangesAsync();
-
-            return true;
         }
 
         private static RoleDto MapToRoleDto(Role role)

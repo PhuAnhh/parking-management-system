@@ -4,6 +4,7 @@ using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Services.Abstractions;
 using Final_year_Project.Application.Models;
 using Final_year_Project.Api.Authorization;
+using Final_year_Project.Application.Services;
 
 namespace Final_year_Project.Api.Controllers
 {
@@ -65,6 +66,17 @@ namespace Final_year_Project.Api.Controllers
             var result = await _ledService.DeleteAsync(id);
 
             if (!result)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        [RequirePermission("PATCH", "/api/led/{id}/status")]
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> ChangeStatus(int id, [FromBody] ChangeStatusDto changeStatusDto)
+        {
+            var success = await _ledService.ChangeStatusAsync(id, changeStatusDto.Status);
+            if (!success)
                 return NotFound();
 
             return NoContent();

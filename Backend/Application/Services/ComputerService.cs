@@ -214,5 +214,18 @@ namespace Final_year_Project.Application.Services
             }
         }
 
+        public async Task<bool> ChangeStatusAsync(int id, bool status)
+        {
+            var computer = await _unitOfWork.Computers.GetByIdAsync(id);
+            if (computer == null) return false;
+
+            computer.Status = status;
+            computer.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Computers.Update(computer);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

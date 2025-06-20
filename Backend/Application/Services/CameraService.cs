@@ -153,5 +153,19 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> ChangeStatusAsync(int id, bool status)
+        {
+            var camera = await _unitOfWork.Cameras.GetByIdAsync(id);
+            if (camera == null) return false;
+
+            camera.Status = status;
+            camera.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Cameras.Update(camera);
+            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

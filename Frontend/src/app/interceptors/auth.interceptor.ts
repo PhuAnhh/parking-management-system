@@ -8,18 +8,23 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private loginService: LoginService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // Lấy token từ LoginService (localStorage)
     const token = this.loginService.getToken();
 
+    // Nếu có token, thêm nó vào header Authorization
     if (token) {
-      const cloned = req.clone({
+      const requestWithToken = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
-      return next.handle(cloned);
+
+      // Gửi request đã thêm token
+      return next.handle(requestWithToken);
     }
 
-    return next.handle(req);
+    // Nếu không có token, gửi request gốc như bình thường
+    return next.handle(request);
   }
 }

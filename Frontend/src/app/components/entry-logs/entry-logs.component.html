@@ -364,6 +364,7 @@
                   </button>
                   <nz-divider class="ant-divider ant-divider-vertical"></nz-divider>
                   <button 
+                    *ngIf="loginService.hasPermission('POST:/api/entrylog')"
                     (click)="showAddEntryLogModal()" 
                     nz-button 
                     nzType="primary" 
@@ -438,6 +439,7 @@
                   </td>
                   <td style="text-align: center;">
                     <button 
+                      *ngIf="loginService.hasPermission('GET:/api/entrylog/{id}')"
                       nz-button
                       nz-tooltip
                       nzTooltipTitle="Xem chi tiết sự kiện"
@@ -448,6 +450,7 @@
                       <span nz-icon nzType="picture" nzTheme="fill"></span>
                     </button>
                     <button 
+                      *ngIf="loginService.hasPermission('GET:/api/entrylog/{id}')"
                       nz-button 
                       class="ant-btn delete-btn ant-btn-icon-only" 
                       nz-dropdown 
@@ -462,14 +465,16 @@
                         <li nz-menu-item>
                           <div 
                             style="display: flex; align-items: center; gap: 3px; color: #f15922;" 
-                            (click)="deleteEntryLog(entryLog.id)">
+                            (click)="deleteEntryLog(entryLog.id)"
+                            *ngIf="loginService.hasPermission('DELETE:/api/entrylog/{id}')">
                             <span nz-icon nzType="delete" nzTheme="fill"></span>
                             <span class="menu-text">Xóa sự kiện</span>
                           </div>
                         </li>
                         <li nz-menu-item>
                           <div style="display: flex; align-items: center; gap: 3px; color: #0c68e9;"
-                          (click)="showAddExitLogModal(entryLog)">
+                          (click)="showAddExitLogModal(entryLog)"
+                          *ngIf="loginService.hasPermission('POST:/api/exitlog')">
                             <span nz-icon nzType="check-square" nzTheme="fill"></span>
                             <span class="menu-text">Ghi vé ra</span>
                           </div>
