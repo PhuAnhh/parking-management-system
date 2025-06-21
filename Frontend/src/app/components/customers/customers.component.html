@@ -1,217 +1,110 @@
-<nz-layout class="layout">
-    <nz-sider nzwidth="236px" class="menu-sidebar show-for-large" style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
-      <div class="logo">
-        <img src="../../../assets/images/logo/logo.png" alt="Logo">
-      </div>
-      <div class="custom-dark-menu">
-        <ul nz-menu nzTheme="dark" nzMode="inline">
-          <li nz-submenu nzTitle="Quản lý bãi xe">
-            <ul>
-              <li nz-menu-item [routerLink]="'/dashboard'">
-                <span nz-icon nzType="dashboard" nzTheme="fill"></span>
-                <span>Trang chủ</span>
-              </li>
-              <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
-                <ul>
-                  <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
-                  <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
-                  <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
-                  <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý khách hàng">
-            <ul>
-              <li nz-menu-item [routerLink]="'/customer-groups'">
-                <span nz-icon nzType="github" nzTheme="fill"></span>
-                <span>Nhóm khách hàng</span> 
-              </li>
-              <li nz-menu-item [routerLink]="'/customers'">
-                <span nz-icon nzType="gitlab" nzTheme="fill"></span>
-                <span>Khách hàng</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý thẻ">
-            <ul>
-              <li nz-menu-item [routerLink]="'/card-groups'">
-                <span nz-icon nzType="apple" nzTheme="fill"></span>
-                <span>Nhóm thẻ</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/cards'">
-                <span nz-icon nzType="android" nzTheme="fill"></span>
-                <span>Thẻ</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý thiết bị">
-            <ul>
-              <li nz-menu-item [routerLink]="'/gates'">
-                <span nz-icon nzType="bank" nzTheme="fill"></span>
-                <span>Cổng</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/computers'">
-                <span nz-icon nzType="laptop" nzTheme="outline"></span>
-                <span>Máy tính</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/cameras'">
-                <span nz-icon nzType="camera" nzTheme="fill"></span>
-                <span>Camera</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/control_units'">
-                <span nz-icon nzType="control" nzTheme="fill"></span>
-                <span>Bộ điều khiển</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/lanes'">
-                <span nz-icon nzType="sliders" nzTheme="fill"></span>
-                <span>Làn</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/leds'">
-                <span nz-icon nzType="bulb" nzTheme="fill"></span>
-                <span>Led</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý tài khoản">
-            <ul>
-              <li nz-menu-item [routerLink]="'/role-permissions'">
-                <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
-                <span>Vai trò, quyền hạn</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/users'">
-                <span nz-icon nzType="user" nzTheme="outline"></span>
-                <span>Người dùng</span>
-              </li>
-            </ul>
-          </li>
-        </ul>
+<nz-breadcrumb>
+  <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
+    <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
+      <span>Quản lý khách hàng</span>
+      <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
     </div>
-    </nz-sider>
-    <nz-layout class="ant-layout right-layout">
-      <nz-header class="ant-layout-header">
-          <div>
-            <button nz-button nzType="primary" class="ant-btn1">
-              <span nz-icon nzType="search" style="color: #637381;">
-              </span>
-              <span style="color:#637381 ;">Tìm kiếm thư mục</span>
-            </button>
-          </div>
-          <div>
-            <span style="margin-right: 15px;" nz-dropdown nzplacement="bottomRight">Admin</span>
-          </div>
-      </nz-header>
-      <nz-content>
-        <nz-breadcrumb>
-          <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
-            <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
-              <span>Quản lý khách hàng</span>
-              <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
-            </div>
-            <nz-breadcrumb-item>
-              <span class="ant-breadcrumb-link">
-                <a href="/#/customers">Khách hàng</a>
-              </span>
-            </nz-breadcrumb-item>
-          </div>
-        </nz-breadcrumb>
-        <div class="inner-content">
-            <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 12px">
-                <div class="ant-card-body" style="padding: 24px 0px;"> 
-                    <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
-                        <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
-                            <fieldset>
-                              <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                              <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
-                                  <span class="ant-input-wrapper ant-input-group">
-                                      <input type="text" nz-input id="keyword" class="ant-input" 
-                                            placeholder="Từ khóa..." 
-                                            [(ngModel)]="searchKeyword"
-                                            (keyup.enter)="onSearch()">
-                                      <span nz-input-group-slot type="addon" class="ant-input-group-addon">
-                                          <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
-                                              <span nz-icon nzType="search" class="anticon"></span>
-                                          </button>
-                                      </span>
-                                  </span>
-                              </nz-input-group>
-                          </fieldset>
-                        </nz-col>
-                        <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
-                            <table-action>
-                                <div nz-row class="ant-row">  
-                                    <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                                        <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap " style="width: 100%; height: 100%; gap: 6px; flex: unset;">
-                                            <button (click)="loadCustomers()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
-                                                <span nz-icon class="anticon">
-                                                    <fa-icon class="ng-fa-icon">
-                                                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
-                                                    </fa-icon>
-                                                </span>
-                                                <span class="">Tải lại</span>
-                                            </button> 
-                                            <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
-                                            <button *ngIf="loginService.hasPermission('POST:/api/customer')" (click)="showAddCustomerModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
-                                              <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
-                                              <span>Thêm mới</span>
-                                          </button>
-                                        </div>
-                                    </div>
+    <nz-breadcrumb-item>
+      <span class="ant-breadcrumb-link">
+        <a href="/#/customers">Khách hàng</a>
+      </span>
+    </nz-breadcrumb-item>
+  </div>
+</nz-breadcrumb>
+<div class="inner-content">
+    <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 12px">
+        <div class="ant-card-body" style="padding: 24px 0px;"> 
+            <nz-row class="ant-row filter-row" style="margin: -12px -6px;">
+                <nz-col class="ant-col ant-col-xl-8" style="padding: 12px 6px;">
+                    <fieldset>
+                      <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
+                      <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
+                          <span class="ant-input-wrapper ant-input-group">
+                              <input type="text" nz-input id="keyword" class="ant-input" 
+                                    placeholder="Từ khóa..." 
+                                    [(ngModel)]="searchKeyword"
+                                    (keyup.enter)="onSearch()">
+                              <span nz-input-group-slot type="addon" class="ant-input-group-addon">
+                                  <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
+                                      <span nz-icon nzType="search" class="anticon"></span>
+                                  </button>
+                              </span>
+                          </span>
+                      </nz-input-group>
+                  </fieldset>
+                </nz-col>
+                <nz-col class="ant-col ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
+                    <table-action>
+                        <div nz-row class="ant-row">  
+                            <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
+                                <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap " style="width: 100%; height: 100%; gap: 6px; flex: unset;">
+                                    <button (click)="loadCustomers()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
+                                        <span nz-icon class="anticon">
+                                            <fa-icon class="ng-fa-icon">
+                                                <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
+                                            </fa-icon>
+                                        </span>
+                                        <span class="">Tải lại</span>
+                                    </button> 
+                                    <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
+                                    <button *ngIf="loginService.hasPermission('POST:/api/customer')" (click)="showAddCustomerModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
+                                      <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
+                                      <span>Thêm mới</span>
+                                  </button>
                                 </div>
-                            </table-action>
-                        </nz-col>
-                    </nz-row>
-                    <nz-table
-                      #customerTable
-                      [nzData]="customers"
-                      [nzTotal]="total"
-                      [nzPageSize]="pageSize"
-                      [nzPageIndex]="pageIndex"
-                      [nzFrontPagination]="false"
-                      [nzShowSizeChanger]="true"
-                      [nzPageSizeOptions]="[10, 20, 30, 40]"
-                      [nzShowTotal]="paginationTemplate"
-                      (nzQueryParams)="onQueryParamsChange($event)"
-                      [nzLoading]="loading">
-                      <thead>
-                        <tr>
-                          <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
-                          <th>Tên</th>
-                          <th>Mã</th>
-                          <th>Số điện thoại</th>
-                          <th>Địa chỉ</th>
-                          <th>Nhóm khách hàng</th>
-                          <th style="width: 130px; min-width: 130px; text-align: center;"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let customer of customers; let i = index">
-                          <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
-                          <td>{{ customer.name }}</td>
-                          <td>{{ customer.code }}</td> 
-                          <td>{{ customer.phone }}</td> 
-                          <td>{{ customer.address }}</td>   
-                          <td>{{ getCustomerGroupById(customer.customerGroupId) }}</td> 
-                          <td style="text-align: center;">
-                            <button *ngIf="loginService.hasPermission('PUT:/api/customer/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateCustomer(customer.id)">
-                              <span nz-icon nzType="edit" nzTheme="outline"></span>
-                            </button>
-                            <button *ngIf="loginService.hasPermission('DELETE:/api/customer/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteCustomer(customer.id)">
-                              <span nz-icon nzType="delete" nzTheme="outline"></span>
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                      <ng-template #paginationTemplate>
-                        Tổng số {{ total }} dữ liệu
-                      </ng-template>
-                    </nz-table>
-                </div>
-            </nz-card>
+                            </div>
+                        </div>
+                    </table-action>
+                </nz-col>
+            </nz-row>
+            <nz-table
+              #customerTable
+              [nzData]="customers"
+              [nzTotal]="total"
+              [nzPageSize]="pageSize"
+              [nzPageIndex]="pageIndex"
+              [nzFrontPagination]="false"
+              [nzShowSizeChanger]="true"
+              [nzPageSizeOptions]="[10, 20, 30, 40]"
+              [nzShowTotal]="paginationTemplate"
+              (nzQueryParams)="onQueryParamsChange($event)"
+              [nzLoading]="loading">
+              <thead>
+                <tr>
+                  <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
+                  <th>Tên</th>
+                  <th>Mã</th>
+                  <th>Số điện thoại</th>
+                  <th>Địa chỉ</th>
+                  <th>Nhóm khách hàng</th>
+                  <th style="width: 130px; min-width: 130px; text-align: center;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let customer of customers; let i = index">
+                  <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                  <td>{{ customer.name }}</td>
+                  <td>{{ customer.code }}</td> 
+                  <td>{{ customer.phone }}</td> 
+                  <td>{{ customer.address }}</td>   
+                  <td>{{ getCustomerGroupById(customer.customerGroupId) }}</td> 
+                  <td style="text-align: center;">
+                    <button *ngIf="loginService.hasPermission('PUT:/api/customer/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateCustomer(customer.id)">
+                      <span nz-icon nzType="edit" nzTheme="outline"></span>
+                    </button>
+                    <button *ngIf="loginService.hasPermission('DELETE:/api/customer/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteCustomer(customer.id)">
+                      <span nz-icon nzType="delete" nzTheme="outline"></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <ng-template #paginationTemplate>
+                Tổng số {{ total }} dữ liệu
+              </ng-template>
+            </nz-table>
         </div>
-      </nz-content>
-    </nz-layout>
-  </nz-layout>
+    </nz-card>
+</div>
   
 
 <nz-modal 

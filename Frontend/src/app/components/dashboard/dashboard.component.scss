@@ -4,167 +4,14 @@
   font-size: 14px;
 }
 
-.logo {
-  position: relative;
-  height: 64px;
-  overflow: hidden;
-  transition: all .3s;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-}
-
-.logo img {
-  height: 48px;
-  width: auto;
-}
-
-.layout {
-  min-height: 100vh;
-}
-
-nz-sider {
-  padding: 0px !important;
-  top: 0;
-}
-
-.show-for-large {
-  display: block !important;
-}
-
-.menu-sidebar {
-  height: 100%;
-  position: fixed !important;
-  left: 0;
-  background-color: #141a21 !important;
-  background-size: 50%, 50% !important;
-  background-repeat: no-repeat !important;
-  backdrop-filter: blur(20px) !important;
-  background-position: right top, left bottom !important;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-}
-
-.right-layout {
-  margin-left: 230px !important;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: hidden;
-}
-
-nz-menu {
-  color: #141a21;
-}
-
-.custom-dark-menu [nz-menu] {
-  background-color: #141a21 !important;
-}
-
-.custom-menu li[nz-menu-item] span {
-  color: #141a21 !important;
-}
-
-nz-header {
-  background: #fff;
-  padding: 0;
-  width: 100%;
-  display: flex !important;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ant-layout-header {
-  height: 64px;
-  color: rgba(0, 0, 0, .85);
-  line-height: 64px;
-}
-
 nz-breadcrumb {
   margin-bottom: 20px;
-}
-
-nz-content {
-  margin: 24px 16px 0;
-  overflow: initial;
-}
-
-.inner-content {
-  padding: 24px;
-  background: #fff;
-  text-align: center;
-  border-radius: 15px;
-}
-
-nz-footer {
-  text-align: center;
-}
-
-::ng-deep li[nz-menu-item] {
-  &.ant-menu-item {
-    padding-left: 25px !important; /* Trang chủ */
-  }
-}
-
-::ng-deep li[nz-submenu] > .ant-menu-submenu-title {
-  padding-left: 25px !important; /* Báo cáo */
-}
-
-.ant-btn {
-  background-color: rgba(145, 158, 171, .08); 
-  border-color: rgba(145, 158, 171, .08);
-  color: #637381;
-  border-radius: 8px;
-  margin-left: 15px;
-}
-
-.ant-row {
-  flex-flow: row wrap;
-  display: flex;
 }
 
 .card-wrapper-content {
   box-shadow: 0 0 2px #919eab33, 0 12px 24px -4px #919eab1f;
   border-radius: 1.15rem !important;
   height: 100%;
-}
-
-::ng-deep .ant-modal-footer .ant-btn {
-  border-radius: 8px !important;
-}
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  
-  h2 {
-    margin-bottom: 0;
-    font-weight: 600;
-  }
-  
-  .date-display {
-    color: #637381;
-    font-size: 14px;
-  }
 }
 
 .dashboard-card {
@@ -205,15 +52,6 @@ nz-footer {
     border-radius: 1.5rem;
     position: absolute;
     transform: rotate(60deg);
-  }
-}
-
-/* Media queries cho hiển thị responsive */
-@media (max-width: 768px) {
-  .dashboard-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
   }
 }
 

@@ -1,286 +1,179 @@
-<nz-layout class="layout">
-    <nz-sider nzwidth="236px" class="menu-sidebar show-for-large" style="flex: 0 0 236px; max-width: 236px; min-width: 236px; width: 236px;">
-      <div class="logo">
-        <img src="../../../assets/images/logo/logo.png" alt="Logo">
-      </div>
-      <div class="custom-dark-menu">
-        <ul nz-menu nzTheme="dark" nzMode="inline">
-          <li nz-submenu nzTitle="Quản lý bãi xe">
-            <ul>
-              <li nz-menu-item [routerLink]="'/dashboard'">
-                <span nz-icon nzType="dashboard" nzTheme="fill"></span>
-                <span>Trang chủ</span>
-              </li>
-              <li nz-submenu nzTitle="Báo cáo" nzIcon="line-chart">
-                <ul>
-                  <li nz-menu-item [routerLink]="'/entry-logs'">Xe vào bãi</li>
-                  <li nz-menu-item [routerLink]="'/exit-logs'">Xe đã ra</li>
-                  <li nz-menu-item [routerLink]="'/warning-events'">Sự kiện cảnh báo</li>
-                  <li nz-menu-item [routerLink]="'/revenue-reports'">Báo cáo doanh thu</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý khách hàng">
-            <ul>
-              <li nz-menu-item [routerLink]="'/customer-groups'">
-                <span nz-icon nzType="github" nzTheme="fill"></span>
-                <span>Nhóm khách hàng</span> 
-              </li>
-              <li nz-menu-item [routerLink]="'/customers'">
-                <span nz-icon nzType="gitlab" nzTheme="fill"></span>
-                <span>Khách hàng</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý thẻ">
-            <ul>
-              <li nz-menu-item [routerLink]="'/card-groups'">
-                <span nz-icon nzType="apple" nzTheme="fill"></span>
-                <span>Nhóm thẻ</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/cards'">
-                <span nz-icon nzType="android" nzTheme="fill"></span>
-                <span>Thẻ</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý thiết bị">
-            <ul>
-              <li nz-menu-item [routerLink]="'/gates'">
-                <span nz-icon nzType="bank" nzTheme="fill"></span>
-                <span>Cổng</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/computers'">
-                <span nz-icon nzType="laptop" nzTheme="outline"></span>
-                <span>Máy tính</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/cameras'">
-                <span nz-icon nzType="camera" nzTheme="fill"></span>
-                <span>Camera</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/control_units'">
-                <span nz-icon nzType="control" nzTheme="fill"></span>
-                <span>Bộ điều khiển</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/lanes'">
-                <span nz-icon nzType="sliders" nzTheme="fill"></span>
-                <span>Làn</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/leds'">
-                <span nz-icon nzType="bulb" nzTheme="fill"></span>
-                <span>Led</span>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Quản lý tài khoản">
-            <ul>
-              <li nz-menu-item [routerLink]="'/role-permissions'">
-                <span nz-icon nzType="safety-certificate" nzTheme="fill"></span>
-                <span>Vai trò, quyền hạn</span>
-              </li>
-              <li nz-menu-item [routerLink]="'/users'"> 
-                <span nz-icon nzType="user" nzTheme="outline"></span>
-                <span>Người dùng</span>
-              </li>
-            </ul>
-          </li>
-        </ul>
+<nz-breadcrumb>
+  <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
+    <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
+      <span>Quản lý bãi xe</span>
+      <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
     </div>
-    </nz-sider>
-    <nz-layout class="ant-layout right-layout">
-      <nz-header class="ant-layout-header">
-          <div>
-            <button nz-button nzType="primary" class="ant-btn1">
-              <span nz-icon nzType="search" style="color: #637381;">
-              </span>
-              <span style="color:#637381 ;">Tìm kiếm thư mục</span>
-            </button>
-          </div>
-          <div>
-            <span style="margin-right: 15px;" nz-dropdown nzplacement="bottomRight">Admin</span>
-          </div>
-      </nz-header>
-      <nz-content>
-        <nz-breadcrumb>
-          <div nz-flex nzalign="center" class="ant-flex  ant-flex-align-center ant-flex-wrap-nowrap" style="gap: 0px; flex: unset;">
-            <div nz-flex nzalign="center" class="ant-flex ant-flex-align-center ant-flex-wrap-nowrap" style="color: #041f46 !important; font-weight: 500; font-size: 16px; gap: 0px; flex: unset;">
-              <span>Quản lý bãi xe</span>
-              <nz-divider nztype="vertical" class="ant-divider ant-divider-vertical"></nz-divider>
-            </div>
-            <nz-breadcrumb-item>
-              <span class="ant-breadcrumb-link">
-                <a href="/#/warning-events">Sự kiện cảnh báo</a>
-              </span>
-            </nz-breadcrumb-item>
-          </div>
-        </nz-breadcrumb>
-        <div class="inner-content">
-            <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 12px">
-                <div class="ant-card-body" style="padding: 24px 0px;"> 
-                    <nz-row class="filter-row" style="margin: -12px -6px;">
-                      <nz-col [nzSpan]="5" style="padding: 12px 6px;">
-                        <fieldset>
-                          <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                          <nz-input-group nzSearch class="ant-input-search ant-input-group-wrapper">
-                            <span class="ant-input-wrapper ant-input-group">
-                              <input 
-                                type="text" 
-                                nz-input 
-                                id="keyword" 
-                                class="ant-input" 
-                                placeholder="Biển số" 
-                                [(ngModel)]="searchKeyword"
-                                (keyup.enter)="onSearch()">
-                              <span nz-input-group-slot type="addon" class="ant-input-group-addon">
-                                <button 
-                                  nz-button 
-                                  nzType="primary" 
-                                  (click)="onSearch()" 
-                                  class="ant-btn ant-btn-primary ant-btn-icon-only">
-                                  <span nz-icon nzType="search" class="anticon"></span>
-                                </button>
-                              </span>
-                            </span>
-                          </nz-input-group>
-                        </fieldset>
-                      </nz-col>
+    <nz-breadcrumb-item>
+      <span class="ant-breadcrumb-link">
+        <a href="/#/warning-events">Sự kiện cảnh báo</a>
+      </span>
+    </nz-breadcrumb-item>
+  </div>
+</nz-breadcrumb>
+<div class="inner-content">
+    <nz-card class="ant-card card-wrapper-content" style="margin-bottom: 12px">
+        <div class="ant-card-body" style="padding: 24px 0px;"> 
+            <nz-row class="filter-row" style="margin: -12px -6px;">
+              <nz-col [nzSpan]="5" style="padding: 12px 6px;">
+                <fieldset>
+                  <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
+                  <nz-input-group nzSearch class="ant-input-search ant-input-group-wrapper">
+                    <span class="ant-input-wrapper ant-input-group">
+                      <input 
+                        type="text" 
+                        nz-input 
+                        id="keyword" 
+                        class="ant-input" 
+                        placeholder="Biển số" 
+                        [(ngModel)]="searchKeyword"
+                        (keyup.enter)="onSearch()">
+                      <span nz-input-group-slot type="addon" class="ant-input-group-addon">
+                        <button 
+                          nz-button 
+                          nzType="primary" 
+                          (click)="onSearch()" 
+                          class="ant-btn ant-btn-primary ant-btn-icon-only">
+                          <span nz-icon nzType="search" class="anticon"></span>
+                        </button>
+                      </span>
+                    </span>
+                  </nz-input-group>
+                </fieldset>
+              </nz-col>
 
-                      <nz-col [nzSpan]="5" style="padding: 12px 6px;">
-                        <fieldset>
-                          <label class="input-label" style="color: #0c68e9;">Cảnh báo</label>
-                          <nz-select
-                            [(ngModel)]="selectedWarningType"
-                            (ngModelChange)="onWarningTypeChange()"
-                            nzAllowClear
-                            nzPlaceHolder="Cảnh báo"
-                            style="width: 100%;">
-                            <nz-option
-                              *ngFor="let type of warningType"
-                              [nzValue]="type.value"
-                              [nzLabel]="type.label">
-                            </nz-option>
-                          </nz-select>
-                        </fieldset>
-                      </nz-col>
+              <nz-col [nzSpan]="5" style="padding: 12px 6px;">
+                <fieldset>
+                  <label class="input-label" style="color: #0c68e9;">Cảnh báo</label>
+                  <nz-select
+                    [(ngModel)]="selectedWarningType"
+                    (ngModelChange)="onWarningTypeChange()"
+                    nzAllowClear
+                    nzPlaceHolder="Cảnh báo"
+                    style="width: 100%;">
+                    <nz-option
+                      *ngFor="let type of warningType"
+                      [nzValue]="type.value"
+                      [nzLabel]="type.label">
+                    </nz-option>
+                  </nz-select>
+                </fieldset>
+              </nz-col>
 
-                      <nz-col [nzSpan]="4" style="padding: 12px 6px;">
-                        <fieldset>
-                          <label class="input-label" style="color: #0c68e9;">Làn</label>
-                          <nz-select
-                            [(ngModel)]="selectedLaneId"
-                            (ngModelChange)="onLaneChange()"
-                            nzAllowClear
-                            nzPlaceHolder="Làn"
-                            style="width: 100%;">
-                            <nz-option
-                              *ngFor="let lane of lanes"
-                              [nzValue]="lane.id"
-                              [nzLabel]="lane.name">
-                            </nz-option>
-                          </nz-select>
-                        </fieldset>
-                      </nz-col>
+              <nz-col [nzSpan]="4" style="padding: 12px 6px;">
+                <fieldset>
+                  <label class="input-label" style="color: #0c68e9;">Làn</label>
+                  <nz-select
+                    [(ngModel)]="selectedLaneId"
+                    (ngModelChange)="onLaneChange()"
+                    nzAllowClear
+                    nzPlaceHolder="Làn"
+                    style="width: 100%;">
+                    <nz-option
+                      *ngFor="let lane of lanes"
+                      [nzValue]="lane.id"
+                      [nzLabel]="lane.name">
+                    </nz-option>
+                  </nz-select>
+                </fieldset>
+              </nz-col>
 
-                      <nz-col [nzSpan]="7" style="padding: 12px 6px;">
-                        <fieldset>
-                          <label class="input-label" style="color: #0c68e9;">Ngày tạo</label>
-                          <nz-range-picker
-                            [(ngModel)]="selectedDateRange"
-                            (ngModelChange)="onDateRangeChange()"
-                            [nzShowTime]="true"
-                            [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
-                            nzFormat="dd/MM/yyyy HH:mm:ss"
-                            style="width: 100%;">
-                          </nz-range-picker>
-                        </fieldset>
-                      </nz-col>
+              <nz-col [nzSpan]="7" style="padding: 12px 6px;">
+                <fieldset>
+                  <label class="input-label" style="color: #0c68e9;">Ngày tạo</label>
+                  <nz-range-picker
+                    [(ngModel)]="selectedDateRange"
+                    (ngModelChange)="onDateRangeChange()"
+                    [nzShowTime]="true"
+                    [nzPlaceHolder]="['Từ ngày', 'Đến ngày']"
+                    nzFormat="dd/MM/yyyy HH:mm:ss"
+                    style="width: 100%;">
+                  </nz-range-picker>
+                </fieldset>
+              </nz-col>
 
-                      <nz-col [nzSpan]="3" style="padding: 12px 6px;">
-                        <div nz-row nzJustify="end" nzAlign="middle" style="height: 100%;">
-                          <button
-                            nz-button
-                            nzType="text"
-                            class="load-btn"
-                            (click)="loadWarningEvents()">
-                            <span nz-icon>
-                              <fa-icon>
-                                <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">
-                              </fa-icon>
-                            </span>
-                            <span>Tải lại</span>
-                          </button>
-                        </div>
-                      </nz-col>
-                    </nz-row>
-                    <nz-table
-                      [nzData]="warnings"
-                      [nzTotal]="total"
-                      [nzPageSize]="pageSize"
-                      [nzPageIndex]="pageIndex"
-                      [nzFrontPagination]="false"
-                      [nzShowSizeChanger]="true"
-                      [nzPageSizeOptions]="[10, 20, 30, 40]"
-                      [nzShowTotal]="paginationTemplate"
-                      (nzQueryParams)="onQueryParamsChange($event)"
-                      [nzLoading]="loading">
-                      <thead>
-                        <tr>
-                          <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
-                          <th>Biển số</th>
-                          <th>Làn</th>
-                          <th style="text-align: center;">Cảnh báo</th>
-                          <th>Ghi chú</th>
-                          <th>Ngày tạo</th>
-                          <!-- <th style="width: 130px; min-width: 70px; text-align: center;"></th> -->
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let warning of warnings; let i = index">
-                          <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
-                          <td>{{ warning.plateNumber }}</td>
-                          <td>{{ getLaneNameById(warning.laneId) }}</td>
-                          <td style="text-align: center;">
-                            <span
-                              nz-tooltip
-                              nzTooltipTitle="{{ opt.label }}"
-                              [nzTooltipColor]="opt.color"
-                              *ngIf="getWarningType(warning.warningType) as opt"
-                            >
-                              <nz-tag
-                                [nzColor]="opt.color"
-                                style="border-radius: 8px; font-size: 12px;"
-                              >
-                                {{ opt.label }}
-                              </nz-tag>
-                            </span>
-                          </td>
-                          <td>{{ warning.note }}</td>
-                          <td>
-                            {{ getFormattedTime(warning.createdAt) | date: 'dd/MM/yyyy' }}<br />
-                            {{ getFormattedTime(warning.createdAt) | date: 'HH:mm:ss' }}
-                          </td>
-                          <!-- <td style="text-align: center;">
-                            <button 
-                              nz-button 
-                              nz-tooltip
-                              nzTooltipTitle="Xem chi tiết sự kiện"
-                              nzTooltipColor="#52c41a"
-                              class="ant-btn edit-btn ant-btn-icon-only"
-                              >
-                              <span nz-icon nzType="picture" nzTheme="fill"></span>
-                            </button>
-                          </td> -->
-                        </tr>
-                      </tbody>
-                      <ng-template #paginationTemplate>
-                        Tổng số {{ total }} dữ liệu
-                      </ng-template>
-                    </nz-table>
+              <nz-col [nzSpan]="3" style="padding: 12px 6px;">
+                <div nz-row nzJustify="end" nzAlign="middle" style="height: 100%;">
+                  <button
+                    nz-button
+                    nzType="text"
+                    class="load-btn"
+                    (click)="loadWarningEvents()">
+                    <span nz-icon>
+                      <fa-icon>
+                        <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">
+                      </fa-icon>
+                    </span>
+                    <span>Tải lại</span>
+                  </button>
                 </div>
-            </nz-card>
+              </nz-col>
+            </nz-row>
+            <nz-table
+              [nzData]="warnings"
+              [nzTotal]="total"
+              [nzPageSize]="pageSize"
+              [nzPageIndex]="pageIndex"
+              [nzFrontPagination]="false"
+              [nzShowSizeChanger]="true"
+              [nzPageSizeOptions]="[10, 20, 30, 40]"
+              [nzShowTotal]="paginationTemplate"
+              (nzQueryParams)="onQueryParamsChange($event)"
+              [nzLoading]="loading">
+              <thead>
+                <tr>
+                  <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
+                  <th>Biển số</th>
+                  <th>Làn</th>
+                  <th style="text-align: center;">Cảnh báo</th>
+                  <th>Ghi chú</th>
+                  <th>Ngày tạo</th>
+                  <!-- <th style="width: 130px; min-width: 70px; text-align: center;"></th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let warning of warnings; let i = index">
+                  <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                  <td>{{ warning.plateNumber }}</td>
+                  <td>{{ getLaneNameById(warning.laneId) }}</td>
+                  <td style="text-align: center;">
+                    <span
+                      nz-tooltip
+                      nzTooltipTitle="{{ opt.label }}"
+                      [nzTooltipColor]="opt.color"
+                      *ngIf="getWarningType(warning.warningType) as opt"
+                    >
+                      <nz-tag
+                        [nzColor]="opt.color"
+                        style="border-radius: 8px; font-size: 12px;"
+                      >
+                        {{ opt.label }}
+                      </nz-tag>
+                    </span>
+                  </td>
+                  <td>{{ warning.note }}</td>
+                  <td>
+                    {{ getFormattedTime(warning.createdAt) | date: 'dd/MM/yyyy' }}<br />
+                    {{ getFormattedTime(warning.createdAt) | date: 'HH:mm:ss' }}
+                  </td>
+                  <!-- <td style="text-align: center;">
+                    <button 
+                      nz-button 
+                      nz-tooltip
+                      nzTooltipTitle="Xem chi tiết sự kiện"
+                      nzTooltipColor="#52c41a"
+                      class="ant-btn edit-btn ant-btn-icon-only"
+                      >
+                      <span nz-icon nzType="picture" nzTheme="fill"></span>
+                    </button>
+                  </td> -->
+                </tr>
+              </tbody>
+              <ng-template #paginationTemplate>
+                Tổng số {{ total }} dữ liệu
+              </ng-template>
+            </nz-table>
         </div>
-      </nz-content>
-    </nz-layout>
-  </nz-layout>
+    </nz-card>
+</div>
   

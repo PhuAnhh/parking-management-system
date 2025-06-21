@@ -5,144 +5,8 @@
   font-size: 14px;
 }
 
-/* ===== LAYOUT STRUCTURE ===== */
-.layout {
-  min-height: 100vh;
-}
-
-.right-layout {
-  margin-left: 230px !important;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: hidden;
-}
-
-.inner-content {
-  padding: 24px;
-  background: #fff;
-  text-align: center;
-  border-radius: 15px;
-}
-
-.inner-content {
-  background-color: #f0f2f5 !important;
-  padding: 0 !important;
-}
-
-.ant-row {
-  flex-flow: row wrap;
-  display: flex;
-}
-
-/* ===== HEADER STYLES ===== */
-nz-header {
-  background: #fff;
-  padding: 0;
-  width: 100%;
-}
-
-nz-header {
-  display: flex !important;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ant-layout-header {
-  height: 64px;
-  color: rgba(0, 0, 0, .85);
-  line-height: 64px;
-}
-
-/* ===== LOGO STYLES ===== */
-.logo {
-  position: relative;
-  height: 64px;
-  overflow: hidden;
-  transition: all .3s;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-}
-
-.logo img {
-  height: 48px;
-  width: auto;
-}
-
-/* ===== SIDEBAR & MENU STYLES ===== */
-nz-sider {
-  // overflow: auto;
-  // height: 100%;
-  // position: fixed;
-  padding: 0px !important;
-  top: 0;
-}
-
-.menu-sidebar {
-  height: 100%;
-  position: fixed !important;
-  left: 0;
-  background-color: #141a21 !important;
-  background-size: 50%, 50% !important;
-  background-repeat: no-repeat !important;
-  backdrop-filter: blur(20px)!important;
-  background-position: right top,left bottom!important;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-}
-
-nz-menu {
-  color: rgba(0, 0, 0, .85);
-}
-
-.custom-dark-menu [nz-menu] {
-  background-color: #141a21 !important;
-}
-
-.custom-menu li[nz-menu-item] span {
-  color: #141a21 !important;
-}
-
-::ng-deep li[nz-menu-item] {
-    &.ant-menu-item {
-      padding-left: 25px !important; // Trang chủ
-    }
-  }
-
-::ng-deep li[nz-submenu] > .ant-menu-submenu-title {
-  padding-left: 25px !important; // Báo cáo
-}
-
-/* ===== CONTENT AREA ===== */
-nz-content {
-  margin: 24px 16px 0;
-  overflow: initial;
-}
-
 nz-breadcrumb {
   margin-bottom: 20px;
-}
-
-nz-footer {
-  text-align: center;
 }
 
 /* ===== CARD STYLES ===== */
@@ -161,15 +25,6 @@ nz-footer {
   display: inline-flex;
   align-items: center;
 }
-
-.ant-btn1 {
-  background-color: rgba(145 158 171 / .08); 
-  border-color: rgba(145 158 171 / .08);
-  color: #637381;
-  border-radius: 8px;
-  margin-left: 15px;
-}
-
 
 .ant-btn-primary {
   text-shadow: 0 -1px 0 rgba(0,0,0,.12);
@@ -214,30 +69,6 @@ nz-footer {
   color: #e57c7e;
 }
 
-.enabled-btn,
-.disabled-btn {
-  background-color: #e6eaed;
-  color: #1c252e;
-  margin: 2px;
-  width: 27px;
-  height: 27px;
-  border-radius: 10px;
-  border: 2px solid #e6eaed;
-  transition: all 0.3s;
-}
-
-.enabled-btn:hover,
-.disabled-btn:hover {
-  background-color: #f8fde2;
-  color: #eff300;
-  border-color: #f4f748;
-}
-
-.ant-btn-icon-only>.anticon {
-  display: flex;
-  justify-content: center;
-}
-
 /* ===== FORM ELEMENTS ===== */
 .input-label {
   font-size: 13px;
@@ -249,27 +80,6 @@ nz-footer {
   background-color: #fff;
   left: 15px;
   padding: 0 5px;
-  transition: .1s all ease-in;
-}
-
-.ant-input-group {
-  padding: 0;
-  line-height: 1.5715;
-  list-style: none;
-  font-feature-settings: "tnum";
-  display: table;
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  position: relative;
-  color: #000000d9;   
-  font-size: 14px;
-}
-
-.ant-input-search {
-  left: -1px;
-  padding: 0;
-  border-radius: 20px;
 }
 
 #keyword.ant-input,
@@ -300,15 +110,6 @@ nz-footer {
   padding: 4px 10px !important;
   font-weight: 500 !important;
   color: #1c252e;
-}
-
-/* ===== UTILITY CLASSES ===== */
-.icon-green {
-  color: #52c41a; 
-}
-
-.icon-red {
-  color: #ff4d4f; 
 }
 
 /* ===== MODAL & NOTIFICATIONS ===== */

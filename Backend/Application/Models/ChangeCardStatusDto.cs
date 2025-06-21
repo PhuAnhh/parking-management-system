@@ -3,9 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace Final_year_Project.Application.Models
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public class ChangeCardStatusDto
     {
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public CardStatus Status { get; set; }
     }
 

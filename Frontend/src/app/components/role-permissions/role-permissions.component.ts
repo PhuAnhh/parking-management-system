@@ -118,8 +118,6 @@ export class RolePermissionsComponent implements OnInit{
     this.groupedPermissions = {};
     
     this.permissions.forEach(permission => {
-      // Giả sử bạn có logic để phân loại permission theo category và subcategory
-      // Ví dụ dựa trên endpoint hoặc name
       const category = this.getCategoryFromPermission(permission);
       const subcategory = this.getSubcategoryFromPermission(permission);
       

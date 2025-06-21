@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { provideNzI18n } from 'ng-zorro-antd/i18n';
 import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
@@ -45,6 +46,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
+import { MainLayoutComponent } from './cores/main-layout/main-layout.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GatesComponent } from './components/gates/gates.component';
@@ -65,7 +67,7 @@ import { UsersComponent } from './components/users/users.component';
 import { RolePermissionsComponent } from './components/role-permissions/role-permissions.component';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 
-import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthInterceptor } from './cores/interceptors/auth.interceptor';
 
 const ngZorroConfig: NzConfig = {
   pagination: {
@@ -95,7 +97,8 @@ registerLocaleData(vi);
     WarningEventsComponent,
     RevenueReportsComponent,
     UsersComponent,
-    RolePermissionsComponent
+    RolePermissionsComponent,
+    MainLayoutComponent
   ],
   imports: [
     NgApexchartsModule,
@@ -135,7 +138,8 @@ registerLocaleData(vi);
     NzSpinModule,
     NzTypographyModule,
     NzEmptyModule,
-    NzAvatarModule
+    NzAvatarModule,
+    RouterModule
   ],
   providers: [
     {

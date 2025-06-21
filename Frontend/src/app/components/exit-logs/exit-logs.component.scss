@@ -4,129 +4,8 @@
   font-size: 14px;
 }
 
-.layout {
-  min-height: 100vh;
-}
-
-.logo {
-  position: relative;
-  height: 64px;
-  overflow: hidden;
-  transition: all .3s;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-}
-
-.logo img {
-  height: 48px;
-  width: auto;
-}
-
-nz-sider {
-  padding: 0px !important;
-  top: 0;
-}
-
-.show-for-large{
-  display: block !important;
-}
-
-.menu-sidebar{
-  height: 100%;
-  position: fixed !important;
-  left: 0;
-  background-color: #141a21 !important;
-  background-size: 50%, 50% !important;
-  background-repeat: no-repeat !important;
-  backdrop-filter: blur(20px)!important;
-  background-position: right top,left bottom!important;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-}
-
-.right-layout {
-  margin-left: 230px !important;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: hidden;
-}
-
-nz-menu{
-  color: rgba(0, 0, 0, .85);
-}
-
-.custom-dark-menu [nz-menu] {
-  background-color: #141a21 !important;
-}
-
-.custom-menu li[nz-menu-item] span {
-  color: #141a21 !important;
-}
-
-::ng-deep li[nz-menu-item] {
-  &.ant-menu-item {
-    padding-left: 25px !important; 
-  }
-}
-
-::ng-deep li[nz-submenu] > .ant-menu-submenu-title {
-  padding-left: 25px !important; 
-}
-
-nz-header {
-  background: #fff;
-  padding: 0;
-  width: 100%;
-  display: flex !important;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ant-layout-header{
-  height: 64px;
-  color: rgba(0, 0, 0, .85);
-  line-height: 64px;
-}
-
 nz-breadcrumb{
   margin-bottom: 20px;
-}
-
-nz-content {
-  margin: 24px 16px 0;
-  overflow: initial;
-}
-
-.inner-content {
-  padding: 24px;
-  background: #fff;
-  text-align: center;
-  border-radius: 15px;
-  background-color: #f0f2f5 !important;
-  padding: 0 !important;
-}
-
-nz-footer {
-  text-align: center;
 }
 
 .ant-btn1{
@@ -181,12 +60,6 @@ nz-footer {
 .ant-btn-icon-only>.anticon{
   display: flex;
   justify-content: center;
-}
-
-.wrapper-table-action button{
-  padding: 4px 10px !important;
-  font-weight: 500 !important;
-  color: #1c252e;
 }
 
 .ant-row{
@@ -271,40 +144,8 @@ nz-footer {
   }
 }
 
-.stats-container {
-  border-radius: 15px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  background-color: #fff;
-}
-
-.stats-row {
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.divider {
-  height: 70px;
-}
-
 .ant-picker, .ant-picker-input{
   border-radius: 8px;
-  display: inline-flex;
-  position: relative;
-  margin: 0;
-  color: #000000d9;
-  font-size: 14px;
-  font-variant: tabular-nums;
-  line-height: 1.5715;
-  list-style: none;
-  font-feature-settings: "tnum";
-  padding: 4px 11px;
-  align-items: center;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  transition: border .3s, box-shadow .3s;
 }
 
 .input-label{
@@ -317,13 +158,6 @@ nz-footer {
   background-color: #fff;
   left: 15px;
   padding: 0 5px;
-  transition: .1s all ease-in;
-}
-
-.ant-input-search{
-  left: -1px;
-  padding: 0;
-  border-radius: 20px;
 }
 
 #keyword.ant-input,
@@ -347,15 +181,6 @@ nz-footer {
   padding-bottom: 24px;
 }
 
-.anticon{
-  color: inherit;
-  font-style: normal;
-  line-height: 0;
-  text-align: center;
-  text-transform: none;
-  display: inline-block ;
-}
-
 ::ng-deep .ant-modal-footer .ant-btn {
   border-radius: 8px !important;
 }
@@ -365,29 +190,12 @@ nz-footer {
   border-radius: 8px !important;
 }
 
-::ng-deep .custom-delete-modal .ant-btn {
-  border-radius: 8px !important;
-}
-
-::ng-deep .custom-delete-modal .ant-btn {
-  border-radius: 8px !important;
-}
-
-::ng-deep .ant-notification-notice {
-  border-radius: 8px !important; 
-}
-
 ::ng-deep .ant-select-selector {
   border-radius: 8px !important;
 }
 
 ::ng-deep .ant-select-dropdown {
   border-radius: 8px !important;
-}
-
-::ng-deep .ant-select-selection-placeholder {
-  text-align: left !important; 
-  left: 0 !important; 
 }
 
 ::ng-deep .ant-select-selection-item {

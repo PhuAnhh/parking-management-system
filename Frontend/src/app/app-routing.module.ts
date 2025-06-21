@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './cores/guards/auth.guard';
+
+import { MainLayoutComponent } from './cores/main-layout/main-layout.component';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GatesComponent } from './components/gates/gates.component';
 import { ComputersComponent } from './components/computers/computers.component';
@@ -20,30 +24,40 @@ import { UsersComponent } from './components/users/users.component';
 import { RolePermissionsComponent } from './components/role-permissions/role-permissions.component';
 
 const routes: Routes = [
-  // {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'gates', component: GatesComponent},
-  {path: 'computers', component: ComputersComponent},
-  {path: 'cameras', component: CamerasComponent},
-  {path: 'control_units', component: ControlUnitsComponent},
-  {path: 'lanes', component: LanesComponent},
-  {path: 'leds', component: LedsComponent},
-  {path: 'customers', component: CustomersComponent},
-  {path: 'customer-groups', component: CustomerGroupsComponent},
-  {path: 'card-groups', component: CardGroupsComponent},
-  {path: 'cards', component: CardsComponent},
-  {path: 'entry-logs', component: EntryLogsComponent},
-  {path: 'exit-logs', component: ExitLogsComponent},
-  {path: 'warning-events', component: WarningEventsComponent},
-  {path: 'revenue-reports', component: RevenueReportsComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'role-permissions', component: RolePermissionsComponent}
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  { path: 'login', component: LoginComponent },
+
+  {
+    path: '',
+    component: MainLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'gates', component: GatesComponent },
+      { path: 'computers', component: ComputersComponent },
+      { path: 'cameras', component: CamerasComponent },
+      { path: 'control_units', component: ControlUnitsComponent },
+      { path: 'lanes', component: LanesComponent },
+      { path: 'leds', component: LedsComponent },
+      { path: 'customers', component: CustomersComponent },
+      { path: 'customer-groups', component: CustomerGroupsComponent },
+      { path: 'card-groups', component: CardGroupsComponent },
+      { path: 'cards', component: CardsComponent },
+      { path: 'entry-logs', component: EntryLogsComponent },
+      { path: 'exit-logs', component: ExitLogsComponent },
+      { path: 'warning-events', component: WarningEventsComponent },
+      { path: 'revenue-reports', component: RevenueReportsComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'role-permissions', component: RolePermissionsComponent }
+    ]
+  },
+
+  { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})], /*, {useHash: true} */
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

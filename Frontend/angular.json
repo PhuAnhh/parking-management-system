@@ -24,7 +24,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            
             "outputPath": "dist/parking",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -52,12 +51,7 @@
               "src/styles.scss",
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -122,25 +116,6 @@
               "src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/parking/server",
-            "main": "src/server.ts",
-            "tsConfig": "tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "sourceMap": false,
-              "optimization": true
-            },
-            "development": {
-              "sourceMap": true,
-              "optimization": false
-            }
           }
         }
       }
