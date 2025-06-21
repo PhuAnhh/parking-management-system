@@ -4,22 +4,6 @@
   font-size: 14px;
 }
 
-.logo {
-  position: relative;
-  height: 64px;
-  overflow: hidden;
-  transition: all .3s;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-}
-
-.logo img {
-  height: 48px;
-  width: auto;
-}
-
 .layout {
   min-height: 100vh;
 }
@@ -29,19 +13,37 @@ nz-sider {
   top: 0;
 }
 
-.show-for-large {
-  display: block !important;
+.right-layout {
+  margin-left: 230px !important;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+  width: 100%;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-layout-header {
+  height: 64px;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 64px;
+}
+
+nz-content {
+  margin: 24px 17px 0;
+  overflow: initial;
 }
 
 .menu-sidebar {
   height: 100%;
   position: fixed !important;
-  left: 0;
   background-color: #141a21 !important;
-  background-size: 50%, 50% !important;
-  background-repeat: no-repeat !important;
-  backdrop-filter: blur(20px) !important;
-  background-position: right top, left bottom !important;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -61,61 +63,76 @@ nz-sider {
   &::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
   }
+
+  ::ng-deep .ant-menu {
+    background-color: #141a21 !important;
+  }
+
+  ::ng-deep .ant-menu-item-selected {
+    background-color: #ffffff14 !important;
+    color: #fa7300 !important;
+    border-radius: 8px;
+
+    .anticon,
+    .ant-menu-title-content,
+    span {
+      color: #fa7300 !important;
+    }
+  }
 }
 
-.right-layout {
-  margin-left: 230px !important;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: hidden;
-}
-
-nz-menu {
-  color: #141a21;
-}
-
-.custom-dark-menu [nz-menu] {
-  background-color: #141a21 !important;
-}
-
-.custom-menu li[nz-menu-item] span {
-  color: #141a21 !important;
-}
-
-nz-header {
-  background: #fff;
-  padding: 0;
-  width: 100%;
-  display: flex !important;
-  justify-content: space-between;
+.logo {
+  height: 90px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.ant-layout-header {
-  height: 64px;
-  color: rgba(0, 0, 0, .85);
-  line-height: 64px;
-}
-
-nz-content {
-  margin: 24px 17px 0;
-  overflow: initial;
+.logo img {
+  height: 45px;
+  width: auto;
 }
 
 ::ng-deep li[nz-menu-item] {
   &.ant-menu-item {
-    padding-left: 25px !important; /* Trang chủ */
+    padding-left: 25px !important;
   }
 }
 
 ::ng-deep li[nz-submenu] > .ant-menu-submenu-title {
-  padding-left: 25px !important; /* Báo cáo */
+  padding-left: 25px !important;
 }
 
-.ant-btn {
-  background-color: rgba(145, 158, 171, .08); 
-  border-color: rgba(145, 158, 171, .08);
-  color: #637381;
-  border-radius: 8px;
-  margin-left: 15px;
+::ng-deep li.ant-menu-submenu-selected > .ant-menu-submenu-title {
+  position: relative;
 }
+
+::ng-deep li.ant-menu-submenu-selected > .ant-menu-submenu-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 2px;
+  background-color: #fa7300;
+  border-radius: 3px;
+}
+
+input[nz-input],
+button[nz-button] {
+  border-radius: 8px !important;
+}
+
+::ng-deep .ant-notification-notice {
+  border-radius: 10px !important;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #00000073;
+}
+
