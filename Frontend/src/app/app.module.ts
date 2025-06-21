@@ -45,6 +45,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
 import { MainLayoutComponent } from './cores/main-layout/main-layout.component';
 import { LoginComponent } from './components/login/login.component';
@@ -139,7 +140,8 @@ registerLocaleData(vi);
     NzTypographyModule,
     NzEmptyModule,
     NzAvatarModule,
-    RouterModule
+    RouterModule,
+    NzDrawerModule,
   ],
   providers: [
     {
