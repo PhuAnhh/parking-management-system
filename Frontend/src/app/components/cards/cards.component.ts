@@ -89,6 +89,8 @@ export class CardsComponent {
       cardGroupId: [null, [Validators.required]],
       customerId: [null],
       note: [null],
+      startDate: [null],
+      endDate: [null],
       status: [CardStatus.INACTIVE, [Validators.required]],
     });
 
@@ -98,6 +100,8 @@ export class CardsComponent {
       cardGroupId: [null, [Validators.required]],
       customerId: [null],
       note: [null],
+      startDate: [null],
+      endDate: [null],
       status: [CardStatus.INACTIVE, [Validators.required]]
     });
   }
@@ -164,8 +168,6 @@ export class CardsComponent {
     return this.vehicleTypes[vehicleType as CardGroupVehicleType] || vehicleType;
   }
 
-  
-
   showAddCardModal() {
     this.isAddModalVisible = true;
     this.cardForm.reset({
@@ -183,6 +185,8 @@ export class CardsComponent {
         cardGroupId: card.cardGroupId,
         note: card.note,
         status: card.status,
+        startDate: card.startDate,
+        endDate: card.endDate,
         customerId: card.customerId
       });
       this.isEditModalVisible = true;
@@ -413,5 +417,16 @@ export class CardsComponent {
         });
       }
     });
+  }
+
+  getHsdLabel(end: Date | string | null): string {
+    if (!end) return '';
+    const now = new Date();
+    const endDate = new Date(end);
+    const diff = Math.floor((endDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    if (diff <= 0) return 'đã hết hạn';
+
+    const m = Math.floor(diff / 30), d = diff % 30;
+    return [m && `${m} tháng`, d && `${d} ngày`].filter(Boolean).join(' ');
   }
 }

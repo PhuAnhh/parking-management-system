@@ -152,6 +152,28 @@ namespace Final_year_Project.Application.Services
             if (!cardGroup.Status)
                 throw new Exception("Card group is not active.");
 
+            // Kiểm tra hiệu lực thẻ nếu là thẻ tháng
+            if (cardGroup.Type == CardGroupType.Month)
+            {
+                if (card.StartDate == null || card.EndDate == null)
+                    throw new Exception("The card has no valid usage period.");
+
+                var now = DateTime.Now;
+                if (card.StartDate > now || card.EndDate < now)
+                {
+                    await _warningEventService.CreateAsync(new CreateWarningEventDto
+                    {
+                        PlateNumber = createEntryLogDto.PlateNumber,
+                        LaneId = createEntryLogDto.LaneId,
+                        WarningType = WarningType.CardExpired,
+                        Note = "The card has expired.",
+                        ImageUrl = createEntryLogDto.ImageUrl
+                    });
+
+                    throw new Exception("The card has expired.");
+                }
+            }
+
             // 3. Kiểm tra làn có thuộc nhóm thẻ hay không
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
             if (!allowedLaneIds.Contains(createEntryLogDto.LaneId))

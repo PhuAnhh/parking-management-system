@@ -18,6 +18,12 @@ namespace Final_year_Project.Application.Models
 
         public string? Note { get; set; }
 
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
+        public int? AutoRenewDays { get; set; }
+
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public CardStatus Status { get; set; } 
 
@@ -39,6 +45,12 @@ namespace Final_year_Project.Application.Models
 
         public string? Note { get; set; }
 
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
+        public int? AutoRenewDays { get; set; }
+
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public CardStatus Status { get; set; }
     }
@@ -54,6 +66,12 @@ namespace Final_year_Project.Application.Models
         public int? CustomerId { get; set; }
 
         public string? Note { get; set; }
+
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
+        public int? AutoRenewDays { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public CardStatus Status { get; set; } 

@@ -198,6 +198,10 @@ nz-breadcrumb{
   border-radius: 8px !important;
 }
 
+::ng-deep .ant-picker-panel-container {
+  border-radius: 8px !important;
+}
+
 ::ng-deep .ant-select-selection-item {
   text-align: left !important;
 }

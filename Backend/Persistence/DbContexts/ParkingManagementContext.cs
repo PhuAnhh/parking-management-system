@@ -117,6 +117,7 @@ public partial class ParkingManagementContext : DbContext
             entity.ToTable("cards");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AutoRenewDays).HasColumnName("auto_renew_days");
             entity.Property(e => e.CardGroupId).HasColumnName("card_group_id");
             entity.Property(e => e.Code)
                 .HasMaxLength(255)
@@ -127,12 +128,18 @@ public partial class ParkingManagementContext : DbContext
                 .HasColumnName("created_at");
             entity.Property(e => e.CustomerId).HasColumnName("customer_id");
             entity.Property(e => e.Deleted).HasColumnName("deleted");
+            entity.Property(e => e.EndDate)
+                .HasColumnType("datetime")
+                .HasColumnName("end_date");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
             entity.Property(e => e.Note)
                 .HasMaxLength(255)
                 .HasColumnName("note");
+            entity.Property(e => e.StartDate)
+                .HasColumnType("datetime")
+                .HasColumnName("start_date");
             entity.Property(e => e.Status)
                 .HasConversion(
                     v => v.ToString(),

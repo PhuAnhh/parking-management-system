@@ -76,6 +76,8 @@
                   <th>Mã</th>
                   <th>Nhóm thẻ</th>
                   <th>Ghi chú</th>
+                  <th>Ngày bắt đầu hiệu lực</th>
+                  <th>Ngày hết hạn</th>
                   <th style="text-align: center;">Trạng thái</th>
                   <th style="width: 130px; min-width: 130px; text-align: center;"></th>
                 </tr>
@@ -89,7 +91,9 @@
                     {{ getCardGroupNameById(card.cardGroupId) }}
                     <span *ngIf="card.cardGroupId" style="color: #3f42549d; display: block; font-size: 12px;">{{getVehicleTypeByCardGroupId(card.cardGroupId)}}</span>
                   </td>
-                  <td>{{ card.note}}</td>
+                  <td>{{ card.note }}</td>
+                  <td>{{ card.startDate | date:'dd/MM/yyyy' }}</td>
+                  <td>{{ card.endDate | date:'dd/MM/yyyy' }}</td>
                   <td style="text-align: center;">
                     <nz-tag [nzColor]="getStatusColor(card.status)" [ngStyle]="{'border-radius': '8px', 'font-size': '12px'}">
                       {{ getCardStatus(card.status)?.label || card.status }}
@@ -153,6 +157,35 @@
       <div nz-row [nzGutter]="16">
         <div nz-col [nzSpan]="12">
           <div class="form-group">
+            <label for="cardStartDate" style="margin-bottom: 10px;">Ngày bắt đầu hiệu lực</label>
+            <nz-date-picker
+              id="cardStartDate"
+              formControlName="startDate"
+              style="width: 100%; border-radius: 8px;"
+              nzFormat="dd/MM/yyyy HH:mm:ss"
+            ></nz-date-picker>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="cardEndDate" style="margin-bottom: 10px;">Ngày hết hạn
+              <span *ngIf="cardForm.get('endDate')?.value" style="color: red">
+                (HSD: {{ getHsdLabel(cardForm.get('endDate')?.value) }})
+              </span>
+            </label>
+            <nz-date-picker
+              id="cardEndDate"
+              formControlName="endDate"
+              style="width: 100%; border-radius: 8px;"
+              nzFormat="dd/MM/yyyy HH:mm:ss"
+            ></nz-date-picker>
+          </div>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
             <label for="cardCardGroupId" class="required-label" style="margin-bottom: 10px;">Nhóm thẻ</label>
             <nz-select formControlName="cardGroupId" style="width: 100%; border-radius: 8px;">
                 <nz-option *ngFor="let cardGroup of cardGroups" [nzValue]="cardGroup.id" [nzLabel]="cardGroup.name"></nz-option>
@@ -205,6 +238,35 @@
           <div class="form-group">
             <label for="cardCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
             <input id="cardCode" nz-input formControlName="code" style="border-radius: 8px;"/>
+          </div>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="cardStartDate" style="margin-bottom: 10px;">Ngày bắt đầu hiệu lực</label>
+            <nz-date-picker
+              id="cardStartDate"
+              formControlName="startDate"
+              style="width: 100%; border-radius: 8px;"
+              nzFormat="dd/MM/yyyy HH:mm:ss"
+            ></nz-date-picker>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <div class="form-group">
+            <label for="cardEndDate" style="margin-bottom: 10px;">Ngày hết hạn
+              <span *ngIf="cardForm.get('endDate')?.value" style="color: red">
+                (HSD: {{ getHsdLabel(cardForm.get('endDate')?.value) }})
+              </span>
+            </label>
+            <nz-date-picker
+              id="cardEndDate"
+              formControlName="endDate"
+              style="width: 100%; border-radius: 8px;"
+              nzFormat="dd/MM/yyyy HH:mm:ss"
+            ></nz-date-picker>
           </div>
         </div>
       </div>

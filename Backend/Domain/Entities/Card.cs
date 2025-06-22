@@ -18,6 +18,12 @@ public partial class Card
 
     public string? Note { get; set; }
 
+    public DateTime? StartDate { get; set; }
+
+    public DateTime? EndDate { get; set; }
+
+    public int? AutoRenewDays { get; set; }
+
     public CardStatus Status { get; set; }
 
     public bool Deleted { get; set; }

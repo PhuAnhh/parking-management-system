@@ -31,6 +31,9 @@ namespace Final_year_Project.Application.Services
                     CardGroupId = card.CardGroupId,
                     CustomerId = card.CustomerId,
                     Note = card.Note,
+                    StartDate = card.StartDate,
+                    EndDate = card.EndDate,
+                    AutoRenewDays = card.AutoRenewDays,
                     Status = card.Status,
                     CreatedAt = card.CreatedAt,
                     UpdatedAt = card.UpdatedAt
@@ -55,6 +58,9 @@ namespace Final_year_Project.Application.Services
                 CardGroupId = card.CardGroupId,
                 CustomerId = card.CustomerId,
                 Note = card.Note,
+                StartDate = card.StartDate,
+                EndDate = card.EndDate,
+                AutoRenewDays = card.AutoRenewDays,
                 Status = card.Status,
                 CreatedAt = card.CreatedAt,
                 UpdatedAt = card.UpdatedAt
@@ -70,6 +76,9 @@ namespace Final_year_Project.Application.Services
                 CardGroupId = createCardDto.CardGroupId,
                 CustomerId = createCardDto.CustomerId,
                 Note = createCardDto.Note,
+                StartDate = createCardDto.StartDate,
+                EndDate = createCardDto.EndDate,
+                AutoRenewDays = createCardDto.AutoRenewDays,
                 Status = createCardDto.Status,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
@@ -86,6 +95,9 @@ namespace Final_year_Project.Application.Services
                 CardGroupId = card.CardGroupId,
                 CustomerId = card.CustomerId, 
                 Note = card.Note,
+                StartDate = card.StartDate,
+                EndDate = card.EndDate,
+                AutoRenewDays = card.AutoRenewDays,
                 Status = card.Status,
                 CreatedAt = card.CreatedAt,
                 UpdatedAt = card.UpdatedAt,
@@ -104,6 +116,9 @@ namespace Final_year_Project.Application.Services
             card.CardGroupId = updateCardDto.CardGroupId;
             card.CustomerId = updateCardDto.CustomerId;
             card.Note = updateCardDto.Note;
+            card.StartDate = updateCardDto.StartDate;
+            card.EndDate = updateCardDto.EndDate;
+            card.AutoRenewDays = updateCardDto.AutoRenewDays;
             card.Status = updateCardDto.Status;
             card.UpdatedAt = DateTime.UtcNow;
 
@@ -120,6 +135,9 @@ namespace Final_year_Project.Application.Services
                 CardGroupId = card.CardGroupId,
                 CustomerId = card.CustomerId,
                 Note = card.Note,
+                StartDate = card.StartDate,
+                EndDate = card.EndDate,
+                AutoRenewDays = card.AutoRenewDays,
                 Status = card.Status,
                 CreatedAt = card.CreatedAt,
                 UpdatedAt = card.UpdatedAt

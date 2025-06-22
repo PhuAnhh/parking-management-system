@@ -6,6 +6,7 @@
         CardGroupNotAllowedInLane,
         LicensePlateMismatch,
         TicketIssued,
-        DeletedWhileVehicleInParking
+        DeletedWhileVehicleInParking,
+        CardExpired
     }
 }
