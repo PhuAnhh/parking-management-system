@@ -93,18 +93,20 @@
                     </ng-template>
                   </td>
                   <td style="text-align: center;">
-                    <button *ngIf="loginService.hasPermission('PATCH:/api/user/{id}/reset-password')" nz-button class="ant-btn key-btn ant-btn-icon-only" (click)="resetPassword(user.id)">
-                        <span nz-icon nzType="key" nzTheme="outline"></span>
-                    </button>
-                    <button *ngIf="loginService.hasPermission('PUT:/api/user/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only" (click)="updateUser(user.id)">
-                      <span nz-icon nzType="edit" nzTheme="outline"></span>
-                    </button>
-                    <button *ngIf="loginService.hasPermission('DELETE:/api/user/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteUser(user.id)">
-                      <span nz-icon nzType="delete" nzTheme="outline"></span>
-                    </button>
-                    <button *ngIf="loginService.hasPermission('PATCH:/api/user/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="user.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleUserStatus(user.id)">
-                      <span nz-icon [nzType]="user.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
-                    </button>
+                    <ng-container *ngIf="user.username !== 'admin'">
+                      <button *ngIf="loginService.hasPermission('PATCH:/api/user/{id}/reset-password')" nz-button class="ant-btn key-btn ant-btn-icon-only" (click)="resetPassword(user.id)">
+                          <span nz-icon nzType="key" nzTheme="outline"></span>
+                      </button>
+                      <button *ngIf="loginService.hasPermission('PUT:/api/user/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only" (click)="updateUser(user.id)">
+                        <span nz-icon nzType="edit" nzTheme="outline"></span>
+                      </button>
+                      <button *ngIf="loginService.hasPermission('DELETE:/api/user/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteUser(user.id)">
+                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                      </button>
+                      <button *ngIf="loginService.hasPermission('PATCH:/api/user/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="user.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleUserStatus(user.id)">
+                        <span nz-icon [nzType]="user.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
+                      </button>
+                    </ng-container>
                   </td>
                 </tr>
               </tbody>
@@ -125,37 +127,46 @@ nzCancelText="Hủy bỏ"
 (nzOnCancel)="handleCancel()" 
 (nzOnOk)="handleOk()"
 class="custom-modal"></nz-modal>
+
 <ng-template #addUserTpl>
-  <form [formGroup]="userForm"> 
+  <form [formGroup]="userForm" nz-form nzLayout="vertical">
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="userUsername" class="required-label" style="margin-bottom: 10px;">Tên đăng nhập</label>
-          <input id="userUsername" nz-input formControlName="username" style="border-radius: 8px;" />
-      </div>
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="userUsername">Tên đăng nhập</nz-form-label>
+          <nz-form-control>
+            <input id="userUsername" nz-input formControlName="username" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="userPassword" class="required-label" style="margin-bottom: 10px;">Mật khẩu</label>
-          <input id="userPassword" nz-input formControlName="password" type="password" style="border-radius: 8px;"/>
-      </div>
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="userPassword">Mật khẩu</nz-form-label>
+          <nz-form-control>
+            <input id="userPassword" nz-input formControlName="password" type="password" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="userName" style="margin-bottom: 10px;">Họ tên</label>
-          <input id="userName" nz-input formControlName="name" style="border-radius: 8px;" />
-          </div>
+        <nz-form-item>
+          <nz-form-label nzFor="userName">Họ tên</nz-form-label>
+          <nz-form-control>
+            <input id="userName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="userRoleId" class="required-label" style="margin-bottom: 10px;">Vai trò</label>
-          <nz-select formControlName="roleId" style="width: 100%; border-radius: 8px;">
-            <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.name"></nz-option>
-          </nz-select>
-      </div>
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="userRoleId">Vai trò</nz-form-label>
+          <nz-form-control>
+            <nz-select id="userRoleId" formControlName="roleId" style="width: 100%; border-radius: 8px;">
+              <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
   </form>
@@ -172,21 +183,25 @@ nzCancelText="Hủy bỏ"
 ></nz-modal>
 
 <ng-template #editUserTpl>
-  <form [formGroup]="editUserForm"> 
+  <form [formGroup]="editUserForm" nz-form nzLayout="vertical">
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="userName" style="margin-bottom: 10px;">Họ tên</label>
-          <input id="userName" nz-input formControlName="name" style="border-radius: 8px;" />
-          </div>
+        <nz-form-item>
+          <nz-form-label nzFor="userName">Họ tên</nz-form-label>
+          <nz-form-control>
+            <input id="userName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="userRoleId" class="required-label" style="margin-bottom: 10px;">Vai trò</label>
-          <nz-select formControlName="roleId" style="width: 100%; border-radius: 8px;">
-            <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.name"></nz-option>
-          </nz-select>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="userRoleId">Vai trò</nz-form-label>
+          <nz-form-control>
+            <nz-select id="userRoleId" formControlName="roleId" style="width: 100%; border-radius: 8px;">
+              <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
   </form>
@@ -203,15 +218,19 @@ nzCancelText="Hủy bỏ"
 ></nz-modal>
 
 <ng-template #resetPasswordTpl>
-  <form [formGroup]="resetPasswordForm"> 
-    <div class="form-group">
-      <label for="newPassword" class="required-label" style="margin-bottom: 10px;">Mật khẩu mới</label>
-      <input id="newPassword" nz-input formControlName="newPassword" style="border-radius: 8px;" />
-    </div>
+  <form [formGroup]="resetPasswordForm" nz-form nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="newPassword">Mật khẩu mới</nz-form-label>
+      <nz-form-control>
+        <input id="newPassword" nz-input formControlName="newPassword" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
 
-    <div class="form-group">
-      <label for="confirmPassword" class="required-label" style="margin-bottom: 10px;">Xác nhận mật khẩu</label>
-      <input id="confirmPassword" nz-input formControlName="confirmPassword" style="border-radius: 8px;" />
-    </div> 
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="confirmPassword">Xác nhận mật khẩu</nz-form-label>
+      <nz-form-control>
+        <input id="confirmPassword" nz-input formControlName="confirmPassword" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
   </form>
 </ng-template>

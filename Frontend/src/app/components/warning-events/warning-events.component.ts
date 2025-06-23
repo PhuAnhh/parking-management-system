@@ -9,7 +9,8 @@ enum WarningType {
   CARDGROUPNOTALLOWEDINLANE = "CardGroupNotAllowedInLane",
   LICENSEPLATEMISMATCH = "LicensePlateMismatch",
   TICKETISSUED = "TicketIssued",
-  DELETEDWHILEVEHICLEINPARKING = "DeletedWhileVehicleInParking"
+  DELETEDWHILEVEHICLEINPARKING = "DeletedWhileVehicleInParking",
+  CARDEXPIRED = "CardExpired"
 }
 
 @Component({
@@ -36,7 +37,8 @@ export class WarningEventsComponent implements OnInit {
     { label: 'Nhóm thẻ không được sử dụng làn', value: WarningType.CARDGROUPNOTALLOWEDINLANE, color: 'yellow' },
     { label: 'Biển số vào ra không khớp', value: WarningType.LICENSEPLATEMISMATCH, color: 'orange' },
     { label: 'Ghi vé', value: WarningType.TICKETISSUED, color: 'green' },
-    { label: 'Xóa sự kiện xe đang trong bãi', value: WarningType.DELETEDWHILEVEHICLEINPARKING, color: 'purple' }
+    { label: 'Xóa sự kiện xe đang trong bãi', value: WarningType.DELETEDWHILEVEHICLEINPARKING, color: 'purple' },
+    { label: 'Thẻ hết hạn', value: WarningType.CARDEXPIRED, color: 'blue' }
   ];
 
   constructor(

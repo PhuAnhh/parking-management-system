@@ -39,14 +39,12 @@ namespace Final_year_Project.Application.Services
 
         public async Task<UserDto> CreateAsync(CreateUserDto createUserDto)
         {
-            // Validate role exists
             var role = await _unitOfWork.Roles.GetByIdAsync(createUserDto.RoleId);
             if (role == null)
             {
                 throw new InvalidOperationException($"Role with ID {createUserDto.RoleId} not found.");
             }
 
-            // Create user
             var user = new User
             {
                 Username = createUserDto.Username,
@@ -62,7 +60,6 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.Users.CreateAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
-            // Return created user with role
             var createdUser = await _unitOfWork.Users.GetByIdWithRoleAsync(user.Id);
             return MapToUserDto(createdUser!);
         }
@@ -75,7 +72,6 @@ namespace Final_year_Project.Application.Services
                 return null;
             }
 
-            // Validate role exists
             var role = await _unitOfWork.Roles.GetByIdAsync(updateUserDto.RoleId);
             if (role == null)
             {

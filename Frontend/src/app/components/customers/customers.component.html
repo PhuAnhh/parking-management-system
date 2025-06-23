@@ -118,49 +118,86 @@
 </nz-modal>
 
 <ng-template #addCustomerTpl>
-  <form [formGroup]="customerForm"> 
+  <form [formGroup]="customerForm" nz-form [nzLayout]="'vertical'">
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-          <input id="customerName" nz-input formControlName="name" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerName'" [nzRequired]="true">Tên</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerName"
+              nz-input
+              formControlName="name"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
+
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-          <input id="customerCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerCode'" [nzRequired]="true">Mã</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerCode"
+              nz-input
+              formControlName="code"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerPhone" style="margin-bottom: 10px;">Số điện thoại</label>
-          <input id="customerPhone" nz-input formControlName="phone" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerPhone'">Số điện thoại</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerPhone"
+              nz-input
+              formControlName="phone"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
+
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerAddress" style="margin-bottom: 10px;">Địa chỉ</label>
-          <input id="customerAddress" nz-input formControlName="address" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerAddress'">Địa chỉ</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerAddress"
+              nz-input
+              formControlName="address"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="customerCustomerGroupId" style="margin-bottom: 10px;">Nhóm khách hàng</label>
-      <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
-        <nz-option *ngFor="let customerGroup of customerGroups" [nzValue]="customerGroup.id" [nzLabel]="customerGroup.name"></nz-option>
-      </nz-select>      
-    </div>
+    <nz-form-item>
+      <nz-form-label [nzFor]="'customerCustomerGroupId'">Nhóm khách hàng</nz-form-label>
+      <nz-form-control>
+        <nz-select
+          id="customerCustomerGroupId"
+          formControlName="customerGroupId"
+          style="width: 100%; border-radius: 8px;"
+        >
+          <nz-option
+            *ngFor="let customerGroup of customerGroups"
+            [nzValue]="customerGroup.id"
+            [nzLabel]="customerGroup.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
   </form>
 </ng-template>
 
-
-  
-  
 <nz-modal 
 [nzContent]="editCustomerTpl" 
 [(nzVisible)]="isEditModalVisible" 
@@ -171,138 +208,171 @@ nzCancelText="Hủy bỏ"
 (nzOnOk)="handleEditOk()"
 [nzWidth]="1000">
 </nz-modal>
-  <ng-template #editCustomerTpl>
-    <form [formGroup]="editCustomerForm"> 
-      <div nz-row class="modal-row">
-        <div nz-col [nzSpan]="10">
-          <div nz-row [nzGutter]="16">
-            <div nz-col [nzSpan]="12">
-              <div class="form-group">
-                <label for="customerName" class="required-label">Tên</label>
-                <input id="customerName" nz-input formControlName="name" style="border-radius: 8px;" />
-              </div>
-            </div>
-            <div nz-col [nzSpan]="12">
-              <div class="form-group">
-                <label for="customerCode" class="required-label">Mã</label>
-                <input id="customerCode" nz-input formControlName="code" style="border-radius: 8px;" />
-              </div>
-            </div>
+
+<ng-template #editCustomerTpl>
+  <form [formGroup]="editCustomerForm" nz-form [nzLayout]="'vertical'"> 
+    <div nz-row class="modal-row">
+      <div nz-col [nzSpan]="10">
+        <div nz-row [nzGutter]="16">
+          <div nz-col [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-label [nzFor]="'customerName'" [nzRequired]="true">Tên</nz-form-label>
+              <nz-form-control>
+                <input
+                  id="customerName"
+                  nz-input
+                  formControlName="name"
+                  style="border-radius: 8px;"
+                />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-  
-          <div nz-row [nzGutter]="16">
-            <div nz-col [nzSpan]="12">
-              <div class="form-group">
-                <label for="customerPhone">Số điện thoại</label>
-                <input id="customerPhone" nz-input formControlName="phone" style="border-radius: 8px;" />
-              </div>
-            </div>
-            <div nz-col [nzSpan]="12">
-              <div class="form-group">
-                <label for="customerAddress">Địa chỉ</label>
-                <nz-textarea-count [nzMaxCharacterCount]="100">
-                  <textarea id="customerAddress" formControlName="address" nz-input [nzAutosize]="{ minRows: 1, maxRows: 5 }" style="border-radius: 8px;"></textarea>
-                </nz-textarea-count>          
-              </div>
-            </div>
-          </div>
-  
-          <div class="form-group">
-            <label for="customerCustomerGroupId">Nhóm khách hàng</label>
-            <nz-select formControlName="customerGroupId" style="width: 100%; border-radius: 8px;">
-              <nz-option *ngFor="let customerGroup of customerGroups" [nzValue]="customerGroup.id" [nzLabel]="customerGroup.name"></nz-option>
-            </nz-select>      
+          <div nz-col [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-label [nzFor]="'customerCode'" [nzRequired]="true">Mã</nz-form-label>
+              <nz-form-control>
+                <input
+                  id="customerCode"
+                  nz-input
+                  formControlName="code"
+                  style="border-radius: 8px;"
+                />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
-  
-        <div nz-col [nzSpan]="13" class="card-list-container">
-          <div class="card-list-header" style="border-bottom: 1px solid #e8e8e8; padding-bottom: 8px;">
-            <span class="title">Danh sách Thẻ của khách hàng</span>
-            <button nz-button nzType="primary" style="border-radius: 8px; display: flex; align-items: center;" (click)="showAddCardModal()">
-              <span nz-icon nzType="plus"></span>
-              <span>Thêm mới</span>
-            </button>
+
+        <div nz-row [nzGutter]="16">
+          <div nz-col [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-label [nzFor]="'customerPhone'">Số điện thoại</nz-form-label>
+              <nz-form-control>
+                <input
+                  id="customerPhone"
+                  nz-input
+                  formControlName="phone"
+                  style="border-radius: 8px;"
+                />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-          <nz-list
-            [nzDataSource]="customerCards"
-            [nzRenderItem]="item"
-            nzItemLayout="horizontal"
-          >
-            <ng-template #item let-card>
-              <nz-list-item>
-                <nz-row style="width: 100%" align="middle">
-                  <!-- Cột 1: Thông tin thẻ -->
-                  <nz-col [nzSpan]="18">
-                    <nz-list-item-meta
-                      [nzTitle]="titleTemplate"
-                      [nzDescription]="descriptionTemplate">
-                    </nz-list-item-meta>
-                    
-                    <ng-template #titleTemplate>
-                      <div style="display: flex; gap: 20px; align-items: center;">
-                        <span>{{ card.name }}</span>
-                        <nz-tag [nzColor]="getStatusColor(card.status)" style="border-radius: 8px; font-size: 12px;">
-                          {{ getCardStatusLabel(card.status) }}
-                        </nz-tag>
-                      </div>
-                    </ng-template>
-                    
-                    <ng-template #descriptionTemplate>
-                      <div style="text-align: left;">
-                        <div>
-                          <strong>Mã:</strong> {{ card.code }} |
-                          <strong>Nhóm thẻ:</strong> {{ getCardGroupNameById(card.cardGroupId) }}
-                        </div>
-                        <div *ngIf="card.note">
-                          <strong>Ghi chú:</strong> {{ card.note }}
-                        </div>
-                      </div>
-                    </ng-template>
-                  </nz-col>
-
-                  <!-- Cột 2: Nút hành động (Sửa, Xóa) -->
-                  <nz-col [nzSpan]="6">
-                    <div style="display: flex; justify-content: flex-end; align-items: center; height: 100%;">
-                      <button
-                        nz-button
-                        nzType="primary"
-                        nzDanger
-                        nzSize="small"
-                        style="border-radius: 8px; padding: 0 8px; font-size: 12px; text-align: right;"
-                        (click)="removeCardFromCustomer(card.id)"
-                      >
-                        <span style="display: flex; align-items: center;">
-                          <span nz-icon nzType="delete" nzTheme="outline"></span>
-                        </span>
-                      </button>
-
-                    </div>                    
-                  </nz-col>
-                </nz-row>
-              </nz-list-item>
-            </ng-template>
-          </nz-list>
-
+          <div nz-col [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-label [nzFor]="'customerAddress'">Địa chỉ</nz-form-label>
+              <nz-form-control>
+                <input
+                  id="customerAddress"
+                  nz-input
+                  formControlName="address"
+                  style="border-radius: 8px;"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
         </div>
-      </div>  
-    </form>
-  </ng-template>
 
-  <nz-modal
-    [(nzVisible)]="isAddCardModalVisible"
-    nzTitle="Thêm thẻ cho khách hàng"
-    nzOkText="Lưu"
-    nzCancelText="Hủy bỏ"
-    (nzOnCancel)="handleAddCardCancel()"
-    (nzOnOk)="handleAddCardOk()">
-    <form *nzModalContent [formGroup]="cardForm">
-      <div class="form-group">
-        <label for="cardId" class="required-label">Chọn Thẻ</label>
-        <nz-select formControlName="cardId" style="width: 100%; border-radius: 8px;">
-          <nz-option *ngFor="let card of availableCards" 
-                    [nzValue]="card.id" 
-                    [nzLabel]="card.name + (card.name ? ' - ' + card.code  : '')"></nz-option>
-        </nz-select>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerCustomerGroupId'">Nhóm khách hàng</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              id="customerCustomerGroupId"
+              formControlName="customerGroupId"
+              style="width: 100%; border-radius: 8px;"
+            >
+              <nz-option
+                *ngFor="let customerGroup of customerGroups"
+                [nzValue]="customerGroup.id"
+                [nzLabel]="customerGroup.name"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    </form>
-  </nz-modal>
+
+      <div nz-col [nzSpan]="13" class="card-list-container">
+        <div class="card-list-header" style="border-bottom: 1px solid #e8e8e8; padding-bottom: 8px;">
+          <span class="title">Danh sách Thẻ của khách hàng</span>
+          <button nz-button nzType="primary" style="border-radius: 8px; display: flex; align-items: center;" (click)="showAddCardModal()">
+            <span nz-icon nzType="plus"></span>
+            <span>Thêm mới</span>
+          </button>
+        </div>
+        <nz-list
+          [nzDataSource]="customerCards"
+          [nzRenderItem]="item"
+          nzItemLayout="horizontal"
+        >
+          <ng-template #item let-card>
+            <nz-list-item>
+              <nz-row style="width: 100%" align="middle">
+                <nz-col [nzSpan]="18">
+                  <nz-list-item-meta
+                    [nzTitle]="titleTemplate"
+                    [nzDescription]="descriptionTemplate">
+                  </nz-list-item-meta>
+                  
+                  <ng-template #titleTemplate>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                      <span>{{ card.name }}</span>
+                      <nz-tag [nzColor]="getStatusColor(card.status)" style="border-radius: 8px; font-size: 12px;">
+                        {{ getCardStatusLabel(card.status) }}
+                      </nz-tag>
+                    </div>
+                  </ng-template>
+                  
+                  <ng-template #descriptionTemplate>
+                    <div style="text-align: left;">
+                      <div>
+                        <strong>Mã:</strong> {{ card.code }} |
+                        <strong>Nhóm thẻ:</strong> {{ getCardGroupNameById(card.cardGroupId) }}
+                      </div>
+                      <div *ngIf="card.note">
+                        <strong>Ghi chú:</strong> {{ card.note }}
+                      </div>
+                    </div>
+                  </ng-template>
+                </nz-col>
+
+                <nz-col [nzSpan]="6">
+                  <div style="display: flex; justify-content: flex-end; align-items: center; height: 100%;">
+                    <button
+                      nz-button
+                      nzType="primary"
+                      nzDanger
+                      nzSize="small"
+                      style="border-radius: 8px; padding: 0 8px; font-size: 12px; text-align: right;"
+                      (click)="removeCardFromCustomer(card.id)"
+                    >
+                      <span style="display: flex; align-items: center;">
+                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                      </span>
+                    </button>
+                  </div>                    
+                </nz-col>
+              </nz-row>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+      </div>
+    </div>  
+  </form>
+</ng-template>
+
+<nz-modal
+  [(nzVisible)]="isAddCardModalVisible"
+  nzTitle="Thêm thẻ cho khách hàng"
+  nzOkText="Lưu"
+  nzCancelText="Hủy bỏ"
+  (nzOnCancel)="handleAddCardCancel()"
+  (nzOnOk)="handleAddCardOk()">
+  <form *nzModalContent [formGroup]="cardForm">
+    <div class="form-group">
+      <label for="cardId" class="required-label">Chọn Thẻ</label>
+      <nz-select formControlName="cardId" style="width: 100%; border-radius: 8px;">
+        <nz-option *ngFor="let card of availableCards" 
+                  [nzValue]="card.id" 
+                  [nzLabel]="card.name + (card.name ? ' - ' + card.code  : '')"></nz-option>
+      </nz-select>
+    </div>
+  </form>
+</nz-modal>

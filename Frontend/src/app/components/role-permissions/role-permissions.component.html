@@ -101,20 +101,18 @@
     </nz-card>
 </div>
   
-
-  <nz-modal 
-  [nzContent]="addRoleTpl" 
-  [(nzVisible)]="isAddModalVisible" 
-  nzTitle="Thêm mới Vai trò, quyền hạn" 
-  nzOkText="Lưu" 
-  nzCancelText="Hủy bỏ" 
-  (nzOnCancel)="handleCancel()" 
-  (nzOnOk)="handleOk()"
-  class="custom-modal"
-  nzWidth="1200px"
-  [nzCentered]="true"
->
-</nz-modal>
+<nz-modal 
+[nzContent]="addRoleTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Vai trò, quyền hạn" 
+nzOkText="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()"
+class="custom-modal"
+nzWidth="1200px"
+[nzCentered]="true"
+></nz-modal>
 
 <ng-template #addRoleTpl>
   <nz-form [formGroup]="roleForm">
@@ -177,8 +175,7 @@
   class="custom-modal"
   nzWidth="1200px"
   [nzCentered]="true" 
->
-</nz-modal>
+></nz-modal>
 
 <ng-template #editRoleTpl>
   <nz-form [formGroup]="editRoleForm">

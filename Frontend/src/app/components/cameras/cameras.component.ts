@@ -94,7 +94,7 @@ export class CamerasComponent {
     this.cameraForm = this.fb.group({
       name: [null, [Validators.required]],
       code: [null, [Validators.required]],
-      ipAddress: [null],
+      ipAddress: [null, [Validators.required]],
       type: [CameraType.TIANDY],
       username: [null, [Validators.required]],
       password: [null],
@@ -106,7 +106,7 @@ export class CamerasComponent {
     this.editCameraForm = this.fb.group({
       name: [null, [Validators.required]],
       code: [null, [Validators.required]],
-      ipAddress: [null],
+      ipAddress: [null, [Validators.required]],
       type: [null],
       username: [null, [Validators.required]],
       password: [null],

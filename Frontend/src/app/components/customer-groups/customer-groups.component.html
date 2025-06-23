@@ -110,41 +110,83 @@ nzOktext="Lưu"
 nzCancelText="Hủy bỏ" 
 (nzOnCancel)="handleCancel()" 
 (nzOnOk)="handleOk()"
-class="custom-modal"></nz-modal>
+class="custom-modal"
+></nz-modal>
+
 <ng-template #addCustomerGroupTpl>
-  <form [formGroup]="customerGroupForm"> 
+  <form [formGroup]="customerGroupForm" nz-form [nzLayout]="'vertical'">
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerGroupName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-          <input id="customerGroupName" nz-input formControlName="name" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerGroupName'" [nzRequired]="true">Tên</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerGroupName"
+              nz-input
+              formControlName="name"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
+
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerGroupCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-          <input id="customerGroupCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerGroupCode'" [nzRequired]="true">Mã</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerGroupCode"
+              nz-input
+              formControlName="code"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
   </form>
 </ng-template>
 
-<nz-modal [nzContent]="editCustomerGroupTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Nhóm khách hàng" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
+
+<nz-modal 
+[nzContent]="editCustomerGroupTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Nhóm khách hàng" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+></nz-modal>
+
 <ng-template #editCustomerGroupTpl>
-  <form [formGroup]="editCustomerGroupForm"> 
+  <form [formGroup]="editCustomerGroupForm" nz-form [nzLayout]="'vertical'">
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerGroupName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-          <input id="customerGroupName" nz-input formControlName="name" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerGroupName'" [nzRequired]="true">Tên</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerGroupName"
+              nz-input
+              formControlName="name"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
+
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label for="customerGroupCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-          <input id="customerGroupCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerGroupCode'" [nzRequired]="true">Mã</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerGroupCode"
+              nz-input
+              formControlName="code"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
   </form>

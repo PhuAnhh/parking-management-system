@@ -185,7 +185,7 @@ export class LanesComponent implements OnInit{
       computerId: [null, [Validators.required]],
       type: [null, [Validators.required]],
       reverseLane: [null],
-      autoOpenBarrier: [null],
+      autoOpenBarrier: [null, [Validators.required]],
       loop: [false],
       status: [true],
       laneCameras: this.fb.array([]),
@@ -198,7 +198,7 @@ export class LanesComponent implements OnInit{
       computerId: [null, [Validators.required]],
       type: [null, [Validators.required]],
       reverseLane: [null],
-      autoOpenBarrier: [null],
+      autoOpenBarrier: [null, [Validators.required]],
       loop: [false],
       status: [true],
       laneCameras: this.fb.array([]),
@@ -341,7 +341,6 @@ export class LanesComponent implements OnInit{
     this.isEditModalVisible = true;
   }
   
-
   handleCancel() {
     this.isAddModalVisible = false;
   }
@@ -370,10 +369,7 @@ export class LanesComponent implements OnInit{
         alarm: Array.isArray(unit.alarm) ? unit.alarm.join(', ') : (unit.alarm ?? null)
       }))
     };
-    
-  
-    console.log('Dữ liệu gửi đi: ', newLane);
-  
+      
     const isDupicateName = this.lanes.some(lane => lane.name === newLane.name);
     const isDupicateCode = this.lanes.some(lane => lane.code === newLane.code);
   
@@ -406,7 +402,6 @@ export class LanesComponent implements OnInit{
     );
   }
   
-
   handleEditOk() {
     if (this.editLaneForm.invalid) {
       this.notification.warning(

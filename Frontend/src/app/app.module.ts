@@ -46,6 +46,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzRateModule } from 'ng-zorro-antd/rate';
 
 import { MainLayoutComponent } from './cores/main-layout/main-layout.component';
 import { LoginComponent } from './components/login/login.component';
@@ -142,6 +143,7 @@ registerLocaleData(vi);
     NzAvatarModule,
     RouterModule,
     NzDrawerModule,
+    NzRateModule
   ],
   providers: [
     {

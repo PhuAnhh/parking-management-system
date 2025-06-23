@@ -610,7 +610,7 @@ public partial class ParkingManagementContext : DbContext
 
             entity.HasOne(d => d.Lane).WithMany(p => p.LaneCameras)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__lane_came__lane___308E3499");
         });
 
@@ -651,7 +651,7 @@ public partial class ParkingManagementContext : DbContext
 
             entity.HasOne(d => d.Lane).WithMany(p => p.LaneControlUnits)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__lane_cont__lane___36470DEF");
         });
 

@@ -112,46 +112,67 @@
 </div>
   
 
-  <nz-modal 
-  [nzContent]="addGateTpl" 
-  [(nzVisible)]="isAddModalVisible" 
-  nzTitle="Thêm mới Cổng" 
-  nzOktext="Lưu" 
-  nzCancelText="Hủy bỏ" 
-  (nzOnCancel)="handleCancel()" 
-  (nzOnOk)="handleOk()"
-  class="custom-modal"></nz-modal>
-  <ng-template #addGateTpl>
-    <form [formGroup]="gateForm"> 
-      <div class="form-group">
-        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-        <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
-      </div>
-      
-      <div class="form-group">
-        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-        <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-      </div>
-    </form>
-  </ng-template>
-  
-  <nz-modal [nzContent]="editGateTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Cổng" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
-  <ng-template #editGateTpl>
-    <form [formGroup]="editGateForm"> 
-      <div class="form-group">
-        <label for="gateName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-        <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
-      </div>
-      
-      <div class="form-group">
-        <label for="gateCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-        <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-      </div>
+<nz-modal 
+[nzContent]="addGateTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Cổng" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()"
+class="custom-modal"></nz-modal>
 
-      <div class="form-group">
-        <label for="gateStatus" style="margin-bottom: 10px;">Kích hoạt:</label>
-        <label nz-checkbox formControlName="status" style="margin-left: 10px;" ></label>
-      </div>
-    </form>
-  </ng-template>
-  
+<ng-template #addGateTpl>
+  <form [formGroup]="gateForm" nz-form nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="gateName">Tên</nz-form-label>
+      <nz-form-control>
+        <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="gateCode">Mã</nz-form-label>
+      <nz-form-control>
+        <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-template>
+
+
+<nz-modal 
+[nzContent]="editGateTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Cổng" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+></nz-modal>
+
+<ng-template #editGateTpl>
+  <form [formGroup]="editGateForm" nz-form nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="gateName">Tên</nz-form-label>
+      <nz-form-control>
+        <input id="gateName" nz-input formControlName="name" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="gateCode">Mã</nz-form-label>
+      <nz-form-control>
+        <input id="gateCode" nz-input formControlName="code" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <span style="margin-right: 8px;">Kích hoạt</span>
+        <label nz-checkbox formControlName="status"></label>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-template>
+

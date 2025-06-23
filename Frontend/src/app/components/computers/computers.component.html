@@ -114,7 +114,6 @@
     </nz-card>
 </div>
 
-
 <nz-modal 
 [nzContent]="addComputerTpl" 
 [(nzVisible)]="isAddModalVisible" 
@@ -124,50 +123,75 @@ nzCancelText="Hủy bỏ"
 (nzOnCancel)="handleCancel()" 
 (nzOnOk)="handleOk()">
 </nz-modal>
-  <ng-template #addComputerTpl>
-    <form [formGroup]="computerForm"> 
-      <div class="form-group">
-        <label for="computerName" class="required-label" style="margin-bottom: 10px;">Tên:</label>
-        <input id="computerName" nz-input formControlName="name" style="border-radius: 8px;"/>
-      </div>
-      
-      <div class="form-group">
-        <label for="computerIpAddress" class="required-label" style="margin-bottom: 10px;">Địa chỉ IP:</label>
-        <input id="computerIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;"/>
-      </div>
 
-      <div class="form-group">
-        <label for="computerGateId" style="margin-bottom: 10px;">Cổng:</label>
-        <nz-select formControlName="gateId" nzAllowClear style="width: 100%;">
+<ng-template #addComputerTpl>
+  <form [formGroup]="computerForm" nz-form nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="computerName">Tên:</nz-form-label>
+      <nz-form-control>
+        <input id="computerName" nz-input formControlName="name" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="computerIpAddress">Địa chỉ IP:</nz-form-label>
+      <nz-form-control>
+        <input id="computerIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="computerGateId">Cổng:</nz-form-label>
+      <nz-form-control>
+        <nz-select id="computerGateId" formControlName="gateId" nzAllowClear style="width: 100%;">
           <nz-option *ngFor="let gate of gates" [nzValue]="gate.id" [nzLabel]="gate.name"></nz-option>
         </nz-select>
-      </div>
-    </form>
-  </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-template>
 
-<nz-modal [nzContent]="editComputerTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Máy tính" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
-  <ng-template #editComputerTpl>
-    <form [formGroup]="editComputerForm"> 
-      <div class="form-group">
-        <label for="computerName" class="required-label" style="margin-bottom: 10px;">Tên:</label>
-        <input id="computerName" nz-input formControlName="name" style="border-radius: 8px;"/>
-      </div>
-      
-      <div class="form-group">
-        <label for="gateIpAddress" class="required-label" style="margin-bottom: 10px;">Địa chỉ IP:</label>
-        <input id="gateIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;"/>
-      </div>
+<nz-modal 
+[nzContent]="editComputerTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Máy tính" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+></nz-modal>
 
-      <div class="form-group">
-        <label for="computerGateId" style="margin-bottom: 10px;">Cổng:</label>
-        <nz-select formControlName="gateId" style="width: 100%; border-radius: 8px;">
+<ng-template #editComputerTpl>
+  <form [formGroup]="editComputerForm" nz-form nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="computerName">Tên:</nz-form-label>
+      <nz-form-control>
+        <input id="computerName" nz-input formControlName="name" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="gateIpAddress">Địa chỉ IP:</nz-form-label>
+      <nz-form-control>
+        <input id="gateIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="computerGateId">Cổng:</nz-form-label>
+      <nz-form-control>
+        <nz-select id="computerGateId" formControlName="gateId" style="width: 100%;">
           <nz-option *ngFor="let gate of gates" [nzValue]="gate.id" [nzLabel]="gate.name"></nz-option>
         </nz-select>
-      </div>
+      </nz-form-control>
+    </nz-form-item>
 
-      <div class="form-group">
-        <label for="gateStatus" style="margin-bottom: 10px;">Kích hoạt:</label>
-        <label nz-checkbox formControlName="status" style="margin-left: 10px;"></label>
-      </div>
-    </form>
-  </ng-template> 
+    <nz-form-item>
+      <nz-form-control>
+        <span style="margin-right: 8px;">Kích hoạt</span>
+        <label nz-checkbox formControlName="status"></label>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-template>
+

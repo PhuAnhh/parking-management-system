@@ -122,149 +122,197 @@
     </nz-card>
 </div>
 
-<nz-modal [nzContent]="addComputerTpl" [(nzVisible)]="isAddModalVisible" nzTitle="Thêm mới Máy tính" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"></nz-modal>
-  <ng-template #addComputerTpl>
-    <form [formGroup]="cameraForm">
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="cameraName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="cameraCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
+<nz-modal 
+[nzContent]="addCameraTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Máy tính" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()"
+></nz-modal>
+
+<ng-template #addCameraTpl>
+  <form [formGroup]="cameraForm" nz-form nzLayout="vertical">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraName">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="cameraName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraComputerId" class="required-label" style="margin-bottom: 10px;">Máy tính</label>
-            <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraCode">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="cameraCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraComputerId">Máy tính</nz-form-label>
+          <nz-form-control>
+            <nz-select id="cameraComputerId" formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
               <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraIpAddress" class="required-label" style="margin-bottom: 10px;">Địa chỉ IP</label>
-            <input id="cameraIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;"/>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraIpAddress">Địa chỉ IP</nz-form-label>
+          <nz-form-control>
+            <input id="cameraIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraUsername" class="required-label" style="margin-bottom: 10px;">Tài khoản</label>
-            <input id="cameraUsername" nz-input formControlName="username" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraPassword" style="margin-bottom: 10px;">Mật khẩu</label>
-            <input id="cameraPassword" nz-input formControlName="password" style="border-radius: 8px;"/>
-          </div>
-        </div>
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraUsername">Tài khoản</nz-form-label>
+          <nz-form-control>
+            <input id="cameraUsername" nz-input formControlName="username" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraResolution" style="margin-bottom: 10px;">Độ phân giải</label>
-            <input id="cameraResolution" nz-input formControlName="resolution" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraType" style="margin-bottom: 10px;">Loại</label>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraPassword">Mật khẩu</nz-form-label>
+          <nz-form-control>
+            <input id="cameraPassword" nz-input formControlName="password" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraResolution">Độ phân giải</nz-form-label>
+          <nz-form-control>
+            <input id="cameraResolution" nz-input formControlName="resolution" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraType">Loại</nz-form-label>
+          <nz-form-control>
             <nz-select id="cameraType" formControlName="type" style="width: 100%;">
-              <nz-option *ngFor="let type of cameraTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option> 
+              <nz-option *ngFor="let type of cameraTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    </form>
-  </ng-template>
+    </div>
+  </form>
+</ng-template>
 
-<nz-modal [nzContent]="editCameraTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Camera" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
-  <ng-template #editCameraTpl>
-    <form [formGroup]="editCameraForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="cameraName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="cameraCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
+<nz-modal 
+[nzContent]="editCameraTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Camera" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+></nz-modal>
+
+<ng-template #editCameraTpl>
+  <form [formGroup]="editCameraForm" nz-form nzLayout="vertical">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraName">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="cameraName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraComputerId" class="required-label" style="margin-bottom: 10px;">Máy tính</label>
-            <nz-select formControlName="computerId" style="width: 100%;">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraCode">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="cameraCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraComputerId">Máy tính</nz-form-label>
+          <nz-form-control>
+            <nz-select id="cameraComputerId" formControlName="computerId" style="width: 100%;">
               <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraIpAddress" class="required-label" style="margin-bottom: 10px;">Địa chỉ IP</label>
-            <input id="cameraIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;"/>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraIpAddress">Địa chỉ IP</nz-form-label>
+          <nz-form-control>
+            <input id="cameraIpAddress" nz-input formControlName="ipAddress" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraUsername" class="required-label" style="margin-bottom: 10px;">Tài khoản</label>
-            <input id="cameraUsername" nz-input formControlName="username" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraPassword" style="margin-bottom: 10px;">Mật khẩu</label>
-            <input id="cameraPassword" nz-input formControlName="password" style="border-radius: 8px;"/>
-          </div>
-        </div>
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="cameraUsername">Tài khoản</nz-form-label>
+          <nz-form-control>
+            <input id="cameraUsername" nz-input formControlName="username" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraResolution" style="margin-bottom: 10px;">Độ phân giải</label>
-            <input id="cameraResolution" nz-input formControlName="resolution" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraType" style="margin-bottom: 10px;">Loại</label>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraPassword">Mật khẩu</nz-form-label>
+          <nz-form-control>
+            <input id="cameraPassword" nz-input formControlName="password" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraResolution">Độ phân giải</nz-form-label>
+          <nz-form-control>
+            <input id="cameraResolution" nz-input formControlName="resolution" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraType">Loại</nz-form-label>
+          <nz-form-control>
             <nz-select id="cameraType" formControlName="type" style="width: 100%;">
-              <nz-option *ngFor="let type of cameraTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option> 
+              <nz-option *ngFor="let type of cameraTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
+    </div>
 
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="gateStatus" style="margin-bottom: 10px;">Kích hoạt:</label>
-            <label nz-checkbox formControlName="status" style="margin-left: 10px;"></label>
-          </div>
-        </div>
-      </div>
-    </form>
-  </ng-template> 
+    <nz-form-item>
+      <nz-form-control>
+        <span style="margin-right: 8px;">Kích hoạt</span>
+        <label nz-checkbox formControlName="status"></label>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-template>

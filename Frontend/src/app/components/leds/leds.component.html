@@ -123,143 +123,175 @@
     </nz-card>
 </div>
 
-<nz-modal [nzContent]="addLedTpl" [(nzVisible)]="isAddModalVisible" nzTitle="Thêm mới Led" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"></nz-modal>
-  <ng-template #addLedTpl>
-    <form [formGroup]="ledForm">
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="ledName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="ledCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
+<nz-modal 
+[nzContent]="addLedTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Led" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()"
+></nz-modal>
+
+<ng-template #addLedTpl>
+  <form [formGroup]="ledForm" nz-form [nzLayout]="'vertical'">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledName'" [nzRequired]="true">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="ledName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledType" class="required-label" style="margin-bottom: 10px;">Máy tính</label>
-            <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledCode'" [nzRequired]="true">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="ledCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'computerId'" [nzRequired]="true">Máy tính</nz-form-label>
+          <nz-form-control>
+            <nz-select id="computerId" formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
               <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledBaudrate" style="margin-bottom: 10px;">Baudrate</label>
-            <input id="ledBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;"/>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-        
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledType" style="margin-bottom: 10px;">Loại</label>
-            <nz-select
-            formControlName="type"
-            style="width: 100%;"
-          >
-            <nz-option
-              *ngFor="let type of ledTypes"
-              [nzValue]="type.value"
-              [nzLabel]="type.label"
-            >
-              <ng-template #customTemplate>
-                <nz-tag [nzColor]="type.color">
-                  {{ type.label }}
-                </nz-tag>
-              </ng-template>
-            </nz-option>
-          </nz-select>
-          
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledComport" style="margin-bottom: 10px;">Cổng COM/IP</label>
-            <input id="ledComport" nz-input formControlName="comport" style="border-radius: 8px;"/>
-          </div>
-        </div>
-      </div>
-    </form>
-  </ng-template>
 
-<nz-modal [nzContent]="editLedTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Led" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledBaudrate'">Baudrate</nz-form-label>
+          <nz-form-control>
+            <input id="ledBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'type'">Loại</nz-form-label>
+          <nz-form-control>
+            <nz-select id="type" formControlName="type" style="width: 100%;">
+              <nz-option
+                *ngFor="let type of ledTypes"
+                [nzValue]="type.value"
+                [nzLabel]="type.label"
+              >
+                <ng-template #customTemplate>
+                  <nz-tag [nzColor]="type.color">{{ type.label }}</nz-tag>
+                </ng-template>
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledComport'">Cổng COM/IP</nz-form-label>
+          <nz-form-control>
+            <input id="ledComport" nz-input formControlName="comport" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+
+<nz-modal 
+[nzContent]="editLedTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Led" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+></nz-modal>
+
   <ng-template #editLedTpl>
-    <form [formGroup]="editLedForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="ledName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="ledCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
+  <form [formGroup]="editLedForm" nz-form [nzLayout]="'vertical'">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledName'" [nzRequired]="true">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="ledName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-      
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledType" class="required-label" style="margin-bottom: 10px;">Máy tính</label>
-            <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledCode'" [nzRequired]="true">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="ledCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'computerId'" [nzRequired]="true">Máy tính</nz-form-label>
+          <nz-form-control>
+            <nz-select id="computerId" formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
               <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledBaudrate" style="margin-bottom: 10px;">Baudrate</label>
-            <input id="ledBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;"/>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledType" style="margin-bottom: 10px;">Loại</label>
-            <nz-select
-            formControlName="type"
-            style="width: 100%;"
-          >
-            <nz-option
-              *ngFor="let type of ledTypes"
-              [nzValue]="type.value"
-              [nzLabel]="type.label"
-            >
-              <ng-template #customTemplate>
-                <nz-tag [nzColor]="type.color">
-                  {{ type.label }}
-                </nz-tag>
-              </ng-template>
-            </nz-option>
-          </nz-select>
-          
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="ledComport" style="margin-bottom: 10px;">Cổng COM/IP</label>
-            <input id="ledComport" nz-input formControlName="comport" style="border-radius: 8px;"/>
-          </div>
-        </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledBaudrate'">Baudrate</nz-form-label>
+          <nz-form-control>
+            <input id="ledBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'type'">Loại</nz-form-label>
+          <nz-form-control>
+            <nz-select id="type" formControlName="type" style="width: 100%;">
+              <nz-option
+                *ngFor="let type of ledTypes"
+                [nzValue]="type.value"
+                [nzLabel]="type.label"
+              >
+                <ng-template #customTemplate>
+                  <nz-tag [nzColor]="type.color">{{ type.label }}</nz-tag>
+                </ng-template>
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
 
-      <div class="form-group">
-        <label for="gateStatus" style="margin-bottom: 10px;">Kích hoạt:</label>
-        <label nz-checkbox formControlName="status" style="margin-left: 10px;"></label>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'ledComport'">Cổng COM/IP</nz-form-label>
+          <nz-form-control>
+            <input id="ledComport" nz-input formControlName="comport" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    </form>
-  </ng-template> 
+    </div>
+  </form>
+</ng-template>

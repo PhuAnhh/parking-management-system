@@ -394,26 +394,24 @@
 </nz-modal>
 
 <ng-template #addEntryLogTpl>
-  <form [formGroup]="entryLogForm"> 
+  <form [formGroup]="entryLogForm" nz-form [nzLayout]="'vertical'">
     <div nz-row [nzGutter]="16" nzAlign="middle">
       <div nz-col [nzSpan]="20">
-        <div class="form-group">
-          <label 
-            class="required-label"
-            for="entryLogplateNumber" 
-            style="margin-bottom: 10px;"
-          >
-            Biển số
-          </label>
-          <input 
-            id="plateNumber" 
-            nz-input 
-            formControlName="plateNumber" 
-            style="border-radius: 8px; width: 100%;" />
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'plateNumber'" [nzRequired]="true">Biển số</nz-form-label>
+          <nz-form-control>
+            <input
+              id="plateNumber"
+              nz-input
+              formControlName="plateNumber"
+              style="border-radius: 8px; width: 100%;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
       <div nz-col [nzSpan]="4" style="text-align: center;">
-        <button style="border-radius: 8px; width: 100%; margin-top: 16px;"
+        <button
+          style="border-radius: 8px; width: 100%; margin-top: 6px;"
           nz-button
           nzType="default"
           (click)="openCamera()"
@@ -426,104 +424,97 @@
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label 
-            for="entryLogcardId" 
-            style="margin-bottom: 10px;"
-            class="required-label"
-          >
-            Thẻ
-          </label>
-          <nz-select 
-            id="entryLogcardId"
-            formControlName="cardId"
-            style="width: 100%; border-radius: 8px;"
-            nzAllowClear="true"
-            nzNotFoundContent="Vui lòng chờ xe ra khỏi bãi hoặc thêm thẻ mới"
-            (ngModelChange)="onCardChange($event)">
-            <nz-option 
-              *ngFor="let card of availableCards" 
-              [nzValue]="card.id" 
-              [nzLabel]="card.name">
-            </nz-option>
-          </nz-select>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardId'" [nzRequired]="true">Thẻ</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              id="cardId"
+              formControlName="cardId"
+              style="width: 100%; border-radius: 8px;"
+              nzAllowClear="true"
+              nzNotFoundContent="Vui lòng chờ xe ra khỏi bãi hoặc thêm thẻ mới"
+              (ngModelChange)="onCardChange($event)"
+            >
+              <nz-option
+                *ngFor="let card of availableCards"
+                [nzValue]="card.id"
+                [nzLabel]="card.name"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
+
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label 
-            for="entryLogcardGroupId" 
-            class="required-label"
-            style="margin-bottom: 10px;">
-            Nhóm thẻ
-          </label>
-          <input 
-            id="entryLogcardGroupId" 
-            nz-input 
-            readonly
-            [value]="getCardGroupNameById(entryLogForm.get('cardGroupId')?.value)"
-            formControlName="cardGroupId"
-            style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardGroupId'" [nzRequired]="true">Nhóm thẻ</nz-form-label>
+          <nz-form-control>
+            <input
+              id="cardGroupId"
+              nz-input
+              readonly
+              [value]="getCardGroupNameById(entryLogForm.get('cardGroupId')?.value)"
+              formControlName="cardGroupId"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    </div>  
+    </div>
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label 
-            for="entryLogcustomerId" 
-            style="margin-bottom: 10px;">
-            Khách hàng
-          </label>
-          <input 
-            id="entryLogcustomerId" 
-            nz-input 
-            [value]="getCustomerNameById(entryLogForm.get('customerId')?.value)"
-            formControlName="customerId" 
-            style="border-radius: 8px;"/>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'customerId'">Khách hàng</nz-form-label>
+          <nz-form-control>
+            <input
+              id="customerId"
+              nz-input
+              readonly
+              [value]="getCustomerNameById(entryLogForm.get('customerId')?.value)"
+              formControlName="customerId"
+              style="border-radius: 8px;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
+
       <div nz-col [nzSpan]="12">
-        <div class="form-group">
-          <label 
-            for="laneId" 
-            style="margin-bottom: 10px;"
-            class="required-label"
-          >
-            Làn vào
-          </label>
-          <nz-select 
-            id="entrylaneId"
-            formControlName="laneId"
-            style="width: 100%; border-radius: 8px;"
-            nzAllowClear="true"
-            nzNotFoundContent="Không có làn vào hợp lệ">
-            <nz-option 
-              *ngFor="let lane of filteredEntryLanes"
-              [nzValue]="lane.id" 
-              [nzLabel]="lane.name">
-            </nz-option>
-          </nz-select>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'laneId'" [nzRequired]="true">Làn vào</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              id="laneId"
+              formControlName="laneId"
+              style="width: 100%; border-radius: 8px;"
+              nzAllowClear="true"
+              nzNotFoundContent="Không có làn vào hợp lệ"
+            >
+              <nz-option
+                *ngFor="let lane of filteredEntryLanes"
+                [nzValue]="lane.id"
+                [nzLabel]="lane.name"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="24">
-        <div class="form-group">
-          <label 
-            for="entryLogNote"
-            style="margin-bottom: 10px;">
-            Ghi chú
-          </label>
-          <textarea 
-            nz-input 
-            formControlName="note" 
-            rows="2" 
-            style="border-radius: 8px; margin-bottom: 1cap;">
-          </textarea>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'note'">Ghi chú</nz-form-label>
+          <nz-form-control>
+            <textarea
+              id="note"
+              nz-input
+              formControlName="note"
+              rows="2"
+              style="border-radius: 8px;"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
   </form>
@@ -558,22 +549,24 @@
 </nz-modal>
 
 <ng-template #addExitLogTpl>
-  <form [formGroup]="exitLogForm"> 
+  <form [formGroup]="exitLogForm" nz-form [nzLayout]="'vertical'">
     <div nz-row [nzGutter]="16" nzAlign="middle">
       <div nz-col [nzSpan]="20">
-        <div class="form-group">
-          <label for="exitLogPlateNumber" style="margin-bottom: 10px;">
-            Biển số
-          </label>
-          <input 
-            id="exitLogPlateNumber" 
-            nz-input 
-            formControlName="exitPlateNumber" 
-            style="border-radius: 8px; width: 100%;" />
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'exitLogPlateNumber'">Biển số</nz-form-label>
+          <nz-form-control>
+            <input
+              id="exitLogPlateNumber"
+              nz-input
+              formControlName="exitPlateNumber"
+              style="border-radius: 8px; width: 100%;"
+            />
+          </nz-form-control>
+        </nz-form-item>
       </div>
       <div nz-col [nzSpan]="4" style="text-align: center;">
-        <button style="border-radius: 8px; width: 100%; margin-top: 16px;"
+        <button
+          style="border-radius: 8px; width: 100%; margin-top: 6px;"
           nz-button
           nzType="default"
           (click)="openCamera()"
@@ -586,45 +579,41 @@
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="24">
-        <div class="form-group">
-          <label 
-            for="exitLogLane" 
-            class="required-label"
-            style="margin-bottom: 10px;">
-            Làn ra
-          </label>
-          <nz-select 
-            id="exitLogLane"
-            formControlName="exitLaneId"
-            style="width: 100%; border-radius: 8px;"
-            nzNotFoundContent="Không có làn ra hợp lệ"
-            nzAllowClear="true">
-            <nz-option 
-              *ngFor="let lane of filteredExitLanes" 
-              [nzValue]="lane.id" 
-              [nzLabel]="lane.name">
-            </nz-option>
-          </nz-select>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'exitLogLane'" [nzRequired]="true">Làn ra</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              id="exitLogLane"
+              formControlName="exitLaneId"
+              style="width: 100%; border-radius: 8px;"
+              nzNotFoundContent="Không có làn ra hợp lệ"
+              nzAllowClear="true"
+            >
+              <nz-option
+                *ngFor="let lane of filteredExitLanes"
+                [nzValue]="lane.id"
+                [nzLabel]="lane.name"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="24">
-        <div class="form-group">
-          <label 
-            for="exitLogNote" 
-            class="required-label"
-            style="margin-bottom: 10px;">
-            Ghi chú
-          </label>
-          <textarea 
-            nz-input 
-            formControlName="note" 
-            rows="2" 
-            style="border-radius: 8px; margin-bottom: 1cap;">
-          </textarea>
-        </div>
+        <nz-form-item>
+          <nz-form-label [nzFor]="'exitLogNote'">Ghi chú</nz-form-label>
+          <nz-form-control>
+            <textarea
+              id="exitLogNote"
+              nz-input
+              formControlName="note"
+              rows="2"
+              style="border-radius: 8px; margin-bottom: 1cap;"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
   </form>

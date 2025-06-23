@@ -250,7 +250,7 @@ export class EntryLogsComponent implements OnInit{
 
   loadExitLogs(){
     this.exitLogService.getExitLogs().subscribe(data => {
-      console.log('Exit logs loaded: ', data)
+      this.entryLogs = data;
     });
   }
 
@@ -439,7 +439,7 @@ export class EntryLogsComponent implements OnInit{
 
         this.notification.success(
           'Thành công',
-          'Ghi vé vào thành công',
+          '',
           {
             nzPlacement: 'topRight',
             nzDuration: 3000
@@ -447,35 +447,48 @@ export class EntryLogsComponent implements OnInit{
         );
       },
       error: (error) => {
-        console.error('Lỗi khi ghi vé vào:', error);
-        
-        const message = error?.error?.message || error?.message || '';
         let errorMessage = 'Có lỗi xảy ra khi ghi vé vào';
         
-        if (message.includes('Invalid plate number format')) {
+        if (error?.error?.message) {
+          errorMessage = error.error.message;
+        } else if (error?.error?.error) {
+          errorMessage = error.error.error;
+        } else if (error?.error && typeof error.error === 'string') {
+          errorMessage = error.error;
+        } else if (error?.message) {
+          errorMessage = error.message;
+        }
+        
+        if (errorMessage.includes('Invalid plate number format')) {
           errorMessage = 'Vui lòng nhập đúng định dạng biển số, ví dụ: "29M14838"';
-        } else if (message.includes('Card not found')) {
+        } else if (errorMessage.includes('Card not found')) {
           errorMessage = 'Không tìm thấy thẻ';
-        } else if (message.includes('Card is locked')) {
+        } else if (errorMessage.includes('Card is locked')) {
           errorMessage = 'Thẻ bị khóa';
-        } else if (message.includes('Card is not active')) {
+        } else if (errorMessage.includes('Card is not active')) {
           errorMessage = 'Thẻ không hoạt động';
-        } else if (message.includes('Card group not found for the selected card group')) {
+        } else if (errorMessage.includes('Card group not found')) {
           errorMessage = 'Không tìm thấy nhóm thẻ cho thẻ đã chọn';
-        } else if (message.includes('Card group is not active')) {
+        } else if (errorMessage.includes('Card group is not active')) {
           errorMessage = 'Nhóm thẻ không hoạt động';
-        } else if (message.includes('Lane is not allowed for the selected card group.')) {
-          errorMessage = 'Nhóm thẻ không được sử dụng làn';
-        } else if (message.includes('Lane not found')) {
+        } else if (errorMessage.includes('Lane is not allowed')) {
+          errorMessage = 'Nhóm thẻ không được sử dụng làn này';
+        } else if (errorMessage.includes('Lane not found')) {
           errorMessage = 'Không tìm thấy làn';
-        } else if (message.includes('Lane is not active')) {
+        } else if (errorMessage.includes('Lane is not active')) {
           errorMessage = 'Làn không hoạt động';
-        } else if (message.includes('Card already in use - vehicle has not exited')) {
+        } else if (errorMessage.includes('Card already in use')) {
           errorMessage = 'Thẻ đang được sử dụng - xe chưa ra khỏi bãi';
-        } else if (message.includes('Plate number is already in the parking lot')) {
+        } else if (errorMessage.includes('Plate number is already in the parking lot')) {
           errorMessage = 'Biển số xe đã có trong bãi đỗ';
-        } else if (message) {
-          errorMessage = message;
+        } else if (errorMessage.includes('Plate number is required')) {
+          errorMessage = 'Vui lòng nhập biển số xe';
+        } else if (errorMessage.includes('The card has no valid usage period')) {
+          errorMessage = 'Thẻ không có hiệu lực sử dụng';
+        } else if (errorMessage.includes('The card has expired')) {
+          errorMessage = 'Thẻ đã hết hạn';
+        } else if (errorMessage.includes('Http failure response')) {
+          errorMessage = 'Lỗi kết nối đến server';
         }
 
         this.notification.error(
@@ -483,7 +496,7 @@ export class EntryLogsComponent implements OnInit{
           errorMessage,
           {
             nzPlacement: 'topRight',
-            nzDuration: 5000
+            nzDuration: 3000
           }
         );
       }
@@ -520,7 +533,7 @@ export class EntryLogsComponent implements OnInit{
         
         this.notification.success(
           'Thành công',
-          'Ghi vé ra thành công',
+          '',
           {
             nzPlacement: 'topRight',
             nzDuration: 3000
@@ -528,29 +541,56 @@ export class EntryLogsComponent implements OnInit{
         );
       },
       error: (error) => {
-        console.error('Lỗi khi ghi vé ra:', error);
-        
-        const message = error?.error?.message || error?.message || '';
         let errorMessage = 'Có lỗi xảy ra khi ghi vé ra';
-
-        if (message.includes('Entry log not found')) {
+        
+        if (error?.error?.message) {
+          errorMessage = error.error.message;
+        } else if (error?.error?.error) {
+          errorMessage = error.error.error;
+        } else if (error?.error && typeof error.error === 'string') {
+          errorMessage = error.error;
+        } else if (error?.message) {
+          errorMessage = error.message;
+        }
+        
+        if (errorMessage.includes('Invalid plate number format')) {
+          errorMessage = 'Vui lòng nhập đúng định dạng biển số, ví dụ: "29M14838"';
+        } else if (errorMessage.includes('Entry log not found')) {
           errorMessage = 'Không tìm thấy vé vào';
-        } else if (message.includes('Card not found')) {
+        } else if (errorMessage.includes('Card not found')) {
           errorMessage = 'Không tìm thấy thẻ';
-        } else if (message.includes('Card is not active')) {
+        } else if (errorMessage.includes('Card is locked')) {
+          errorMessage = 'Thẻ bị khóa';
+        } else if (errorMessage.includes('Card is not active')) {
           errorMessage = 'Thẻ không hoạt động';
-        } else if (message.includes('Card group not found')) {
-          errorMessage = 'Không tìm thấy nhóm thẻ';
-        } else if (message.includes('Card group is not active')) {
+        } else if (errorMessage.includes('Card group not found')) {
+          errorMessage = 'Không tìm thấy nhóm thẻ cho thẻ đã chọn';
+        } else if (errorMessage.includes('Card group is not active')) {
           errorMessage = 'Nhóm thẻ không hoạt động';
-        } else if (message.includes('Exit lane is not allowed for this card group')) {
-          errorMessage = 'Nhóm thẻ không được sử dụng làn';
-        } else if (message.includes('Exit lane is invalid or inactive')) {
+        } else if (errorMessage.includes('Exit lane is not allowed for this card group')) {
+          errorMessage = 'Nhóm thẻ không được sử dụng làn này';
+        } else if (errorMessage.includes('Lane is not allowed')) {
+          errorMessage = 'Nhóm thẻ không được sử dụng làn này';
+        } else if (errorMessage.includes('Exit lane is invalid or inactive')) {
           errorMessage = 'Làn ra không hoạt động';
-        } else if (message.includes('Entry lane is invalid or inactive')) {
+        } else if (errorMessage.includes('Lane not found')) {
+          errorMessage = 'Không tìm thấy làn';
+        } else if (errorMessage.includes('Lane is not active')) {
+          errorMessage = 'Làn không hoạt động';
+        } else if (errorMessage.includes('Entry lane is invalid or inactive')) {
           errorMessage = 'Làn vào không hoạt động';
-        } else if (message) {
-          errorMessage = message;
+        } else if (errorMessage.includes('Card already in use')) {
+          errorMessage = 'Thẻ đang được sử dụng - xe chưa ra khỏi bãi';
+        } else if (errorMessage.includes('Plate number is already in the parking lot')) {
+          errorMessage = 'Biển số xe đã có trong bãi đỗ';
+        } else if (errorMessage.includes('Plate number is required')) {
+          errorMessage = 'Vui lòng nhập biển số xe';
+        } else if (errorMessage.includes('The card has no valid usage period')) {
+          errorMessage = 'Thẻ không có hiệu lực sử dụng';
+        } else if (errorMessage.includes('The card has expired')) {
+          errorMessage = 'Thẻ đã hết hạn';
+        } else if (errorMessage.includes('Http failure response')) {
+          errorMessage = 'Lỗi kết nối đến server';
         }
 
         this.notification.error(
@@ -558,7 +598,7 @@ export class EntryLogsComponent implements OnInit{
           errorMessage,
           {
             nzPlacement: 'topRight',
-            nzDuration: 5000
+            nzDuration: 3000
           }
         );
       }

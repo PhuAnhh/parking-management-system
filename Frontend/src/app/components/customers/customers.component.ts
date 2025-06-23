@@ -8,6 +8,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { CardGroupType } from '../../cores/enums/card-group-type';
 
 enum CardStatus {
   LOCKED = 'Locked',
@@ -367,7 +368,6 @@ export class CustomersComponent {
     });
   }
 
-  // Phương thức quản lý thẻ cho khách hàng
   showCustomerCards(customer: any) {
     this.selectedCustomer = customer;
     this.loadCustomerCards(customer.id);
@@ -377,24 +377,18 @@ export class CustomersComponent {
   loadCustomerCards(customerId: number) {
     this.cardService.getCards().subscribe(
       (cards: any[]) => {
-        console.log("Tất cả thẻ từ API:", cards);
-        console.log("Lọc thẻ cho khách hàng ID:", customerId);
         
-        // Lấy tất cả thẻ của khách hàng này, bất kể trạng thái nào
         this.customerCards = cards.filter(card => card.customerId === customerId);
-        console.log("Danh sách thẻ của khách hàng sau khi lọc:", this.customerCards);
-  
-        const assignedCardIds = this.customerCards.map(card => card.id);
+          
+        this.availableCards = cards.filter(card => {
+          const cardGroup = this.cardGroups.find(g => g.id === card.cardGroupId);
+          return cardGroup && 
+                cardGroup.type === 'Month' && 
+                (!card.customerId || card.customerId === null);
+        });
+
+        console.log("Danh sách thẻ tháng có thể gán:", this.availableCards);
         
-        // Lọc các thẻ có thể được gán cho khách hàng
-        this.availableCards = cards.filter(card => 
-          // Thẻ chưa được gán cho khách hàng nào
-          (!card.customerId || card.customerId === null) || 
-          // HOẶC thẻ đã được gán cho khách hàng khác nhưng inactive
-          (card.customerId !== customerId && card.status === CardStatus.INACTIVE && !assignedCardIds.includes(card.id))
-        );
-        
-        // Đảm bảo UI được cập nhật
         this.cdr.detectChanges();
       },
       (error) => {
@@ -461,18 +455,15 @@ export class CustomersComponent {
   
     this.cardService.updateCard(cardId, updatedCard).subscribe(
       (response) => {
-        // Đóng modal trước
         this.isAddCardModalVisible = false;
         this.cardForm.reset();
         
-        // Thông báo thành công
         this.notification.success(
           'Thành công',
           'Đã gán thẻ cho khách hàng',
           {nzDuration: 3000}
         );
         
-        // Quan trọng: Tải lại toàn bộ danh sách thẻ để đảm bảo đồng bộ
         this.loadCustomerCards(this.selectedCustomer.id);
       },
       (error) => {
@@ -507,14 +498,12 @@ export class CustomersComponent {
   
         this.cardService.updateCard(cardId, updatedCard).subscribe(
           (response) => {
-            // Thông báo thành công
             this.notification.success(
               'Thành công',
               'Đã hủy liên kết thẻ',
               {nzDuration: 3000}
             );
             
-            // Quan trọng: Tải lại toàn bộ danh sách thẻ để đảm bảo đồng bộ
             this.loadCustomerCards(this.selectedCustomer.id);
           },
           (error) => {

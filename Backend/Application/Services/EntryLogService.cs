@@ -118,7 +118,7 @@ namespace Final_year_Project.Application.Services
             createEntryLogDto.PlateNumber = StandardizePlateNumber(createEntryLogDto.PlateNumber);
 
             if (!IsValidPlateNumberFormat(createEntryLogDto.PlateNumber))
-                throw new ArgumentException("Invalid plate number format. Expected format is like '30A12345'.");
+                throw new ArgumentException("Invalid plate number format. Expected format is like 30A12345.");
 
 
             // 1. Lấy thông tin thẻ

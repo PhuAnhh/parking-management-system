@@ -75,9 +75,9 @@
                   <th>Tên</th>
                   <th>Mã</th>
                   <th>Nhóm thẻ</th>
-                  <th>Ghi chú</th>
                   <th>Ngày bắt đầu hiệu lực</th>
                   <th>Ngày hết hạn</th>
+                  <th>Ghi chú</th>
                   <th style="text-align: center;">Trạng thái</th>
                   <th style="width: 130px; min-width: 130px; text-align: center;"></th>
                 </tr>
@@ -91,9 +91,15 @@
                     {{ getCardGroupNameById(card.cardGroupId) }}
                     <span *ngIf="card.cardGroupId" style="color: #3f42549d; display: block; font-size: 12px;">{{getVehicleTypeByCardGroupId(card.cardGroupId)}}</span>
                   </td>
+                  <td>
+                    {{ getFormattedTime(card.startDate) | date:'dd/MM/yyyy' }}<br />
+                    {{ getFormattedTime(card.startDate) | date:'HH:mm' }}
+                  </td>
+                  <td>
+                    {{ getFormattedTime(card.endDate) | date:'dd/MM/yyyy' }}<br />
+                    {{ getFormattedTime(card.endDate) | date:'HH:mm' }}
+                  </td>
                   <td>{{ card.note }}</td>
-                  <td>{{ card.startDate | date:'dd/MM/yyyy' }}</td>
-                  <td>{{ card.endDate | date:'dd/MM/yyyy' }}</td>
                   <td style="text-align: center;">
                     <nz-tag [nzColor]="getStatusColor(card.status)" [ngStyle]="{'border-radius': '8px', 'font-size': '12px'}">
                       {{ getCardStatus(card.status)?.label || card.status }}
@@ -127,178 +133,245 @@
     </nz-card>
 </div>
   
-  <nz-modal 
-  [nzContent]="addCardTpl" 
-  [(nzVisible)]="isAddModalVisible" 
-  nzTitle="Thêm mới Thẻ"
-  nzOktext="Lưu" 
-  nzCancelText="Hủy bỏ" 
-  (nzOnCancel)="handleCancel()" 
-  (nzOnOk)="handleOk()"
-  [nzWidth]="600"
-  ></nz-modal>
-  <ng-template #addCardTpl>
-    <form [formGroup]="cardForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="cardName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="cardCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
+<nz-modal 
+[nzContent]="addCardTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Thẻ"
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()"
+[nzWidth]="600"
+></nz-modal>
+
+<ng-template #addCardTpl>
+  <form [formGroup]="cardForm" nz-form [nzLayout]="'vertical'">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardName'" [nzRequired]="true">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="cardName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardStartDate" style="margin-bottom: 10px;">Ngày bắt đầu hiệu lực</label>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardCode'" [nzRequired]="true">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="cardCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardCardGroupId'" [nzRequired]="true">Nhóm thẻ</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              id="cardCardGroupId"
+              formControlName="cardGroupId"
+              style="width: 100%; border-radius: 8px;"
+              nzAllowClear="true"
+            >
+              <nz-option
+                *ngFor="let cardGroup of cardGroups"
+                [nzValue]="cardGroup.id"
+                [nzLabel]="cardGroup.name"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardStatus'">Trạng thái</nz-form-label>
+          <nz-form-control>
+            <nz-select id="cardStatus" formControlName="status" style="width: 100%;">
+              <nz-option
+                *ngFor="let status of cardStatuses"
+                [nzValue]="status.value"
+                [nzLabel]="status.label"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16" *ngIf="isMonthlyCardGroup(cardForm.value.cardGroupId)">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardStartDate'" [nzRequired]="true">Ngày bắt đầu hiệu lực</nz-form-label>
+          <nz-form-control>
             <nz-date-picker
               id="cardStartDate"
               formControlName="startDate"
               style="width: 100%; border-radius: 8px;"
               nzFormat="dd/MM/yyyy HH:mm:ss"
             ></nz-date-picker>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardEndDate" style="margin-bottom: 10px;">Ngày hết hạn
-              <span *ngIf="cardForm.get('endDate')?.value" style="color: red">
-                (HSD: {{ getHsdLabel(cardForm.get('endDate')?.value) }})
-              </span>
-            </label>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardEndDate'" [nzRequired]="true">Ngày hết hạn</nz-form-label>
+          <nz-form-control>
             <nz-date-picker
               id="cardEndDate"
               formControlName="endDate"
               style="width: 100%; border-radius: 8px;"
               nzFormat="dd/MM/yyyy HH:mm:ss"
             ></nz-date-picker>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
+    </div>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardCardGroupId" class="required-label" style="margin-bottom: 10px;">Nhóm thẻ</label>
-            <nz-select formControlName="cardGroupId" style="width: 100%; border-radius: 8px;">
-                <nz-option *ngFor="let cardGroup of cardGroups" [nzValue]="cardGroup.id" [nzLabel]="cardGroup.name"></nz-option>
-              </nz-select>  
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardStatus" style="margin-bottom: 10px;">Trạng thái</label>
-            <nz-select id="cardStatus" formControlName="status" style="width: 100%;">
-                <nz-option *ngFor="let status of cardStatuses" [nzValue]="status.value" [nzLabel]="status.label"></nz-option>
-              </nz-select>
-          </div>
-        </div>
-      </div>
-      
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="24">
-          <div class="form-group">
-            <label for="cardNote" style="margin-bottom: 10px;">Ghi chú</label>
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="24">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardNote'">Ghi chú</nz-form-label>
+          <nz-form-control>
             <nz-textarea-count [nzMaxCharacterCount]="100">
-              <textarea id="cardNote" formControlName="note" nz-input [nzAutosize]="{ minRows: 3, maxRows: 5}" style="width: 100%; border-radius: 8px;"></textarea>
+              <textarea
+                id="cardNote"
+                formControlName="note"
+                nz-input
+                [nzAutosize]="{ minRows: 2, maxRows: 5 }"
+                style="width: 100%; border-radius: 8px;"
+              ></textarea>
             </nz-textarea-count>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    </form>
-  </ng-template>
-  
-  <nz-modal 
-  [nzContent]="editCardTpl" 
-  [(nzVisible)]="isEditModalVisible" 
-  nzTitle="Cập nhật Thẻ"
-  nzOktext="Lưu" 
-  nzCancelText="Hủy bỏ" 
-  (nzOnCancel)="handleEditCancel()" 
-  (nzOnOk)="handleEditOk()"
-  [nzWidth]="600"
-  ></nz-modal>
-  <ng-template #editCardTpl>
-    <form [formGroup]="editCardForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="cardName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="cardCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
+    </div>
+  </form>
+</ng-template>
+
+
+<nz-modal 
+[nzContent]="editCardTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Thẻ"
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+[nzWidth]="600"
+></nz-modal>
+
+<ng-template #editCardTpl>
+  <form [formGroup]="editCardForm" nz-form [nzLayout]="'vertical'"> 
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardName'" [nzRequired]="true">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="cardName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardStartDate" style="margin-bottom: 10px;">Ngày bắt đầu hiệu lực</label>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardCode'" [nzRequired]="true">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="cardCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardCardGroupId'" [nzRequired]="true">Nhóm thẻ</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              id="cardCardGroupId"
+              formControlName="cardGroupId"
+              style="width: 100%; border-radius: 8px;"
+              nzAllowClear="true"
+            >
+              <nz-option
+                *ngFor="let cardGroup of cardGroups"
+                [nzValue]="cardGroup.id"
+                [nzLabel]="cardGroup.name"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardStatus'">Trạng thái</nz-form-label>
+          <nz-form-control>
+            <nz-select id="cardStatus" formControlName="status" style="width: 100%;">
+              <nz-option
+                *ngFor="let status of cardStatuses"
+                [nzValue]="status.value"
+                [nzLabel]="status.label"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16" *ngIf="isMonthlyCardGroup(editCardForm.value.cardGroupId)">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardStartDate'" [nzRequired]="true">Ngày bắt đầu hiệu lực</nz-form-label>
+          <nz-form-control>
             <nz-date-picker
               id="cardStartDate"
               formControlName="startDate"
               style="width: 100%; border-radius: 8px;"
               nzFormat="dd/MM/yyyy HH:mm:ss"
             ></nz-date-picker>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardEndDate" style="margin-bottom: 10px;">Ngày hết hạn
-              <span *ngIf="cardForm.get('endDate')?.value" style="color: red">
-                (HSD: {{ getHsdLabel(cardForm.get('endDate')?.value) }})
-              </span>
-            </label>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardEndDate'" [nzRequired]="true">Ngày hết hạn</nz-form-label>
+          <nz-form-control>
             <nz-date-picker
               id="cardEndDate"
               formControlName="endDate"
               style="width: 100%; border-radius: 8px;"
               nzFormat="dd/MM/yyyy HH:mm:ss"
             ></nz-date-picker>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardCardGroupId" class="required-label" style="margin-bottom: 10px;">Nhóm thẻ</label>
-            <nz-select formControlName="cardGroupId" style="width: 100%; border-radius: 8px;">
-                <nz-option *ngFor="let cardGroup of cardGroups" [nzValue]="cardGroup.id" [nzLabel]="cardGroup.name"></nz-option>
-              </nz-select>  
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cardStatus" style="margin-bottom: 10px;">Trạng thái</label>
-            <nz-select id="cardStatus" formControlName="status" style="width: 100%;">
-                <nz-option *ngFor="let status of cardStatuses" [nzValue]="status.value" [nzLabel]="status.label"></nz-option>
-              </nz-select>
-          </div>
-        </div>
-      </div>
-      
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="24">
-          <div class="form-group">
-            <label for="cardNote" style="margin-bottom: 10px;">Ghi chú</label>
+    </div>
+    
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="24">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardNote'">Ghi chú</nz-form-label>
+          <nz-form-control>
             <nz-textarea-count [nzMaxCharacterCount]="100">
-              <textarea id="cardNote" formControlName="note" nz-input [nzAutosize]="{ minRows: 3, maxRows: 5}" style="width: 100%; border-radius: 8px;"></textarea>
+              <textarea
+                id="cardNote"
+                formControlName="note"
+                nz-input
+                [nzAutosize]="{ minRows: 2, maxRows: 5 }"
+                style="width: 100%; border-radius: 8px;"
+              ></textarea>
             </nz-textarea-count>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    </form>
-  </ng-template>
+    </div>
+  </form>
+</ng-template>

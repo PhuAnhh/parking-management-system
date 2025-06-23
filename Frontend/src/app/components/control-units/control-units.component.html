@@ -12,269 +12,325 @@
   </div>
 </nz-breadcrumb>
 <div class="inner-content">
-
-    <nz-card class="ant-card card-wrapper-content ant-card-bordered">
-        <div class="ant-card-body" style="padding: 24px 0px;"> 
-            <nz-row class="ant-row filter-row " style="margin: -12px -6px;">
-                <nz-col nzxl="8" nzlg="8" nzmd="12" nzsm="24" nzxs="24" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-8" style="padding: 12px 6px;">
-                    <fieldset>
-                      <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
-                      <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
-                          <span class="ant-input-wrapper ant-input-group">
-                              <input type="text" nz-input id="keyword" class="ant-input" 
-                                    placeholder="Từ khóa..." 
-                                    [(ngModel)]="searchKeyword"
-                                    (keyup.enter)="onSearch()">
-                              <span nz-input-group-slot type="addon" class="ant-input-group-addon">
-                                  <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
-                                      <span nz-icon nzType="search" class="anticon"></span>
-                                  </button>
-                              </span>
-                          </span>
-                      </nz-input-group>
-                  </fieldset>
-                </nz-col>
-                <nz-col nzxl="16" nzlg="16" nzmd="12" nzsm="24" nzxs="24" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
-                    <table-action>
-                        <div nz-row class="ant-row">  
-                            <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
-                                <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap " style="width: 100%; height: 100%; gap: 6px; flex: unset;">
-                                    <button (click)="loadControlUnits()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
-                                      <span nz-icon class="anticon">
-                                            <fa-icon class="ng-fa-icon">
-                                                <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
-                                            </fa-icon>
-                                        </span>
-                                        <span class="">Tải lại</span>
-                                    </button> 
-                                    <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
-                                    <button *ngIf="loginService.hasPermission('POST:/api/controlunit')" (click)="showAddControlUnitModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
-                                      <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
-                                      <span>Thêm mới</span>
-                                  </button>
-                                </div>
-                            </div>
-                        </div>
-                    </table-action>
-                </nz-col>
-            </nz-row>
-            <nz-table
-              #controlUnitTable
-              [nzData]="controlUnits"
-              [nzTotal]="total"
-              [nzPageSize]="pageSize"
-              [nzPageIndex]="pageIndex"
-              [nzLoading]="loading"
-              [nzFrontPagination]="false"
-              [nzShowSizeChanger]="true"
-              [nzPageSizeOptions]="[10, 20, 30, 40]"
-              [nzShowTotal]="paginationTemplate"
-              (nzQueryParams)="onQueryParamsChange($event)"
-            >
-              <thead>
-                <tr>
-                  <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
-                  <th>Tên</th>
-                  <th>Mã</th>
-                  <th>Cổng COM/IP</th>
-                  <th>Loại</th>
-                  <th>Máy tính</th>
-                  <th style="width: 60px; min-width: 60px; text-align: center;">TT</th>
-                  <th style="width: 130px; min-width: 130px; text-align: center;"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let controlUnit of controlUnits; let i = index">
-                  <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
-                  <td>{{ controlUnit.name }}</td>
-                  <td>{{ controlUnit.code }}</td>
-                  <td style="color: #006c9c;">{{ controlUnit.comport }}</td>
-                  <td>
-                    <nz-tag *ngIf="getControlUnitType(controlUnit.type) as opt" [nzColor]="opt.color" style="border-radius: 8px; font-size: 12px;">
-                      {{opt.label}}
-                    </nz-tag>
-                  </td>
-                  <td>{{ getComputerNameById(controlUnit.computerId) }}</td>
-                  <td style="text-align: center;">
-                    <i *ngIf="controlUnit.status; else falseIcon" nz-icon nzType="check-circle" class="icon-green" style="font-size: 18px;"></i>
-                    <ng-template #falseIcon>
-                      <i nz-icon nzType="close-circle" class="icon-red" style="font-size: 18px;"></i>
-                    </ng-template>
-                  </td>
-                  <td style="text-align: center;">
-                    <button *ngIf="loginService.hasPermission('PUT:/api/controlunit/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateControlUnit(controlUnit.id)">
-                      <span nz-icon nzType="edit" nzTheme="outline"></span>
-                    </button>
-                    <button *ngIf="loginService.hasPermission('DELETE:/api/controlunit/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteControlUnit(controlUnit.id)">
-                      <span nz-icon nzType="delete" nzTheme="outline"></span>
-                    </button>
-                    <button *ngIf="loginService.hasPermission('PATCH:/api/controlunit/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="controlUnit.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleControlUnitStatus(controlUnit.id)">
-                      <span nz-icon [nzType]="controlUnit.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-              <ng-template #paginationTemplate>
-                Tổng số {{ total }} dữ liệu
-              </ng-template>
-            </nz-table>
-        </div>
-    </nz-card>
+  <nz-card class="ant-card card-wrapper-content ant-card-bordered">
+      <div class="ant-card-body" style="padding: 24px 0px;"> 
+          <nz-row class="ant-row filter-row " style="margin: -12px -6px;">
+              <nz-col nzxl="8" nzlg="8" nzmd="12" nzsm="24" nzxs="24" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-8" style="padding: 12px 6px;">
+                  <fieldset>
+                    <label for="keyword" class="input-label" style="color: #0c68e9;">Từ khóa</label>
+                    <nz-input-group nzsearch class="ant-input-search ant-input-group-wrapper">
+                        <span class="ant-input-wrapper ant-input-group">
+                            <input type="text" nz-input id="keyword" class="ant-input" 
+                                  placeholder="Từ khóa..." 
+                                  [(ngModel)]="searchKeyword"
+                                  (keyup.enter)="onSearch()">
+                            <span nz-input-group-slot type="addon" class="ant-input-group-addon">
+                                <button nz-button nzType="primary" (click)="onSearch()" class="ant-btn ant-btn-primary ant-btn-icon-only">
+                                    <span nz-icon nzType="search" class="anticon"></span>
+                                </button>
+                            </span>
+                        </span>
+                    </nz-input-group>
+                </fieldset>
+              </nz-col>
+              <nz-col nzxl="16" nzlg="16" nzmd="12" nzsm="24" nzxs="24" class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-16 ant-col-xl-16" style="padding: 12px 6px;">
+                  <table-action>
+                      <div nz-row class="ant-row">  
+                          <div nz-col nzxl="24" nzlg="24" nzmd="0" nzsm="0" nzxs="0" class="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-24 ant-col-xl-24">
+                              <div nz-flex nzgap="6px" class="ant-flex wrapper-table-action ant-flex-justify-end ant-flex-align-center ant-flex-wrap-nowrap " style="width: 100%; height: 100%; gap: 6px; flex: unset;">
+                                  <button (click)="loadControlUnits()" nz-button nztype="text" class="ant-btn load-btn ant-btn-text">
+                                    <span nz-icon class="anticon">
+                                          <fa-icon class="ng-fa-icon">
+                                              <img src="../../../assets/images/logo/rotate-solid.svg" style="height: 14px; width: 14px;" alt="">                                
+                                          </fa-icon>
+                                      </span>
+                                      <span class="">Tải lại</span>
+                                  </button> 
+                                  <nz-divider class="ant-divider ant-divider-vertical "></nz-divider>
+                                  <button *ngIf="loginService.hasPermission('POST:/api/controlunit')" (click)="showAddControlUnitModal()" nz-button nztype="primary" class="ant-btn add-btn ant-btn-primary" style="display: flex; align-items: center;"> 
+                                    <span nz-icon nzType="plus" nzTheme="outline" class="anticon"></span>
+                                    <span>Thêm mới</span>
+                                </button>
+                              </div>
+                          </div>
+                      </div>
+                  </table-action>
+              </nz-col>
+          </nz-row>
+          <nz-table
+            #controlUnitTable
+            [nzData]="controlUnits"
+            [nzTotal]="total"
+            [nzPageSize]="pageSize"
+            [nzPageIndex]="pageIndex"
+            [nzLoading]="loading"
+            [nzFrontPagination]="false"
+            [nzShowSizeChanger]="true"
+            [nzPageSizeOptions]="[10, 20, 30, 40]"
+            [nzShowTotal]="paginationTemplate"
+            (nzQueryParams)="onQueryParamsChange($event)"
+          >
+            <thead>
+              <tr>
+                <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
+                <th>Tên</th>
+                <th>Mã</th>
+                <th>Cổng COM/IP</th>
+                <th>Loại</th>
+                <th>Máy tính</th>
+                <th style="width: 60px; min-width: 60px; text-align: center;">TT</th>
+                <th style="width: 130px; min-width: 130px; text-align: center;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let controlUnit of controlUnits; let i = index">
+                <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+                <td>{{ controlUnit.name }}</td>
+                <td>{{ controlUnit.code }}</td>
+                <td style="color: #006c9c;">{{ controlUnit.comport }}</td>
+                <td>
+                  <nz-tag *ngIf="getControlUnitType(controlUnit.type) as opt" [nzColor]="opt.color" style="border-radius: 8px; font-size: 12px;">
+                    {{opt.label}}
+                  </nz-tag>
+                </td>
+                <td>{{ getComputerNameById(controlUnit.computerId) }}</td>
+                <td style="text-align: center;">
+                  <i *ngIf="controlUnit.status; else falseIcon" nz-icon nzType="check-circle" class="icon-green" style="font-size: 18px;"></i>
+                  <ng-template #falseIcon>
+                    <i nz-icon nzType="close-circle" class="icon-red" style="font-size: 18px;"></i>
+                  </ng-template>
+                </td>
+                <td style="text-align: center;">
+                  <button *ngIf="loginService.hasPermission('PUT:/api/controlunit/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateControlUnit(controlUnit.id)">
+                    <span nz-icon nzType="edit" nzTheme="outline"></span>
+                  </button>
+                  <button *ngIf="loginService.hasPermission('DELETE:/api/controlunit/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only " (click)="deleteControlUnit(controlUnit.id)">
+                    <span nz-icon nzType="delete" nzTheme="outline"></span>
+                  </button>
+                  <button *ngIf="loginService.hasPermission('PATCH:/api/controlunit/{id}/status')" nz-button class="ant-btn ant-btn-icon-only" [ngClass]="controlUnit.status ? 'enabled-btn' : 'disabled-btn'" (click)="toggleControlUnitStatus(controlUnit.id)">
+                    <span nz-icon [nzType]="controlUnit.status ? 'lock' : 'unlock'" nzTheme="outline"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <ng-template #paginationTemplate>
+              Tổng số {{ total }} dữ liệu
+            </ng-template>
+          </nz-table>
+      </div>
+  </nz-card>
 </div>
   
 
-  <nz-modal [nzContent]="addControlUnitTpl" [(nzVisible)]="isAddModalVisible" nzTitle="Thêm mới Bộ điều khiển" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"></nz-modal>
-  <ng-template #addControlUnitTpl>
-    <form [formGroup]="controlUnitForm">
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="controlUnitName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="controlUnitCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
-      </div>
+<nz-modal 
+[nzContent]="addControlUnitTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Bộ điều khiển" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()"
+></nz-modal>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitUsername" class="required-label" style="margin-bottom: 10px;">Tài khoản</label>
-            <input id="controlUnitUsername" nz-input formControlName="username" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitPassword" class="required-label" style="margin-bottom: 10px;">Mật khẩu</label>
-            <input id="controlUnitPassword" nz-input formControlName="password" style="border-radius: 8px;"/>
-          </div>
-        </div>
+<ng-template #addControlUnitTpl>
+  <form [formGroup]="controlUnitForm" nz-form nzLayout="vertical">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitName">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitCode">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
 
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitType" style="margin-bottom: 10px;">Loại</label>
-            <nz-select id="controlUnitType" formControlName="type" style="width: 100%;">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitUsername">Tài khoản</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitUsername" nz-input formControlName="username" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitPassword">Mật khẩu</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitPassword" nz-input formControlName="password" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="controlUnitType">Loại</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="type" style="width: 100%;">
               <nz-option *ngFor="let type of controlUnitTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitConnectionProtocol" style="margin-bottom: 10px;">Giao thức</label>
-            <nz-select id="controlUnitConnectionProtocol" formControlName="connectionProtocol" style="width: 100%;">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="controlUnitConnectionProtocol">Giao thức</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="connectionProtocol" style="width: 100%;">
               <nz-option *ngFor="let type of controlUnitConnectionProtocolTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraComport" style="margin-bottom: 10px;">Cổng COM/IP</label>
-            <input id="cameraComport" nz-input formControlName="comport" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraBaudrate" style="margin-bottom: 10px;">Baudrate</label>
-            <input id="cameraBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;"/>
-          </div>
-        </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraComport">Cổng COM/IP</nz-form-label>
+          <nz-form-control>
+            <input id="cameraComport" nz-input formControlName="comport" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-      
-      <div class="form-group">
-        <label for="controlUnitComputerId" class="required-label" style="margin-bottom: 10px; width: 100%;">Máy tính</label>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraBaudrate">Baudrate</nz-form-label>
+          <nz-form-control>
+            <input id="cameraBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="controlUnitComputerId">Máy tính</nz-form-label>
+      <nz-form-control>
         <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
           <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
         </nz-select>
-      </div>
-    </form>
-  </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-template>
 
-<nz-modal [nzContent]="editControlUnitTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Camera" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
-  <ng-template #editControlUnitTpl>
-    <form [formGroup]="editControlUnitForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="controlUnitName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="controlUnitCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
-      </div>
+<nz-modal 
+[nzContent]="editControlUnitTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Camera" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+></nz-modal>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitUsername" class="required-label" style="margin-bottom: 10px;">Tài khoản</label>
-            <input id="controlUnitUsername" nz-input formControlName="username" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="controlUnitPassword" class="required-label" style="margin-bottom: 10px;">Mật khẩu</label>
-            <input id="controlUnitPassword" nz-input formControlName="password" style="border-radius: 8px;"/>
-          </div>
-        </div>
+<ng-template #editControlUnitTpl>
+  <form [formGroup]="editControlUnitForm" nz-form nzLayout="vertical">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitName">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitName" nz-input formControlName="name" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitCode">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitCode" nz-input formControlName="code" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
 
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraType" style="margin-bottom: 10px;">Loại</label>
-            <nz-select id="cameraType" formControlName="type" style="width: 100%;">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitUsername">Tài khoản</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitUsername" nz-input formControlName="username" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="controlUnitPassword">Mật khẩu</nz-form-label>
+          <nz-form-control>
+            <input id="controlUnitPassword" nz-input formControlName="password" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="controlUnitType">Loại</nz-form-label>
+          <nz-form-control>
+            <nz-select id="controlUnitType" formControlName="type" style="width: 100%;">
               <nz-option *ngFor="let type of controlUnitTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraConnectionProtocol" style="margin-bottom: 10px;">Giao thức</label>
-            <nz-select id="cameraConnectionProtocol" formControlName="connectionProtocol" style="width: 100%;">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="controlUnitConnectionProtocol">Giao thức</nz-form-label>
+          <nz-form-control>
+            <nz-select id="controlUnitConnectionProtocol" formControlName="connectionProtocol" style="width: 100%;">
               <nz-option *ngFor="let type of controlUnitConnectionProtocolTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraComport" style="margin-bottom: 10px;">Cổng COM/IP</label>
-            <input id="cameraComport" nz-input formControlName="comport" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="cameraBaudrate" style="margin-bottom: 10px;">Baudrate</label>
-            <input id="cameraBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;"/>
-          </div>
-        </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraComport">Cổng COM/IP</nz-form-label>
+          <nz-form-control>
+            <input id="cameraComport" nz-input formControlName="comport" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-    
-          <div class="form-group">
-            <label for="controlUnitComputerId" class="required-label" style="margin-bottom: 10px; width: 100%;">Máy tính</label>
-            <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
-              <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
-            </nz-select>
-          </div>
-          <div class="form-group">
-            <label for="gateStatus" style="margin-bottom: 10px;">Kích hoạt:</label>
-            <label nz-checkbox formControlName="status" style="margin-left: 10px;"></label>
-          </div>
-    </form>
-  </ng-template> 
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="cameraBaudrate">Baudrate</nz-form-label>
+          <nz-form-control>
+            <input id="cameraBaudrate" nz-input formControlName="baudrate" style="border-radius: 8px;" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="controlUnitComputerId">Máy tính</nz-form-label>
+      <nz-form-control>
+        <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
+          <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <span style="margin-right: 8px;">Kích hoạt</span>
+        <label nz-checkbox formControlName="status"></label>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-template>

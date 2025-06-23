@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, ChangeDetectorRef} from '@angular/core';
 import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
 import { LoginService } from '../../services/login.service';
@@ -104,6 +104,34 @@ export class CardsComponent {
       endDate: [null],
       status: [CardStatus.INACTIVE, [Validators.required]]
     });
+
+    // Theo dõi thay đổi nhóm thẻ của form thêm mới
+    this.cardForm.get('cardGroupId')?.valueChanges.subscribe(cardGroupId => {
+      this.handleCardGroupChange(cardGroupId, this.cardForm);
+    });
+
+    // Theo dõi thay đổi nhóm thẻ của form chỉnh sửa
+    this.editCardForm.get('cardGroupId')?.valueChanges.subscribe(cardGroupId => {
+      this.handleCardGroupChange(cardGroupId, this.editCardForm);
+    });
+  }
+
+  handleCardGroupChange(cardGroupId: number, form: FormGroup) {
+    const group = this.cardGroups.find(g => g.id === cardGroupId);
+    const isMonth = group?.type === 'Month';
+
+    // Nếu không phải thẻ tháng thì reset hiệu lực
+    if (!isMonth) {
+      form.patchValue({
+        startDate: null,
+        endDate: null,
+      });
+    }
+  }
+
+  isMonthlyCardGroup(cardGroupId: number | null): boolean {
+    const group = this.cardGroups.find(g => g.id === cardGroupId);
+    return group?.type === 'Month';
   }
 
   loadCards(searchKeyword: string = '') {
@@ -419,14 +447,8 @@ export class CardsComponent {
     });
   }
 
-  getHsdLabel(end: Date | string | null): string {
-    if (!end) return '';
-    const now = new Date();
-    const endDate = new Date(end);
-    const diff = Math.floor((endDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    if (diff <= 0) return 'đã hết hạn';
-
-    const m = Math.floor(diff / 30), d = diff % 30;
-    return [m && `${m} tháng`, d && `${d} ngày`].filter(Boolean).join(' ');
+  getFormattedTime(utcTimeString: string): Date | null {
+    if (!utcTimeString) return null;
+    return new Date(utcTimeString + 'Z');
   }
 }

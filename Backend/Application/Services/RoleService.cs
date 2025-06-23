@@ -49,7 +49,6 @@ namespace Final_year_Project.Application.Services
                 }
             }
 
-            // Create role
             var role = new Role
             {
                 Name = createRoleDto.Name,
@@ -61,7 +60,6 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.Roles.CreateAsync(role);
             await _unitOfWork.SaveChangesAsync();
 
-            // Assign permissions to role
             foreach (var permissionId in createRoleDto.PermissionIds)
             {
                 var rolePermission = new RolePermission
@@ -77,7 +75,6 @@ namespace Final_year_Project.Application.Services
 
             await _unitOfWork.SaveChangesAsync();
 
-            // Return created role with permissions
             var createdRole = await _unitOfWork.Roles.GetByIdWithPermissionsAsync(role.Id);
             return MapToRoleDto(createdRole!);
         }
@@ -99,7 +96,6 @@ namespace Final_year_Project.Application.Services
                 }
             }
 
-            // Update role
             role.Name = updateRoleDto.Name;
             role.Description = updateRoleDto.Description;
             role.UpdatedAt = DateTime.Now;

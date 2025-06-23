@@ -139,342 +139,374 @@
 </div>
 
 
-<nz-modal [nzContent]="addLaneTpl" [(nzVisible)]="isAddModalVisible" nzTitle="Thêm mới Làn" nzWidth="60vw" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"></nz-modal>
-  <ng-template #addLaneTpl>
-    <form [formGroup]="laneForm">
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneName" class="required-label" style="margin-bottom: 10px;">Tên</label>
+<nz-modal 
+[nzContent]="addLaneTpl" 
+[(nzVisible)]="isAddModalVisible" 
+nzTitle="Thêm mới Làn" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleCancel()" 
+(nzOnOk)="handleOk()"
+nzWidth="60vw"
+></nz-modal>
+
+<ng-template #addLaneTpl>
+  <form [formGroup]="laneForm" nz-form nzLayout="vertical">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneName">Tên</nz-form-label>
+          <nz-form-control>
             <input id="laneName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="laneCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneComputerId" class="required-label" style="margin-bottom: 10px;">Máy tính</label>
-            <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
-              <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name" style="border-radius: 8px;"></nz-option>
-            </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneType" class="required-label" style="margin-bottom: 10px;">Loại</label>
-            <nz-select id="laneType" formControlName="type" style="width: 100%;">
-              <nz-option *ngFor="let type of laneTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
-            </nz-select>
-          </div>
-        </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneCode">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="laneCode" nz-input formControlName="code" style="border-radius: 8px"/>
+          </nz-form-control>
+        </nz-form-item>
       </div>
+    </div>
 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneName" style="margin-bottom: 10px;">Làn đảo</label>
-            <nz-select formControlName="reverseLane" style="width: 100%;">
-              <nz-option *ngFor="let lane of lanes" [nzValue]="lane.id" [nzLabel]="lane.name"></nz-option>
-            </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneAutoOpenBarrier" style="margin-bottom: 10px;">Tự động mở barrier</label>
-            <nz-select id="laneAutoOpenBarrier" formControlName="autoOpenBarrier" style="width: 100%;">
-              <nz-option
-                *ngFor="let type of laneAutoOpenBarrierOptions"
-                [nzValue]="type.value"
-                [nzLabel]="type.label"
-              >
-                <ng-template #customTemplate>
-                  <nz-badge
-                    [nzStatus]="type.status"
-                    [nzText]="type.label"
-                  ></nz-badge>
-                </ng-template>
-              </nz-option>
-            </nz-select>                            
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="laneLoop" style="margin-bottom: 10px;">Sử dụng loop:</label>
-        <label nz-checkbox formControlName="loop" style="margin-left: 10px;" ></label>
-      </div>
-
-      <div class="ant-row" style="margin-bottom: 10px;">
-        <div nz-col [nzSpan]="24" style="margin-bottom: -10px;">
-          <label>
-            <p nz-typography nzEllipsis>Camera</p>
-          </label>
-        </div>
-        <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 10px;">
-          <div nz-col [nzSpan]="7">Tên</div>
-          <div nz-col [nzSpan]="7">Mục đích</div>
-          <div nz-col [nzSpan]="7">Vị trí hiển thị</div>
-          <div nz-col [nzSpan]="2"></div>
-          <div nz-col [nzSpan]="1" class="text-right" style="background-color: unset;">
-            <button nz-button nzType="primary" nzShape="circle" (click)="addLaneCamera()" [disabled]="filteredCameras.length === 0">
-              <span nz-icon nzType="plus"></span>
-            </button> 
-          </div>
-        </div>
-      </div>
-
-      <div formArrayName="laneCameras">
-        <div [nzGutter]="12" *ngFor="let cameraGroup of laneCameras.controls; let i = index" [formGroupName]="i" nz-row style="margin-bottom: 10px;">
-          <div nz-col [nzSpan]="7">
-            <nz-select formControlName="cameraId" style="width: 100%" >
-              <nz-option *ngFor="let camera of filteredCameras" [nzValue]="camera.id" [nzLabel]="camera.name"></nz-option>
-            </nz-select>
-          </div>
-      
-          <div nz-col [nzSpan]="7">
-            <nz-select formControlName="purpose" style="width: 100%">
-              <nz-option *ngFor="let purpose of laneCameraPurposes" [nzValue]="purpose.value" [nzLabel]="purpose.label" style="border-radius: 8px;"></nz-option>
-            </nz-select>
-          </div>
-      
-          <div nz-col [nzSpan]="7">
-            <nz-select formControlName="displayPosition" style="width: 100%">
-              <nz-option *ngFor="let pos of displayPositions" [nzValue]="pos" [nzLabel]="pos" style="border-radius: 8px;"></nz-option>
-            </nz-select>
-          </div>
-
-          <div nz-col [nzSpan]="2"></div>
-      
-          <div nz-col [nzSpan]="1"  class="text-right" style="background-color: unset;">
-            <button nz-button nzType="primary" nzShape="circle" nzDanger (click)="removeLaneCamera(i)">
-              <span nz-icon nzType="minus"></span>
-            </button> 
-          </div>
-        </div>
-      </div>
-      
-      <div class="ant-row">
-        <div nz-col [nzSpan]="24">
-          <label style="font-weight: 500; margin-bottom: -10px;">
-            <p nz-typography nzEllipsis>Bộ điều khiển</p>
-          </label>
-        </div>
-        <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 20px;">
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Tên</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Reader</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Input</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Barrier</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Cảnh báo</div>
-        </div>
-      </div>
-
-      <div formArrayName="laneControlUnits">
-        <div *ngFor="let controlUnitGroup of laneControlUnits.controls; let i = index" [formGroupName]="i" style="margin-bottom: 10px;">
-          <div nz-row [nzGutter]="16" style="align-items: center; margin-bottom: 10px;" >
-            
-            <div nz-col nzFlex="1">
-              <input nz-input [value]="controlUnitGroup.get('name')?.value" readonly style="width: 100%; border-radius: 8px;">
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="reader" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="input" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="barrier" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="alarm" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </form>
-  </ng-template>
-
-
-
-
-<nz-modal [nzContent]="editLaneTpl" [(nzVisible)]="isEditModalVisible" nzTitle="Cập nhật Camera" nzWidth="60vw" nzOktext="Lưu" nzCancelText="Hủy bỏ" (nzOnCancel)="handleEditCancel()" (nzOnOk)="handleEditOk()"></nz-modal>
-  <ng-template #editLaneTpl>
-    <form [formGroup]="editLaneForm"> 
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneName" class="required-label" style="margin-bottom: 10px;">Tên</label>
-            <input id="laneName" nz-input formControlName="name" style="border-radius: 8px;"/>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneCode" class="required-label" style="margin-bottom: 10px;">Mã</label>
-            <input id="laneCode" nz-input formControlName="code" style="border-radius: 8px;"/>
-          </div>
-        </div>
-      </div>
-
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneComputerId" class="required-label" style="margin-bottom: 10px;">Máy tính</label>
-            <nz-select formControlName="computerId" style="width: 100%;" nzPlaceHolder="Máy tính">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneComputerId">Máy tính</nz-form-label>
+          <nz-form-control>
+            <nz-select id="laneComputerId" formControlName="computerId" nzPlaceHolder="Máy tính">
               <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneType" class="required-label" style="margin-bottom: 10px;">Loại</label>
-            <nz-select id="laneType" formControlName="type" style="width: 100%;">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneType">Loại</nz-form-label>
+          <nz-form-control>
+            <nz-select id="laneType" formControlName="type">
               <nz-option *ngFor="let type of laneTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
-          </div>
-        </div>
+          </nz-form-control>
+        </nz-form-item>
       </div>
+    </div>
 
-      <div nz-row [nzGutter]="16" style="margin-top: 16px;">
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneName" style="margin-bottom: 10px;">Làn đảo</label>
-            <nz-select formControlName="reverseLane" style="width: 100%;">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="reverseLane">Làn đảo</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="reverseLane">
               <nz-option *ngFor="let lane of lanes" [nzValue]="lane.id" [nzLabel]="lane.name"></nz-option>
             </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzSpan]="12">
-          <div class="form-group">
-            <label for="laneAutoOpenBarrier" style="margin-bottom: 10px;">Tự động mở barrier</label>
-            <nz-select id="laneAutoOpenBarrier" formControlName="autoOpenBarrier" style="width: 100%;">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="autoOpenBarrier">Tự động mở barrier</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="autoOpenBarrier">
               <nz-option *ngFor="let type of laneAutoOpenBarrierOptions" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
             </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-form-item>
+      <nz-form-control>
+        <span style="margin-right: 8px;">Sử dụng loop</span>
+        <label nz-checkbox formControlName="loop"></label>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="ant-row" style="margin-bottom: 10px;">
+      <div nz-col [nzSpan]="24" style="margin-bottom: -10px;">
+        <label>
+          <p nz-typography nzEllipsis>Camera</p>
+        </label>
+      </div>
+      <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 10px;">
+        <div nz-col [nzSpan]="7">Tên</div>
+        <div nz-col [nzSpan]="7">Mục đích</div>
+        <div nz-col [nzSpan]="7">Vị trí hiển thị</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="1" class="text-right" style="background-color: unset;">
+          <button nz-button nzType="primary" nzShape="circle" (click)="addLaneCamera()" [disabled]="filteredCameras.length === 0">
+            <span nz-icon nzType="plus"></span>
+          </button> 
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="laneCameras">
+      <div [nzGutter]="12" *ngFor="let cameraGroup of laneCameras.controls; let i = index" [formGroupName]="i" nz-row style="margin-bottom: 10px;">
+        <div nz-col [nzSpan]="7">
+          <nz-select formControlName="cameraId" style="width: 100%" >
+            <nz-option *ngFor="let camera of filteredCameras" [nzValue]="camera.id" [nzLabel]="camera.name"></nz-option>
+          </nz-select>
+        </div>
+    
+        <div nz-col [nzSpan]="7">
+          <nz-select formControlName="purpose" style="width: 100%">
+            <nz-option *ngFor="let purpose of laneCameraPurposes" [nzValue]="purpose.value" [nzLabel]="purpose.label" style="border-radius: 8px;"></nz-option>
+          </nz-select>
+        </div>
+    
+        <div nz-col [nzSpan]="7">
+          <nz-select formControlName="displayPosition" style="width: 100%">
+            <nz-option *ngFor="let pos of displayPositions" [nzValue]="pos" [nzLabel]="pos" style="border-radius: 8px;"></nz-option>
+          </nz-select>
+        </div>
+
+        <div nz-col [nzSpan]="2"></div>
+    
+        <div nz-col [nzSpan]="1"  class="text-right" style="background-color: unset;">
+          <button nz-button nzType="primary" nzShape="circle" nzDanger (click)="removeLaneCamera(i)">
+            <span nz-icon nzType="minus"></span>
+          </button> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="ant-row">
+      <div nz-col [nzSpan]="24">
+        <label style="font-weight: 500; margin-bottom: -10px;">
+          <p nz-typography nzEllipsis>Bộ điều khiển</p>
+        </label>
+      </div>
+      <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 20px;">
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Tên</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Reader</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Input</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Barrier</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Cảnh báo</div>
+      </div>
+    </div>
+
+    <div formArrayName="laneControlUnits">
+      <div *ngFor="let controlUnitGroup of laneControlUnits.controls; let i = index" [formGroupName]="i" style="margin-bottom: 10px;">
+        <div nz-row [nzGutter]="16" style="align-items: center; margin-bottom: 10px;" >
+          <div nz-col nzFlex="1">
+            <input nz-input [value]="controlUnitGroup.get('name')?.value" readonly style="width: 100%; border-radius: 8px;">
           </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="laneLoop" style="margin-bottom: 10px;">Sử dụng loop:</label>
-        <label nz-checkbox formControlName="loop" style="margin-left: 10px;" ></label>
-      </div>
-
-      <div class="ant-row" style="margin-bottom: 10px;">
-        <div nz-col [nzSpan]="24" style="margin-bottom: -10px;">
-          <label>
-            <p nz-typography nzEllipsis>Camera</p>
-          </label>
-        </div>
-        <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 10px;">
-          <div nz-col [nzSpan]="7">Tên</div>
-          <div nz-col [nzSpan]="7">Mục đích</div>
-          <div nz-col [nzSpan]="7">Vị trí hiển thị</div>
-          <div nz-col [nzSpan]="2"></div>
-          <div nz-col [nzSpan]="1" class="text-right" style="background-color: unset;">
-            <button nz-button nzType="primary" nzShape="circle" (click)="addEditLaneCamera()" [disabled]="filteredCameras.length === 0">
-              <span nz-icon nzType="plus"></span>
-            </button> 
-          </div>
-        </div>
-      </div>
-
-      <div formArrayName="laneCameras">
-        <div [nzGutter]="12" *ngFor="let cameraGroup of editLaneCameras.controls; let i = index" [formGroupName]="i" nz-row style="margin-bottom: 10px;">
-          <div nz-col [nzSpan]="7">
-            <nz-select formControlName="cameraId" style="width: 100%" >
-              <nz-option *ngFor="let camera of filteredCameras" [nzValue]="camera.id" [nzLabel]="camera.name"></nz-option>
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="reader" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
             </nz-select>
           </div>
-      
-          <div nz-col [nzSpan]="7">
-            <nz-select formControlName="purpose" style="width: 100%">
-              <nz-option *ngFor="let purpose of laneCameraPurposes" [nzValue]="purpose.value" [nzLabel]="purpose.label" style="border-radius: 8px;"></nz-option>
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="input" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
             </nz-select>
           </div>
-      
-          <div nz-col [nzSpan]="7">
-            <nz-select formControlName="displayPosition" style="width: 100%">
-              <nz-option *ngFor="let pos of displayPositions" [nzValue]="pos" [nzLabel]="pos" style="border-radius: 8px;"></nz-option>
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="barrier" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
             </nz-select>
           </div>
-
-          <div nz-col [nzSpan]="2"></div>
-      
-          <div nz-col [nzSpan]="1"  class="text-right" style="background-color: unset;">
-            <button nz-button nzType="primary" nzShape="circle" nzDanger (click)="removeEditLaneCamera(i)">
-              <span nz-icon nzType="minus"></span>
-            </button> 
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="alarm" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
+            </nz-select>
           </div>
         </div>
       </div>
-      
-      <div class="ant-row">
-        <div nz-col [nzSpan]="24">
-          <label style="font-weight: 500; margin-bottom: -10px;">
-            <p nz-typography nzEllipsis>Bộ điều khiển</p>
-          </label>
-        </div>
-        <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 20px;">
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Tên</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Reader</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Input</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Barrier</div>
-          <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Cảnh báo</div>
-        </div>
-      </div>
+    </div>
+  </form>
+</ng-template>
 
-      <div formArrayName="laneControlUnits">
-        <div *ngFor="let controlUnitGroup of editLaneControlUnits.controls; let i = index" [formGroupName]="i" style="margin-bottom: 10px;">
-          <div nz-row [nzGutter]="16" style="align-items: center; margin-bottom: 10px;" >
-            
-            <div nz-col nzFlex="1">
-              <input nz-input [value]="controlUnitGroup.get('name')?.value" readonly style="width: 100%; border-radius: 8px;">
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="reader" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="input" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="barrier" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-      
-            <div nz-col nzFlex="1">
-              <nz-select formControlName="alarm" style="width: 100%" nzMode="multiple">
-                <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
-              </nz-select>
-            </div>
-            
-          </div>
+<nz-modal 
+[nzContent]="editLaneTpl" 
+[(nzVisible)]="isEditModalVisible" 
+nzTitle="Cập nhật Camera" 
+nzOktext="Lưu" 
+nzCancelText="Hủy bỏ" 
+(nzOnCancel)="handleEditCancel()" 
+(nzOnOk)="handleEditOk()"
+nzWidth="60vw"
+></nz-modal>
+
+<ng-template #editLaneTpl>
+  <form [formGroup]="editLaneForm" nz-form nzLayout="vertical"> 
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneName">Tên</nz-form-label>
+          <nz-form-control>
+            <input id="laneName" nz-input formControlName="name" style="border-radius: 8px;"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneCode">Mã</nz-form-label>
+          <nz-form-control>
+            <input id="laneCode" nz-input formControlName="code" style="border-radius: 8px"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneComputerId">Máy tính</nz-form-label>
+          <nz-form-control>
+            <nz-select id="laneComputerId" formControlName="computerId" nzPlaceHolder="Máy tính">
+              <nz-option *ngFor="let computer of computers" [nzValue]="computer.id" [nzLabel]="computer.name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="laneType">Loại</nz-form-label>
+          <nz-form-control>
+            <nz-select id="laneType" formControlName="type">
+              <nz-option *ngFor="let type of laneTypes" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="reverseLane">Làn đảo</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="reverseLane">
+              <nz-option *ngFor="let lane of lanes" [nzValue]="lane.id" [nzLabel]="lane.name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label [nzRequired]="true" nzFor="autoOpenBarrier">Tự động mở barrier</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="autoOpenBarrier">
+              <nz-option *ngFor="let type of laneAutoOpenBarrierOptions" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-form-item>
+      <nz-form-control>
+        <span style="margin-right: 8px;">Sử dụng loop</span>
+        <label nz-checkbox formControlName="loop"></label>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="ant-row" style="margin-bottom: 10px;">
+      <div nz-col [nzSpan]="24" style="margin-bottom: -10px;">
+        <label>
+          <p nz-typography nzEllipsis>Camera</p>
+        </label>
+      </div>
+      <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 10px;">
+        <div nz-col [nzSpan]="7">Tên</div>
+        <div nz-col [nzSpan]="7">Mục đích</div>
+        <div nz-col [nzSpan]="7">Vị trí hiển thị</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="1" class="text-right" style="background-color: unset;">
+          <button nz-button nzType="primary" nzShape="circle" (click)="addEditLaneCamera()" [disabled]="filteredCameras.length === 0">
+            <span nz-icon nzType="plus"></span>
+          </button> 
         </div>
       </div>
-    </form>
-  </ng-template> 
+    </div>
+
+    <div formArrayName="laneCameras">
+      <div [nzGutter]="12" *ngFor="let cameraGroup of editLaneCameras.controls; let i = index" [formGroupName]="i" nz-row style="margin-bottom: 10px;">
+        <div nz-col [nzSpan]="7">
+          <nz-select formControlName="cameraId" style="width: 100%" >
+            <nz-option *ngFor="let camera of filteredCameras" [nzValue]="camera.id" [nzLabel]="camera.name"></nz-option>
+          </nz-select>
+        </div>
+    
+        <div nz-col [nzSpan]="7">
+          <nz-select formControlName="purpose" style="width: 100%">
+            <nz-option *ngFor="let purpose of laneCameraPurposes" [nzValue]="purpose.value" [nzLabel]="purpose.label" style="border-radius: 8px;"></nz-option>
+          </nz-select>
+        </div>
+    
+        <div nz-col [nzSpan]="7">
+          <nz-select formControlName="displayPosition" style="width: 100%">
+            <nz-option *ngFor="let pos of displayPositions" [nzValue]="pos" [nzLabel]="pos" style="border-radius: 8px;"></nz-option>
+          </nz-select>
+        </div>
+
+        <div nz-col [nzSpan]="2"></div>
+    
+        <div nz-col [nzSpan]="1"  class="text-right" style="background-color: unset;">
+          <button nz-button nzType="primary" nzShape="circle" nzDanger (click)="removeEditLaneCamera(i)">
+            <span nz-icon nzType="minus"></span>
+          </button> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="ant-row">
+      <div nz-col [nzSpan]="24">
+        <label style="font-weight: 500; margin-bottom: -10px;">
+          <p nz-typography nzEllipsis>Bộ điều khiển</p>
+        </label>
+      </div>
+      <div nz-row class="ant-row child-form-header" style="width: 100%; margin-bottom: 20px;">
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Tên</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Reader</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Input</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Barrier</div>
+        <div nz-col nzflex="1" class="ant-col" style="flex: 1 1 0%;">Cảnh báo</div>
+      </div>
+    </div>
+
+    <div formArrayName="laneControlUnits">
+      <div *ngFor="let controlUnitGroup of editLaneControlUnits.controls; let i = index" [formGroupName]="i" style="margin-bottom: 10px;">
+        <div nz-row [nzGutter]="16" style="align-items: center; margin-bottom: 10px;" >
+          
+          <div nz-col nzFlex="1">
+            <input nz-input [value]="controlUnitGroup.get('name')?.value" readonly style="width: 100%; border-radius: 8px;">
+          </div>
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="reader" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
+            </nz-select>
+          </div>
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="input" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
+            </nz-select>
+          </div>
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="barrier" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
+            </nz-select>
+          </div>
+    
+          <div nz-col nzFlex="1">
+            <nz-select formControlName="alarm" style="width: 100%" nzMode="multiple">
+              <nz-option *ngFor="let num of [0,1,2,3,4,5]" [nzValue]="num" [nzLabel]="num.toString()"></nz-option>
+            </nz-select>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template> 
