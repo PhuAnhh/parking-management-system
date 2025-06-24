@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, ChangeDetectorRef} from '@angular/core';
 import { ComputerService } from '../../services/computer.service';
 import { GateService } from '../../services/gate.service';
 import { LoginService } from '../../services/login.service';
@@ -27,16 +27,6 @@ export class ComputersComponent {
   editComputerForm!: FormGroup; 
   currentComputerId: number | null = null;
   searchKeyword: string = '';
-
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isVisible = scrollPosition > 300;
-  }
-
-  backToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   constructor(
       private gateService: GateService, 

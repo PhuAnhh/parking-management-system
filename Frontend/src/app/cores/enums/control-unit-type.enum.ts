@@ -1,4 +1,4 @@
-enum ControlUnitType {
+export enum ControlUnitType {
     IDTECK = 'IDTECK',
     KZE02DOTNET = 'KZE02DOTNET',
     KZE16DOTNET = 'KZE16DOTNET',

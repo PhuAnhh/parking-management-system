@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, ChangeDetectorRef} from '@angular/core';
 import { CustomerGroupService } from '../../services/customer-group.service';
 import { LoginService } from '../../services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';

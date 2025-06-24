@@ -7,17 +7,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { TransferItem, TransferChange } from 'ng-zorro-antd/transfer';
-
-enum CardGroupType {
-  MONTH = 'Month',
-  DAY = 'Day'
-}
-
-enum CardGroupVehicleType {
-  CAR = 'Car',
-  MOTORBIKE = 'Motorbike',
-  BICYCLE = 'Bicycle'
-}
+import { CardGroupType } from '../../cores/enums/card-group-type';
+import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
 
 @Component({
   selector: 'app-card-groups',
@@ -26,13 +17,11 @@ enum CardGroupVehicleType {
   styleUrl: './card-groups.component.scss'
 })
 export class CardGroupsComponent implements OnInit {
-  // Data properties
   cardGroups: any[] = [];
   lanes: any[] = [];
   transferData: TransferItem[] = [];
   cardGroupLanes: number[] = [];
   
-  // UI state properties
   pageIndex = 1;
   pageSize = 10;
   total = 0;
@@ -44,11 +33,9 @@ export class CardGroupsComponent implements OnInit {
   currentCardGroupId: number | null = null;
   searchKeyword = '';
   
-  // Form groups
   cardGroupForm!: FormGroup;
   editCardGroupForm!: FormGroup;
   
-  // Options for dropdowns
   cardGroupTypes = [
     { label: 'Tháng', value: CardGroupType.MONTH, color: 'pink' },
     { label: 'Ngày', value: CardGroupType.DAY, color: 'red' }
@@ -60,7 +47,6 @@ export class CardGroupsComponent implements OnInit {
     { label: 'Xe đạp', value: CardGroupVehicleType.BICYCLE, color: 'green' }
   ];
 
-  // Formatter/Parser methods
   formatMinutes = (value: number): string => `${value} Phút`;
   parseMinutes = (value: string): number => value ? parseInt(value.replace(' Phút', ''), 10) : 0;
 
@@ -94,7 +80,6 @@ export class CardGroupsComponent implements OnInit {
     this.loadLanes();
   }
 
-  // Helper methods
   getCardGroupType(value: string) {
     return this.cardGroupTypes.find(opt => opt.value === value);
   }
@@ -103,7 +88,6 @@ export class CardGroupsComponent implements OnInit {
     return this.cardGroupVehicleTypes.find(opt => opt.value === value);
   }
 
-  // Form initialization
   initForm() {
     const defaultFormConfig = {
       code: [null, [Validators.required]],
@@ -123,7 +107,6 @@ export class CardGroupsComponent implements OnInit {
     this.editCardGroupForm = this.fb.group(defaultFormConfig);
   }
 
-  // Data loading methods
   loadCardGroups(searchKeyword: string = '') {
     this.loading = true;
   
@@ -164,7 +147,6 @@ export class CardGroupsComponent implements OnInit {
     });
   }
 
-  // Event handlers
   onSearch() {
     this.loadCardGroups(this.searchKeyword);
   }
@@ -195,7 +177,6 @@ export class CardGroupsComponent implements OnInit {
     this.cardGroupLanes = selectedLaneIds;
   }
 
-  // Modal handling methods
   showAddCardGroupModal() {
     this.cardGroupForm.reset({
       status: true,
@@ -290,7 +271,6 @@ export class CardGroupsComponent implements OnInit {
     this.cardGroupLanes = [];
   }
 
-  // Form submission handlers
   handleOk() {
     if (this.cardGroupForm.invalid) {
       this.notification.warning('', 'Vui lòng nhập đủ thông tin', {nzDuration: 3000});
@@ -364,7 +344,6 @@ export class CardGroupsComponent implements OnInit {
     }
   }
 
-  // Actions on card groups
   updateCardGroup(id: number) {
     const cardGroup = this.cardGroups.find(g => g.id === id);
     if (cardGroup) {

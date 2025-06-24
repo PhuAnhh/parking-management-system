@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, ChangeDetectorRef, HostListener} from '@angular/core';
 import { ComputerService } from '../../services/computer.service';
 import { CameraService } from '../../services/camera.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -6,21 +6,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { LoginService } from '../../services/login.service';
-
-enum CameraType{
-  SECUS = 'Secus',
-  SHANY = 'Shany',
-  BOSCH = 'Bosch',
-  VANTECH = 'Vantech',
-  CNB = 'CNB',
-  HIK = 'HIK',
-  ENSTER = 'Enster',
-  DAHUA = 'Dahua',
-  HANSE = 'Hanse',
-  TIANDY = 'Tiandy',
-  DMAX = 'DMAX',
-  VIVANTEK = 'Vivantek'
-}
+import { CameraType } from '../../cores/enums/camera-type.enum';
 
 @Component({
   selector: 'app-cameras',

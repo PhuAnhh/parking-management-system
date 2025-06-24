@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerGroupService } from '../../services/customer-group.service';
 import { CardService } from '../../services/card.service';
@@ -8,13 +8,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { CardGroupType } from '../../cores/enums/card-group-type';
+import { CardStatus } from '../../cores/enums/card-status';
 
-enum CardStatus {
-  LOCKED = 'Locked',
-  ACTIVE = 'Active',
-  INACTIVE = 'Inactive'
-}
 
 @Component({
   selector: 'app-customers',

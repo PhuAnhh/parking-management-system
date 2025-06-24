@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { ComputerService } from '../../services/computer.service';
 import { LedService } from '../../services/led.service';
 import { LoginService } from '../../services/login.service';
@@ -6,15 +6,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-enum LedType
-{
-    P10RED = 'P10Red',
-    P10FULLCOLOR = 'P10FullColor',
-    P762RGY = 'P762Rgy',
-    DIRECTIONLED = 'DirectionLed',
-    HUIDU = 'Huidu'
-}
+import { LedType } from '../../cores/enums/led-type.enum';
 
 @Component({
   selector: 'app-leds',

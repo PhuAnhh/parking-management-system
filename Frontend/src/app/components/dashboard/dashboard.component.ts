@@ -3,7 +3,7 @@ import { EntryLogService } from '../../services/entry-log.service';
 import { ExitLogService } from '../../services/exit-log.service';
 import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
-import { LoginService } from '../../services/login.service';
+import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
 import { Router } from '@angular/router';
 import {
   ApexAxisChartSeries,
@@ -30,12 +30,6 @@ export type ChartOptions = {
   colors: string[];
   legend: ApexLegend;
 };
-
-enum CardGroupVehicleType {
-  CAR = 'Car',
-  MOTORBIKE = 'Motorbike',
-  BICYCLE = 'Bicycle'
-}
 
 interface DashboardItem {
   value: number;
@@ -102,7 +96,6 @@ export class DashboardComponent implements OnInit {
     private exitLogService: ExitLogService,
     private cardService: CardService,
     private cardGroupService: CardGroupService,
-    private loginService: LoginService,
     private cdr: ChangeDetectorRef,
     private router: Router
   ) {

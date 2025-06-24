@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener  } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ControlUnitService } from '../../services/control-unit.service';
 import { ComputerService } from '../../services/computer.service';
 import { LoginService } from '../../services/login.service';
@@ -6,23 +6,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-enum ControlUnitType {
-  IDTECK = 'IDTECK',
-  KZE02DOTNET = 'KZE02DOTNET',
-  KZE16DOTNET = 'KZE16DOTNET',
-  MT166 = 'MT166',
-  INGRESSUS = 'INGRESSUS',
-  E02DOTNET = 'E02DOTNET', 
-  SC200 = 'SC200',
-  Dahua = 'Dahua'
-}
-
-enum ControlUnitConnectionProtocolType
-{
-    TCP_IP = 'TCP_IP',
-    RS232_485_422 = 'RS232_485_422'
-}
+import { ControlUnitType } from '../../cores/enums/control-unit-type.enum'
+import { ControlUnitConnectionProtocolType } from '../../cores/enums/control-unit-connection-protocol-type.enum';
 
 @Component({
   selector: 'app-control-units',
@@ -30,6 +15,7 @@ enum ControlUnitConnectionProtocolType
   templateUrl: './control-units.component.html',
   styleUrl: './control-units.component.scss',
 })
+
 export class ControlUnitsComponent implements OnInit{
   computers: any[] = [];
   controlUnits: any[] = [];
@@ -59,22 +45,11 @@ export class ControlUnitsComponent implements OnInit{
   getControlUnitType(value:string){
     return this.controlUnitTypes.find(opt => opt.value === value);
   }
-  
 
   controlUnitConnectionProtocolTypes = [
     { label: 'TCP_IP', value: ControlUnitConnectionProtocolType.TCP_IP },
     { label: 'RS232_485_422', value: ControlUnitConnectionProtocolType.RS232_485_422 }
   ];
-  
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isVisible = scrollPosition > 300;
-  }
-
-  backToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   constructor(
     private controlUnitService: ControlUnitService, 

@@ -166,7 +166,7 @@ namespace Final_year_Project.Application.Services
                         PlateNumber = createEntryLogDto.PlateNumber,
                         LaneId = createEntryLogDto.LaneId,
                         WarningType = WarningType.CardExpired,
-                        Note = "The card has expired.",
+                        Note = "Vui lòng gia hạn thẻ",
                         ImageUrl = createEntryLogDto.ImageUrl
                     });
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { GateService } from '../../services/gate.service';
 import { LoginService } from '../../services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -26,16 +26,6 @@ export class GatesComponent implements OnInit{
   isVisible = false;
   currentGateId: number | null = null;
   searchKeyword: string = '';
-
-  @HostListener('window:scroll')
-  onWindowScroll(){
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isVisible = scrollPosition > 300;
-  }
-
-  backToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   constructor(
     private gateService: GateService, 

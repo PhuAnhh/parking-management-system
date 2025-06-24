@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { ExitLogService } from '../../services/exit-log.service';
 import { CardService } from '../../services/card.service';
 import { CardGroupService } from '../../services/card-group.service';
@@ -7,12 +7,7 @@ import { CustomerService } from '../../services/customer.service';
 import { LoginService } from '../../services/login.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-enum CardGroupVehicleType{
-  CAR = 'Car',
-  MOTORBIKE = 'Motorbike',
-  BICYCLE = 'Bicycle'
-}
+import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
 
 interface DashboardItem {
   value: number;

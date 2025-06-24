@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { RoleService } from '../../services/role.service';
 import { LoginService } from '../../services/login.service';

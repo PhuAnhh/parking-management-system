@@ -41,6 +41,8 @@
 
         public string? ImageUrl { get; set; }
 
+        public string? ImageBase64 { get; set; }
+
         public string? Note { get; set; }
     }
 }

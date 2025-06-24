@@ -6,24 +6,13 @@ import { CardGroupService } from '../../services/card-group.service';
 import { LaneService } from '../../services/lane.service';
 import { CustomerService } from '../../services/customer.service';
 import { LoginService } from '../../services/login.service';
+import { PlateRecognitionService } from '../../services/plate-recognition.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { HttpClient } from '@angular/common/http';
-
-enum CardGroupVehicleType{
-  CAR = 'Car',
-  MOTORBIKE = 'Motorbike',
-  BICYCLE = 'Bicycle'
-}
-
-enum LaneType {
-  IN = 'In',
-  OUT = 'Out', 
-  KIOSKIN = 'KioskIn',
-  DYNAMIC = 'Dynamic'
-}
+import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
+import { LaneType } from '../../cores/enums/lane-type.enum';
 
 @Component({
   selector: 'app-entry-logs',
@@ -71,6 +60,7 @@ export class EntryLogsComponent implements OnInit{
   videoElement!: HTMLVideoElement;
   capturedImage: string | null = null;
   cameraOn = false;
+  recognizedPlate: string | null = null;
 
   vehicleTypes = [    
     { label: 'Ô tô', value: CardGroupVehicleType.CAR, color: '#d46b08' },
@@ -89,8 +79,8 @@ export class EntryLogsComponent implements OnInit{
       private modalService: NzModalService,
       private fb: FormBuilder,
       private notification: NzNotificationService,
-      private http: HttpClient,
-      public loginService: LoginService
+      public loginService: LoginService,
+      private plateService: PlateRecognitionService,
     ) {
       this.initForm();
     }  
@@ -671,33 +661,54 @@ export class EntryLogsComponent implements OnInit{
     });
   }
 
+  // Hàm mở/tắt camera
   openCamera() {
+    // Kiểm tra xem camera đã bật chưa
     if (this.cameraOn) {
-      // Tắt camera
+      // Nếu camera đang bật thì tắt camera
+      
+      // Lấy element video từ template
       const videoElem = this.videoPlayer?.nativeElement;
+      
+      // Lấy stream (luồng video) từ element video
       const stream = videoElem?.srcObject as MediaStream;
+      
       if (stream) {
+        // Dừng tất cả các track (video/audio) trong stream
         stream.getTracks().forEach(track => track.stop());
+        
+        // Xóa stream khỏi element video
         videoElem.srcObject = null;
       }
+      
+      // Đặt trạng thái camera thành tắt
       this.cameraOn = false;
-      return;
+      return; // Thoát khỏi hàm
     }
 
-    // Bật camera và chờ DOM render videoPlayer
+    // Nếu camera chưa bật, thì bật camera
     this.cameraOn = true;
 
+    // Sử dụng setTimeout để đảm bảo DOM đã được render
     setTimeout(() => {
+      // Kiểm tra xem videoPlayer đã được khởi tạo chưa
       if (!this.videoPlayer) {
         console.error('videoPlayer chưa được khởi tạo');
         return;
       }
 
+      // Yêu cầu quyền truy cập camera từ trình duyệt
       navigator.mediaDevices.getUserMedia({ video: true })
         .then(newStream => {
+          // Khi được cấp quyền thành công
           const videoElem = this.videoPlayer.nativeElement;
+          
+          // Gán stream video vào element video
           videoElem.srcObject = newStream;
+          
+          // Bắt đầu phát video
           videoElem.play();
+          
           console.log('Camera đã được bật');
         })
         .catch(err => {
@@ -707,23 +718,81 @@ export class EntryLogsComponent implements OnInit{
   }
 
   captureImage() {
+    // Lấy element video
     const video = this.videoPlayer.nativeElement;
+    
+    // Tạo element canvas để vẽ ảnh
     const canvas = document.createElement('canvas');
+    
+    // Đặt kích thước canvas bằng kích thước video
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
+    // Lấy context 2D để vẽ trên canvas
     const ctx = canvas.getContext('2d');
+    
     if (ctx) {
-      ctx.translate(canvas.width, 0);
-      ctx.scale(-1, 1);
+      // Vẽ frame hiện tại của video lên canvas
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      // Chuyển đổi canvas thành chuỗi base64 (định dạng PNG)
       const base64Image = canvas.toDataURL('image/png');
+      
+      // Lưu ảnh đã chụp vào biến
       this.capturedImage = base64Image;
 
+      // Dừng camera sau khi chụp
       const stream = video.srcObject as MediaStream;
       stream?.getTracks().forEach(track => track.stop());
       video.srcObject = null;
+
+      // Đặt trạng thái camera thành tắt
+      this.cameraOn = false;
+
+      // Gửi ảnh đi nhận diện biển số
+      this.sendCapturedImage();
     }
+  }
+
+  sendCapturedImage(): void {
+    if (!this.capturedImage) {
+      console.warn('Không có ảnh để gửi nhận diện!');
+      return;
+    }
+
+    // Gọi service để nhận diện biển số từ ảnh
+    this.plateService.recognizePlate(this.capturedImage).subscribe({
+      next: (result) => {
+        // Xử lý khi nhận diện thành công
+        
+        // Lấy biển số từ kết quả và chuyển thành chữ hoa
+        const plate = result?.plate?.toUpperCase?.() || '';
+
+        console.log('Biển số nhận được:', plate);
+
+        // Lưu biển số đã nhận diện
+        this.recognizedPlate = plate;
+        
+        this.entryLogForm.patchValue({
+          plateNumber: plate
+        });
+
+        this.exitLogForm.patchValue({
+          exitPlateNumber: plate
+        });
+      },
+      error: (err) => {
+        // Xử lý khi có lỗi trong quá trình nhận diện
+        console.error('Lỗi khi gọi API nhận diện:', err);
+        
+        // Reset biển số về rỗng
+        this.recognizedPlate = '';
+
+        // Xóa giá trị trong các form
+        this.entryLogForm.patchValue({ plateNumber: '' });
+        this.exitLogForm.patchValue({ exitPlateNumber: '' });
+      }
+    });
   }
 
   retakePhoto() {

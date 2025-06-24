@@ -6,18 +6,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-enum CardStatus{
-  LOCKED = 'Locked',
-  ACTIVE = 'Active',
-  INACTIVE = 'Inactive'
-}
-
-enum CardGroupVehicleType{
-  CAR = 'Car',
-  MOTORBIKE = 'Motorbike',
-  BICYCLE = 'Bicycle'
-}
+import { CardStatus } from '../../cores/enums/card-status';
+import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
 
 @Component({
   selector: 'app-cards',

@@ -3,15 +3,7 @@ import { WarningEventService } from '../../services/warning-event.service';
 import { LaneService } from '../../services/lane.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-enum WarningType {
-  CARDLOCKED = "CardLocked",
-  CARDGROUPNOTALLOWEDINLANE = "CardGroupNotAllowedInLane",
-  LICENSEPLATEMISMATCH = "LicensePlateMismatch",
-  TICKETISSUED = "TicketIssued",
-  DELETEDWHILEVEHICLEINPARKING = "DeletedWhileVehicleInParking",
-  CARDEXPIRED = "CardExpired"
-}
+import { WarningType } from '../../cores/enums/warning-type.enum';
 
 @Component({
   selector: 'app-revenue-reports',

@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
               this.loginService.saveToken(response.token);
               localStorage.setItem('currentUser', JSON.stringify(response.user));
 
-              this.message.success('Đăng nhập thành công!');
               this.router.navigate(['/dashboard']);
             }
           },

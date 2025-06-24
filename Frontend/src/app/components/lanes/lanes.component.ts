@@ -1,37 +1,16 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { LaneService } from '../../services/lane.service';
 import { ComputerService } from '../../services/computer.service';
 import { CameraService} from '../../services/camera.service';
 import { ControlUnitService } from '../../services/control-unit.service';
 import { LoginService } from '../../services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { FormGroup, Validators, FormBuilder, FormArray, Form } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-enum LaneType
-{
-    IN = 'In',
-    OUT = 'Out',
-    KIOSKIN = 'KioskIn',
-    DYNAMIC = 'Dynamic'
-}
-
-enum LaneAutoOpenBarrier
-{
-    WHENVALID = 'WhenValid',
-    NEVER = 'Never',
-    ALWAYS = 'Always',
-    WHENVALIDVEHICLE = 'WhenValidVehicle'
-}
-
-enum LaneCameraPurpose
-{
-    MOTORBIKEPLATENUMBER = 'MotorbikePlateNumber',
-    CARPLATENUMBER = 'CarPlateNumber',
-    PANORAMA = 'Panorama',
-    OTHER = 'Other'
-}
+import { LaneType } from '../../cores/enums/lane-type.enum';
+import { LaneAutoOpenBarrier } from '../../cores/enums/lane-auto-open-barrier.enum';
+import { LaneCameraPurpose } from '../../cores/enums/lane-camera-purpose.enum';
 
 @Component({
   selector: 'app-lanes',
@@ -101,17 +80,6 @@ export class LanesComponent implements OnInit{
   ]
   
   displayPositions = [0, 1, 2, 3, 4, 5];
-
-
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isVisible = scrollPosition > 300;
-  }
-
-  backToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
   
   constructor(
     private laneService: LaneService, 
