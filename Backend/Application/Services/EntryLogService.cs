@@ -139,9 +139,13 @@ namespace Final_year_Project.Application.Services
 
                 throw new Exception("Card is locked.");
             }
-            else if (card.Status != CardStatus.Active)
+            else if (card.Status == CardStatus.Active)
             {
-                throw new Exception("Card is not active.");
+                throw new Exception("Card is already in use.");
+            }
+            else if (card.Status != CardStatus.Inactive)
+            {
+                throw new Exception("Card is not in an entry-allowed state.");
             }
 
             // 2. Lấy thông tin nhóm thẻ
@@ -229,6 +233,10 @@ namespace Final_year_Project.Application.Services
             };
 
             await _unitOfWork.EntryLogs.CreateAsync(entryLog);
+
+            card.Status = CardStatus.Active;
+            _unitOfWork.Cards.Update(card);
+
 
             await _unitOfWork.WarningEvents.CreateAsync(new WarningEvent
             {

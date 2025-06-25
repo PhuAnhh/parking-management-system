@@ -153,14 +153,14 @@
             <th nzWidth="120px">BSX Ra</th>
             <th nzWidth="180px">Thẻ</th>
             <th nzWidth="200px">Nhóm thẻ</th>
-            <th nzWidth="150px">Khách hàng</th>
+            <th nzWidth="110px">Khách hàng</th>
             <th nzWidth="180px">Làn</th>
             <th nzWidth="140px">Giờ vào</th>
             <th nzWidth="140px">Giờ ra</th>
             <th nzWidth="120px">Thời lượng</th>
             <th nzWidth="120px" style="text-align: right;">Phí</th>
             <th nzWidth="150px">Ghi chú</th>
-            <th nzWidth="80px" style="text-align: center;">Thao tác</th>
+            <th nzWidth="80px" style="text-align: center;"></th>
           </tr>
         </thead>
         <tbody>
@@ -293,8 +293,9 @@
         "
       >
         <img 
+          nz-image
           *ngIf="selectedExitLogDetail.entryLog?.imageUrl" 
-          [src]="selectedExitLogDetail.entryLog.imageUrl" 
+          [nzSrc]="selectedExitLogDetail.entryLog.imageUrl" 
           alt="" 
           style="max-width: 100%; max-height: 100%; object-fit: contain;" 
         />
@@ -402,8 +403,9 @@
         "
       >
         <img 
+          nz-image
           *ngIf="selectedExitLogDetail.imageUrl" 
-          [src]="selectedExitLogDetail.imageUrl" 
+          [nzSrc]="selectedExitLogDetail.imageUrl" 
           alt="" 
           style="max-width: 100%; max-height: 100%; object-fit: contain;" 
         />

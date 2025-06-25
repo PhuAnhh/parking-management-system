@@ -13,6 +13,7 @@ import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
 import { LaneType } from '../../cores/enums/lane-type.enum';
+import { CardStatus } from '../../cores/enums/card-status';
 
 @Component({
   selector: 'app-entry-logs',
@@ -129,11 +130,11 @@ export class EntryLogsComponent implements OnInit{
   updateAvailableCards(): void {
     // Lấy danh sách ID thẻ đã được sử dụng (xe chưa ra khỏi bãi)
     this.usedCardIds = this.entryLogs.map(log => log.cardId);
-    
-    // Lọc ra những thẻ chưa được sử dụng và đang hoạt động
-    this.availableCards = this.cards.filter(card => 
-      !this.usedCardIds.includes(card.id) && 
-      card.isActive !== false // Chỉ lấy thẻ đang hoạt động
+
+    // Lọc ra những thẻ chưa được sử dụng và đang ở trạng thái Inactive
+    this.availableCards = this.cards.filter(card =>
+      !this.usedCardIds.includes(card.id) &&
+      card.status === CardStatus.INACTIVE
     );
   }
 
@@ -455,8 +456,10 @@ export class EntryLogsComponent implements OnInit{
           errorMessage = 'Không tìm thấy thẻ';
         } else if (errorMessage.includes('Card is locked')) {
           errorMessage = 'Thẻ bị khóa';
-        } else if (errorMessage.includes('Card is not active')) {
-          errorMessage = 'Thẻ không hoạt động';
+        } else if (errorMessage.includes('Card is already in use')) {
+          errorMessage = 'Thẻ đang được sử dụng';
+        } else if (errorMessage.includes('Card is not in an entry-allowed state')) {
+          errorMessage = 'Thẻ không hợp lệ để vào bãi';
         } else if (errorMessage.includes('Card group not found')) {
           errorMessage = 'Không tìm thấy nhóm thẻ cho thẻ đã chọn';
         } else if (errorMessage.includes('Card group is not active')) {
@@ -505,6 +508,9 @@ export class EntryLogsComponent implements OnInit{
 
     const formValue = this.exitLogForm.value;
 
+    const entryPlate = this.selectedEntryLog?.plateNumber?.trim().toLowerCase();
+    const exitPlate = formValue.exitPlateNumber?.trim().toLowerCase();
+
     const newExitLog = {
       entryLogId: this.selectedEntryLog?.id,
       exitPlateNumber: formValue.exitPlateNumber,
@@ -529,6 +535,17 @@ export class EntryLogsComponent implements OnInit{
             nzDuration: 3000
           }
         );
+
+        if (entryPlate && exitPlate && entryPlate !== exitPlate) {
+          this.notification.warning(
+            'Biển số vào ra không khớp',
+            '',
+            {
+              nzPlacement: 'topRight',
+              nzDuration: 3000
+            }
+          );
+        }
       },
       error: (error) => {
         let errorMessage = 'Có lỗi xảy ra khi ghi vé ra';
@@ -551,8 +568,8 @@ export class EntryLogsComponent implements OnInit{
           errorMessage = 'Không tìm thấy thẻ';
         } else if (errorMessage.includes('Card is locked')) {
           errorMessage = 'Thẻ bị khóa';
-        } else if (errorMessage.includes('Card is not active')) {
-          errorMessage = 'Thẻ không hoạt động';
+        } else if (errorMessage.includes('Card is not in use')) {
+          errorMessage = 'Thẻ chưa được sử dụng để vào bãi';
         } else if (errorMessage.includes('Card group not found')) {
           errorMessage = 'Không tìm thấy nhóm thẻ cho thẻ đã chọn';
         } else if (errorMessage.includes('Card group is not active')) {

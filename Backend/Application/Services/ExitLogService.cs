@@ -161,8 +161,11 @@ namespace Final_year_Project.Application.Services
             if (card == null)
                 throw new Exception("Card not found.");
 
-            if (card.Status != CardStatus.Active)
-                throw new Exception("Card is not active.");
+            if (card.Status == CardStatus.Locked)
+                throw new Exception("Card is locked.");
+
+            if (card.Status == CardStatus.Inactive)
+                throw new Exception("Card is not in use.");
 
             // Lấy CardGroup
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(entryLog.CardGroupId ?? 0);
@@ -214,14 +217,13 @@ namespace Final_year_Project.Application.Services
                     PlateNumber = createExitLogDto.ExitPlateNumber,
                     LaneId = createExitLogDto.ExitLaneId,
                     WarningType = WarningType.LicensePlateMismatch,
-                    Note = $"Vào = '{entryLog.PlateNumber}', Ra = '{createExitLogDto.ExitPlateNumber}'",
+                    Note = $"Vào: {entryLog.PlateNumber}, Ra: {createExitLogDto.ExitPlateNumber}",
                     CreatedAt = DateTime.UtcNow,
                     ImageUrl = createExitLogDto.ImageUrl
                 };
 
                 await _unitOfWork.WarningEvents.CreateAsync(warning);
             }
-
 
             //Tính tổng thời gian
             var duration = exitTime - entryLog.EntryTime;
@@ -262,20 +264,23 @@ namespace Final_year_Project.Application.Services
             entryLog.Exited = true;
             _unitOfWork.EntryLogs.Update(entryLog);
 
-            // Xóa liên kết Card (Day) khi xe ra khỏi bãi
+            // Xóa liên kết Card khi xe ra khỏi bãi
             if (exitLog.CardId > 0)
             {
                 var exitCard = await _unitOfWork.Cards.GetByIdAsync(exitLog.CardId);
                 if (exitCard != null)
                 {
+                    exitCard.Status = CardStatus.Inactive;
+                    exitCard.UpdatedAt = DateTime.UtcNow;
+
+                    // Nếu là thẻ ngày thì hủy gán khách
                     var cardGroupOfCard = await _unitOfWork.CardGroups.GetByIdAsync(exitCard.CardGroupId);
                     if (cardGroupOfCard != null && cardGroupOfCard.Type == CardGroupType.Day)
                     {
                         exitCard.CustomerId = null;
-                        exitCard.Status = CardStatus.Inactive;
-                        exitCard.UpdatedAt = DateTime.UtcNow;
-                        _unitOfWork.Cards.Update(exitCard);
                     }
+
+                    _unitOfWork.Cards.Update(exitCard);
                 }
             }
 
@@ -321,7 +326,6 @@ namespace Final_year_Project.Application.Services
                 CreatedAt = exitLog.CreatedAt,
             };
         }
-
 
         private decimal CalculatePrice(TimeSpan duration, CardGroup cardGroup)
         {

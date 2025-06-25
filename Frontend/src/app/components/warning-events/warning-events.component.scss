@@ -70,3 +70,7 @@ nz-breadcrumb{
 ::ng-deep .ant-picker-panel-container {
   border-radius: 8px !important;
 }
+
+::ng-deep .ant-tooltip-inner {
+  border-radius: 8px;  
+}

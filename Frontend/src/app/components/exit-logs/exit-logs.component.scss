@@ -246,3 +246,9 @@ nz-breadcrumb{
     color: white !important;
   }
 }
+
+::ng-deep .ant-image-preview-img {
+  max-height: 100vh !important;
+  height: 100vh !important;
+  object-fit: contain;
+}

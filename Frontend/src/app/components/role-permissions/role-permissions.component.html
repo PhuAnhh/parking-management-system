@@ -84,12 +84,14 @@
                   <td>{{ role.name }}</td>
                   <td>{{ role.description }}</td>
                   <td style="text-align: center;">
-                    <button *ngIf="loginService.hasPermission('PUT:/api/role/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only" (click)="updateRole(role.id)">
-                      <span nz-icon nzType="edit" nzTheme="outline"></span>
-                    </button>
-                    <button *ngIf="loginService.hasPermission('DELETE:/api/role/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteRole(role.id)">
-                      <span nz-icon nzType="delete" nzTheme="outline"></span>
-                    </button>
+                    <ng-container *ngIf="role.name !== 'Admin'">
+                      <button *ngIf="loginService.hasPermission('PUT:/api/role/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only" (click)="updateRole(role.id)">
+                        <span nz-icon nzType="edit" nzTheme="outline"></span>
+                      </button>
+                      <button *ngIf="loginService.hasPermission('DELETE:/api/role/{id}')" nz-button class="ant-btn delete-btn ant-btn-icon-only" (click)="deleteRole(role.id)">
+                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                      </button>
+                    </ng-container>
                   </td>
                 </tr>
               </tbody>
