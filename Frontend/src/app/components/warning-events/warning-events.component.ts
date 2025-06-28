@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { WarningEventService } from '../../services/warning-event.service';
-import { LaneService } from '../../services/lane.service';
+import { WarningEventService } from '../../cores/services/warning-event.service';
+import { LaneService } from '../../cores/services/lane.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { WarningType } from '../../cores/enums/warning-type.enum';

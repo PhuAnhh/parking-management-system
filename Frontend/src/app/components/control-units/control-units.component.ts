@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ControlUnitService } from '../../services/control-unit.service';
-import { ComputerService } from '../../services/computer.service';
-import { LoginService } from '../../services/login.service';
+import { ControlUnitService } from '../../cores/services/control-unit.service';
+import { ComputerService } from '../../cores/services/computer.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -119,6 +119,7 @@ export class ControlUnitsComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách bộ điều khiển:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu bộ điều khiển');
         this.loading = false;
       }
     );

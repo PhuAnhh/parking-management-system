@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
-import { ComputerService } from '../../services/computer.service';
-import { LedService } from '../../services/led.service';
-import { LoginService } from '../../services/login.service';
+import { ComputerService } from '../../cores/services/computer.service';
+import { LedService } from '../../cores/services/led.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -102,6 +102,7 @@ export class LedsComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách led:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu led');
         this.loading = false
       }
     );

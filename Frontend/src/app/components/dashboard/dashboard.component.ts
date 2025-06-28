@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { EntryLogService } from '../../services/entry-log.service';
-import { ExitLogService } from '../../services/exit-log.service';
-import { CardService } from '../../services/card.service';
-import { CardGroupService } from '../../services/card-group.service';
+import { EntryLogService } from '../../cores/services/entry-log.service';
+import { ExitLogService } from '../../cores/services/exit-log.service';
+import { CardService } from '../../cores/services/card.service';
+import { CardGroupService } from '../../cores/services/card-group.service';
 import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
 import { Router } from '@angular/router';
 import {

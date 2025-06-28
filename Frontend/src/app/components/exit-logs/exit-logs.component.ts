@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
-import { ExitLogService } from '../../services/exit-log.service';
-import { CardService } from '../../services/card.service';
-import { CardGroupService } from '../../services/card-group.service';
-import { LaneService } from '../../services/lane.service';
-import { CustomerService } from '../../services/customer.service';
-import { LoginService } from '../../services/login.service';
+import { ExitLogService } from '../../cores/services/exit-log.service';
+import { CardService } from '../../cores/services/card.service';
+import { CardGroupService } from '../../cores/services/card-group.service';
+import { LaneService } from '../../cores/services/lane.service';
+import { CustomerService } from '../../cores/services/customer.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';

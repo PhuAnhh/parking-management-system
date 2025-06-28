@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CardGroupService } from '../../services/card-group.service';
-import { LaneService } from '../../services/lane.service';
-import { LoginService } from '../../services/login.service';
+import { CardGroupService } from '../../cores/services/card-group.service';
+import { LaneService } from '../../cores/services/lane.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -130,6 +130,7 @@ export class CardGroupsComponent implements OnInit {
       },
       error: (error) => {
         console.error('Lỗi khi lấy danh sách nhóm thẻ:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu nhóm thẻ');
         this.loading = false;
       }
     });

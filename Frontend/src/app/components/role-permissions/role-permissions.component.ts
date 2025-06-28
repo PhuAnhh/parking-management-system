@@ -3,9 +3,9 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { RoleService } from '../../services/role.service';
-import { LoginService } from '../../services/login.service';
-import { PermissionService } from '../../services/permission.service';
+import { RoleService } from '../../cores/services/role.service';
+import { LoginService } from '../../cores/services/login.service';
+import { PermissionService } from '../../cores/services/permission.service';
 
 interface Permission {
   id: number;
@@ -184,6 +184,7 @@ export class RolePermissionsComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách vai trò:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu vai trò');
         this.loading = false;
       }
     );

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { RevenueReportService } from '../../services/revenue-report';
-import { CardGroupService } from '../../services/card-group.service';
+import { RevenueReportService } from '../../cores/services/revenue-report';
+import { CardGroupService } from '../../cores/services/card-group.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef} from '@angular/core';
-import { CardService } from '../../services/card.service';
-import { CardGroupService } from '../../services/card-group.service';
-import { LoginService } from '../../services/login.service';
+import { CardService } from '../../cores/services/card.service';
+import { CardGroupService } from '../../cores/services/card-group.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -148,6 +148,7 @@ export class CardsComponent {
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách thẻ:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu thẻ');
         this.loading = true;
       }
     );
@@ -414,7 +415,7 @@ export class CardsComponent {
     }
 
     const isLocking = card.status === 'Active' || card.status === 'Inactive';
-    const newStatus = isLocking ? 'Locked' : 'Active';
+    const newStatus = isLocking ? 'Locked' : 'Inactive';
 
     this.modalService.confirm({
       nzTitle: isLocking ? 'Xác nhận khóa thẻ' : 'Xác nhận mở khóa thẻ',

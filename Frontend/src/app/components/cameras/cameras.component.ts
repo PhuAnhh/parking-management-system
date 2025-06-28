@@ -1,11 +1,11 @@
 import { Component, ChangeDetectorRef, HostListener} from '@angular/core';
-import { ComputerService } from '../../services/computer.service';
-import { CameraService } from '../../services/camera.service';
+import { ComputerService } from '../../cores/services/computer.service';
+import { CameraService } from '../../cores/services/camera.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../cores/services/login.service';
 import { CameraType } from '../../cores/enums/camera-type.enum';
 
 @Component({
@@ -125,6 +125,7 @@ export class CamerasComponent {
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách camera:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu camera');
         this.loading = false;
       }
     );

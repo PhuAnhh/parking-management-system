@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
-import { GateService } from '../../services/gate.service';
-import { LoginService } from '../../services/login.service';
+import { GateService } from '../../cores/services/gate.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -81,6 +81,7 @@ export class GatesComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách cổng:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu cổng');
         this.loading = false;
       }
     );

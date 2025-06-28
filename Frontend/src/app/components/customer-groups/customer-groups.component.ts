@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef} from '@angular/core';
-import { CustomerGroupService } from '../../services/customer-group.service';
-import { LoginService } from '../../services/login.service';
+import { CustomerGroupService } from '../../cores/services/customer-group.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -78,6 +78,7 @@ export class CustomerGroupsComponent {
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách nhóm khách hàng:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu nhóm khách hàng');
         this.loading = false;
       }
     );

@@ -1,9 +1,9 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { CustomerService } from '../../services/customer.service';
-import { CustomerGroupService } from '../../services/customer-group.service';
-import { CardService } from '../../services/card.service';
-import { CardGroupService } from '../../services/card-group.service';
-import { LoginService } from '../../services/login.service';
+import { CustomerService } from '../../cores/services/customer.service';
+import { CustomerGroupService } from '../../cores/services/customer-group.service';
+import { CardService } from '../../cores/services/card.service';
+import { CardGroupService } from '../../cores/services/card-group.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -116,6 +116,7 @@ export class CustomersComponent {
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách khách hàng:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu khách hàng');
         this.loading = false;
       }
     );

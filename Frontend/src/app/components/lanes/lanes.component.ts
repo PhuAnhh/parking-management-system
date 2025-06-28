@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { LaneService } from '../../services/lane.service';
-import { ComputerService } from '../../services/computer.service';
-import { CameraService} from '../../services/camera.service';
-import { ControlUnitService } from '../../services/control-unit.service';
-import { LoginService } from '../../services/login.service';
+import { LaneService } from '../../cores/services/lane.service';
+import { ComputerService } from '../../cores/services/computer.service';
+import { CameraService} from '../../cores/services/camera.service';
+import { ControlUnitService } from '../../cores/services/control-unit.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -196,6 +196,7 @@ export class LanesComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách làn:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu làn');
         this.loading = false;
       }
     );

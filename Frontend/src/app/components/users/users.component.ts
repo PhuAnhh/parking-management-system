@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { RoleService } from '../../services/role.service';
-import { LoginService } from '../../services/login.service';
+import { UserService } from '../../cores/services/user.service';
+import { RoleService } from '../../cores/services/role.service';
+import { LoginService } from '../../cores/services/login.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
@@ -95,6 +95,7 @@ export class UsersComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách người dùng:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu người dùng');
         this.loading = false;
       }
     );
