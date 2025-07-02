@@ -338,7 +338,7 @@ export class CardGroupsComponent implements OnInit {
         },
         error: (error) => {
           console.error('Lỗi khi cập nhật', error);
-          const errorMessage = error.error?.message || 'Không thể cập nhật nhóm thẻ. Vui lòng thử lại';
+          const errorMessage = error.error?.message || '';
           this.notification.error('Lỗi', errorMessage, {nzDuration: 3000});
         }
       });
@@ -374,7 +374,8 @@ export class CardGroupsComponent implements OnInit {
           },
           error: (error) => {
             console.error('Lỗi khi xóa nhóm thẻ:', error);
-            this.notification.error('Lỗi', '', {
+            const message = error?.error?.message || 'Đã xảy ra lỗi khi cập nhật trạng thái thẻ.';
+            this.notification.error('Lỗi', message, {
               nzPlacement: 'topRight',
               nzDuration: 3000
             });
@@ -407,7 +408,8 @@ export class CardGroupsComponent implements OnInit {
           },
           error: (error) => {
             console.error('Lỗi khi thay đổi trạng thái nhóm thẻ:', error);
-            this.notification.error('Lỗi', 'Đã có lỗi xảy ra', { nzDuration: 3000 });
+            const message = error?.error?.message || 'Đã xảy ra lỗi khi cập nhật trạng thái thẻ.';
+            this.notification.error('Lỗi', message, { nzDuration: 3000 });
           }
         });
       }

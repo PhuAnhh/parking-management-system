@@ -14,6 +14,5 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<CardDto> CreateAsync(CreateCardDto createCardDto);
         Task<CardDto> UpdateAsync(int id, UpdateCardDto updateCardDto);
         Task<bool> DeleteAsync(int id);
-        Task<bool> ChangeStatusAsync(int id, CardStatus status);
     }
 }

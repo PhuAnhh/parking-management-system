@@ -9,5 +9,6 @@ namespace Final_year_Project.Application.Repositories
         Task CreateAsync(Card card);
         void Update(Card card);
         void Delete(Card card);
+        Task<bool> HasActiveEntryInCardGroupAsync(int cardGroupId);
     }
 }

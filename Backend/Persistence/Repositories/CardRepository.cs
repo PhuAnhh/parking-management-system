@@ -4,6 +4,7 @@ using Final_year_Project.Persistence.DbContexts;
 using Final_year_Project.Application.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Final_year_Project.Domain.EnumTypes;
 
 namespace Final_year_Project.Persistence.Repositories
 {
@@ -44,6 +45,12 @@ namespace Final_year_Project.Persistence.Repositories
             }
 
             _context.Cards.Update(card);
+        }
+
+        public async Task<bool> HasActiveEntryInCardGroupAsync(int cardGroupId)
+        {
+            return await _context.EntryLogs
+                .AnyAsync(e => !e.Exited && e.Card.CardGroupId == cardGroupId);
         }
 
         public void Delete(Card card)

@@ -51,35 +51,38 @@ namespace Final_year_Project.Api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<CardDto>> Update(int id, UpdateCardDto updateCardDto)
         {
-            var updatedCard = await _cardService.UpdateAsync(id, updateCardDto);
+            try
+            {
+                var updatedCard = await _cardService.UpdateAsync(id, updateCardDto);
 
-            if (updatedCard == null)
-                return NotFound();
+                if (updatedCard == null)
+                    return NotFound();
 
-            return Ok(updatedCard);
+                return Ok(updatedCard);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [RequirePermission("DELETE", "/api/card/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var result = await _cardService.DeleteAsync(id);
+            try
+            {
+                var result = await _cardService.DeleteAsync(id);
 
-            if (!result)
-                return NotFound();
+                if (!result)
+                    return NotFound();
 
-            return NoContent();
-        }
-
-        [RequirePermission("PATCH", "/api/card/{id}/status")]
-        [HttpPatch("{id}/status")]
-        public async Task<IActionResult> ChangeStatus(int id, [FromBody] ChangeCardStatusDto changeCardStatusDto)
-        {
-            var success = await _cardService.ChangeStatusAsync(id, changeCardStatusDto.Status);
-            if (!success)
-                return NotFound();
-
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }

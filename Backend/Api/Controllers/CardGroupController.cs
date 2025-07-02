@@ -51,35 +51,56 @@ namespace Final_year_Project.Api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<CardGroupDto>> Update(int id, UpdateCardGroupDto updateCardGroupDto)
         {
-            var updatedCardGroup = await _cardGroupService.UpdateAsync(id, updateCardGroupDto);
+            try
+            {
+                var updatedCardGroup = await _cardGroupService.UpdateAsync(id, updateCardGroupDto);
 
-            if (updatedCardGroup == null)
-                return NotFound();
+                if (updatedCardGroup == null)
+                    return NotFound();
 
-            return Ok(updatedCardGroup);
+                return Ok(updatedCardGroup);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [RequirePermission("DELETE", "/api/cardgroup/{id}")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var result = await _cardGroupService.DeleteAsync(id, true);
+            try
+            {
+                var result = await _cardGroupService.DeleteAsync(id, true);
 
-            if (!result)
-                return NotFound();
+                if (!result)
+                    return NotFound();
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [RequirePermission("PATCH", "/api/cardgroup/{id}/status")]
         [HttpPatch("{id}/status")]
         public async Task<IActionResult> ChangeStatus(int id, [FromBody] ChangeStatusDto changeStatusDto)
         {
-            var success = await _cardGroupService.ChangeStatusAsync(id, changeStatusDto.Status);
-            if (!success)
-                return NotFound();
+            try
+            {
+                var success = await _cardGroupService.ChangeStatusAsync(id, changeStatusDto.Status);
+                if (!success)
+                    return NotFound();
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }

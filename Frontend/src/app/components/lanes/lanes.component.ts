@@ -136,6 +136,7 @@ export class LanesComponent implements OnInit{
     const controlUnitGroup = this.fb.group({
       id: [laneControlUnit.id],
       name: [laneControlUnit.name],
+      controlUnitId: [laneControlUnit.id],
       reader: [[]], 
       input: [[]],  
       barrier: [[]], 
@@ -239,7 +240,10 @@ export class LanesComponent implements OnInit{
 
   showAddLaneModal() {
     this.isAddModalVisible = true;
-    this.laneForm.reset({status: true}); 
+    this.laneForm.reset({
+      status: true,
+      loop: false
+    }); 
     this.loadLanes();
   }
 
@@ -330,8 +334,7 @@ export class LanesComponent implements OnInit{
     const newLane = {
       ...rawLane,
       laneControlUnits: rawLane.laneControlUnits.map((unit: any) => ({
-        ...unit,
-        controlUnitId: unit.id,
+        controlUnitId: unit.controlUnitId || unit.id,
         reader: Array.isArray(unit.reader) ? unit.reader.join(', ') : (unit.reader ?? null),
         input: Array.isArray(unit.input) ? unit.input.join(', ') : (unit.input ?? null),
         barrier: Array.isArray(unit.barrier) ? unit.barrier.join(', ') : (unit.barrier ?? null),
@@ -386,8 +389,7 @@ export class LanesComponent implements OnInit{
     const updatedLane = {
       ...rawLane,
       laneControlUnits: rawLane.laneControlUnits?.map((unit: any) => ({
-        ...unit,
-        controlUnitId: unit.id,
+        controlUnitId: unit.controlUnitId || unit.id,
         reader: Array.isArray(unit.reader) ? unit.reader.join(', ') : (unit.reader ?? null),
         input: Array.isArray(unit.input) ? unit.input.join(', ') : (unit.input ?? null),
         barrier: Array.isArray(unit.barrier) ? unit.barrier.join(', ') : (unit.barrier ?? null),
@@ -584,7 +586,8 @@ export class LanesComponent implements OnInit{
     };
     
     const controlUnitGroup = this.fb.group({
-      id: [unit ? unit.controlUnitId : null],
+      id: [unit ? unit.controlUnitId ?? unit.id : null],
+      controlUnitId: [unit ? unit.controlUnitId ?? unit.id : null, Validators.required],
       name: [unit ? unit.name : null],
       reader: [unit ? (Array.isArray(unit.reader) ? unit.reader : parseStringToArray(unit.reader)) : []],
       input: [unit ? (Array.isArray(unit.input) ? unit.input : parseStringToArray(unit.input)) : []],

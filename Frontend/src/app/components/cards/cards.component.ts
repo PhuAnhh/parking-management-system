@@ -393,9 +393,10 @@ export class CardsComponent {
           },
           (error) => {
             console.error('Lỗi khi xóa thẻ:', error);
+            const message = error?.error?.message || 'Đã xảy ra lỗi khi cập nhật trạng thái thẻ.';
             this.notification.error(
               'Lỗi',
-              '', 
+              message, 
               {
                 nzPlacement: 'topRight',
                 nzDuration: 3000
@@ -403,37 +404,6 @@ export class CardsComponent {
             );
           }
         );
-      }
-    });
-  }
-
-  toggleCardStatus(cardId: number): void {
-    const card = this.cards.find(c => c.id === cardId);
-    if (!card) {
-      console.error(`Không tìm thấy thẻ với id ${cardId}`);
-      return;
-    }
-
-    const isLocking = card.status === 'Active' || card.status === 'Inactive';
-    const newStatus = isLocking ? 'Locked' : 'Inactive';
-
-    this.modalService.confirm({
-      nzTitle: isLocking ? 'Xác nhận khóa thẻ' : 'Xác nhận mở khóa thẻ',
-      nzMaskClosable: true,
-      nzOkText: 'Xác nhận',
-      nzCancelText: 'Hủy bỏ',
-      nzClassName: 'custom-delete-modal',
-      nzOnOk: () => {
-        this.cardService.changeCardStatus(cardId, newStatus).subscribe({
-          next: () => {
-            card.status = newStatus;
-            this.notification.success('Thành công', '', { nzDuration: 3000 });
-          },
-          error: (error) => {
-            console.error('Lỗi khi cập nhật trạng thái thẻ:', error);
-            this.notification.error('Lỗi', '', { nzDuration: 3000 });
-          }
-        });
       }
     });
   }

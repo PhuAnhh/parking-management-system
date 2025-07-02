@@ -154,26 +154,26 @@ namespace Final_year_Project.Application.Services
             // Lấy EntryLog
             var entryLog = await _unitOfWork.EntryLogs.GetByIdAsync(createExitLogDto.EntryLogId);
             if (entryLog == null)
-                throw new Exception("Entry log not found.");
+                throw new Exception("Không tìm thấy xe vào bãi");
 
             // Lấy thông tin thẻ từ EntryLog
             var card = await _unitOfWork.Cards.GetByIdAsync(entryLog.CardId);
             if (card == null)
-                throw new Exception("Card not found.");
+                throw new Exception("Không tìm thấy thẻ");
 
             if (card.Status == CardStatus.Locked)
-                throw new Exception("Card is locked.");
+                throw new Exception("Thẻ bị khóa");
 
             if (card.Status == CardStatus.Inactive)
-                throw new Exception("Card is not in use.");
+                throw new Exception("Thẻ chưa được sử dụng để vào bãi");
 
             // Lấy CardGroup
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(entryLog.CardGroupId ?? 0);
             if (cardGroup == null)
-                throw new Exception("Card group not found.");
+                throw new Exception("Không tìm thấy nhóm thẻ");
 
             if (!cardGroup.Status)
-                throw new Exception("Card group is not active.");
+                throw new Exception("Nhóm thẻ không hoạt động");
 
             //Kiểm tra Lane ra trong CardGroup
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
@@ -188,26 +188,19 @@ namespace Final_year_Project.Application.Services
                     ImageUrl = createExitLogDto.ImageUrl
                 });
 
-                throw new Exception("Exit lane is not allowed for this card group.");
+                throw new Exception("Nhóm thẻ không được sử dụng làn");
             }
 
             //Kiểm tra trạng thái Lane ra
             var exitLane = await _unitOfWork.Lanes.GetByIdAsync(createExitLogDto.ExitLaneId);
             if (exitLane == null || !exitLane.Status)
-                throw new Exception("Exit lane is invalid or inactive.");
+                throw new Exception("Làn không hoạt động");
 
             if (exitLane.Type != LaneType.Out && exitLane.Type != LaneType.Dynamic && exitLane.Type != LaneType.KioskIn)
-                throw new Exception("You are not allowed to exit through this lane.");
-
-            //Kiểm tra Lane vào 
-            var entryLane = await _unitOfWork.Lanes.GetByIdAsync(entryLog.LaneId);
-            if (entryLane == null || !entryLane.Status)
-                throw new Exception("Entry lane is invalid or inactive.");
+                throw new Exception("Không được phép sử dụng làn");
 
             //Xác định thời gian ra khỏi bãi
             var exitTime = createExitLogDto.ExitTime != default ? createExitLogDto.ExitTime : DateTime.UtcNow;
-            if (exitTime <= entryLog.EntryTime)
-                throw new Exception("Exit time must be after entry time.");
 
             // Kiểm tra nếu biển số ra không khớp với biển số vào
             if (!string.Equals(entryLog.PlateNumber?.Trim(), createExitLogDto.ExitPlateNumber?.Trim(), StringComparison.OrdinalIgnoreCase))
@@ -274,11 +267,11 @@ namespace Final_year_Project.Application.Services
                     exitCard.UpdatedAt = DateTime.UtcNow;
 
                     // Nếu là thẻ ngày thì hủy gán khách
-                    var cardGroupOfCard = await _unitOfWork.CardGroups.GetByIdAsync(exitCard.CardGroupId);
-                    if (cardGroupOfCard != null && cardGroupOfCard.Type == CardGroupType.Day)
-                    {
-                        exitCard.CustomerId = null;
-                    }
+                    //var cardGroupOfCard = await _unitOfWork.CardGroups.GetByIdAsync(exitCard.CardGroupId);
+                    //if (cardGroupOfCard != null && cardGroupOfCard.Type == CardGroupType.Day)
+                    //{
+                    //    exitCard.CustomerId = null;
+                    //}
 
                     _unitOfWork.Cards.Update(exitCard);
                 }

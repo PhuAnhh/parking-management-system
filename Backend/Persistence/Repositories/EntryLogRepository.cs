@@ -23,11 +23,16 @@ namespace Final_year_Project.Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<EntryLog>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate)
+        public async Task<IEnumerable<EntryLog>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate, bool? exited = null)
         {
-            return await _context.EntryLogs
-                .Where(r => r.EntryTime >= fromDate && r.EntryTime <= toDate && !r.Exited)
-                .ToListAsync();
+            var query = _context.EntryLogs
+                .AsNoTracking() 
+                .Where(r => r.EntryTime >= fromDate && r.EntryTime <= toDate);
+
+            if (exited.HasValue)
+                query = query.Where(r => r.Exited == exited.Value);
+
+            return await query.ToListAsync();
         }
 
         public async Task<EntryLog> GetByIdAsync(int id)
@@ -53,9 +58,9 @@ namespace Final_year_Project.Persistence.Repositories
         public async Task<bool> HasActiveEntryAsync(int cardId)
         {
             return await _context.EntryLogs
-                .AsNoTracking()
                 .AnyAsync(e => e.CardId == cardId && !e.Exited);
         }
+
         public async Task<bool> IsPlateNumberInUseAsync(string plateNumber)
         {
             if (string.IsNullOrWhiteSpace(plateNumber)) return false;

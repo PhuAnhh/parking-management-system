@@ -107,26 +107,44 @@ namespace Final_year_Project.Application.Services
         public async Task<CardDto> UpdateAsync(int id, UpdateCardDto updateCardDto)
         {
             var card = await _unitOfWork.Cards.GetByIdAsync(id);
-
             if (card == null)
                 return null;
 
-            card.Name = updateCardDto.Name;
-            card.Code = updateCardDto.Code;
-            card.CardGroupId = updateCardDto.CardGroupId;
-            card.CustomerId = updateCardDto.CustomerId;
-            card.Note = updateCardDto.Note;
-            card.StartDate = updateCardDto.StartDate;
-            card.EndDate = updateCardDto.EndDate;
-            card.AutoRenewDays = updateCardDto.AutoRenewDays;
-            card.Status = updateCardDto.Status;
-            card.UpdatedAt = DateTime.UtcNow;
+            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(id);
 
+            if (hasActiveEntry)
+            {
+                if (card.Name != updateCardDto.Name ||
+                    card.Code != updateCardDto.Code ||
+                    card.CardGroupId != updateCardDto.CardGroupId ||
+                    card.CustomerId != updateCardDto.CustomerId ||
+                    card.StartDate != updateCardDto.StartDate ||
+                    card.EndDate != updateCardDto.EndDate ||
+                    card.AutoRenewDays != updateCardDto.AutoRenewDays)
+                {
+                    throw new Exception("Chỉ được phép cập nhật trạng thái và ghi chú khi xe đang trong bãi");
+                }
+                card.Note = updateCardDto.Note;
+                card.Status = updateCardDto.Status;
+            }
+            else
+            {
+                card.Name = updateCardDto.Name;
+                card.Code = updateCardDto.Code;
+                card.CardGroupId = updateCardDto.CardGroupId;
+                card.CustomerId = updateCardDto.CustomerId;
+                card.Note = updateCardDto.Note;
+                card.StartDate = updateCardDto.StartDate;
+                card.EndDate = updateCardDto.EndDate;
+                card.AutoRenewDays = updateCardDto.AutoRenewDays;
+                card.Status = updateCardDto.Status;
+            }
+
+            card.UpdatedAt = DateTime.UtcNow;
             _unitOfWork.Cards.Update(card);
             await _unitOfWork.SaveChangesAsync();
 
-            var updatedCard = await _unitOfWork.Cards.GetByIdAsync(id); 
-
+            var updatedCard = await _unitOfWork.Cards.GetByIdAsync(id);
             return new CardDto
             {
                 Id = card.Id,
@@ -151,26 +169,17 @@ namespace Final_year_Project.Application.Services
             if (card == null)
                 return false;
 
+            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(id);
+            if (hasActiveEntry)
+            {
+                throw new Exception("Không thể xóa khi xe đang trong bãi");
+            }
+
             _unitOfWork.Cards.Delete(card);
             await _unitOfWork.SaveChangesAsync();
 
             return true;
         }
-
-        public async Task<bool> ChangeStatusAsync(int id, CardStatus status)
-        {
-            var card = await _unitOfWork.Cards.GetByIdAsync(id);
-            if (card == null) return false;
-
-            card.Status = status;
-            card.UpdatedAt = DateTime.UtcNow;
-
-            _unitOfWork.Cards.Update(card);
-            await _unitOfWork.SaveChangesAsync();
-
-            return true;
-        }
-
     }
 }
 
