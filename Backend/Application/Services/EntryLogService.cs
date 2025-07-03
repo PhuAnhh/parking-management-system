@@ -101,6 +101,10 @@ namespace Final_year_Project.Application.Services
 
         public async Task<EntryLogDto> CreateAsync(CreateEntryLogDto createEntryLogDto)
         {
+
+            if (string.IsNullOrEmpty(createEntryLogDto.PlateNumber))
+                throw new ArgumentException("Vui lòng nhập biển số xe");
+
             // Xử lý lưu file ảnh base64 thành file và lấy đường dẫn mới
             if (!string.IsNullOrEmpty(createEntryLogDto.ImageUrl) && createEntryLogDto.ImageUrl.StartsWith("data:image"))
             {
@@ -108,13 +112,9 @@ namespace Final_year_Project.Application.Services
                 createEntryLogDto.ImageUrl = imageUrl; // Gán lại URL ảnh để lưu vào DB
             }
 
-            if (string.IsNullOrEmpty(createEntryLogDto.PlateNumber))
-                throw new ArgumentException("Vui lòng nhập biển số xe");
-
             // Chuẩn hóa biển số xe trước khi kiểm tra và lưu
-            createEntryLogDto.PlateNumber = StandardizePlateNumber(createEntryLogDto.PlateNumber);
-
-            if (!IsValidPlateNumberFormat(createEntryLogDto.PlateNumber))
+            var standardizedPlateNumber = StandardizePlateNumber(createEntryLogDto.PlateNumber);
+            if (!IsValidPlateNumberFormat(standardizedPlateNumber))
                 throw new ArgumentException("Biển số không hợp lệ");
 
 
@@ -127,7 +127,7 @@ namespace Final_year_Project.Application.Services
             {
                 await _warningEventService.CreateAsync(new CreateWarningEventDto
                 {
-                    PlateNumber = createEntryLogDto.PlateNumber,
+                    PlateNumber = standardizedPlateNumber,
                     LaneId = createEntryLogDto.LaneId,
                     WarningType = WarningType.CardLocked,
                     Note = createEntryLogDto.Note,
@@ -136,16 +136,23 @@ namespace Final_year_Project.Application.Services
 
                 throw new Exception("Thẻ bị khóa");
             }
-            else if (card.Status == CardStatus.Active)
-            {
-                throw new Exception("Thẻ đang được sử dụng");
-            }
-            else if (card.Status != CardStatus.Inactive)
+
+            if (card.Status != CardStatus.Inactive)
             {
                 throw new Exception("Thẻ không hợp lệ để vào bãi");
             }
 
-            // 2. Lấy thông tin nhóm thẻ
+            // 2. Kiểm tra thẻ đã vào mà chưa ra
+            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(card.Id);
+            if (hasActiveEntry)
+                throw new Exception("Thẻ đang được sử dụng");
+
+            // 3. Kiểm tra biển số xe đã vào mà chưa ra
+            var plateInUse = await _unitOfWork.EntryLogs.IsPlateNumberInUseAsync(standardizedPlateNumber);
+            if (plateInUse)
+                throw new Exception("Xe hiện đang trong bãi");
+
+            // 4. Lấy thông tin nhóm thẻ
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(card.CardGroupId);
             if (cardGroup == null)
                 throw new Exception("Không tìm thấy nhóm thẻ");
@@ -153,7 +160,7 @@ namespace Final_year_Project.Application.Services
             if (!cardGroup.Status)
                 throw new Exception("Nhóm thẻ không hoạt động");
 
-            // Kiểm tra hiệu lực thẻ nếu là thẻ tháng
+            // 5. Kiểm tra hiệu lực thẻ (tháng)
             if (cardGroup.Type == CardGroupType.Month)
             {
                 if (card.StartDate == null || card.EndDate == null)
@@ -164,7 +171,7 @@ namespace Final_year_Project.Application.Services
                 {
                     await _warningEventService.CreateAsync(new CreateWarningEventDto
                     {
-                        PlateNumber = createEntryLogDto.PlateNumber,
+                        PlateNumber = standardizedPlateNumber,
                         LaneId = createEntryLogDto.LaneId,
                         WarningType = WarningType.CardExpired,
                         Note = "Thẻ đã hết hạn",
@@ -175,23 +182,7 @@ namespace Final_year_Project.Application.Services
                 }
             }
 
-            // 3. Kiểm tra làn có thuộc nhóm thẻ hay không
-            var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
-            if (!allowedLaneIds.Contains(createEntryLogDto.LaneId))
-            {
-                await _warningEventService.CreateAsync(new CreateWarningEventDto
-                {
-                    PlateNumber = createEntryLogDto.PlateNumber,
-                    LaneId = createEntryLogDto.LaneId,
-                    WarningType = WarningType.CardGroupNotAllowedInLane,
-                    Note = createEntryLogDto.Note,
-                    ImageUrl = createEntryLogDto.ImageUrl
-                });
-
-                throw new Exception("Nhóm thẻ không được sử dụng làn");
-            }
-
-            // 4. Kiểm tra trạng thái làn
+            // 6. Kiểm tra trạng thái làn
             var lane = await _unitOfWork.Lanes.GetByIdAsync(createEntryLogDto.LaneId);
             if (lane == null)
                 throw new Exception("Không tìm thấy làn");
@@ -202,23 +193,26 @@ namespace Final_year_Project.Application.Services
             if (lane.Type != LaneType.In && lane.Type != LaneType.KioskIn && lane.Type != LaneType.Dynamic)
                 throw new Exception("Không được phép sử dụng làn");
 
-            // 5. Kiểm tra thẻ đã vào mà chưa ra
-            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(card.Id);
-            if (hasActiveEntry)
-                throw new Exception("Thẻ đang được sử dụng");
-
-            // 6. Kiểm tra biển số xe đã vào mà chưa ra
-            if (!string.IsNullOrWhiteSpace(createEntryLogDto.PlateNumber))
+            // 7. Kiểm tra quyền sử dụng làn
+            var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
+            if (!allowedLaneIds.Contains(createEntryLogDto.LaneId))
             {
-                var plateInUse = await _unitOfWork.EntryLogs.IsPlateNumberInUseAsync(createEntryLogDto.PlateNumber);
-                if (plateInUse)
-                    throw new Exception("Xe hiện đang trong bãi");
+                await _warningEventService.CreateAsync(new CreateWarningEventDto
+                {
+                    PlateNumber = standardizedPlateNumber,
+                    LaneId = createEntryLogDto.LaneId,
+                    WarningType = WarningType.CardGroupNotAllowedInLane,
+                    Note = createEntryLogDto.Note,
+                    ImageUrl = createEntryLogDto.ImageUrl
+                });
+
+                throw new Exception("Nhóm thẻ không được sử dụng làn");
             }
 
-            // 7. Tạo EntryLog mới
+            // 8. Tạo EntryLog mới
             var entryLog = new EntryLog
             {
-                PlateNumber = createEntryLogDto.PlateNumber,
+                PlateNumber = standardizedPlateNumber,
                 CardId = card.Id,
                 CardGroupId = card.CardGroupId,
                 CustomerId = card.CustomerId,
@@ -229,9 +223,10 @@ namespace Final_year_Project.Application.Services
                 CreatedAt = DateTime.UtcNow,
             };
 
-            await _unitOfWork.EntryLogs.CreateAsync(entryLog);
-
             card.Status = CardStatus.Active;
+            card.UpdatedAt = DateTime.UtcNow;
+
+            await _unitOfWork.EntryLogs.CreateAsync(entryLog);
             _unitOfWork.Cards.Update(card);
 
             await _unitOfWork.WarningEvents.CreateAsync(new WarningEvent
@@ -243,6 +238,7 @@ namespace Final_year_Project.Application.Services
                 CreatedAt = DateTime.UtcNow,
                 ImageUrl = entryLog.ImageUrl
             });
+
             await _unitOfWork.SaveChangesAsync();
 
             return new EntryLogDto
@@ -288,33 +284,27 @@ namespace Final_year_Project.Application.Services
             return true;
         }
 
-
         private string StandardizePlateNumber(string plateNumber)
         {
-            if (string.IsNullOrEmpty(plateNumber))
+            if (string.IsNullOrWhiteSpace(plateNumber))
                 return string.Empty;
 
-            // Loại bỏ tất cả khoảng trắng
-            plateNumber = plateNumber.Replace(" ", "");
-                
-            // Loại bỏ các ký tự đặc biệt như dấu gạch ngang, dấu chấm, v.v.
-            plateNumber = plateNumber.Replace("-", "").Replace(".", "").Replace("_", "");
-
-            // Chuyển đổi về chữ hoa để thống nhất định dạng
-            plateNumber = plateNumber.ToUpper();
-
-            return plateNumber;
+            // Loại bỏ mọi ký tự không phải chữ cái hoặc số, sau đó chuyển thành chữ hoa
+            return System.Text.RegularExpressions.Regex
+                .Replace(plateNumber, @"[^A-Za-z0-9]", "")
+                .ToUpperInvariant();
         }
 
         private bool IsValidPlateNumberFormat(string plateNumber)
         {
-            if (string.IsNullOrEmpty(plateNumber))
+            if (string.IsNullOrWhiteSpace(plateNumber))
                 return false;
 
-            // Định dạng biển số của Việt Nam là: 
-            // - 1-2 số + 1 chữ cái + 5-6 số (30A12345)
-            var regex = new System.Text.RegularExpressions.Regex(@"^\d{1,2}[A-Z]\d{5,6}$");
-            return regex.IsMatch(plateNumber);
+            var regex = new System.Text.RegularExpressions.Regex(
+                @"^(?:\d{1,2}[A-Z]\d{4,6}|[A-Z]{1,2}\d{5,6})$"
+            );
+
+            return regex.IsMatch(plateNumber.ToUpperInvariant());
         }
 
         private async Task<string?> SaveImageFileAsync(string? base64Image)

@@ -15,7 +15,7 @@ namespace Final_year_Project.Application.Services
         private readonly IWarningEventService _warningEventService;
         private readonly IWebHostEnvironment _env;
 
-        public ExitLogService(IUnitOfWork unitOfWork , IWebHostEnvironment env, IWarningEventService warningEventService)
+        public ExitLogService(IUnitOfWork unitOfWork, IWebHostEnvironment env, IWarningEventService warningEventService)
         {
             _unitOfWork = unitOfWork;
             _env = env;
@@ -148,26 +148,43 @@ namespace Final_year_Project.Application.Services
                 createExitLogDto.ImageUrl = imageUrl; // Gán lại URL ảnh để lưu vào DB
             }
 
+            // Chuẩn hóa biển số xe trước khi kiểm tra và lưu
+            var standardizedPlateNumber = StandardizePlateNumber(createExitLogDto.ExitPlateNumber);
+            if (!IsValidPlateNumberFormat(standardizedPlateNumber))
+                throw new ArgumentException("Biển số không hợp lệ");
+
+
             if (createExitLogDto.EntryLogId <= 0)
                 throw new ArgumentException("EntryLogId is required.");
 
-            // Lấy EntryLog
+            // 1. Lấy EntryLog
             var entryLog = await _unitOfWork.EntryLogs.GetByIdAsync(createExitLogDto.EntryLogId);
             if (entryLog == null)
                 throw new Exception("Không tìm thấy xe vào bãi");
 
-            // Lấy thông tin thẻ từ EntryLog
+            // 2. Lấy thông tin thẻ từ EntryLog
             var card = await _unitOfWork.Cards.GetByIdAsync(entryLog.CardId);
             if (card == null)
                 throw new Exception("Không tìm thấy thẻ");
 
             if (card.Status == CardStatus.Locked)
+            {
+                await _warningEventService.CreateAsync(new CreateWarningEventDto
+                {
+                    PlateNumber = standardizedPlateNumber,
+                    LaneId = createExitLogDto.ExitLaneId,
+                    WarningType = WarningType.CardLocked,
+                    Note = "Xe ra",
+                    ImageUrl = createExitLogDto.ImageUrl
+                });
+
                 throw new Exception("Thẻ bị khóa");
+            }
 
             if (card.Status == CardStatus.Inactive)
-                throw new Exception("Thẻ chưa được sử dụng để vào bãi");
+                throw new Exception("Thẻ chưa sử dụng để vào bãi");
 
-            // Lấy CardGroup
+            // 3. Lấy CardGroup
             var cardGroup = await _unitOfWork.CardGroups.GetByIdAsync(entryLog.CardGroupId ?? 0);
             if (cardGroup == null)
                 throw new Exception("Không tìm thấy nhóm thẻ");
@@ -175,13 +192,46 @@ namespace Final_year_Project.Application.Services
             if (!cardGroup.Status)
                 throw new Exception("Nhóm thẻ không hoạt động");
 
-            //Kiểm tra Lane ra trong CardGroup
+            // 4. Kiểm tra hiệu lực thẻ (tháng)
+            if (cardGroup.Type == CardGroupType.Month)
+            {
+                if (card.StartDate == null || card.EndDate == null)
+                    throw new Exception("Thẻ không còn hiệu lực sử dụng");
+
+                var now = DateTime.Now;
+                if (card.StartDate > now || card.EndDate < now)
+                {
+                    await _warningEventService.CreateAsync(new CreateWarningEventDto
+                    {
+                        PlateNumber = standardizedPlateNumber,
+                        LaneId = createExitLogDto.ExitLaneId,
+                        WarningType = WarningType.CardExpired,
+                        Note = "Thẻ đã hết hạn",
+                        ImageUrl = createExitLogDto.ImageUrl
+                    });
+
+                    throw new Exception("Vui lòng gia hạn thẻ");
+                }
+            }
+
+            // 5. Kiểm tra trạng thái làn
+            var exitLane = await _unitOfWork.Lanes.GetByIdAsync(createExitLogDto.ExitLaneId);
+            if (exitLane == null)
+                throw new Exception("Không tìm thấy làn");
+
+            if (!exitLane.Status)
+                throw new Exception("Làn không hoạt động");
+
+            if (exitLane.Type != LaneType.Out && exitLane.Type != LaneType.Dynamic && exitLane.Type != LaneType.KioskIn)
+                throw new Exception("Không được phép sử dụng làn");
+
+            // 6. Kiểm tra quyền sử dụng làn
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
             if (!allowedLaneIds.Contains(createExitLogDto.ExitLaneId))
             {
                 await _warningEventService.CreateAsync(new CreateWarningEventDto
                 {
-                    PlateNumber = createExitLogDto.ExitPlateNumber,
+                    PlateNumber = standardizedPlateNumber,
                     LaneId = createExitLogDto.ExitLaneId,
                     WarningType = WarningType.CardGroupNotAllowedInLane,
                     Note = createExitLogDto.Note,
@@ -191,26 +241,18 @@ namespace Final_year_Project.Application.Services
                 throw new Exception("Nhóm thẻ không được sử dụng làn");
             }
 
-            //Kiểm tra trạng thái Lane ra
-            var exitLane = await _unitOfWork.Lanes.GetByIdAsync(createExitLogDto.ExitLaneId);
-            if (exitLane == null || !exitLane.Status)
-                throw new Exception("Làn không hoạt động");
-
-            if (exitLane.Type != LaneType.Out && exitLane.Type != LaneType.Dynamic && exitLane.Type != LaneType.KioskIn)
-                throw new Exception("Không được phép sử dụng làn");
-
-            //Xác định thời gian ra khỏi bãi
+            // 7. Xác định thời gian ra khỏi bãi
             var exitTime = createExitLogDto.ExitTime != default ? createExitLogDto.ExitTime : DateTime.UtcNow;
 
-            // Kiểm tra nếu biển số ra không khớp với biển số vào
+            // 8. Kiểm tra nếu biển số ra không khớp với biển số vào
             if (!string.Equals(entryLog.PlateNumber?.Trim(), createExitLogDto.ExitPlateNumber?.Trim(), StringComparison.OrdinalIgnoreCase))
-            {   
+            {
                 var warning = new WarningEvent
                 {
-                    PlateNumber = createExitLogDto.ExitPlateNumber,
+                    PlateNumber = standardizedPlateNumber,
                     LaneId = createExitLogDto.ExitLaneId,
                     WarningType = WarningType.LicensePlateMismatch,
-                    Note = $"Vào: {entryLog.PlateNumber}, Ra: {createExitLogDto.ExitPlateNumber}",
+                    Note = $"Vào: {entryLog.PlateNumber}, Ra: {standardizedPlateNumber}",
                     CreatedAt = DateTime.UtcNow,
                     ImageUrl = createExitLogDto.ImageUrl
                 };
@@ -218,17 +260,17 @@ namespace Final_year_Project.Application.Services
                 await _unitOfWork.WarningEvents.CreateAsync(warning);
             }
 
-            //Tính tổng thời gian
+            // 9. Tính tổng thời gian
             var duration = exitTime - entryLog.EntryTime;
-            
-            //Tính giá dựa trên thời gian và quy tắc CardGroup
+
+            // 10. Tính giá dựa trên thời gian và quy tắc CardGroup
             decimal totalPrice = CalculatePrice(duration, cardGroup);
 
-            //Tạo ExitLog
+            // 11. Tạo ExitLog
             var exitLog = new ExitLog
             {
                 EntryLogId = entryLog.Id,
-                ExitPlateNumber = string.IsNullOrWhiteSpace(createExitLogDto.ExitPlateNumber) ? entryLog.PlateNumber : createExitLogDto.ExitPlateNumber,
+                ExitPlateNumber = standardizedPlateNumber,
                 CardId = entryLog.CardId,
                 CardGroupId = entryLog.CardGroupId ?? 0,
                 EntryLaneId = entryLog.LaneId,
@@ -257,7 +299,7 @@ namespace Final_year_Project.Application.Services
             entryLog.Exited = true;
             _unitOfWork.EntryLogs.Update(entryLog);
 
-            // Xóa liên kết Card khi xe ra khỏi bãi
+            // 12. Cập nhật trạng thái thẻ
             if (exitLog.CardId > 0)
             {
                 var exitCard = await _unitOfWork.Cards.GetByIdAsync(exitLog.CardId);
@@ -265,18 +307,11 @@ namespace Final_year_Project.Application.Services
                 {
                     exitCard.Status = CardStatus.Inactive;
                     exitCard.UpdatedAt = DateTime.UtcNow;
-
-                    // Nếu là thẻ ngày thì hủy gán khách
-                    //var cardGroupOfCard = await _unitOfWork.CardGroups.GetByIdAsync(exitCard.CardGroupId);
-                    //if (cardGroupOfCard != null && cardGroupOfCard.Type == CardGroupType.Day)
-                    //{
-                    //    exitCard.CustomerId = null;
-                    //}
-
                     _unitOfWork.Cards.Update(exitCard);
                 }
             }
 
+            // 13. Cập nhật báo cáo doanh thu
             var revenueReport = await _unitOfWork.RevenueReports.GetByCardGroupIdAsync(exitLog.CardGroupId);
 
             if (revenueReport != null)
@@ -318,6 +353,29 @@ namespace Final_year_Project.Application.Services
                 ImageUrl = exitLog.ImageUrl,
                 CreatedAt = exitLog.CreatedAt,
             };
+        }
+
+        private string StandardizePlateNumber(string plateNumber)
+        {
+            if (string.IsNullOrWhiteSpace(plateNumber))
+                return string.Empty;
+
+            // Loại bỏ mọi ký tự không phải chữ cái hoặc số, sau đó chuyển thành chữ hoa
+            return System.Text.RegularExpressions.Regex
+                .Replace(plateNumber, @"[^A-Za-z0-9]", "")
+                .ToUpperInvariant();
+        }
+
+        private bool IsValidPlateNumberFormat(string plateNumber)
+        {
+            if (string.IsNullOrWhiteSpace(plateNumber))
+                return false;
+
+            var regex = new System.Text.RegularExpressions.Regex(
+                @"^(?:\d{1,2}[A-Z]\d{4,6}|[A-Z]{1,2}\d{5,6})$"
+            );
+
+            return regex.IsMatch(plateNumber.ToUpperInvariant());
         }
 
         private decimal CalculatePrice(TimeSpan duration, CardGroup cardGroup)

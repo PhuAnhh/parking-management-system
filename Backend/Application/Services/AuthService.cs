@@ -37,17 +37,18 @@ namespace Final_year_Project.Application.Services
                     return new LoginResponse
                     {
                         Success = false,
-                        Message = "Username and password are required"
+                        Message = "Vui lòng nhập tên đăng nhập và mật khẩu"
                     };
                 }
 
+                //Kiểm tra người dùng 
                 var user = await _unitOfWork.Users.GetByUsernameAsync(request.Username);
                 if (user == null)
                 {
                     return new LoginResponse
                     {
                         Success = false,
-                        Message = "Invalid username or password"
+                        Message = "Tên đăng nhập hoặc mật khẩu không hợp lệ"
                     };
                 }
 
@@ -56,16 +57,17 @@ namespace Final_year_Project.Application.Services
                     return new LoginResponse
                     {
                         Success = false,
-                        Message = "Account is inactive or deleted"
+                        Message = "Tài khoản đã bị khóa hoặc xóa"
                     };
                 }
 
+                //So sánh mật khẩu
                 if (!VerifyPassword(request.Password, user.Password))
                 {
                     return new LoginResponse
                     {
                         Success = false,
-                        Message = "Invalid username or password"
+                        Message = "Tên đăng nhập hoặc mật khẩu không hợp lệ"
                     };
                 }
 
@@ -81,7 +83,7 @@ namespace Final_year_Project.Application.Services
                 return new LoginResponse
                 {
                     Success = true,
-                    Message = "Login successful",
+                    Message = "Đăng nhập thành công",
                     Token = token,
                     User = userInfo
                 };
@@ -92,7 +94,7 @@ namespace Final_year_Project.Application.Services
                 return new LoginResponse
                 {
                     Success = false,
-                    Message = "An error occurred during login"
+                    Message = "Có lỗi xảy ra khi đăng nhập"
                 };
             }
         }

@@ -43,8 +43,15 @@ namespace Final_year_Project.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<CardDto>> Create(CreateCardDto createCardDto)
         {
-            var createdCard = await _cardService.CreateAsync(createCardDto);
-            return CreatedAtAction(nameof(GetById), new { id = createdCard.Id }, createdCard);
+            try
+            {
+                var createdCard = await _cardService.CreateAsync(createCardDto);
+                return CreatedAtAction(nameof(GetById), new { id = createdCard.Id }, createdCard);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [RequirePermission("PUT", "/api/card/{id}")]

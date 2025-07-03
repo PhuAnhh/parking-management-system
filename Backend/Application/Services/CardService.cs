@@ -28,6 +28,7 @@ namespace Final_year_Project.Application.Services
                     Id = card.Id,
                     Name = card.Name,
                     Code = card.Code,
+                    PlateNumber = card.PlateNumber,
                     CardGroupId = card.CardGroupId,
                     CustomerId = card.CustomerId,
                     Note = card.Note,
@@ -55,6 +56,7 @@ namespace Final_year_Project.Application.Services
                 Id = card.Id,
                 Name = card.Name,
                 Code = card.Code,
+                PlateNumber = card.PlateNumber,
                 CardGroupId = card.CardGroupId,
                 CustomerId = card.CustomerId,
                 Note = card.Note,
@@ -69,10 +71,24 @@ namespace Final_year_Project.Application.Services
 
         public async Task<CardDto> CreateAsync(CreateCardDto createCardDto)
         {
+            var rawPlate = createCardDto.PlateNumber;
+            var standardizedPlate = StandardizePlateNumber(rawPlate);
+
+            if (!string.IsNullOrEmpty(rawPlate) && !IsValidPlateNumberFormat(standardizedPlate))
+            {
+                throw new Exception("Biển số không hợp lệ");
+            }
+
+            if (!string.IsNullOrEmpty(standardizedPlate) && await IsPlateNumberDuplicate(standardizedPlate))
+            {
+                throw new Exception("Biển số đã được liên kết với thẻ khác");
+            }
+
             var card = new Card
             {
                 Name = createCardDto.Name,
                 Code = createCardDto.Code,
+                PlateNumber = standardizedPlate,
                 CardGroupId = createCardDto.CardGroupId,
                 CustomerId = createCardDto.CustomerId,
                 Note = createCardDto.Note,
@@ -92,8 +108,9 @@ namespace Final_year_Project.Application.Services
                 Id = card.Id,
                 Name = card.Name,
                 Code = card.Code,
+                PlateNumber = card.PlateNumber,
                 CardGroupId = card.CardGroupId,
-                CustomerId = card.CustomerId, 
+                CustomerId = card.CustomerId,
                 Note = card.Note,
                 StartDate = card.StartDate,
                 EndDate = card.EndDate,
@@ -110,12 +127,28 @@ namespace Final_year_Project.Application.Services
             if (card == null)
                 return null;
 
+            var rawPlate = updateCardDto.PlateNumber;
+            var standardizedPlate = StandardizePlateNumber(rawPlate);
+
+            // Kiểm tra định dạng
+            if (!string.IsNullOrEmpty(rawPlate) && !IsValidPlateNumberFormat(standardizedPlate))
+            {
+                throw new Exception("Biển số không hợp lệ");
+            }
+
+            // Kiểm tra trùng biển số
+            if (!string.IsNullOrEmpty(standardizedPlate) && await IsPlateNumberDuplicate(standardizedPlate, id))
+            {
+                throw new Exception("Biển số đã được liên kết với thẻ khác");
+            }
+
             var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(id);
 
             if (hasActiveEntry)
             {
                 if (card.Name != updateCardDto.Name ||
                     card.Code != updateCardDto.Code ||
+                    card.PlateNumber != standardizedPlate ||
                     card.CardGroupId != updateCardDto.CardGroupId ||
                     card.CustomerId != updateCardDto.CustomerId ||
                     card.StartDate != updateCardDto.StartDate ||
@@ -131,6 +164,7 @@ namespace Final_year_Project.Application.Services
             {
                 card.Name = updateCardDto.Name;
                 card.Code = updateCardDto.Code;
+                card.PlateNumber = standardizedPlate;
                 card.CardGroupId = updateCardDto.CardGroupId;
                 card.CustomerId = updateCardDto.CustomerId;
                 card.Note = updateCardDto.Note;
@@ -150,6 +184,7 @@ namespace Final_year_Project.Application.Services
                 Id = card.Id,
                 Name = card.Name,
                 Code = card.Code,
+                PlateNumber = card.PlateNumber,
                 CardGroupId = card.CardGroupId,
                 CustomerId = card.CustomerId,
                 Note = card.Note,
@@ -179,6 +214,41 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.SaveChangesAsync();
 
             return true;
+        }
+
+        private string StandardizePlateNumber(string plateNumber)
+        {
+            if (string.IsNullOrWhiteSpace(plateNumber))
+                return string.Empty;
+
+            // Loại bỏ mọi ký tự không phải chữ cái hoặc số, sau đó chuyển thành chữ hoa
+            return System.Text.RegularExpressions.Regex
+                .Replace(plateNumber, @"[^A-Za-z0-9]", "")
+                .ToUpperInvariant();
+        }
+
+        private bool IsValidPlateNumberFormat(string plateNumber)
+        {
+            if (string.IsNullOrWhiteSpace(plateNumber))
+                return false;
+
+            var regex = new System.Text.RegularExpressions.Regex(
+                @"^(?:\d{1,2}[A-Z]\d{4,6}|[A-Z]{1,2}\d{5,6})$"
+            );
+
+            return regex.IsMatch(plateNumber.ToUpperInvariant());
+        }
+
+        private async Task<bool> IsPlateNumberDuplicate(string plateNumber, int? excludeCardId = null)
+        {
+            var standardizedPlate = StandardizePlateNumber(plateNumber);
+            if (string.IsNullOrEmpty(standardizedPlate))
+                return false;
+
+            var existingCards = await _unitOfWork.Cards.GetAllAsync();
+            return existingCards.Any(c =>
+                c.PlateNumber == standardizedPlate &&
+                c.Id != excludeCardId);
         }
     }
 }

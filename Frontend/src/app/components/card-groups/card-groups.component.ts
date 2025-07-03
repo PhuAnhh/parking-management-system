@@ -282,7 +282,11 @@ export class CardGroupsComponent implements OnInit {
     newCardGroup.laneIds = newCardGroup.laneIds || [];
 
     if (this.cardGroups.some(cardGroup => cardGroup.code === newCardGroup.code)) {
-      this.notification.error('Lỗi', 'Tên: Trường bị trùng lặp', {nzDuration: 3000});
+      this.notification.error(
+        'Lỗi', 
+        'Tên bị trùng lặp', 
+        {nzDuration: 3000}
+      );
       return;
     }
 
@@ -324,7 +328,11 @@ export class CardGroupsComponent implements OnInit {
     );
 
     if (isDuplicate) {
-      this.notification.error('Lỗi', 'Tên: Trường bị trùng lặp', {nzDuration: 3000});
+      this.notification.error(
+        'Lỗi', 
+        'Tên bị trùng lặp', 
+        {nzDuration: 3000}
+      );
       return;
     }
 

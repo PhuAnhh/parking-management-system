@@ -37,34 +37,22 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.get('password')?.value
       };
 
-      this.loginService.login(loginData)
-        .subscribe({
-          next: (response) => {
-            this.isLoading = false;
-            
-            if (response.success && response.token && response.user) {
-              this.loginService.saveToken(response.token);
-              localStorage.setItem('currentUser', JSON.stringify(response.user));
+      this.loginService.login(loginData).subscribe({
+        next: (response) => {
+          this.isLoading = false;
+          
+          if (response.success && response.token && response.user) {
+            this.loginService.saveToken(response.token);
+            localStorage.setItem('currentUser', JSON.stringify(response.user));
 
-              this.router.navigate(['/dashboard']);
-            }
-          },
-          error: (error) => {
-            this.isLoading = false;
-            this.showError(error.error?.message || 'Lỗi kết nối server');
+            this.router.navigate(['/dashboard']);
           }
-        });
+        },
+        error: (error) => {
+          this.isLoading = false;
+          this.message.error(error.error?.message || 'Lỗi kết nối server');
+        }
+      });
     }
-  }
-
-  private showError(message: string): void {
-    const vietnameseMessage = {
-      'Invalid username or password': 'Tên đăng nhập hoặc mật khẩu không đúng',
-      'Username and password are required': 'Vui lòng nhập tên đăng nhập và mật khẩu',
-      'Account is inactive or deleted': 'Tài khoản đã bị khóa hoặc xóa',
-      'An error occurred during login': 'Có lỗi xảy ra khi đăng nhập'
-    }[message] || message;
-
-    this.message.error(vietnameseMessage);
   }
 }

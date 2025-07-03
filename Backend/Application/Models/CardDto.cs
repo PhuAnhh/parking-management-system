@@ -12,6 +12,8 @@ namespace Final_year_Project.Application.Models
 
         public string Name { get; set; } = null!;
 
+        public string? PlateNumber { get; set; }
+
         public int CardGroupId { get; set; }
 
         public int? CustomerId { get; set; }
@@ -39,6 +41,8 @@ namespace Final_year_Project.Application.Models
 
         public string Name { get; set; } = null!;
 
+        public string? PlateNumber { get; set; }
+
         public int CardGroupId { get; set; }
 
         public int? CustomerId { get; set; }
@@ -60,6 +64,8 @@ namespace Final_year_Project.Application.Models
         public string Code { get; set; } = null!;
 
         public string Name { get; set; } = null!;
+
+        public string? PlateNumber { get; set; }
 
         public int CardGroupId { get; set; }
 

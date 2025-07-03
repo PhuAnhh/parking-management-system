@@ -215,7 +215,7 @@ export class CamerasComponent {
     if(isDuplicateName) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -224,7 +224,7 @@ export class CamerasComponent {
     if (isDuplicateCode) {
       this.notification.error(
         'Lỗi',
-        'Mã camera: Trường bị trùng lặp',
+        'Mã bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -281,7 +281,7 @@ export class CamerasComponent {
     if(isDuplicateName) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -290,7 +290,7 @@ export class CamerasComponent {
     if (isDuplicateCode) {
       this.notification.error(
         'Lỗi',
-        'Mã: Trường bị trùng lặp',
+        'Mã bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;

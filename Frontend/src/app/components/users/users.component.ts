@@ -113,7 +113,6 @@ export class UsersComponent implements OnInit{
   }
   
   onSearch() {
-    console.log(this.searchKeyword);
     this.loadUsers(this.searchKeyword); 
   }
   
@@ -140,7 +139,6 @@ export class UsersComponent implements OnInit{
       });
       this.isEditModalVisible = true;
     } else {
-      console.error('Edit form is not initialized');
       this.initForm();
       this.showEditUserModal(user);
     }
@@ -184,7 +182,7 @@ export class UsersComponent implements OnInit{
     if(isDupicate) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -229,8 +227,6 @@ export class UsersComponent implements OnInit{
       ...this.editUserForm.value,
     };
     
-    console.log('Updated User:', updatedUser);  
-
     const isDupicate = this.users.some(user =>
       user.username === updatedUser.username && user.id !== this.currentUserId
     );
@@ -238,7 +234,7 @@ export class UsersComponent implements OnInit{
     if (isDupicate) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -396,7 +392,6 @@ export class UsersComponent implements OnInit{
   toggleUserStatus(userId: number) {
     const user = this.users.find(g => g.id === userId);
     if (!user) {
-      console.error(`Không tìm thấy người dùng với id ${userId}`);
       return;
     }
 

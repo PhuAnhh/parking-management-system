@@ -137,6 +137,9 @@ public partial class ParkingManagementContext : DbContext
             entity.Property(e => e.Note)
                 .HasMaxLength(255)
                 .HasColumnName("note");
+            entity.Property(e => e.PlateNumber)
+                .HasMaxLength(255)
+                .HasColumnName("plate_number");
             entity.Property(e => e.StartDate)
                 .HasColumnType("datetime")
                 .HasColumnName("start_date");

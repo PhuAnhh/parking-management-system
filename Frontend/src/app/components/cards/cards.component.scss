@@ -162,3 +162,12 @@ nz-breadcrumb {
 ::ng-deep .ant-picker-panel-container {
   border-radius: 8px !important;
 }
+
+::ng-deep .ant-tooltip-inner {
+  border-radius: 8px;  
+}
+
+::ng-deep nz-table td,
+::ng-deep nz-table th {
+  white-space: nowrap;
+}

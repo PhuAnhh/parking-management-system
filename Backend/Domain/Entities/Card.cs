@@ -12,6 +12,8 @@ public partial class Card
 
     public string Name { get; set; } = null!;
 
+    public string? PlateNumber { get; set; }
+
     public int CardGroupId { get; set; }
 
     public int? CustomerId { get; set; }

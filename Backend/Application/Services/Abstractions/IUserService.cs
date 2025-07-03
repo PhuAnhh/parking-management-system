@@ -12,6 +12,5 @@ namespace Final_year_Project.Application.Services.Abstractions
         Task<bool> ChangePasswordAsync(int userId, ChangePasswordDto changePasswordDto);
         Task<bool> ResetPasswordAsync(int userId, ResetPasswordDto resetPasswordDto);
         Task<bool> ChangeStatusAsync(int id, bool status);
-
     }
 }

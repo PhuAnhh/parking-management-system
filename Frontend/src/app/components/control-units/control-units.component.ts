@@ -207,7 +207,7 @@ export class ControlUnitsComponent implements OnInit{
     if(isDupicateName) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -216,7 +216,7 @@ export class ControlUnitsComponent implements OnInit{
     if(isDupicateCode) {
       this.notification.error(
         'Lỗi',
-        'Mã: Trường bị trùng lặp',
+        'Mã bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -272,7 +272,7 @@ export class ControlUnitsComponent implements OnInit{
     if(isDupicateName) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -281,7 +281,7 @@ export class ControlUnitsComponent implements OnInit{
     if(isDupicateCode) {
       this.notification.error(
         'Lỗi',
-        'Mã: Trường bị trùng lặp',
+        'Mã bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;

@@ -58,7 +58,6 @@
                 </nz-col>
             </nz-row>
             <nz-table
-              #gateTable
               [nzData]="cards"
               [nzTotal]="total"
               [nzPageSize]="pageSize"
@@ -68,7 +67,8 @@
               [nzPageSizeOptions]="[10, 20, 30, 40]"
               [nzShowTotal]="paginationTemplate"
               (nzQueryParams)="onQueryParamsChange($event)"
-              [nzLoading]="loading" >
+              [nzLoading]="loading" 
+              >
               <thead>
                 <tr>
                   <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
@@ -77,9 +77,10 @@
                   <th>Nhóm thẻ</th>
                   <th>Ngày bắt đầu hiệu lực</th>
                   <th>Ngày hết hạn</th>
+                  <th>Biển số</th>
                   <th>Ghi chú</th>
                   <th style="text-align: center;">Trạng thái</th>
-                  <th style="width: 130px; min-width: 130px; text-align: center;"></th>
+                  <th style="text-align: center;"></th>
                 </tr>
               </thead>
               <tbody>
@@ -99,7 +100,12 @@
                     {{ getFormattedTime(card.endDate) | date:'dd/MM/yyyy' }}<br />
                     {{ getFormattedTime(card.endDate) | date:'HH:mm' }}
                   </td>
-                  <td>{{ card.note }}</td>
+                  <td>{{ card.plateNumber }}</td>
+                  <td 
+                    style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                    nz-tooltip
+                    [nzTooltipTitle]="card.note">{{ card.note }}
+                  </td>
                   <td style="text-align: center;">
                     <nz-tag [nzColor]="getStatusColor(card.status)" [ngStyle]="{'border-radius': '8px', 'font-size': '12px'}">
                       {{ getCardStatus(card.status)?.label || card.status }}
@@ -188,6 +194,22 @@ nzCancelText="Hủy bỏ"
                 [nzLabel]="status.label"
               ></nz-option>
             </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16" *ngIf="isMonthlyCardGroup(cardForm.value.cardGroupId)">
+      <div nz-col [nzSpan]="24">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardPlateNumber'">Biển số xe</nz-form-label>
+          <nz-form-control>
+            <input
+              id="cardPlateNumber"
+              nz-input
+              formControlName="plateNumber"
+              style="width: 100%; border-radius: 8px;"
+            />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -310,6 +332,22 @@ nzCancelText="Hủy bỏ"
                 [nzLabel]="status.label"
               ></nz-option>
             </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16" *ngIf="isMonthlyCardGroup(editCardForm.value.cardGroupId)">
+      <div nz-col [nzSpan]="24">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cardPlateNumber'">Biển số xe</nz-form-label>
+          <nz-form-control>
+            <input
+              id="cardPlateNumber"
+              nz-input
+              formControlName="plateNumber"
+              style="width: 100%; border-radius: 8px;"
+            />
           </nz-form-control>
         </nz-form-item>
       </div>

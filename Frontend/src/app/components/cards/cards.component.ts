@@ -76,6 +76,7 @@ export class CardsComponent {
     this.cardForm = this.fb.group({
       name: [null, [Validators.required]],
       code: [null, [Validators.required]],
+      plateNumber: [null],
       cardGroupId: [null, [Validators.required]],
       customerId: [null],
       note: [null],
@@ -87,6 +88,7 @@ export class CardsComponent {
     this.editCardForm = this.fb.group({
       name: [null, [Validators.required]],
       code: [null, [Validators.required]],
+      plateNumber: [null],
       cardGroupId: [null, [Validators.required]],
       customerId: [null],
       note: [null],
@@ -201,6 +203,7 @@ export class CardsComponent {
       this.editCardForm.patchValue({
         name: card.name,
         code: card.code,
+        plateNumber: card.plateNumber,
         cardGroupId: card.cardGroupId,
         note: card.note,
         status: card.status,
@@ -243,7 +246,7 @@ export class CardsComponent {
     if(isDuplicateName) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );  
       return;
@@ -252,7 +255,7 @@ export class CardsComponent {
     if(isDuplicateCode) {
       this.notification.error(
         'Lỗi',
-        'Mã: Trường bị trùng lặp',
+        'Mã bị trùng lặp',
         { nzDuration: 3000 }
       );  
       return;
@@ -308,11 +311,11 @@ export class CardsComponent {
     const isDupicateCode = this.cards.some(card =>
       card.code === updatedCard.code && card.id !== this.currentCardId
     );
-
+    
     if(isDupicateName) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );  
       return;
@@ -321,7 +324,7 @@ export class CardsComponent {
     if(isDupicateCode) {
       this.notification.error(
         'Lỗi',
-        'Mã: Trường bị trùng lặp',
+        'Mã bị trùng lặp',
         { nzDuration: 3000 }
       );  
       return;

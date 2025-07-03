@@ -148,7 +148,7 @@ export class GatesComponent implements OnInit{
     if(isDupicate) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -202,7 +202,7 @@ export class GatesComponent implements OnInit{
     if (isDupicate) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;

@@ -219,7 +219,6 @@ export class RolePermissionsComponent implements OnInit{
       this.initEditPermissionCheckboxes(role.permissions || []);
       this.isEditModalVisible = true;
     } else {
-      console.error('Edit form is not initialized');
       this.initForm();
       this.showEditRoleModal(role);
     }
@@ -301,7 +300,7 @@ export class RolePermissionsComponent implements OnInit{
     if(isDuplicate) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;
@@ -351,8 +350,6 @@ export class RolePermissionsComponent implements OnInit{
       permissionIds: selectedPermissionIds
     };
     
-    console.log('Updated Role:', updatedRole);  
-
     const isDuplicate = this.roles.some(role =>
       role.name === updatedRole.name && role.id !== this.currentRoleId
     );
@@ -360,7 +357,7 @@ export class RolePermissionsComponent implements OnInit{
     if (isDuplicate) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );
       return;

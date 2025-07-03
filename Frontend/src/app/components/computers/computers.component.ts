@@ -154,7 +154,18 @@ export class ComputersComponent {
     }
 
     const newComputer = this.computerForm.value;
-    
+
+    const isDuplicateName = this.computers.some(computer => computer.name === newComputer.name);
+
+    if(isDuplicateName) {
+      this.notification.error(
+        'Lỗi',
+        'Tên bị trùng lặp',
+        { nzDuration: 3000 }
+      );  
+      return;
+    }
+
     this.computerService.addComputer(newComputer).subscribe(
       () => {
         this.loadComputers();
@@ -201,7 +212,7 @@ export class ComputersComponent {
     if(isDupicate) {
       this.notification.error(
         'Lỗi',
-        'Tên: Trường bị trùng lặp',
+        'Tên bị trùng lặp',
         { nzDuration: 3000 }
       );  
       return;

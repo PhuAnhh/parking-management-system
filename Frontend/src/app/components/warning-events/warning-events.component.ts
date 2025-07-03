@@ -147,7 +147,6 @@ export class WarningEventsComponent implements OnInit {
   }
 
   onSearch() {
-    console.log(this.searchKeyword);
     this.loadWarningEvents(this.searchKeyword);
   }
 
