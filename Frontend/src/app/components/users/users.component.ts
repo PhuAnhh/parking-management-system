@@ -95,8 +95,20 @@ export class UsersComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách người dùng:', error);
-        this.notification.error('Lỗi', 'Không thể tải dữ liệu người dùng');
         this.loading = false;
+        if (error.status === 403) {
+          this.notification.error(
+            'Lỗi',
+            'Bạn không có quyền xem danh sách người dùng',
+            { nzDuration: 3000 }
+          );
+        } else {
+          this.notification.error(
+            'Lỗi',
+            error.error?.message || 'Không thể tải dữ liệu người dùng',
+            { nzDuration: 3000 }
+          );
+        }
       }
     );
   }

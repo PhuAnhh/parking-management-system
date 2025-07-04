@@ -75,7 +75,7 @@
                   <th>Tên</th>
                   <th>Mã</th>
                   <th>Nhóm thẻ</th>
-                  <th>Ngày bắt đầu hiệu lực</th>
+                  <th>Ngày bắt đầu</th>
                   <th>Ngày hết hạn</th>
                   <th>Biển số</th>
                   <th>Ghi chú</th>
@@ -218,7 +218,7 @@ nzCancelText="Hủy bỏ"
     <div nz-row [nzGutter]="16" *ngIf="isMonthlyCardGroup(cardForm.value.cardGroupId)">
       <div nz-col [nzSpan]="12">
         <nz-form-item>
-          <nz-form-label [nzFor]="'cardStartDate'" [nzRequired]="true">Ngày bắt đầu hiệu lực</nz-form-label>
+          <nz-form-label [nzFor]="'cardStartDate'" [nzRequired]="true">Ngày bắt đầu</nz-form-label>
           <nz-form-control>
             <nz-date-picker
               id="cardStartDate"
@@ -356,7 +356,7 @@ nzCancelText="Hủy bỏ"
     <div nz-row [nzGutter]="16" *ngIf="isMonthlyCardGroup(editCardForm.value.cardGroupId)">
       <div nz-col [nzSpan]="12">
         <nz-form-item>
-          <nz-form-label [nzFor]="'cardStartDate'" [nzRequired]="true">Ngày bắt đầu hiệu lực</nz-form-label>
+          <nz-form-label [nzFor]="'cardStartDate'" [nzRequired]="true">Ngày bắt đầu</nz-form-label>
           <nz-form-control>
             <nz-date-picker
               id="cardStartDate"

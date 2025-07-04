@@ -326,6 +326,13 @@ nzCancelText="Hủy bỏ"
                         <strong>Mã:</strong> {{ card.code }} |
                         <strong>Nhóm thẻ:</strong> {{ getCardGroupNameById(card.cardGroupId) }}
                       </div>
+                      <div *ngIf="card.plateNumber">
+                        <strong>Biển số:</strong> {{ card.plateNumber }}
+                      </div>
+                      <div>
+                        <strong>Ngày bắt đầu:</strong> {{ card.startDate | date: 'dd/MM/yyyy' }} |
+                        <strong>Ngày hết hạn:</strong> {{ card.endDate | date: 'dd/MM/yyyy' }}
+                      </div>
                       <div *ngIf="card.note">
                         <strong>Ghi chú:</strong> {{ card.note }}
                       </div>

@@ -7,6 +7,7 @@
         LicensePlateMismatch,
         TicketIssued,
         DeletedWhileVehicleInParking,
-        CardExpired
+        CardExpired,
+        PlateNumberMismatch
     }
 }

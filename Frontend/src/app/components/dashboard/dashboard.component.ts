@@ -4,7 +4,6 @@ import { ExitLogService } from '../../cores/services/exit-log.service';
 import { CardService } from '../../cores/services/card.service';
 import { CardGroupService } from '../../cores/services/card-group.service';
 import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
-import { Router } from '@angular/router';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -97,7 +96,6 @@ export class DashboardComponent implements OnInit {
     private cardService: CardService,
     private cardGroupService: CardGroupService,
     private cdr: ChangeDetectorRef,
-    private router: Router
   ) {
     this.initializeChart();
   }
@@ -108,13 +106,6 @@ export class DashboardComponent implements OnInit {
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this.displayName = currentUser.username;
-  }
-
-  logout(): void {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('permissions');
-    this.router.navigate(['/login']);
   }
 
   private initializeChart() {

@@ -160,7 +160,26 @@ namespace Final_year_Project.Application.Services
             if (!cardGroup.Status)
                 throw new Exception("Nhóm thẻ không hoạt động");
 
-            // 5. Kiểm tra hiệu lực thẻ (tháng)
+            // 5. Kiểm tra biển số khớp với thẻ tháng
+            if(cardGroup.Type == CardGroupType.Month)
+            {
+                //Chỉ kiểm tra biển số khớp khi thẻ tháng có biển số
+                if (!string.IsNullOrEmpty(card.PlateNumber) && card.PlateNumber != standardizedPlateNumber)
+                {
+                    await _warningEventService.CreateAsync(new CreateWarningEventDto
+                    {
+                        PlateNumber = standardizedPlateNumber,
+                        LaneId = createEntryLogDto.LaneId,
+                        WarningType = WarningType.PlateNumberMismatch,
+                        Note = $"Biển số đăng ký: {card.PlateNumber}",
+                        ImageUrl = createEntryLogDto.ImageUrl
+                    });
+
+                    throw new Exception("Biển số khác với biển đăng ký");
+                }    
+            }    
+
+            // 6. Kiểm tra hiệu lực thẻ (tháng)
             if (cardGroup.Type == CardGroupType.Month)
             {
                 if (card.StartDate == null || card.EndDate == null)
@@ -182,7 +201,7 @@ namespace Final_year_Project.Application.Services
                 }
             }
 
-            // 6. Kiểm tra trạng thái làn
+            // 7. Kiểm tra trạng thái làn
             var lane = await _unitOfWork.Lanes.GetByIdAsync(createEntryLogDto.LaneId);
             if (lane == null)
                 throw new Exception("Không tìm thấy làn");
@@ -193,7 +212,7 @@ namespace Final_year_Project.Application.Services
             if (lane.Type != LaneType.In && lane.Type != LaneType.KioskIn && lane.Type != LaneType.Dynamic)
                 throw new Exception("Không được phép sử dụng làn");
 
-            // 7. Kiểm tra quyền sử dụng làn
+            // 8. Kiểm tra quyền sử dụng làn
             var allowedLaneIds = await _unitOfWork.CardGroups.GetAllowedLaneIdsAsync(cardGroup.Id);
             if (!allowedLaneIds.Contains(createEntryLogDto.LaneId))
             {
@@ -209,7 +228,7 @@ namespace Final_year_Project.Application.Services
                 throw new Exception("Nhóm thẻ không được sử dụng làn");
             }
 
-            // 8. Tạo EntryLog mới
+            // 9. Tạo EntryLog mới
             var entryLog = new EntryLog
             {
                 PlateNumber = standardizedPlateNumber,
@@ -234,7 +253,7 @@ namespace Final_year_Project.Application.Services
                 PlateNumber = entryLog.PlateNumber,
                 LaneId = entryLog.LaneId,
                 WarningType = WarningType.TicketIssued,
-                Note = "Ghi vé vào",
+                Note = "Xe đã vào bãi",
                 CreatedAt = DateTime.UtcNow,
                 ImageUrl = entryLog.ImageUrl
             });

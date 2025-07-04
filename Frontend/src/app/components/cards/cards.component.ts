@@ -94,7 +94,7 @@ export class CardsComponent {
       note: [null],
       startDate: [null],
       endDate: [null],
-      status: [CardStatus.INACTIVE, [Validators.required]]
+      status: [null, [Validators.required]]
     });
 
     // Theo dõi thay đổi nhóm thẻ của form thêm mới
@@ -207,8 +207,8 @@ export class CardsComponent {
         cardGroupId: card.cardGroupId,
         note: card.note,
         status: card.status,
-        startDate: card.startDate,
-        endDate: card.endDate,
+        startDate: this.getFormattedTime(card.startDate),
+        endDate: this.getFormattedTime(card.endDate),
         customerId: card.customerId
       });
       this.isEditModalVisible = true;

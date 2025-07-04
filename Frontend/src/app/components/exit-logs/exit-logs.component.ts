@@ -8,6 +8,7 @@ import { LoginService } from '../../cores/services/login.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
+import { forkJoin } from 'rxjs';
 
 interface DashboardItem {
   value: number;
@@ -79,21 +80,34 @@ export class ExitLogsComponent implements OnInit{
     }  
 
   ngOnInit() {
-    this.cardService.getCards().subscribe(data => {
-      this.cards = data;
-      
-      this.cardGroupService.getCardGroups().subscribe(data => {
-        this.cardGroups = data;
-        
-        this.loadExitLogs();
-      });
-    });
-    
-    this.loadLanes();
-    this.loadCustomers();
+    this.loadAllData();
   }
 
-  initForm() {
+  loadAllData(): void {
+    this.loading = true;
+    
+    // Gọi tất cả API đồng thời
+    forkJoin({
+      cards: this.cardService.getCards(),
+      cardGroups: this.cardGroupService.getCardGroups(),
+      lanes: this.laneService.getLanes(),
+      customers: this.customerService.getCustomers()
+    }).subscribe({
+      next: (data) => {
+        this.cards = data.cards;
+        this.cardGroups = data.cardGroups;
+        this.lanes = data.lanes;
+        this.customers = data.customers;
+        
+        // Sau khi có tất cả dữ liệu, load exitLogs
+        this.loadExitLogs();
+      },
+      error: (error) => {
+        console.error('Lỗi khi tải dữ liệu:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu');
+        this.loading = false;
+      }
+    });
   }
 
   loadExitLogs(searchKeyword: string = ''): void {
@@ -169,30 +183,6 @@ export class ExitLogsComponent implements OnInit{
     }
 
     return result;
-  }
-
-  loadCards() {
-    this.cardService.getCards().subscribe(data => {
-      this.cards = data;
-    });
-  }
-
-  loadCardGroups(){
-    this.cardGroupService.getCardGroups().subscribe(data => {
-      this.cardGroups = data;
-    });
-  }
-
-  loadLanes(){
-    this.laneService.getLanes().subscribe(data => {
-      this.lanes = data;
-    });
-  }
-
-  loadCustomers(){
-    this.customerService.getCustomers().subscribe(data => {
-      this.customers = data;
-    });
   }
 
   updateDashboardItems(exitLogs: any[]) {
@@ -306,7 +296,7 @@ export class ExitLogsComponent implements OnInit{
         console.error('Lỗi khi lấy chi tiết sự kiện:', error);
         this.notification.error(
           'Lỗi',
-          'Không thể tải chi tiết sự kiện',
+          '',
           {
             nzPlacement: 'topRight',
             nzDuration: 3000

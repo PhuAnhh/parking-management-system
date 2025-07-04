@@ -163,7 +163,7 @@ export class RolePermissionsComponent implements OnInit{
 
   loadRoles(searchKeyword: string = '') {
     this.loading = true;
-  
+
     this.roleService.getRoles().subscribe(
       (data: any[]) => {
         data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
@@ -184,8 +184,20 @@ export class RolePermissionsComponent implements OnInit{
       },
       (error) => {
         console.error('Lỗi khi lấy danh sách vai trò:', error);
-        this.notification.error('Lỗi', 'Không thể tải dữ liệu vai trò');
         this.loading = false;
+        if (error.status === 403) {
+          this.notification.error(
+            'Lỗi',
+            'Bạn không có quyền xem danh sách vai trò, quyền hạn',
+            { nzDuration: 3000 }
+          );
+        } else {
+          this.notification.error(
+            'Lỗi',
+            error.error?.message || 'Không thể tải dữ liệu vai trò, quyền hạn',
+            { nzDuration: 3000 }
+          );
+        }
       }
     );
   }

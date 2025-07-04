@@ -96,7 +96,7 @@ export class MainLayoutComponent {
         this.closeDrawer();
       },
       error: () => {
-        this.showNotification('error', 'Mật khẩu hiện tại không đúng hoặc lỗi hệ thống');
+        this.showNotification('error', 'Mật khẩu hiện tại không chính xác');
       }
     });
   }

@@ -5,5 +5,6 @@ export enum WarningType
     LICENSEPLATEMISMATCH = "LicensePlateMismatch",
     TICKETISSUED = "TicketIssued",
     DELETEDWHILEVEHICLEINPARKING = "DeletedWhileVehicleInParking",
-    CARDEXPIRED = "CardExpired"
+    CARDEXPIRED = "CardExpired",
+    PLATENUMBERMISMATCH = "PlateNumberMismatch"
 }

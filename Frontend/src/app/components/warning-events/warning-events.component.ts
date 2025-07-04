@@ -30,7 +30,8 @@ export class WarningEventsComponent implements OnInit {
     { label: 'Biển số vào ra không khớp', value: WarningType.LICENSEPLATEMISMATCH, color: 'orange' },
     { label: 'Ghi vé', value: WarningType.TICKETISSUED, color: 'green' },
     { label: 'Xóa sự kiện xe đang trong bãi', value: WarningType.DELETEDWHILEVEHICLEINPARKING, color: 'purple' },
-    { label: 'Thẻ hết hạn', value: WarningType.CARDEXPIRED, color: 'blue' }
+    { label: 'Thẻ hết hạn', value: WarningType.CARDEXPIRED, color: 'blue' },
+    { label: 'Biển số khác với biển đăng ký', value: WarningType.PLATENUMBERMISMATCH, color: 'cyan' }
   ];
 
   constructor(

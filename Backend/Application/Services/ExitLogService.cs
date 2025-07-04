@@ -247,17 +247,36 @@ namespace Final_year_Project.Application.Services
             // 8. Kiểm tra nếu biển số ra không khớp với biển số vào
             if (!string.Equals(entryLog.PlateNumber?.Trim(), createExitLogDto.ExitPlateNumber?.Trim(), StringComparison.OrdinalIgnoreCase))
             {
-                var warning = new WarningEvent
+                await _warningEventService.CreateAsync(new CreateWarningEventDto
                 {
                     PlateNumber = standardizedPlateNumber,
                     LaneId = createExitLogDto.ExitLaneId,
                     WarningType = WarningType.LicensePlateMismatch,
-                    Note = $"Vào: {entryLog.PlateNumber}, Ra: {standardizedPlateNumber}",
+                    Note = $"Biển số vào: {entryLog.PlateNumber}",
                     CreatedAt = DateTime.UtcNow,
                     ImageUrl = createExitLogDto.ImageUrl
-                };
+                });
 
-                await _unitOfWork.WarningEvents.CreateAsync(warning);
+                throw new Exception("Biển số vào ra không khớp");
+            }
+
+            if (cardGroup.Type == CardGroupType.Month && !string.IsNullOrEmpty(card.PlateNumber))
+            {
+                if (!string.Equals(card.PlateNumber?.Trim(), standardizedPlateNumber?.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    // Tạo cảnh báo
+                    await _warningEventService.CreateAsync(new CreateWarningEventDto
+                    {
+                        PlateNumber = standardizedPlateNumber,
+                        LaneId = createExitLogDto.ExitLaneId,
+                        WarningType = WarningType.LicensePlateMismatch,
+                        Note = $"Biển số đăng ký: {card.PlateNumber}",
+                        ImageUrl = createExitLogDto.ImageUrl
+                    });
+
+                    // Throw exception để không cho phép xe ra
+                    throw new Exception("Biển số khác với biển đăng ký");
+                }
             }
 
             // 9. Tính tổng thời gian
@@ -291,7 +310,7 @@ namespace Final_year_Project.Application.Services
                 PlateNumber = exitLog.ExitPlateNumber,
                 LaneId = exitLog.ExitLaneId,
                 WarningType = WarningType.TicketIssued,
-                Note = "Ghi vé ra",
+                Note = "Xe đã rời bãi",
                 CreatedAt = DateTime.UtcNow,
                 ImageUrl = exitLog.ImageUrl
             });

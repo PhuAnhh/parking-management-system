@@ -14,6 +14,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CardGroupVehicleType } from '../../cores/enums/card-group-vehicle-type';
 import { LaneType } from '../../cores/enums/lane-type.enum';
 import { CardStatus } from '../../cores/enums/card-status';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-entry-logs',
@@ -87,25 +88,35 @@ export class EntryLogsComponent implements OnInit{
     }  
 
   ngOnInit() {
-    // Tải cards và cardGroups
-    this.cardService.getCards().subscribe(data => {
-      this.cards = data;
-      
-      // Sau khi có cards, tải cardGroups
-      this.cardGroupService.getCardGroups().subscribe(data => {
-        this.cardGroups = data;
-        
-        // Sau khi đã có cả cards và cardGroups, tải entryLogs
-        this.loadEntryLogs();
+    this.loadAllData();
+  }
 
-        // Cập nhật danh sách thẻ có thể sử dụng
-        this.updateAvailableCards();
-      });
-    });
+  loadAllData(): void {
+    this.loading = true;
     
-    // Tải lanes và customers
-    this.loadLanes();
-    this.loadCustomers();
+    // Gọi tất cả API đồng thời
+    forkJoin({
+      cards: this.cardService.getCards(),
+      cardGroups: this.cardGroupService.getCardGroups(),
+      lanes: this.laneService.getLanes(),
+      customers: this.customerService.getCustomers()
+    }).subscribe({
+      next: (data) => {
+        this.cards = data.cards;
+        this.cardGroups = data.cardGroups;
+        this.lanes = data.lanes;
+        this.customers = data.customers;
+        
+        // Sau khi có tất cả dữ liệu, load entryLogs
+        this.loadEntryLogs();
+        this.updateAvailableCards();
+      },
+      error: (error) => {
+        console.error('Lỗi khi tải dữ liệu:', error);
+        this.notification.error('Lỗi', 'Không thể tải dữ liệu');
+        this.loading = false;
+      }
+    });
   }
 
   initForm() {
@@ -198,30 +209,6 @@ export class EntryLogsComponent implements OnInit{
     }
 
     return result;
-  }
-
-  loadCards() {
-    this.cardService.getCards().subscribe(data => {
-      this.cards = data;
-    });
-  }
-
-  loadCardGroups(){
-    this.cardGroupService.getCardGroups().subscribe(data => {
-      this.cardGroups = data;
-    });
-  }
-
-  loadLanes(){
-    this.laneService.getLanes().subscribe(data => {
-      this.lanes = data;
-    });
-  }
-
-  loadCustomers(){
-    this.customerService.getCustomers().subscribe(data => {
-      this.customers = data;
-    });
   }
 
   loadExitLogs(){
@@ -459,9 +446,6 @@ export class EntryLogsComponent implements OnInit{
 
     const formValue = this.exitLogForm.value;
 
-    const entryPlate = this.selectedEntryLog?.plateNumber?.trim().toLowerCase();
-    const exitPlate = formValue.exitPlateNumber?.trim().toLowerCase();
-
     const newExitLog = {
       entryLogId: this.selectedEntryLog?.id,
       exitPlateNumber: formValue.exitPlateNumber,
@@ -486,22 +470,10 @@ export class EntryLogsComponent implements OnInit{
             nzDuration: 3000
           }
         );
-
-        if (entryPlate && exitPlate && entryPlate !== exitPlate) {
-          this.notification.warning(
-            'Biển số vào ra không khớp',
-            '',
-            {
-              nzPlacement: 'topRight',
-              nzDuration: 3000
-            }
-          );
-        }
       },
       error: (error) => {
         let errorMessage = 'Có lỗi xảy ra khi ghi vé ra';
         
-        // Lấy message trực tiếp từ backend
         if (error?.error?.message) {
           errorMessage = error.error.message;
         } else if (error?.error?.error) {
