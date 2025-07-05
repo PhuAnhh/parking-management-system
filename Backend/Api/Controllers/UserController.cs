@@ -88,7 +88,7 @@ namespace Final_year_Project.Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(new { message = "Password changed successfully." });
+            return Ok(new { message = "Đổi mật khẩu thành công" });
         }
 
         [RequirePermission("PATCH", "/api/user/{id}/reset-password")]
@@ -100,7 +100,7 @@ namespace Final_year_Project.Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(new { message = "Password reset successfully." });
+            return Ok(new { message = "Đặt lại mật khẩu thành công" });
         }
     }
 }

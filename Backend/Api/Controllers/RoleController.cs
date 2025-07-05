@@ -51,7 +51,7 @@ namespace Final_year_Project.Api.Controllers
             var updatedRole = await _roleService.UpdateAsync(id, updateRoleDto);
             if (updatedRole == null)
             {
-                return NotFound(new { message = $"Role with ID {id} not found." });
+                return NotFound(new { message = $"Không tìm thấy vai trò với ID{id}" });
             }
             return Ok(updatedRole);
         }
@@ -63,7 +63,7 @@ namespace Final_year_Project.Api.Controllers
             var deleted = await _roleService.DeleteAsync(id, true);
             if (!deleted)
             {
-                return NotFound(new { message = $"Role with ID {id} not found." });
+                return NotFound(new { message = $"Không tìm thấy vai trò với ID {id}" });
             }
             return NoContent();
         }

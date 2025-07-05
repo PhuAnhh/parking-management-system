@@ -5,7 +5,7 @@ using Final_year_Project.Domain.Entities;
 
 namespace Final_year_Project.Application.Services
 {
-    public class UserService :IUserService
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -24,7 +24,18 @@ namespace Final_year_Project.Application.Services
                 var userWithRole = await _unitOfWork.Users.GetByIdWithRoleAsync(user.Id);
                 if (userWithRole != null)
                 {
-                    userDtos.Add(MapToUserDto(userWithRole));
+                    userDtos.Add(new UserDto
+                    {
+                        Id = userWithRole.Id,
+                        Username = userWithRole.Username,
+                        Password = userWithRole.Password,
+                        Name = userWithRole.Name,
+                        RoleId = userWithRole.RoleId,
+                        Status = userWithRole.Status,
+                        Deleted = userWithRole.Deleted,
+                        CreatedAt = userWithRole.CreatedAt,
+                        UpdatedAt = userWithRole.UpdatedAt
+                    });
                 }
             }
 
@@ -34,7 +45,22 @@ namespace Final_year_Project.Application.Services
         public async Task<UserDto> GetByIdAsync(int id)
         {
             var user = await _unitOfWork.Users.GetByIdWithRoleAsync(id);
-            return user != null ? MapToUserDto(user) : null;
+
+            if (user == null)
+                return null;
+
+            return new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password,
+                Name = user.Name,
+                RoleId = user.RoleId,
+                Status = user.Status,
+                Deleted = user.Deleted,
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt
+            };
         }
 
         public async Task<UserDto> CreateAsync(CreateUserDto createUserDto)
@@ -42,7 +68,7 @@ namespace Final_year_Project.Application.Services
             var role = await _unitOfWork.Roles.GetByIdAsync(createUserDto.RoleId);
             if (role == null)
             {
-                throw new InvalidOperationException($"Role with ID {createUserDto.RoleId} not found.");
+                throw new InvalidOperationException($"Không tìm thấy vai trò với ID {createUserDto.RoleId}.");
             }
 
             var user = new User
@@ -60,8 +86,18 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.Users.CreateAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
-            var createdUser = await _unitOfWork.Users.GetByIdWithRoleAsync(user.Id);
-            return MapToUserDto(createdUser!);
+            return new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password,
+                Name = user.Name,
+                RoleId = user.RoleId,
+                Status = user.Status,
+                Deleted = user.Deleted,
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt
+            };
         }
 
         public async Task<UserDto> UpdateAsync(int id, UpdateUserDto updateUserDto)
@@ -75,7 +111,7 @@ namespace Final_year_Project.Application.Services
             var role = await _unitOfWork.Roles.GetByIdAsync(updateUserDto.RoleId);
             if (role == null)
             {
-                throw new InvalidOperationException($"Role with ID {updateUserDto.RoleId} not found.");
+                throw new InvalidOperationException($"Không tìm thấy vai trò với ID {updateUserDto.RoleId}");
             }
 
             user.Username = updateUserDto.Username;
@@ -87,8 +123,18 @@ namespace Final_year_Project.Application.Services
             _unitOfWork.Users.Update(user);
             await _unitOfWork.SaveChangesAsync();
 
-            var updatedUser = await _unitOfWork.Users.GetByIdWithRoleAsync(user.Id);
-            return MapToUserDto(updatedUser!);
+            return new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password,
+                Name = user.Name,
+                RoleId = user.RoleId,
+                Status = user.Status,
+                Deleted = user.Deleted,
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt
+            };
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -123,7 +169,7 @@ namespace Final_year_Project.Application.Services
         {
             if (changePasswordDto.NewPassword != changePasswordDto.ConfirmPassword)
             {
-                throw new InvalidOperationException("New password and confirmation password do not match.");
+                throw new InvalidOperationException("Mật khẩu xác nhận không khớp");
             }
 
             var user = await _unitOfWork.Users.GetByIdAsync(userId);
@@ -134,7 +180,7 @@ namespace Final_year_Project.Application.Services
 
             if (!VerifyPassword(changePasswordDto.CurrentPassword, user.Password))
             {
-                throw new InvalidOperationException("Current password is incorrect.");
+                throw new InvalidOperationException("Mật khẩu hiện tại không chính xác");
             }
 
             user.Password = HashPassword(changePasswordDto.NewPassword);
@@ -150,7 +196,7 @@ namespace Final_year_Project.Application.Services
         {
             if (resetPasswordDto.NewPassword != resetPasswordDto.ConfirmPassword)
             {
-                throw new InvalidOperationException("New password and confirmation password do not match.");
+                throw new InvalidOperationException("Mật khẩu xác nhận không khớp");
             }
 
             var user = await _unitOfWork.Users.GetByIdAsync(userId);
@@ -167,22 +213,6 @@ namespace Final_year_Project.Application.Services
             await _unitOfWork.SaveChangesAsync();
 
             return true;
-        }
-
-        private static UserDto MapToUserDto(User user)
-        {
-            return new UserDto
-            {
-                Id = user.Id,
-                Username = user.Username,
-                Password = user.Password,
-                Name = user.Name,
-                RoleId = user.RoleId,
-                Status = user.Status,
-                Deleted = user.Deleted,
-                CreatedAt = user.CreatedAt,
-                UpdatedAt = user.UpdatedAt
-            };
         }
 
         private static string HashPassword(string password)

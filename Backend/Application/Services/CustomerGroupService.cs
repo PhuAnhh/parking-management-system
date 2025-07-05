@@ -112,15 +112,15 @@ namespace Final_year_Project.Application.Services
                     customerGroup.Deleted = true;
                     customerGroup.UpdatedAt = DateTime.UtcNow;
 
-                    //if (customerGroup.Customers != null && customerGroup.Customers.Any())
-                    //{
-                    //    foreach (var customer in customerGroup.Customers)
-                    //    {
-                    //        customer.Deleted = true;
-                    //        customer.UpdatedAt = DateTime.UtcNow;
-                    //        _unitOfWork.Customers.Update(customer);
-                    //    }
-                    //}
+                    if (customerGroup.Customers != null && customerGroup.Customers.Any())
+                    {
+                        foreach (var customer in customerGroup.Customers)
+                        {
+                            customer.Deleted = true;
+                            customer.UpdatedAt = DateTime.UtcNow;
+                            _unitOfWork.Customers.Update(customer);
+                        }
+                    }
                     _unitOfWork.CustomerGroups.Update(customerGroup);
                 }
                 else

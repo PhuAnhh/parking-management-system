@@ -118,15 +118,15 @@ namespace Final_year_Project.Application.Services
                     gate.Deleted = true;
                     gate.UpdatedAt = DateTime.UtcNow;
 
-                    //if (gate.Computers != null && gate.Computers.Any())
-                    //{
-                    //    foreach (var computer in gate.Computers)
-                    //    {
-                    //        computer.Deleted = true;
-                    //        computer.UpdatedAt = DateTime.UtcNow;
-                    //        _unitOfWork.Computers.Update(computer);
-                    //    }
-                    //}
+                    if (gate.Computers != null && gate.Computers.Any())
+                    {
+                        foreach (var computer in gate.Computers)
+                        {
+                            computer.Deleted = true;
+                            computer.UpdatedAt = DateTime.UtcNow;
+                            _unitOfWork.Computers.Update(computer);
+                        }
+                    }
 
                     _unitOfWork.Gates.Update(gate);
                 }
