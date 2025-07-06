@@ -235,12 +235,15 @@ export class UsersComponent implements OnInit{
       return;
     }
     
+    const currentUser = this.users.find(u => u.id === this.currentUserId);
+
     const updatedUser = {
       ...this.editUserForm.value,
+      username: currentUser?.username
     };
     
     const isDupicate = this.users.some(user =>
-      user.username === updatedUser.username && user.id !== this.currentUserId
+      user.name === updatedUser.name && user.id !== this.currentUserId
     );
 
     if (isDupicate) {

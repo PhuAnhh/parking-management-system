@@ -446,7 +446,6 @@ export class CustomersComponent {
     const updatedCard = {
       ...card,
       customerId: this.selectedCustomer.id,
-      status: CardStatus.ACTIVE
     };
   
     this.cardService.updateCard(cardId, updatedCard).subscribe(
