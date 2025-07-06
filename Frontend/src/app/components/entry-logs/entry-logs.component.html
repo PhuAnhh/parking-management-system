@@ -395,33 +395,6 @@
 
 <ng-template #addEntryLogTpl>
   <form [formGroup]="entryLogForm" nz-form [nzLayout]="'vertical'">
-    <div nz-row [nzGutter]="16" nzAlign="middle">
-      <div nz-col [nzSpan]="20">
-        <nz-form-item>
-          <nz-form-label [nzFor]="'plateNumber'" [nzRequired]="true">Biển số</nz-form-label>
-          <nz-form-control>
-            <input
-              id="plateNumber"
-              nz-input
-              formControlName="plateNumber"
-              style="border-radius: 8px; width: 100%;"
-            />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col [nzSpan]="4" style="text-align: center;">
-        <button
-          style="border-radius: 8px; width: 100%; margin-top: 6px;"
-          nz-button
-          nzType="default"
-          (click)="openCamera()"
-          nzTooltipTitle="Mở camera"
-        >
-          <i nz-icon nzType="camera" nzTheme="twotone"></i>
-        </button>
-      </div>
-    </div>
-
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="12">
         <nz-form-item>
@@ -498,6 +471,33 @@
             </nz-select>
           </nz-form-control>
         </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16" nzAlign="middle">
+      <div nz-col [nzSpan]="20">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'plateNumber'" [nzRequired]="true">Biển số</nz-form-label>
+          <nz-form-control>
+            <input
+              id="plateNumber"
+              nz-input
+              formControlName="plateNumber"
+              style="border-radius: 8px; width: 100%;"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="4" style="text-align: center;">
+        <button
+          style="border-radius: 8px; width: 100%; margin-top: 6px;"
+          nz-button
+          nzType="default"
+          (click)="openCamera()"
+          nzTooltipTitle="Mở camera"
+        >
+          <i nz-icon nzType="camera" nzTheme="twotone"></i>
+        </button>
       </div>
     </div>
 
