@@ -65,6 +65,7 @@
               [nzPageIndex]="pageIndex"
               [nzFrontPagination]="false"
               [nzShowSizeChanger]="true"
+              [nzPageSizeOptions]="[10, 20, 30, 40]"
               [nzShowTotal]="paginationTemplate"
               (nzQueryParams)="onQueryParamsChange($event)"
               [nzLoading]="loading"

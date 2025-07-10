@@ -26,19 +26,20 @@ export class CardGroupsComponent implements OnInit {
   pageSize = 10;
   total = 0;
   loading = true;
+
   isAddModalVisible = false;
   isEditModalVisible = false;
   isNextBlockVisible = false;
   isFeeConfigExpanded = false;
+
   currentCardGroupId: number | null = null;
   searchKeyword = '';
-  
   cardGroupForm!: FormGroup;
   editCardGroupForm!: FormGroup;
   
   cardGroupTypes = [
-    { label: 'Tháng', value: CardGroupType.MONTH, color: 'pink' },
-    { label: 'Ngày', value: CardGroupType.DAY, color: 'red' }
+    { label: 'Tháng', value: CardGroupType.MONTH},
+    { label: 'Ngày', value: CardGroupType.DAY}
   ];
 
   cardGroupVehicleTypes = [
@@ -92,13 +93,13 @@ export class CardGroupsComponent implements OnInit {
     const defaultFormConfig = {
       code: [null, [Validators.required]],
       name: [null, [Validators.required]],
-      type: [CardGroupType.MONTH, [Validators.required]],
-      vehicleType: [CardGroupVehicleType.CAR, [Validators.required]],
+      type: [null, [Validators.required]],
+      vehicleType: [null, [Validators.required]],
       status: true,
       laneIds: [[]],
-      freeMinutes: 0,
-      firstBlockMinutes: 60,
-      firstBlockPrice: 0.00,
+      freeMinutes: [null],
+      firstBlockMinutes: [null],
+      firstBlockPrice: [null],
       nextBlockMinutes: [null],
       nextBlockPrice: [null]
     };
@@ -139,12 +140,6 @@ export class CardGroupsComponent implements OnInit {
   loadLanes() {
     this.laneService.getLanes().subscribe(data => {
       this.lanes = data;
-      this.transferData = this.lanes.map(lane => ({
-        key: lane.id,
-        title: lane.name,
-        direction: 'left',
-        disabled: false
-      }));
     });
   }
 
@@ -160,21 +155,23 @@ export class CardGroupsComponent implements OnInit {
   }
 
   transferChange(ret: TransferChange): void {
-    // Update the direction of changed items in transferData
-    ret.list.forEach(item => {
-      const index = this.transferData.findIndex(data => data['key'] === item['key']);
-      if (index !== -1) {
-        this.transferData[index].direction = item.direction;
+    // update vị trí lane thay đổi 
+    ret.list.forEach(changedItem => {
+      const existingItem = this.transferData.find(item => item['key'] === changedItem['key']);
+      if (existingItem) {
+        existingItem.direction = changedItem['direction'];
       }
     });
     
-    // Get all right side items after the update
-    const rightItems = this.transferData.filter(item => item.direction === 'right');
-    const selectedLaneIds = rightItems.map(item => item['key']);
+    // lấy tất cả lane đã chọn
+    const selectedLaneIds = this.transferData
+      .filter(item => item.direction === 'right')
+      .map(item => item['key'] as number);
     
-    // Update the current form
-    const form = this.isAddModalVisible ? this.cardGroupForm : this.editCardGroupForm;
-    form.patchValue({ laneIds: selectedLaneIds });
+    // lưu vào form
+    const currentForm = this.isAddModalVisible ? this.cardGroupForm : this.editCardGroupForm;
+    currentForm.patchValue({ laneIds: selectedLaneIds });
+    
     this.cardGroupLanes = selectedLaneIds;
   }
 
@@ -191,15 +188,14 @@ export class CardGroupsComponent implements OnInit {
     
     this.cardGroupLanes = [];
     this.isNextBlockVisible = false;
-    
-    // Reset all transfer items to left side
+
     this.transferData = this.lanes.map(lane => ({
       key: lane.id,
       title: lane.name,
       direction: 'left',
       disabled: false
     }));
-    
+
     this.isAddModalVisible = true;
   }
 
@@ -223,18 +219,9 @@ export class CardGroupsComponent implements OnInit {
     
     this.editCardGroupForm.patchValue(formValues);
     
-    // Check if "Next Block" section should be visible
+    // hiển thị khoảng tiếp theo nếu có
     this.isNextBlockVisible = !!cardGroup.nextBlockMinutes || !!cardGroup.nextBlockPrice;
     
-    // Check if fee config should be expanded
-    this.isFeeConfigExpanded =
-      !!cardGroup.freeMinutes ||
-      !!cardGroup.firstBlockMinutes ||
-      !!cardGroup.firstBlockPrice ||
-      !!cardGroup.nextBlockMinutes ||
-      !!cardGroup.nextBlockPrice;
-  
-    // Update transfer data
     this.transferData = this.lanes.map(lane => ({
       key: lane.id,
       title: lane.name,
@@ -243,7 +230,6 @@ export class CardGroupsComponent implements OnInit {
     }));
   
     this.isEditModalVisible = true;
-    this.cdr.detectChanges();
   }
   
   showNextBlock() {
@@ -253,7 +239,7 @@ export class CardGroupsComponent implements OnInit {
   hideNextBlock() {
     this.isNextBlockVisible = false;
     
-    // Clear next block fields
+    // xóa khoảng tiếp theo
     const form = this.isEditModalVisible ? this.editCardGroupForm : this.cardGroupForm;
     form.patchValue({
       nextBlockMinutes: null,

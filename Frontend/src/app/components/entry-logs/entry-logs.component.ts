@@ -142,7 +142,7 @@ export class EntryLogsComponent implements OnInit{
     // Lấy danh sách ID thẻ đã được sử dụng (xe chưa ra khỏi bãi)
     this.usedCardIds = this.entryLogs.map(log => log.cardId);
 
-    // Lọc ra những thẻ chưa được sử dụng và đang ở trạng thái Inactive
+    // Lọc ra những thẻ chưa được sử dụng
     this.availableCards = this.cards.filter(card =>
       !this.usedCardIds.includes(card.id) &&
       card.status === CardStatus.INACTIVE
@@ -309,7 +309,6 @@ export class EntryLogsComponent implements OnInit{
   showAddEntryLogModal() {
     this.isAddEntryModalVisible = true;
     this.entryLogForm.reset(); 
-
     this.updateAvailableCards();
   }
 

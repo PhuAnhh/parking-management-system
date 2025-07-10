@@ -488,7 +488,6 @@ export class CustomersComponent {
         const updatedCard = {
           ...card,
           customerId: null,
-          status: CardStatus.INACTIVE  // Thay đổi trạng thái thành INACTIVE khi hủy liên kết
         };
   
         this.cardService.updateCard(cardId, updatedCard).subscribe(

@@ -240,7 +240,7 @@ public partial class ParkingManagementContext : DbContext
 
             entity.HasOne(d => d.Lane).WithMany(p => p.CardGroupLanes)
                 .HasForeignKey(d => d.LaneId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__card_grou__lane___0A338187");
         });
 
