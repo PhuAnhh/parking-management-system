@@ -117,6 +117,7 @@ export class CardsComponent {
       form.patchValue({
         startDate: null,
         endDate: null,
+        plateNumber: null,
       });
     }
   }

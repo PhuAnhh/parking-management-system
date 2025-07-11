@@ -196,17 +196,7 @@ nzWidth="60vw"
     </div>
 
     <div nz-row [nzGutter]="16">
-      <div nz-col [nzSpan]="12">
-        <nz-form-item>
-          <nz-form-label nzFor="reverseLane">Làn đảo</nz-form-label>
-          <nz-form-control>
-            <nz-select formControlName="reverseLane" [nzAllowClear]="true">
-              <nz-option *ngFor="let lane of lanes" [nzValue]="lane.id" [nzLabel]="lane.name"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col [nzSpan]="12">
+      <div nz-col [nzSpan]="24">
         <nz-form-item>
           <nz-form-label [nzRequired]="true" nzFor="autoOpenBarrier">Tự động mở barrier</nz-form-label>
           <nz-form-control>
@@ -381,17 +371,7 @@ nzWidth="60vw"
     </div>
 
     <div nz-row [nzGutter]="16">
-      <div nz-col [nzSpan]="12">
-        <nz-form-item>
-          <nz-form-label nzFor="reverseLane">Làn đảo</nz-form-label>
-          <nz-form-control>
-            <nz-select formControlName="reverseLane" [nzAllowClear]="true">
-              <nz-option *ngFor="let lane of lanes" [nzValue]="lane.id" [nzLabel]="lane.name"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col [nzSpan]="12">
+      <div nz-col [nzSpan]="24">
         <nz-form-item>
           <nz-form-label [nzRequired]="true" nzFor="autoOpenBarrier">Tự động mở barrier</nz-form-label>
           <nz-form-control>

@@ -153,7 +153,6 @@ export class LanesComponent implements OnInit{
       code: [null, [Validators.required]],
       computerId: [null, [Validators.required]],
       type: [null, [Validators.required]],
-      reverseLane: [null],
       autoOpenBarrier: [null, [Validators.required]],
       loop: [false],
       status: [true],
@@ -166,7 +165,6 @@ export class LanesComponent implements OnInit{
       code: [null, [Validators.required]],
       computerId: [null, [Validators.required]],
       type: [null, [Validators.required]],
-      reverseLane: [null],
       autoOpenBarrier: [null, [Validators.required]],
       loop: [false],
       status: [true],
@@ -263,7 +261,6 @@ export class LanesComponent implements OnInit{
       code: lane.code,
       computerId: lane.computerId,
       type: lane.type,
-      reverseLane: lane.reverseLane,
       autoOpenBarrier: lane.autoOpenBarrier,
       loop: lane.loop,
       status: lane.status
@@ -642,5 +639,3 @@ export class LanesComponent implements OnInit{
     }
   }
 }
-
-
