@@ -55,10 +55,19 @@ namespace Final_year_Project.Persistence.Repositories
             _context.EntryLogs.Remove(entryLog);
         }
 
-        public async Task<bool> HasActiveEntryAsync(int cardId)
+        public async Task<bool> HasActiveEntryAsync(int? cardId = null, int? customerId = null)
         {
-            return await _context.EntryLogs
-                .AnyAsync(e => e.CardId == cardId && !e.Exited);
+            var query = _context.EntryLogs.AsQueryable();
+
+            if (cardId.HasValue)
+                query = query.Where(e => e.CardId == cardId.Value);
+
+            if (customerId.HasValue)
+                query = query.Where(e => e.CustomerId == customerId.Value);
+
+            // Kiểm tra xe chưa ra khỏi bãi
+            return await query
+                .AnyAsync(e => !_context.ExitLogs.Any(ex => ex.EntryLogId == e.Id));
         }
 
         public async Task<bool> IsPlateNumberInUseAsync(string plateNumber)

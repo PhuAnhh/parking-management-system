@@ -21,6 +21,7 @@ namespace Final_year_Project.Persistence.Repositories
             return await _context.Lanes
                 .Include(l => l.LaneCameras)
                 .Include(l => l.LaneControlUnits)
+                .Where(c => !c.Deleted)
                 .ToListAsync();
         }
 

@@ -57,7 +57,7 @@ namespace Final_year_Project.Application.Services
                     return new LoginResponse
                     {
                         Success = false,
-                        Message = "Tài khoản đã bị khóa hoặc xóa"
+                        Message = "Tài khoản đã bị khóa. Vui lòng liên hệ quản trị viên để được hỗ trợ"
                     };
                 }
 

@@ -20,6 +20,8 @@ namespace Final_year_Project.Persistence.Repositories
         {
             return await _context.CustomerGroups
                 .Where(cg => !cg.Deleted)
+                .Include(cg => cg.Customers.Where(c => !c.Deleted))
+                    .ThenInclude(c => c.Cards.Where(v => !v.Deleted))
                 .ToListAsync();
         }
 

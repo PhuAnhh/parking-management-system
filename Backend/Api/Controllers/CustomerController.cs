@@ -63,12 +63,19 @@ namespace Final_year_Project.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var result = await _customerService.DeleteAsync(id);
+            try
+            {
+                var result = await _customerService.DeleteAsync(id);
 
-            if (!result)
-                return NotFound();
+                if (!result)
+                    return NotFound();
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }

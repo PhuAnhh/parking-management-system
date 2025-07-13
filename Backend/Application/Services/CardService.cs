@@ -204,13 +204,14 @@ namespace Final_year_Project.Application.Services
             if (card == null)
                 return false;
 
-            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(id);
+            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(cardId: id);
             if (hasActiveEntry)
             {
                 throw new Exception("Không thể xóa khi xe đang trong bãi");
             }
 
-            _unitOfWork.Cards.Delete(card);
+            card.Deleted = true;
+            _unitOfWork.Cards.Update(card);
             await _unitOfWork.SaveChangesAsync();
 
             return true;

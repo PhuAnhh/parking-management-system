@@ -19,7 +19,9 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<Card>> GetAllAsync()
         {
-            return await _context.Cards.AsNoTracking().ToListAsync();
+            return await _context.Cards
+                .Where(c => !c.Deleted)
+                .ToListAsync();
         }
 
         public async Task<Card> GetByIdAsync(int id)

@@ -10,7 +10,7 @@ namespace Final_year_Project.Application.Repositories
         Task CreateAsync(EntryLog entryLog);
         void Update(EntryLog entryLog);
         void Delete(EntryLog entryLog);
-        Task<bool> HasActiveEntryAsync(int cardId);
+        Task<bool> HasActiveEntryAsync(int? cardId = null, int? customerId = null);
         Task<bool> IsPlateNumberInUseAsync(string plateNumber);
     }
 }

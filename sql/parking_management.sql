@@ -186,7 +186,7 @@ CREATE TABLE entry_logs(
 	card_id int not null,
 	card_group_id int not null,
 	lane_id int not null,
-	customer_id int,
+	customer_id int null,
 	entry_time datetime not null default getdate(),
 	image_url nvarchar(255) null,
 	note nvarchar(255) null,

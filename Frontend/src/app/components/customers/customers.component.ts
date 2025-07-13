@@ -350,9 +350,10 @@ export class CustomersComponent {
           },
           (error) => {
             console.error('Lỗi khi xóa khách hàng:', error);
+            const message = error?.error?.message || 'Đã xảy ra lỗi khi xóa khách hàng.';
             this.notification.error(
               'Lỗi',
-              '', 
+              message, 
               {
                 nzPlacement: 'topRight',
                 nzDuration: 3000

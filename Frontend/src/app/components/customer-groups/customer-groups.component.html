@@ -74,6 +74,7 @@
                   <th style="width: 60px; min-width: 60px; text-align: center;">#</th>
                   <th>Tên</th>
                   <th>Mã</th>
+                  <th></th>
                   <th style="width: 130px; min-width: 130px; text-align: center;"></th>
                 </tr>
               </thead>
@@ -82,7 +83,7 @@
                   <td style="text-align: center;">{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
                   <td>{{ customerGroup.name }}</td>
                   <td>{{ customerGroup.code }}</td> 
-  
+                  <td style="text-align: right;">{{ customerGroup.cardCount > 0 ? (customerGroup.cardCount + ' xe') : '' }}</td>
                   <td style="text-align: center;">
                     <button *ngIf="loginService.hasPermission('PUT:/api/customergroup/{id}')" nz-button class="ant-btn edit-btn ant-btn-icon-only " (click)="updateCustomerGroup(customerGroup.id)">
                       <span nz-icon nzType="edit" nzTheme="outline"></span>

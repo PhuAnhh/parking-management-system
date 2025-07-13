@@ -14,6 +14,7 @@ namespace Final_year_Project.Application.Models
 
         public DateTime UpdatedAt { get; set; }
 
+        public int CardCount { get; set; }
     }
 
     public class CreateCustomerGroupDto
@@ -21,7 +22,6 @@ namespace Final_year_Project.Application.Models
         public string Code { get; set; } = null!;
 
         public string Name { get; set; } = null!;
-
     }
 
     public class UpdateCustomerGroupDto

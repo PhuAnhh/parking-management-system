@@ -125,7 +125,15 @@ namespace Final_year_Project.Application.Services
             if (customer == null)
                 return false;
 
-            _unitOfWork.Customers.Delete(customer);
+            var hasActiveEntry = await _unitOfWork.EntryLogs.HasActiveEntryAsync(customerId: id);
+            if (hasActiveEntry)
+            {
+                throw new Exception("Không thể xóa khi khách hàng đang gửi xe");
+            }
+
+            customer.Deleted = true;
+            _unitOfWork.Customers.Update(customer);
+
             await _unitOfWork.SaveChangesAsync();
             return true;
         }

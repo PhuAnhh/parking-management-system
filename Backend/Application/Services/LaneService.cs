@@ -318,7 +318,9 @@ namespace Final_year_Project.Application.Services
             if (lane == null)
                 return false;
 
-            _unitOfWork.Lanes.Delete(lane);
+            lane.Deleted = true;
+            _unitOfWork.Lanes.Update(lane);
+
             await _unitOfWork.SaveChangesAsync();
             return true;
         }

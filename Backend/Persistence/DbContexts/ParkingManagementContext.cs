@@ -162,6 +162,7 @@ public partial class ParkingManagementContext : DbContext
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Cards)
                 .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__cards__customer___10E07F16");
         });
 
@@ -436,6 +437,7 @@ public partial class ParkingManagementContext : DbContext
 
             entity.HasOne(d => d.Customer).WithMany(p => p.EntryLogs)
                 .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__entry_log__custo__1881A0DE");
 
             entity.HasOne(d => d.Lane).WithMany(p => p.EntryLogs)

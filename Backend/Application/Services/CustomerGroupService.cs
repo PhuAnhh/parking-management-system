@@ -23,13 +23,19 @@ namespace Final_year_Project.Application.Services
 
             foreach (var customerGroup in customerGroups)
             {
+                // Tính tổng số thẻ (cards) của nhóm khách hàng
+                var cardCount = customerGroup.Customers?
+                    .Where(c => !c.Deleted)
+                    .Sum(c => c.Cards?.Count(card => !card.Deleted) ?? 0) ?? 0;
+
                 customerGroupDtos.Add(new CustomerGroupDto
                 {
                     Id = customerGroup.Id,
                     Name = customerGroup.Name,
                     Code = customerGroup.Code,
                     CreatedAt = customerGroup.CreatedAt,
-                    UpdatedAt = customerGroup.UpdatedAt
+                    UpdatedAt = customerGroup.UpdatedAt,
+                    CardCount = cardCount
                 });
             }
 
@@ -43,13 +49,19 @@ namespace Final_year_Project.Application.Services
             if (customerGroup == null)
                 return null;
 
+            // Tính tổng số thẻ cho nhóm khách hàng này
+            var cardCount = customerGroup.Customers?
+                .Where(c => !c.Deleted)
+                .Sum(c => c.Cards?.Count(card => !card.Deleted) ?? 0) ?? 0;
+
             return new CustomerGroupDto
             {
                 Id = customerGroup.Id,
                 Name = customerGroup.Name,
                 Code = customerGroup.Code,
                 CreatedAt = customerGroup.CreatedAt,
-                UpdatedAt = customerGroup.UpdatedAt
+                UpdatedAt = customerGroup.UpdatedAt,
+                CardCount = cardCount
             };
         }
 
@@ -72,7 +84,8 @@ namespace Final_year_Project.Application.Services
                 Name = customerGroup.Name,
                 Code = customerGroup.Code,
                 CreatedAt = customerGroup.CreatedAt,
-                UpdatedAt = customerGroup.UpdatedAt
+                UpdatedAt = customerGroup.UpdatedAt,
+                CardCount = 0
             };
         }
 
@@ -90,6 +103,11 @@ namespace Final_year_Project.Application.Services
             _unitOfWork.CustomerGroups.Update(customerGroup);
             await _unitOfWork.SaveChangesAsync();
 
+            // Tính tổng số thẻ sau khi update
+            var cardCount = customerGroup.Customers?
+                .Where(c => !c.Deleted)
+                .Sum(c => c.Cards?.Count(card => !card.Deleted) ?? 0) ?? 0;
+
             return new CustomerGroupDto
             {
                 Id = customerGroup.Id,
@@ -97,6 +115,7 @@ namespace Final_year_Project.Application.Services
                 Code = customerGroup.Code,
                 CreatedAt = customerGroup.CreatedAt,
                 UpdatedAt = DateTime.UtcNow,
+                CardCount = cardCount
             };
         }
 

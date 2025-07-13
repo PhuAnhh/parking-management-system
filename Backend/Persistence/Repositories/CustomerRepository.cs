@@ -18,7 +18,9 @@ namespace Final_year_Project.Persistence.Repositories
 
         public async Task<IEnumerable<Customer>> GetAllAsync()
         {
-            return await _context.Customers.ToListAsync();
+            return await _context.Customers
+                .Where(c => !c.Deleted)
+                .ToListAsync();
         }
 
         public async Task<Customer> GetByIdAsync(int id)
